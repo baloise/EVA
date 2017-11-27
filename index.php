@@ -22,6 +22,7 @@
 
     <!-- Navigation -->
     <?php
+      include("auth.php");
       include("modul/ll_navi.php");
     ?>
 
