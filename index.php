@@ -22,13 +22,16 @@
 
     <!-- Navigation -->
     <?php
+      include("database/connect.php");
       include("auth.php");
-      include("modul/ll_navi.php");
+      include("modul/navi.php");
     ?>
 
     <!-- Page Content -->
-    <div id="pageContent">
+    <div class="container">
+      <div id="pageContent">
       
+      </div>
     </div>
     <!-- /.container -->
     
