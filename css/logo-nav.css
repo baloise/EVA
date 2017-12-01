@@ -1,8 +1,14 @@
+:root {
+  --akzentfarbe: #F1F4FB;
+  --hintergrund: white;
+  --link: #003399;
+  --schrift: black;
+}
 body {
   padding-top: 54px;
-  /*font-family: ff-meta-web-pro,Helvetica,Arial,sans-serif;*/
-  background-color: #F1F4FB;
-  color: #26282C;
+  font-family: ff-meta-web-pro,Helvetica,Arial,sans-serif;
+  background-color: var(--hintergrund);
+  color: var(--schrift);
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
@@ -12,10 +18,10 @@ body {
   }
 }
 .bg-color {
-  background-color: #CDDAF2 !important;
+  background-color: var(--akzentfarbe) !important;
 }
 .nav-link {
-  color: #003399 !important;
+  color: var(--link) !important;
   font-size: large;
 }
 .custom-toggler .navbar-toggler-icon {
@@ -37,7 +43,7 @@ html {
   background-color: #CDDAF2;
 }
 .footer a {
-  color: #003399;
+  color: var(--link);
 }
 .footer span {
   float: right;
@@ -48,4 +54,25 @@ html {
 .mt-5 {
   background-color: white;
   padding: 20px;
+}
+#dashModule {
+  background-color: var(--akzentfarbe);
+  color: var(--link);
+  border: solid var(--akzentfarbe);
+  border-radius: 15px;
+  border-width: 2px;
+  min-height: 150px;
+  max-height: 150px;
+  padding: 20px;
+  margin-bottom: 5px;
+}
+#dashModuleTitle {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+#dashModuleDescription {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }

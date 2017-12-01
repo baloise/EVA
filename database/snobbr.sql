@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Nov 2017 um 15:41
+-- Erstellungszeit: 01. Dez 2017 um 15:48
 -- Server-Version: 10.1.28-MariaDB
 -- PHP-Version: 7.1.11
 
@@ -66,12 +66,45 @@ CREATE TABLE `tb_modul` (
 --
 
 INSERT INTO `tb_modul` (`ID`, `name`, `description`, `file_path`, `title`) VALUES
-(1, 'dashboard', NULL, 'modul/dashboard.php', 'Dashboard'),
-(2, 'noten', NULL, 'modul/noten.php', 'Noten'),
-(3, 'verhaltensziele', NULL, 'modul/verhaltensziele.php', 'Verhaltensziele'),
-(4, 'stundenplan', NULL, 'modul/stundenplan.php', 'Stundenplan'),
-(5, 'OhnePfad', NULL, NULL, 'Pfadlos'),
-(6, 'falscher Pfad', NULL, 'asdfasdf', 'FalscherPfad');
+(1, 'dashboard', 'Für alle sichtbar', 'modul/dashboard.php', 'Dashboard'),
+(11, 'ALS', 'Punkte des ALS eintragen', 'modul/als.php', 'ALS'),
+(12, 'Fachvortrag', 'Punkte des Fachvortrages eintragen', 'modul/fachvortrag.php', 'Fachvortrag'),
+(13, 'Leistungslohn', 'Seite zur bestimmung des endgültigen Lohnes und erstellung der csv', 'modul/leistungslohn.php', 'Leistungslohn'),
+(14, 'Malus', 'Seite zum eintragen eines Malus für einen Lehrling', 'modul/malus.php', 'Malus'),
+(15, 'Noten', 'Noten/Fächer verwalten', 'modul/noten.php', 'Noten'),
+(16, 'PE', 'PE Punktzahl eintragen', 'modul/pe.php', 'PE'),
+(17, 'STAO', 'STAO Punktzahl eintragen', 'modul/stao.php', 'STAO'),
+(18, 'Stundenplan', 'Stundenplan der Schule festlegen', 'modul/stundenplan.php', 'Stundenplan'),
+(19, 'Terminmanagement', 'Termine eintragen/bearbeiten, bestätigen...', 'modul/terminmanagement.php', 'Terminmanagement'),
+(20, 'verhaltensziele', 'Verhaltensziele Punktzahl eintragen', 'modul/verhaltensziele.php', 'Verhaltensziele');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tb_modul_group`
+--
+
+CREATE TABLE `tb_modul_group` (
+  `ID` int(11) NOT NULL,
+  `groupID` int(11) NOT NULL,
+  `modulID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `tb_modul_group`
+--
+
+INSERT INTO `tb_modul_group` (`ID`, `groupID`, `modulID`) VALUES
+(29, 3, 1),
+(30, 3, 18),
+(31, 4, 1),
+(32, 4, 11),
+(33, 3, 12),
+(34, 3, 13),
+(35, 3, 14),
+(36, 3, 15),
+(37, 3, 19),
+(38, 3, 20);
 
 -- --------------------------------------------------------
 
@@ -112,6 +145,14 @@ ALTER TABLE `tb_modul`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indizes für die Tabelle `tb_modul_group`
+--
+ALTER TABLE `tb_modul_group`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `groupID` (`groupID`),
+  ADD KEY `modulID` (`modulID`);
+
+--
 -- Indizes für die Tabelle `tb_user`
 --
 ALTER TABLE `tb_user`
@@ -132,7 +173,13 @@ ALTER TABLE `tb_group`
 -- AUTO_INCREMENT für Tabelle `tb_modul`
 --
 ALTER TABLE `tb_modul`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_modul_group`
+--
+ALTER TABLE `tb_modul_group`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user`
@@ -143,6 +190,13 @@ ALTER TABLE `tb_user`
 --
 -- Constraints der exportierten Tabellen
 --
+
+--
+-- Constraints der Tabelle `tb_modul_group`
+--
+ALTER TABLE `tb_modul_group`
+  ADD CONSTRAINT `tb_modul_group_ibfk_1` FOREIGN KEY (`groupID`) REFERENCES `tb_group` (`ID`),
+  ADD CONSTRAINT `tb_modul_group_ibfk_2` FOREIGN KEY (`modulID`) REFERENCES `tb_modul` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_user`
