@@ -1,7 +1,7 @@
 <?php include("session/session.php"); ?>
 <?php if($usergroup == 1) : ?>
 
-    <h1 class="mt-5">Alle HR-Module</h1>
+    <h1 class="mt-5">ALS</h1>
     <p>Sie sind Nachwuchsentwicklung</p>
       
 <?php elseif($usergroup == 2) : ?>

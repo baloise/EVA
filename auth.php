@@ -9,12 +9,12 @@
 
         $username = $_SESSION['user']['username'];
         
-        $sql = "SELECT usergroup FROM tb_user WHERE bKey = '$username'";
+        $sql = "SELECT tb_group_id FROM tb_user WHERE bKey = '$username'";
         $result = $mysqli->query($sql);
         
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $_SESSION['user']['usergroup'] = $row['usergroup'];
+            $_SESSION['user']['usergroup'] = $row['tb_group_id'];
         } else {
             header("Location: login.php?error=user");
         }

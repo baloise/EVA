@@ -1,3 +1,4 @@
+<?php include("session/session.php"); ?>
 <nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -11,8 +12,9 @@
                 
                 <?php
                     
-                    $sql = "SELECT * FROM tb_modul";
-                    $result = $mysqli->query($sql);
+                    
+                    $sql2 = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $usergroup";
+                    $result = $mysqli->query($sql2);
                     
                     if (isset($result) && $result->num_rows > 0) {
                         // output data of each row

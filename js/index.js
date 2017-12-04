@@ -2,11 +2,18 @@ $(document).ready(function(){
     
     $("#pageContent").load("modul/dashboard.php");
     
+    $(".foot-link").each(function(){
+        makeDynamic(this);
+    });
+    
     $(".nav-link").each(function(){
+        makeDynamic(this);
+    });
+   
+    function makeDynamic(objectThis){
+        var href = ($(objectThis).attr('href'));
         
-        var href = ($(this).attr('href'));
-        
-        $(this).click(function(){
+        $(objectThis).click(function(){
             event.preventDefault();
             $("#pageContent").fadeOut("fast", function(){
                 if (href){
@@ -22,7 +29,7 @@ $(document).ready(function(){
                 }
             }).fadeIn("fast");
         });
-        
-    });
+    }
+   
     
 });
