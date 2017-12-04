@@ -76,3 +76,26 @@ html {
   margin-right: auto;
   text-align: center;
 }
+#navListItem {
+  background-color: var(--akzentfarbe);
+  color: var(--link);
+  border: solid var(--akzentfarbe);
+  border-radius: 15px;
+  border-width: 2px;
+  padding: 10px;
+  margin:  10px;
+  display: inline-block;
+  min-width: 80%;
+}
+#navListItem span {
+  float: right;
+}
+#navListIcon {
+  display: inline-block;
+  font-size: larger;
+  color: var(--link);
+  cursor: pointer;
+}
+#navListPosition {
+  
+}

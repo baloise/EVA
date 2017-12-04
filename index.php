@@ -37,7 +37,7 @@
     
     <footer class="footer">
       <div class="container">
-          <a class="foot-link" href="modul/settings.php">Einstellungen</a><span class="text-muted">©<a href="https://eliareutlinger.ch">Elia Reutlinger</a> | 2017</span>
+          <a class="foot-link" href="modul/settings.php">Einstellungen</a><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
       </div>
     </footer>
 

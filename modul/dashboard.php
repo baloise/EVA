@@ -60,7 +60,7 @@
         while($row = $result->fetch_assoc()) {
             $generateDiv = '
             <div class="col-lg-4">
-            <div id="dashModule" href="'. $row["file_path"] .'">
+            <div class="dashModul" id="dashModule" href="'. $row["file_path"] .'">
                 <div id="dashModuleTitle">
                    <h3>'. $row["title"] .'</h3>
                 </div>
@@ -105,7 +105,7 @@
 <script>
     $(document).ready(function(){
        
-       $("#dashModule").each(function(){
+       $(".dashModul").each(function(){
         
             $(this).hover(function() {
                 $(this).css( 'cursor', 'pointer' );

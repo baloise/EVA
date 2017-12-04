@@ -70,6 +70,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `snobbr`.`tb_ind_nav` (
   `ID` INT NOT NULL AUTO_INCREMENT AUTO_INCREMENT,
+  `position` INT NOT NULL,
   `tb_user_ID` INT NOT NULL,
   `tb_modul_ID` INT NOT NULL,
   PRIMARY KEY (`ID`, `tb_user_ID`, `tb_modul_ID`),
