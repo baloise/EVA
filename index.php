@@ -29,8 +29,8 @@
 
     <!-- Page Content -->
     <div class="container">
-      <div id="pageContent">
-      
+      <div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard.php";} ?>" id="pageContent">
+        
       </div>
     </div>
     <!-- /.container -->
@@ -47,6 +47,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     <!-- Own JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
     <script src="js/index.js"></script>
     
   </body>

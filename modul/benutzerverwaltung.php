@@ -1,61 +1,145 @@
 <?php include("session/session.php"); ?>
+<?php include("../database/connect.php"); ?>
 <?php if($usergroup == 1) : ?>
 
     <head>
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/b-1.4.2/b-html5-1.4.2/r-2.2.0/datatables.min.css"/>
- 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.2.1/b-1.4.2/b-html5-1.4.2/r-2.2.0/datatables.min.js"></script>
-
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
     
     
     
     <h1 class="mt-5">Benutzerverwaltung</h1>
     
-    <table id="users" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>B-Key</th>
-                <th>Gruppe</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>ID</th>
-                <th>B-Key</th>
-                <th>Gruppe</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="userTable" style="display: none;">
+        <table id="users" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>B-Key</th>
+                    <th>Gruppe</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                
+                    $sql ="SELECT us.ID, us.bKey, gr.name FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
+                    $sql2 ="SELECT ID, name FROM tb_group";
+                    
+                    $groups = "";
+                    
+                    $result = $mysqli->query($sql);
+                    $result2 = $mysqli->query($sql2);
+                    
+                    if ($result2->num_rows > 0) {
+                        while($row = $result2->fetch_assoc()) {
+                            $groups = $groups . "<option value='". $row['ID'] ."'>". $row["name"] ."</option>";
+                        }
+                    } else {
+                        $groups = "Keine Gruppen gefunden";
+                    }
+        
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $generateDiv = '
+                            <tr>
+                                <td>'. $row['ID'] .'</td>
+                                <td>'. $row['bKey'] .'</td>
+                                <td><select class="form-control"><option>'. $row['name'] .'</option>'.$groups.'</select></td>
+                                <td><input class="form-control" type="text" value="'. $row['ID'] .'"></input></td>
+                                <td><input class="form-control" type="text" value="'. $row['ID'] .'"></input></td>
+                            </tr>
+                            ';
+                                
+                            echo $generateDiv;
+                            
+                        }
+                    } else {
+                        echo "Keine Daten gefunden.";
+                    }
+                
+                ?>
+            </tbody>
+        </table>
+    </div>
     
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+    <div id="editForm">
+        <br/>
+        <hr/>
+        <br/>
+        <h2>Benutzer hinzufügen:</h2>
+        <div class="alert alert-success" id="userAddedNotif" style="display: none;">
+            <strong></strong> Benutzer wurde hinzugefügt.
+        </div>
+        <div class="row" id="addUserForm">
+            <div class="col-lg-2">
+                <label for="usr">B-Key:</label>
+                <input type="text" class="form-control addUserInput" id="usr">
+            </div>
+            <div class="col-lg-3">
+                <label for="usr">Gruppe:</label>
+                <select class="form-control addUserInput"><option> -- Bitte Wählen --</option><?php echo $groups; ?></select>
+            </div>
+            <div class="col-lg-3">
+                <label for="usr">Vorname:</label>
+                <input type="text" class="form-control addUserInput" id="usr">
+            </div>
+            <div class="col-lg-3">
+                <label for="usr">Nachname:</label>
+                <input type="text" class="form-control addUserInput" id="usr">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br/>
+                <a href="#" id="addUser" class="btn btn-primary">Hinzufügen</a>
+            </div>
+        </div>
+    </div>
+    
+    
     
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#users').DataTable();
+            $.getScript( "modul/benutzerverwaltung/benutzerverwaltung.js");
+            $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
+                $("#users").dataTable({
+                    "language": {
+                        "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
+                        "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
+                        "sInfoEmpty":       "0 bis 0 von 0 Einträgen",
+                        "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
+                        "sInfoPostFix":     "",
+                        "sInfoThousands":   ".",
+                        "sLengthMenu":      "_MENU_ Einträge anzeigen",
+                        "sLoadingRecords":  "Wird geladen...",
+                        "sProcessing":      "Bitte warten...",
+                        "sSearch":          "Suchen",
+                        "sZeroRecords":     "Keine Einträge vorhanden.",
+                        "oPaginate": {
+                            "sFirst":       "Erste",
+                            "sPrevious":    "Zurück",
+                            "sNext":        "Nächste",
+                            "sLast":        "Letzte"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                            "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+                        },
+                        select: {
+                                rows: {
+                                _: '%d Zeilen ausgewählt',
+                                0: 'Zum Auswählen auf eine Zeile klicken',
+                                1: '1 Zeile ausgewählt'
+                                }
+                        }
+                    }
+                });
+                $("#userTable").slideDown( "slow" );
+            });
+            
+            
         } );
     </script>
     

@@ -11,8 +11,7 @@
     <p>Sie sind Nachwuchsentwicklung</p>
       
     <?php
-    
-    
+
     $result = $mysqli->query($sql);
         
     if ($result->num_rows > 0) {
@@ -20,7 +19,7 @@
         while($row = $result->fetch_assoc()) {
             $generateDiv = '
             <div class="col-lg-4">
-            <div id="dashModule" href="'. $row["file_path"] .'">
+            <div class="dashModul" id="dashModule" href="'. $row["file_path"] .'">
                 <div id="dashModuleTitle">
                    <h3>'. $row["title"] .'</h3>
                 </div>
@@ -33,7 +32,6 @@
             if($row["title"] != "Dashboard"){
                 echo $generateDiv;
             }
-            
         }
         echo"</div>";
     } else {

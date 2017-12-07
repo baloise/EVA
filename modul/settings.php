@@ -9,7 +9,7 @@
 
         $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$username'")->fetch_assoc());
                     
-        $sql1 = "SELECT * FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = " . $userID['ID'] . " ORDER BY mg.position";
+        $sql1 = "SELECT mg.ID, mg.position, mm.name FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID['ID'] ." ORDER BY mg.position";
                     
         $result = $mysqli->query($sql1);
         
@@ -18,13 +18,13 @@
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 $link = '
-                <div class="navListPosition" id="navListPosition" pos="' . $row["position"] . '">
+                <div class="navListPosition" id="navListPosition" navItemID="' . $row["ID"] . '">
                     <div id="navListItem">
                         ' . $row["name"] . ' <span> Pos.:' . $row["position"] . ' </span>
                     </div>
-                    <div id="navListIcon"><span pos="' . $row["position"] . '" class="itemUp"> ⇑ </span></div>
-                    <div id="navListIcon"><span pos="' . $row["position"] . '" class="itemDown"> ⇓ </span></div>
-                    <div id="navListIcon"><span pos="' . $row["position"] . '" class="itemDelete"> ⌫ </span></div>
+                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemUp"> ⇑ </span></div>
+                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDown"> ⇓ </span></div>
+                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDelete"> ⌫ </span></div>
                 </div>
                 ';
                 echo $link;

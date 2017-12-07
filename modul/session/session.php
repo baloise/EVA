@@ -6,6 +6,13 @@
     
     session_regenerate_id();
     
-    $usergroup = $_SESSION['user']['usergroup'];
-    $username = $_SESSION['user']['username'];
+    if(isset($_SESSION['user']['usergroup'])){
+        $usergroup = $_SESSION['user']['usergroup'];
+    }
+    
+    if(isset($_SESSION['user']['username'])){
+        $username = $_SESSION['user']['username'];
+    } else {
+        header("Location: login.php");
+    }
 ?>

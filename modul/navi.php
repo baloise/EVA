@@ -1,7 +1,7 @@
 <?php include("session/session.php"); ?>
 <nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="modul/dashboard.php">
             <img src="img/logo.svg" width="150" alt="Logo">
 		</a>
 		<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

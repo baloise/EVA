@@ -11,8 +11,47 @@
     
 <?php elseif($usergroup == 3) : ?>
 
-    <h1 class="mt-5">Alle IT-Module</h1>
-    <p>Sie sind Informatik-Lehrling</p>
+    <div class="col-lg-12 text-center">
+				<h1 class="mt-5">Gibm Stundenplan</h1>
+				<p class="lead">Nach Fachrichtung</p>
+                    <div class="form-group" id="klassenauswahl">
+						<label for="k_auswahl">Klassenauswahl</label>
+						<select class="form-control" id="k_auswahl">
+						</select>
+					</div>
+				<div id="stundenplan" style="opacity: 0;">
+					
+					
+					<div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-arrow-left"></span> Vorherige Woche</button></div>
+					<div class="weekchanger weekchangerDate"><b>Kalenderwoche: <div id="weekchangerDateNum">43-2016</div></b></div>
+					<div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block">Nächste Woche <span class="glyphicon glyphicon-arrow-right"></span></button></div>
+					<br/>
+					<div id="kalender_tafel">
+						 <div class="agenda">
+							<div class="table-responsive">
+								<table class="table table-condensed table-bordered">
+									<thead>
+										<tr>
+											<th>Datum</th>
+											<th>Zeit</th>
+											<th>Fach</th>
+											<th>Raum</th>
+											<th>Lehrer</th>
+										</tr>
+									</thead>
+									<tbody id="tafel_content">
+										
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+    <script type="text/javascript" src="modul/stundenplan/stundenplan.js"></script>
 
 <?php elseif($usergroup == 4) : ?>
 

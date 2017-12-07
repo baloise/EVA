@@ -2,16 +2,27 @@ $(document).ready(function(){
     
     $(".itemDelete").each(function(){
         $(this).click(function(){
-            var pos = ($(this).attr('pos'));
+            var navItemID = ($(this).attr('navItemID'));
             $(".navListPosition").each(function(){
-                    if($(this).attr('pos') == pos){
+                    if($(this).attr('navItemID') == navItemID){
                         $(this).remove();
-                        $.ajax({ url: 'modul/settings/modifyEntry.php',
-                            data: {doEntry: 'delete', pos: pos},
-                            type: 'post',
-                            success: function(output) {
-                                       
-                                     }
+                        
+                        $.post({'modul/settings/modifyEntry.php':
+                            {doEntry: 'delete', navItemID: navItemID},
+                        });
+                    }
+            });
+        });
+    });
+    
+    $(".itemUp").each(function(){
+        $(this).click(function(){
+            var navItemID = ($(this).attr('navItemID'));
+            $(".navListPosition").each(function(){
+                    if($(this).attr('navItemID') == navItemID){
+                        $(this).remove();
+                        
+                        $.post({'/modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID},
                         });
                     }
             });
@@ -21,6 +32,8 @@ $(document).ready(function(){
     $("#itemAdd").click(function(){
         
         alert($("#selectModule").val());
+        
+        
         
     });
     
