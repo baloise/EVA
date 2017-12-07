@@ -69,33 +69,35 @@
         <hr/>
         <br/>
         <h2>Benutzer hinzufügen:</h2>
-        <div class="alert alert-success" id="userAddedNotif" style="display: none;">
-            <strong></strong> Benutzer wurde hinzugefügt.
-        </div>
-        <div class="row" id="addUserForm">
-            <div class="col-lg-2">
-                <label for="usr">B-Key:</label>
-                <input type="text" class="form-control addUserInput" id="usr">
+        <form>
+            <div class="alert alert-success" id="userAddedNotif" style="display: none;">
+                <strong></strong> Benutzer wurde hinzugefügt.
             </div>
-            <div class="col-lg-3">
-                <label for="usr">Gruppe:</label>
-                <select class="form-control addUserInput"><option> -- Bitte Wählen --</option><?php echo $groups; ?></select>
+            <div class="row" id="addUserForm">
+                <div class="col-lg-2">
+                    <label for="usrFormBkey">B-Key:</label>
+                    <input type="text" class="form-control addUserInput" id="usrFormBkey" maxlength="7" required>
+                </div>
+                <div class="col-lg-3">
+                    <label for="usrFormGroup">Gruppe:</label>
+                    <select class="form-control addUserInput" id="usrFormGroup" required><option value=""></option><?php echo $groups; ?></select>
+                </div>
+                <div class="col-lg-3">
+                    <label for="usrFormFirstname">Vorname:</label>
+                    <input type="text" class="form-control addUserInput" id="usrFormFirstname">
+                </div>
+                <div class="col-lg-3">
+                    <label for="usrFormLastname">Nachname:</label>
+                    <input type="text" class="form-control addUserInput" id="usrFormLastname">
+                </div>
             </div>
-            <div class="col-lg-3">
-                <label for="usr">Vorname:</label>
-                <input type="text" class="form-control addUserInput" id="usr">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br/>
+                    <button type="submit" href="#" id="addUser" class="btn btn-primary">Hinzufügen</a>
+                </div>
             </div>
-            <div class="col-lg-3">
-                <label for="usr">Nachname:</label>
-                <input type="text" class="form-control addUserInput" id="usr">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <br/>
-                <a href="#" id="addUser" class="btn btn-primary">Hinzufügen</a>
-            </div>
-        </div>
+        </form>
     </div>
     
     
