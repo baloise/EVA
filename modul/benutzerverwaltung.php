@@ -117,7 +117,7 @@
                         "sLengthMenu":      "_MENU_ Einträge anzeigen",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
-                        "sSearch":          "Suchen",
+                        "sSearch":          "",
                         "sZeroRecords":     "Keine Einträge vorhanden.",
                         "oPaginate": {
                             "sFirst":       "Erste",
@@ -138,7 +138,11 @@
                         }
                     }
                 });
+                $('#users_filter label').attr('placeholder', 'Suchen');
+                $('#users_filter input').attr('placeholder', 'Suchen');
+                $('#users_filter input').addClass('form-control');
                 $("#userTable").slideDown( "slow" );
+                
             });
             
             
