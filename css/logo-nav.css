@@ -114,3 +114,7 @@ html {
     height: 100%;
     vertical-align: middle;
 }
+.btn-primary {
+  background-color: var(--link);
+  border-color: var(--link);
+}
