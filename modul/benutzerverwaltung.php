@@ -1,8 +1,7 @@
 <?php include("session/session.php"); ?>
 <?php include("../database/connect.php"); ?>
-<link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
 <?php if($usergroup == 1) : ?>
-
+    <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>

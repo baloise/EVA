@@ -4,7 +4,7 @@ $(document).ready(function(){
         $(".navbar-collapse").collapse('hide');
     });
     
-    $("#pageContent").load($("#pageContent").attr("page"), function(){
+    $("#pageContent").load( $("#pageContent").attr("page"), function(){
         $('.loadScreen').fadeTo("fast", 0, function(){
             $('#pageContents').fadeTo("fast", 1);
         });

@@ -4,37 +4,30 @@ $(document).ready(function(){
         $(this).click(function(){
             var navItemID = ($(this).attr('navItemID'));
             $(".navListPosition").each(function(){
-                    if($(this).attr('navItemID') == navItemID){
-                        $(this).remove();
-                        
-                        $.post({'modul/settings/modifyEntry.php':
-                            {doEntry: 'delete', navItemID: navItemID},
-                        });
-                    }
-            });
-        });
-    });
-    
-    $(".itemUp").each(function(){
-        $(this).click(function(){
-            var navItemID = ($(this).attr('navItemID'));
-            $(".navListPosition").each(function(){
-                    if($(this).attr('navItemID') == navItemID){
-                        $(this).remove();
-                        
-                        $.post({'/modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID}
-                        });
-                    }
+                if($(this).attr('navItemID') == navItemID){
+                    $(this).remove();
+                    $.ajax({
+                        type: "POST",
+                        data: {doEntry: 'delete', navItemID: navItemID},
+                        url: "modul/settings/modifyEntry.php",
+                        success: function(data){}
+                    });
+                    //$.post('modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID});
+                }
             });
         });
     });
     
     $("#itemAdd").click(function(){
-        
-        alert($("#selectModule").val());
-        
-        
-        
+        var addItemID = $('#selectModule').val();
+        var userID = $('#selectModule').attr('userid');
+        $.ajax({
+            type: "POST",
+            data: {doEntry: 'add', navItemID: addItemID, userID:userID},
+            url: "modul/settings/modifyEntry.php",
+            success: function(data){}
+        });
     });
+    
     
 });

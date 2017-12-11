@@ -4,7 +4,7 @@ header("Content-Type: application/json", true);
 
 include("../../database/connect.php");
 
-if(isset($_POST['doEntry']) && isset($_POST['pos'])) {
+if(isset($_POST['doEntry']) && isset($_POST['navItemID'])) {
     
     if($_POST['doEntry'] == "delete"){
         echo($_POST['doEntry']);
@@ -27,7 +27,10 @@ if(isset($_POST['doEntry']) && isset($_POST['pos'])) {
     }
     
     if($_POST['doEntry'] == "add"){
-        
+        $stmt = $mysqli->prepare("INSERT INTO `tb_ind_nav` (`tb_user_ID`, `tb_modul_ID`) VALUES (?, ?);");
+        $stmt->bind_param('ss', $_POST['userID'], $_POST['navItemID']);
+        $stmt->execute();
+        $stmt->close();
     }
     
 }

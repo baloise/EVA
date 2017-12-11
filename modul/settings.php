@@ -38,10 +38,10 @@
 
     <div id="navListPosition" pos="">
         <div id="navListItem">
-            <select class="form-control" id="selectModule">
+            <select class="form-control" id="selectModule" userID="<?php echo $userID['ID']; ?>">
                 <?php
                 
-                    $sql2 = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $usergroup";
+                    $sql2 = "SELECT mm.ID, mm.title FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $usergroup";
                     
                     $result = $mysqli->query($sql2);
                         
