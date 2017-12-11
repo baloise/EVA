@@ -22,7 +22,7 @@ $(document).ready(function(){
                     if($(this).attr('navItemID') == navItemID){
                         $(this).remove();
                         
-                        $.post({'/modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID},
+                        $.post({'/modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID}
                         });
                     }
             });

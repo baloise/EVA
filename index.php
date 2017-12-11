@@ -18,28 +18,34 @@
 
   </head>
 
+  
   <body>
-
-    <!-- Navigation -->
-    <?php
-      include("database/connect.php");
-      include("auth.php");
-      include("modul/navi.php");
-    ?>
-
-    <!-- Page Content -->
-    <div class="container">
-      <div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard.php";} ?>" id="pageContent">
-        
-      </div>
+    <div class="loadScreen">
+      <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.gif"/>
     </div>
-    <!-- /.container -->
     
-    <footer class="footer">
+    <div id="pageContents" style="opacity: 0;">
+      <!-- Navigation -->
+      <?php
+        include("database/connect.php");
+        include("auth.php");
+        include("modul/navi.php");
+      ?>
+  
+      <!-- Page Content -->
       <div class="container">
-          <a class="foot-link" href="modul/settings.php">Einstellungen</a><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
+        <div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard.php";} ?>" id="pageContent">
+          
+        </div>
       </div>
-    </footer>
+      <!-- /.container -->
+      
+      <footer class="footer">
+        <div class="container">
+            <a class="foot-link" href="modul/settings.php">Einstellungen</a><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
+        </div>
+      </footer>
+    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

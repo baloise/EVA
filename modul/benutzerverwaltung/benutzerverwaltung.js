@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    $('#users_filter').addClass('form-control');
 
     $("#addUser").click(function(){
         

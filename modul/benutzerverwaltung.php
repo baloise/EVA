@@ -1,5 +1,6 @@
 <?php include("session/session.php"); ?>
 <?php include("../database/connect.php"); ?>
+<link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
 <?php if($usergroup == 1) : ?>
 
     <head>
@@ -9,6 +10,10 @@
     
     
     <h1 class="mt-5">Benutzerverwaltung</h1>
+    
+    <div id="loadingTable">
+        <img class="img-responsive" src="img/loading2.gif"/>
+    </div>
     
     <div id="userTable" style="display: none;">
         <table id="users" class="display" cellspacing="0" width="100%">
@@ -141,7 +146,10 @@
                 $('#users_filter label').attr('placeholder', 'Suchen');
                 $('#users_filter input').attr('placeholder', 'Suchen');
                 $('#users_filter input').addClass('form-control');
-                $("#userTable").slideDown( "slow" );
+                $('#loadingTable').slideUp("fast", function(){
+                    $("#userTable").slideDown( "slow" );
+                });
+                
                 
             });
             

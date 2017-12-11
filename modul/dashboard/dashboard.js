@@ -1,25 +1,11 @@
-$(document).ready(function(){
-    
-    $('.navbar-collapse a').click(function(){
-        $(".navbar-collapse").collapse('hide');
-    });
-    
-    $("#pageContent").load($("#pageContent").attr("page"), function(){
-        $('.loadScreen').fadeTo("fast", 0, function(){
-            $('#pageContents').fadeTo("fast", 1);
+$(".dashModul").each(function(){
+        
+        $(this).hover(function() {
+            $(this).css( 'cursor', 'pointer' );
         });
-    });
-    
-    $(".foot-link").each(function(){
+            
         makeDynamic(this);
-    });
-    
-    $(".nav-link").each(function(){
-        makeDynamic(this);
-    });
-   
-    $(".navbar-brand").each(function(){
-        makeDynamic(this);
+        
     });
    
     function makeDynamic(objectThis){
@@ -55,6 +41,3 @@ $(document).ready(function(){
             });
         });
     }
-   
-    
-});
