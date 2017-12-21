@@ -13,6 +13,7 @@
     if(isset($_SESSION['user']['username'])){
         $username = $_SESSION['user']['username'];
     } else {
-        header("Location: login.php");
+        header("Location: ./login.php");
+        exit();
     }
 ?>

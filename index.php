@@ -14,6 +14,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="css/logo-nav.css" rel="stylesheet">
 
   </head>
@@ -42,7 +43,7 @@
       
       <footer class="footer">
         <div class="container">
-            <a class="foot-link" href="modul/settings.php">Einstellungen</a><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
+            <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
         </div>
       </footer>
     </div>

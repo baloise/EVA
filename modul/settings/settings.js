@@ -5,14 +5,13 @@ $(document).ready(function(){
             var navItemID = ($(this).attr('navItemID'));
             $(".navListPosition").each(function(){
                 if($(this).attr('navItemID') == navItemID){
-                    $(this).remove();
+                    $(this).slideUp("slow");
                     $.ajax({
                         type: "POST",
                         data: {doEntry: 'delete', navItemID: navItemID},
                         url: "modul/settings/modifyEntry.php",
-                        success: function(data){}
+                        success: function(){}
                     });
-                    //$.post('modul/settings/modifyEntry.php', {doEntry: 'delete', navItemID: navItemID});
                 }
             });
         });
@@ -25,7 +24,9 @@ $(document).ready(function(){
             type: "POST",
             data: {doEntry: 'add', navItemID: addItemID, userID:userID},
             url: "modul/settings/modifyEntry.php",
-            success: function(data){}
+            success: function(){
+                $('#usersNavItems').append('<div class="navListPosition" id="navListPosition" navItemID=""><div id="navListItem"><span> Pos.:</span></div></div>');
+            }
         });
     });
     

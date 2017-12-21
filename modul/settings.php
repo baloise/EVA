@@ -4,7 +4,7 @@
 <h1 class="mt-5">Einstellungen</h1>
 
 <div class="col-lg-6">
-    
+    <div id="usersNavItems">
     <?php
 
         $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$username'")->fetch_assoc());
@@ -35,7 +35,7 @@
         }
         
     ?>
-
+    </div>
     <div id="navListPosition" pos="">
         <div id="navListItem">
             <select class="form-control" id="selectModule" userID="<?php echo $userID['ID']; ?>">

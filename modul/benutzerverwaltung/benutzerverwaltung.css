@@ -1,5 +1,7 @@
 #loadingTable {
     width: 100%;
     text-align: center;
-    height: 120px;
+}
+.btn-delete {
+    border-radius: 50px !important;
 }

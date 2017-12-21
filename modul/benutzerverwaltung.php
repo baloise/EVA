@@ -1,18 +1,16 @@
 <?php include("session/session.php"); ?>
 <?php include("../database/connect.php"); ?>
 <?php if($usergroup == 1) : ?>
-    <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
+
+    
     <head>
+        <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
     
     
     
     <h1 class="mt-5">Benutzerverwaltung</h1>
-    
-    <div id="loadingTable">
-        <img class="img-responsive" src="img/loading2.gif"/>
-    </div>
     
     <div id="userTable" style="display: none;">
         <table id="users" class="display" cellspacing="0" width="100%">
@@ -23,12 +21,13 @@
                     <th>Gruppe</th>
                     <th>Vorname</th>
                     <th>Nachname</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="userTableBody">
                 <?php
                 
-                    $sql ="SELECT us.ID, us.bKey, gr.name FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
+                    $sql ="SELECT us.ID, us.bKey, gr.name, us.firstname, us.lastname, us.deleted FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
                     $sql2 ="SELECT ID, name FROM tb_group";
                     
                     $groups = "";
@@ -46,18 +45,20 @@
         
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            $generateDiv = '
-                            <tr>
-                                <td>'. $row['ID'] .'</td>
-                                <td>'. $row['bKey'] .'</td>
-                                <td><select class="form-control"><option>'. $row['name'] .'</option>'.$groups.'</select></td>
-                                <td><input class="form-control" type="text" value="'. $row['ID'] .'"></input></td>
-                                <td><input class="form-control" type="text" value="'. $row['ID'] .'"></input></td>
-                            </tr>
-                            ';
-                                
-                            echo $generateDiv;
-                            
+                            if($row['deleted'] != 1){
+                                $generateDiv = '
+                                <tr id="rowID'. $row['ID'] .'">
+                                    <td>'. $row['ID'] .' </td>
+                                    <td>'. $row['bKey'] .'</td>
+                                    <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control changeInTable"><option>'. $row['name'] .'</option>'.$groups.'</select></td>
+                                    <td><input fType="2" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['firstname'] .'"></input></td>
+                                    <td><input fType="3" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['lastname'] .'"></input></td>
+                                    <td><span class="fa fa-trash-o" id="'. $row['ID'] .'" aria-hidden="true"></span></td>
+                                </tr>
+                                ';
+                                    
+                                echo $generateDiv;
+                            }
                         }
                     } else {
                         echo "Keine Daten gefunden.";
@@ -68,8 +69,15 @@
         </table>
     </div>
     
+    <div class="alert alert-success" id="changesSaveNotif" style="display: none;">
+        <strong></strong> Änderungen wurden gespeichert!
+    </div>
+    
+    <div id="loadingTable">
+        <img class="img-responsive" src="img/loading2.gif"/>
+    </div>
+    
     <div id="editForm">
-        <br/>
         <hr/>
         <br/>
         <h2>Benutzer hinzufügen:</h2>
@@ -111,6 +119,10 @@
             $.getScript( "modul/benutzerverwaltung/benutzerverwaltung.js");
             $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
                 $("#users").dataTable({
+                    "columnDefs": [{
+                        "targets": 5,
+                        "orderable": false
+                    }],
                     "language": {
                         "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
                         "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
