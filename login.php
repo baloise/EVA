@@ -9,6 +9,9 @@
         if ($_GET['error'] = "user"){
             echo "<br/><br/><strong>Dieser B-Key existiert nicht in der Datenbank.</strong>";
         }
+        if ($_GET['error'] = "userdeleted"){
+            echo "<br/><br/><strong>Dieser B-Key wurde gelöscht/deaktiviert.</strong>";
+        }
     }
 
     if (isset($_SESSION['login'])) {

@@ -20,7 +20,7 @@
                 $link = '
                 <div class="navListPosition" id="navListPosition" navItemID="' . $row["ID"] . '">
                     <div id="navListItem">
-                        ' . $row["name"] . ' <span> Pos.:' . $row["position"] . ' </span>
+                        ' . $row["name"] . ' <span> </span>
                     </div>
                     <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemUp"> ⇑ </span></div>
                     <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDown"> ⇓ </span></div>

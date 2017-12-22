@@ -50,7 +50,7 @@
                                 <tr id="rowID'. $row['ID'] .'">
                                     <td>'. $row['ID'] .' </td>
                                     <td>'. $row['bKey'] .'</td>
-                                    <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control changeInTable"><option>'. $row['name'] .'</option>'.$groups.'</select></td>
+                                    <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control" disabled><option>'. $row['name'] .'</option>'.$groups.'</select></td>
                                     <td><input fType="2" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['firstname'] .'"></input></td>
                                     <td><input fType="3" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['lastname'] .'"></input></td>
                                     <td><span class="fa fa-trash-o" id="'. $row['ID'] .'" aria-hidden="true"></span></td>

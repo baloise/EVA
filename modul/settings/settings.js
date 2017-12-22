@@ -20,12 +20,15 @@ $(document).ready(function(){
     $("#itemAdd").click(function(){
         var addItemID = $('#selectModule').val();
         var userID = $('#selectModule').attr('userid');
+        $('#usersNavItems').append('<div style="display: none;" class="navListPosition" id="navListPositionNew" navItemID=""><div style=" background-color: rgb(212, 237, 218);" id="navListItem">wot m8<span></span></div></div>');
+        $('#navListPositionNew').slideDown("slow");
+        $('#navListPositionNew').attr("id", "navListPosition");
         $.ajax({
             type: "POST",
             data: {doEntry: 'add', navItemID: addItemID, userID:userID},
             url: "modul/settings/modifyEntry.php",
             success: function(){
-                $('#usersNavItems').append('<div class="navListPosition" id="navListPosition" navItemID=""><div id="navListItem"><span> Pos.:</span></div></div>');
+                
             }
         });
     });

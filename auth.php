@@ -9,12 +9,16 @@
 
         $username = $_SESSION['user']['username'];
         
-        $sql = "SELECT tb_group_id FROM tb_user WHERE bKey = '$username'";
+        $sql = "SELECT tb_group_id, deleted FROM tb_user WHERE bKey = '$username'";
         $result = $mysqli->query($sql);
         
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $_SESSION['user']['usergroup'] = $row['tb_group_id'];
+            if($row['deleted'] == 1){
+                 header("Location: login.php?error=userdeleted");
+            } else {
+                $_SESSION['user']['usergroup'] = $row['tb_group_id'];
+            }
         } else {
             header("Location: login.php?error=user");
         }
