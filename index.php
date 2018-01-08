@@ -41,7 +41,7 @@
       </div>
       <!-- /.container -->
       
-      <footer class="footer">
+      <footer class="footer" id="slideMeFoot" style="display: none;">
         <div class="container">
             <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
         </div>

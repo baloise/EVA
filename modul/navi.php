@@ -1,5 +1,5 @@
 <?php include("session/session.php"); ?>
-<nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top">
+<nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top" id="slideMe" style="display: none;">
     <div class="container">
         <a class="navbar-brand" href="modul/dashboard.php">
             <img src="img/logo.svg" width="150" alt="Logo">

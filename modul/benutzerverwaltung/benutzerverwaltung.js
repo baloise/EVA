@@ -21,6 +21,7 @@ $(document).ready(function(){
             $("#error").html(error).slideDown("fast"); 
         } else {
             
+			$(this).prop("disabled",true);
             $("#error").slideUp("fast"); 
             
             $.ajax({
@@ -130,7 +131,10 @@ $(document).ready(function(){
             $("#warning").slideDown("fast");
             $("#warnButton").click(function(event){
                 if(usrid){
+					
+					$(this).prop("disabled",true);
                     event.preventDefault();
+					
                     $.ajax({
                         method: "POST",
                         url: "./modul/benutzerverwaltung/modifyUser.php",
@@ -141,6 +145,7 @@ $(document).ready(function(){
                             } else {
                                 $("#rowID" + usrid).slideUp("slow");
                                 $("#warning").slideUp("fast");
+								$("#warnButton").prop("disabled",false);
                             }
                         }
                     });

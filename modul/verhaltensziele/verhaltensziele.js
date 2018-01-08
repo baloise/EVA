@@ -5,8 +5,17 @@ $(document).ready(function(){
         $(this).click(function(event){
             
             event.preventDefault();
-            $("#checkEntryForm").slideDown("fast");    
-            
+			
+			$("#checkEntryForm").slideDown("fast", function(){
+				
+				$('html, body').animate({ 
+					scrollTop: $(document).height()-$(window).height()}, 
+					500, 
+					"swing"
+				);
+			
+			});   
+			
             $("#fcheckEntryPoints").val($(this).attr("entryPoints"));
             $("#fcheckEntryLL").val($(this).attr("entryLL"));
             $("#fcheckEntryPA").val($(this).attr("entryPA"));
@@ -19,8 +28,6 @@ $(document).ready(function(){
     
     $("#fsend").click(function(event){
         
-        //TODO Make Button disable
-        
         event.preventDefault();
         var reason = $("#fcheckEntryReason").val();
         var entryID = $(this).attr("entryID");
@@ -29,6 +36,8 @@ $(document).ready(function(){
             $("#error").html("Bitte eine Begründung angeben").slideDown("fast"); 
         } else {
             
+			$("#fsendAndDelete").prop("disabled",true);
+			$(this).prop("disabled",true);
             $("#error").slideUp("fast"); 
                 
             $.ajax({
@@ -47,7 +56,8 @@ $(document).ready(function(){
                             $("#fcheckEntryReason").val("");
                             $("#fcheckEntryPA").val("");
                             $("#fcheckEntryPoints").val("");
-                            
+                            $("#fsend").prop("disabled",false);
+							$("#fsendAndDelete").prop("disabled",false);
                             $("#checkedNotif").html("Beanstandung abgeschickt").slideDown("fast").delay(2000).slideUp("slow");
                             
                         });   
@@ -62,8 +72,6 @@ $(document).ready(function(){
     });
     
     $("#fsendAndDelete").click(function(event){
-        
-        //TODO Make Button disable
         
         event.preventDefault();
         var reason = $("#fcheckEntryReason").val();
@@ -82,6 +90,9 @@ $(document).ready(function(){
                     $("#error").html("Bitte eine Begründung angeben").slideDown("fast"); 
                 } else {
                     
+					$("#fsend").prop("disabled",true);
+					$(this).prop("disabled",true);
+					
                     $.ajax({
                         method: "POST",
                         url: "./modul/verhaltensziele/modify.php",

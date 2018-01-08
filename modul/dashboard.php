@@ -2,13 +2,22 @@
 <?php include("../database/connect.php"); ?>
 <?php
 
+	$welcome = "<h3>Willkommen!</h3>";
     $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
+	$sql2 = "SELECT firstname, lastname FROM tb_user WHERE id = $session_userid";
+	$result = $mysqli->query($sql2);
+        
+    if ($result->num_rows == 1) {
+		$row = $result->fetch_assoc();
+		$welcome = "<h2 class='mt-5'>Willkommen " . $row['firstname'] . " " . $row['lastname'] . "!</h2>";
+	} 
 
 ?>
-<?php if($session_usergroup == 1) : ?>
-
-    <h1 class="mt-5">Alle HR-Module</h1>
-    <p>Sie sind Nachwuchsentwicklung</p>
+<?php if($session_usergroup == 1 || $session_usergroup = 2 || $session_usergroup = 3 || $session_usergroup = 4) : ?>
+	
+	<?php echo $welcome; ?>
+    <h3>Alle Module</h3>
+    <p>Hier kannst du alle Module sehen, die dir zu Verfügung gestellt wurden.</p>
       
     <?php
 
@@ -39,50 +48,6 @@
     }
     
     ?>
-    
-<?php elseif($session_usergroup == 2) : ?>
-
-    <h1 class="mt-5">Alle PA-Module</h1>
-    <p>Sie sind Praxisausbildner</p>
-    
-<?php elseif($session_usergroup == 3) : ?>
-
-    <h1 class="mt-5">Alle IT-Module</h1>
-    
-    <?php
-
-    $result = $mysqli->query($sql);
-        
-    if ($result->num_rows > 0) {
-        echo"<div class='row'>";
-        while($row = $result->fetch_assoc()) {
-            $generateDiv = '
-            <div class="col-lg-4">
-            <div class="dashModul" id="dashModule" href="'. $row["file_path"] .'">
-                <div id="dashModuleTitle">
-                   <h3>'. $row["title"] .'</h3>
-                </div>
-                <div id="dashModuleDescription">
-                    '. utf8_encode($row["description"]) .'
-                </div>
-            </div>
-            </div>
-            ';
-            if($row["title"] != "Dashboard"){
-                echo $generateDiv;
-            }
-        }
-        echo"</div>";
-    } else {
-        echo "Keine Daten gefunden.";
-    }
-    
-    ?>
-    
-<?php elseif($session_usergroup == 4) : ?>
-
-    <h1 class="mt-5">Alle KV-Module</h1>
-    <p>Sie sind KV-Lehrling</p>
 
 <?php elseif($session_usergroup == 5) : ?>
 
