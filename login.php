@@ -29,7 +29,7 @@
  
 				$_SESSION = array('login' => true,'user'  => array('username'  => $_POST['username']));
                 
-                header("Location: index.php");
+                header("Location: auth.php");
             
             }
         }

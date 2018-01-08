@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Dez 2017 um 15:37
+-- Erstellungszeit: 08. Jan 2018 um 16:13
 -- Server-Version: 10.1.28-MariaDB
 -- PHP-Version: 7.1.11
 
@@ -38,6 +38,16 @@ CREATE TABLE `tb_behaviorgrade` (
   `points` int(11) DEFAULT NULL,
   `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `tb_behaviorgrade`
+--
+
+INSERT INTO `tb_behaviorgrade` (`ID`, `tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `creationDate`) VALUES
+(11, 8, 7, 'ITCH', 65, '2018-01-08 13:26:04'),
+(12, 8, 7, 'ITBE', 66, '2018-01-08 13:26:15'),
+(13, 8, 7, 'Helpdesk', 65, '2018-01-08 13:26:27'),
+(14, 8, 7, 'Blabla', 12, '2018-01-08 14:30:56');
 
 -- --------------------------------------------------------
 
@@ -118,21 +128,10 @@ INSERT INTO `tb_ind_nav` (`ID`, `position`, `tb_user_ID`, `tb_modul_ID`) VALUES
 (2, 4, 8, 12),
 (4, 2, 8, 3),
 (8, 1, 9, 9),
-(37, NULL, 68, 2),
-(38, NULL, 68, 3),
-(39, NULL, 68, 6),
-(40, NULL, 68, 6),
-(41, NULL, 68, 1),
 (51, NULL, 6, 2),
 (52, NULL, 6, 3),
-(53, NULL, 6, 1),
 (54, NULL, 6, 5),
-(55, NULL, 6, 5),
-(56, NULL, 6, 5),
-(57, NULL, 6, 5),
-(58, NULL, 6, 5),
-(59, NULL, 6, 5),
-(60, NULL, 6, 5);
+(55, NULL, 6, 12);
 
 -- --------------------------------------------------------
 
@@ -287,17 +286,11 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `tb_ind_backgroundcolor`, `tb_ind_akzentcolor`, `tb_ind_linkcolor`, `tb_ind_textcolor`, `firstname`, `lastname`, `deleted`) VALUES
 (6, 'b000001', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'Lara', 'Muster', NULL),
-(7, 'b000002', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'Matthias', 'Master', NULL),
-(8, 'b000003', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Mauster', NULL),
+(7, 'b000002', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'Matthias', 'Cullmann', NULL),
+(8, 'b000003', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', NULL),
 (9, 'b000004', NULL, NULL, 4, NULL, NULL, NULL, NULL, 'Tim', 'Labbl', NULL),
-(68, 'b123456', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'Testuser', 'Testtest', 1),
-(70, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super', 'User', NULL),
-(71, 'b037160', NULL, NULL, 4, NULL, NULL, NULL, NULL, 'Eliua', 'ojhdsafkjlhasdsda', 1),
-(72, 'b037160', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', 1),
-(73, 'b123456', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'hallodddd', 'halloELIA', 1),
-(74, 'b037160', NULL, NULL, 3, NULL, NULL, NULL, NULL, '', '', 1),
-(75, 'asdf', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'Hallo', 'Du', 1),
-(76, 'b037160', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', 1);
+(10, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super', 'User', NULL),
+(103, 'b123123', NULL, NULL, 1, NULL, NULL, NULL, NULL, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -426,7 +419,7 @@ ALTER TABLE `tb_user_subject`
 -- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
@@ -444,7 +437,7 @@ ALTER TABLE `tb_group`
 -- AUTO_INCREMENT für Tabelle `tb_ind_nav`
 --
 ALTER TABLE `tb_ind_nav`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_llit_semester`
@@ -486,7 +479,7 @@ ALTER TABLE `tb_subject_grade`
 -- AUTO_INCREMENT für Tabelle `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user_subject`

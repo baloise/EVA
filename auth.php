@@ -3,13 +3,17 @@
     session_start();
     session_regenerate_id();
  
-	if (empty($_SESSION['login'])) {
+	if (empty($_SESSION['user'])) {
+        
 		header('Location: login.php');
+        
 	} else {
 
         $username = $_SESSION['user']['username'];
         
-        $sql = "SELECT tb_group_id, deleted FROM tb_user WHERE bKey = '$username'";
+        include("database/connect.php");
+            
+        $sql = "SELECT tb_group_id, deleted, id FROM tb_user WHERE bKey = '$username'";
         $result = $mysqli->query($sql);
         
         if ($result->num_rows > 0) {
@@ -18,6 +22,9 @@
                  header("Location: login.php?error=userdeleted");
             } else {
                 $_SESSION['user']['usergroup'] = $row['tb_group_id'];
+                $_SESSION['user']['id'] = $row['id'];
+                $_SESSION['user']['username'] = $username;
+                header("Location: index.php");
             }
         } else {
             header("Location: login.php?error=user");

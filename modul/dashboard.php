@@ -2,10 +2,10 @@
 <?php include("../database/connect.php"); ?>
 <?php
 
-    $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $usergroup";
+    $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
 
 ?>
-<?php if($usergroup == 1) : ?>
+<?php if($session_usergroup == 1) : ?>
 
     <h1 class="mt-5">Alle HR-Module</h1>
     <p>Sie sind Nachwuchsentwicklung</p>
@@ -40,12 +40,12 @@
     
     ?>
     
-<?php elseif($usergroup == 2) : ?>
+<?php elseif($session_usergroup == 2) : ?>
 
     <h1 class="mt-5">Alle PA-Module</h1>
     <p>Sie sind Praxisausbildner</p>
     
-<?php elseif($usergroup == 3) : ?>
+<?php elseif($session_usergroup == 3) : ?>
 
     <h1 class="mt-5">Alle IT-Module</h1>
     
@@ -79,12 +79,12 @@
     
     ?>
     
-<?php elseif($usergroup == 4) : ?>
+<?php elseif($session_usergroup == 4) : ?>
 
     <h1 class="mt-5">Alle KV-Module</h1>
     <p>Sie sind KV-Lehrling</p>
 
-<?php elseif($usergroup == 5) : ?>
+<?php elseif($session_usergroup == 5) : ?>
 
     <h1 class="mt-5">Alle Module</h1>
     <p>Sie sind Superuser</p>

@@ -1,25 +1,25 @@
 <?php include("session/session.php"); ?>
-<?php if($usergroup == 1) : ?>
+<?php if($session_usergroup == 1) : ?>
 
     <h1 class="mt-5">ALS</h1>
     <p>Sie sind Nachwuchsentwicklung</p>
       
-<?php elseif($usergroup == 2) : ?>
+<?php elseif($session_usergroup == 2) : ?>
 
     <h1 class="mt-5">Alle PA-Module</h1>
     <p>Sie sind Praxisausbildner</p>
     
-<?php elseif($usergroup == 3) : ?>
+<?php elseif($session_usergroup == 3) : ?>
 
     <h1 class="mt-5">Alle IT-Module</h1>
     <p>Sie sind Informatik-Lehrling</p>
 
-<?php elseif($usergroup == 4) : ?>
+<?php elseif($session_usergroup == 4) : ?>
 
     <h1 class="mt-5">Alle KV-Module</h1>
     <p>Sie sind KV-Lehrling</p>
 
-<?php elseif($usergroup == 5) : ?>
+<?php elseif($session_usergroup == 5) : ?>
 
     <h1 class="mt-5">Alle Module</h1>
     <p>Sie sind Superuser</p>

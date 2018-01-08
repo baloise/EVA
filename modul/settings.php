@@ -4,10 +4,14 @@
 <h1 class="mt-5">Einstellungen</h1>
 
 <div class="col-lg-6">
+    <div class="alert alert-danger" id="error" style="display: none;"></div>
+    <div class="alert alert-success" id="AddedNotif" style="display: none;">
+        <strong></strong> Menupunkt wurde hinzugefügt.
+    </div>
     <div id="usersNavItems">
     <?php
 
-        $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$username'")->fetch_assoc());
+        $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$session_username'")->fetch_assoc());
                     
         $sql1 = "SELECT mg.ID, mg.position, mm.name FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID['ID'] ." ORDER BY mg.position";
                     
@@ -41,7 +45,7 @@
             <select class="form-control" id="selectModule" userID="<?php echo $userID['ID']; ?>">
                 <?php
                 
-                    $sql2 = "SELECT mm.ID, mm.title FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $usergroup";
+                    $sql2 = "SELECT mm.ID, mm.title FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
                     
                     $result = $mysqli->query($sql2);
                         

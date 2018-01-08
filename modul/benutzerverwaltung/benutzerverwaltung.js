@@ -1,26 +1,49 @@
 $(document).ready(function(){
 
-
-    $("#addUser").click(function(){
+    $("#addUser").click(function(event){
+        
+        event.preventDefault();
+        var error = "";
         var bkey = $("#usrFormBkey").val();
         var group = $("#usrFormGroup").val();
         var firstname = $("#usrFormFirstname").val();
         var lastname = $("#usrFormLastname").val();
         
-        if(bkey && group){
-            event.preventDefault();
+        if(bkey.length != 7){
+            error = error + "Der B-Key muss aus 7 Zeichen bestehen.<br/>";
+        }
+        
+        if(!group){
+            error = error + "Bitte Gruppe auswählen.<br/>";
+        }
+        
+        if(error){
+            $("#error").html(error).slideDown("fast"); 
+        } else {
+            
+            $("#error").slideUp("fast"); 
+            
             $.ajax({
                 method: "POST",
                 url: "./modul/benutzerverwaltung/modifyUser.php",
                 data: {action:"add", bkey:bkey, group:group, firstname:firstname, lastname:lastname},
-                success: function(){
+                success: function(data){
                     
-                    $("#userTableBody").append("<tr id='newTR' style='background-color: #d4edda; display: none;'><td>NEU</td><td>" + bkey + "</td><td>"+ group +"</td><td>"+ firstname +"</td><td>"+ lastname +"</td><td></td></tr>");
-                    $('#newTR').slideDown("slow");
-                    $('#newTR').attr("id", "NULL");
-                    $("#userAddedNotif").slideDown("fast").delay( 1400 ).slideUp("slow");
-                    $(".addUserInput").val("");
-                    $(this).html("<b>Weiteren Benutzer hinzufügen</b>");
+                    if(data){
+                        $("#error").html(data).slideDown("fast"); 
+                    } else {
+                        
+                        $(".addUserInput").val("");
+                        $("#userAddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
+                            $("#pageContent").load("modul/benutzerverwaltung.php", function(){
+                                $('.loadScreen').fadeTo("fast", 0, function(){
+                                    $('#pageContents').fadeTo("fast", 1);
+                                });
+                            });
+                        });
+                    
+                    }
+                     
                 }
             });
             
@@ -58,7 +81,7 @@ $(document).ready(function(){
                     url: "./modul/benutzerverwaltung/modifyUser.php",
                     data: {action:"change", userid:usrID, fType:fType, content:content},
                     success: function(){     
-                        $('#check'+usrID).fadeTo("fast", 1);
+                        $('#check'+ usrID).fadeTo("fast", 1);
                     }
                 });
             }
@@ -101,19 +124,31 @@ $(document).ready(function(){
         $(this).click(function(){
             
             var usrid = $(this). attr('id');
+            var bkey = $(this). attr('bkey');
             
-            if(usrid){
-                event.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url: "./modul/benutzerverwaltung/modifyUser.php",
-                    data: {action:"delete", userid:usrid},
-                    success: function(){     
-                        $("#rowID" + usrid).slideUp("slow");               
-                    }
-                });
-                
-            }
+            $("#useridWarn").html(bkey);
+            $("#warning").slideDown("fast");
+            $("#warnButton").click(function(event){
+                if(usrid){
+                    event.preventDefault();
+                    $.ajax({
+                        method: "POST",
+                        url: "./modul/benutzerverwaltung/modifyUser.php",
+                        data: {action:"delete", userid:usrid},
+                        success: function(data){
+                            if(data){
+                                
+                            } else {
+                                $("#rowID" + usrid).slideUp("slow");
+                                $("#warning").slideUp("fast");
+                            }
+                        }
+                    });
+                    
+                }
+            });
+            
+            
                         
         });
         

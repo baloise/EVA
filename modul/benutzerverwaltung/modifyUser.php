@@ -7,23 +7,71 @@
         
         if($_POST['action'] == "add"){
             
-            $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`) VALUES (?, ?, ?, ?);");
-            $stmt->bind_param("ssss", $_POST['bkey'], $_POST['group'], $_POST['firstname'],  $_POST['lastname']);
+            $error = "";
+            
+            if(strlen($_POST['bkey']) != 7){
+                $error = $error . "Der B-Key muss aus 7 Zeichen bestehen.<br/>";
+            }
+            
+            if(!$_POST['group']){
+                $error = $error . "Bitte Gruppe auswählen.<br/>";
+            }
+
+            
+            $stmt = $mysqli->prepare("SELECT id, deleted FROM `tb_user` WHERE bKey = ?");
+            $stmt->bind_param("s", $_POST['bkey']);
             $stmt->execute();
-            $stmt->close();
-            $mysqli->close();
-            echo "Success";
+            $result = $stmt->get_result();
+
+            if($error){
+                
+                echo $error;
+                
+            } else {
+                
+                if($result->num_rows > 1){
+                    
+                    $error = $error . "User wurde bereits mehrmal in Datenbank eingetragen. <br/>";
+                    echo $error;
+                    
+                }  else if ($result->num_rows == 1) {
+                    
+                    $row = $result->fetch_assoc();
+                    
+                    if($row['deleted'] == 1){
+                        
+                            
+                            $stmt = $mysqli->prepare("UPDATE `tb_user` SET deleted = NULL, tb_group_id = ? WHERE bkey = ?;");
+                            $stmt->bind_param("is", $_POST['group'], $_POST['bkey']);
+                            $stmt->execute();
+                            
+                        
+                    } else {
+                        
+                        $error = $error . "User existiert bereits.<br/>";
+                        echo $error;
+                        
+                    }
+                     
+                } else {
+                            
+                        $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`) VALUES (?, ?, ?, ?);");
+                        $stmt->bind_param("ssss", $_POST['bkey'], $_POST['group'], $_POST['firstname'],  $_POST['lastname']);
+                        $stmt->execute();
+                            
+                }
+                
+            }
+                    
         }
+            
         
         if($_POST['action'] == "delete"){
-            
             
             $stmt = $mysqli->prepare("UPDATE `tb_user` SET `deleted` = 1 WHERE `tb_user`.`ID` = ?");
             $stmt->bind_param("s", $_POST['userid']);
             $stmt->execute();
-            $stmt->close();
-            $mysqli->close();
-            echo "Success";
+
         }
         
         if($_POST['action'] == "change"){
@@ -56,16 +104,7 @@
             
         }
         
-    } else {
-        echo "ungültiger Aufruf";
-        foreach ($_POST as $key => $value) {
-            echo '<p>'.$key.'</p>';
-            foreach($value as $k => $v) {
-                echo '<p>'.$k.'</p>';
-                echo '<p>'.$v.'</p>';
-                echo '<hr />';
-            }
-        }
-    }
+    } 
+
 
 ?>

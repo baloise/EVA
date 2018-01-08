@@ -11,7 +11,7 @@ $(".dashModul").each(function(){
     function makeDynamic(objectThis){
         var href = ($(objectThis).attr('href'));
         
-        $(objectThis).click(function(){
+        $(objectThis).click(function(event){
             event.preventDefault();
             $("#pageContent").fadeOut("fast", function(){
                 $('.loadScreen').fadeTo("fast", 1);

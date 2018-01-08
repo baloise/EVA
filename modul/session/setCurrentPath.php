@@ -4,4 +4,5 @@
     
     $_SESSION["user"]["currentPath"] = $_GET["path"];
 
+    
 ?>

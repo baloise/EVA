@@ -1,15 +1,15 @@
 <?php include("session/session.php"); ?>
-<?php if($usergroup == 1) : ?>
+<?php if($session_usergroup == 1) : ?>
 
     <h1 class="mt-5">Alle HR-Module</h1>
     <p>Sie sind Nachwuchsentwicklung</p>
       
-<?php elseif($usergroup == 2) : ?>
+<?php elseif($session_usergroup == 2) : ?>
 
     <h1 class="mt-5">Alle PA-Module</h1>
     <p>Sie sind Praxisausbildner</p>
     
-<?php elseif($usergroup == 3) : ?>
+<?php elseif($session_usergroup == 3) : ?>
 
     <div class="col-lg-12 text-center">
 				<h1 class="mt-5">Gibm Stundenplan</h1>
@@ -20,7 +20,6 @@
 						</select>
 					</div>
 				<div id="stundenplan" style="opacity: 0;">
-					
 					
 					<div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-arrow-left"></span> Vorherige Woche</button></div>
 					<div class="weekchanger weekchangerDate"><b>Kalenderwoche: <div id="weekchangerDateNum">43-2016</div></b></div>
@@ -41,24 +40,24 @@
 									</thead>
 									<tbody id="tafel_content">
 										
-										
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
 				</div>
+                
 			</div>
 		</div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
     <script type="text/javascript" src="modul/stundenplan/stundenplan.js"></script>
 
-<?php elseif($usergroup == 4) : ?>
+<?php elseif($session_usergroup == 4) : ?>
 
     <h1 class="mt-5">Alle KV-Module</h1>
     <p>Sie sind KV-Lehrling</p>
 
-<?php elseif($usergroup == 5) : ?>
+<?php elseif($session_usergroup == 5) : ?>
 
     <h1 class="mt-5">Alle Module</h1>
     <p>Sie sind Superuser</p>

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Elia Reutlinger">
 
     <title>Lehrlings-Tool</title>
 
@@ -29,7 +29,7 @@
       <!-- Navigation -->
       <?php
         include("database/connect.php");
-        include("auth.php");
+        include("modul/session/session.php");
         include("modul/navi.php");
       ?>
   

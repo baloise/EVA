@@ -1,34 +1,50 @@
 $(document).ready(function(){
     
     $(".itemDelete").each(function(){
-        $(this).click(function(){
+        $(this).click(function(event){
             var navItemID = ($(this).attr('navItemID'));
             $(".navListPosition").each(function(){
-                if($(this).attr('navItemID') == navItemID){
-                    $(this).slideUp("slow");
-                    $.ajax({
-                        type: "POST",
-                        data: {doEntry: 'delete', navItemID: navItemID},
-                        url: "modul/settings/modifyEntry.php",
-                        success: function(){}
-                    });
-                }
+                
+                var entryEntity = $(this);
+                
+                $.ajax({
+                    type: "POST",
+                    data: {doEntry: 'delete', navItemID: navItemID},
+                    url: "modul/settings/modifyEntry.php",
+                    success: function(data){
+                        if(data){
+                            $("#error").html(data).slideDown("fast"); 
+                        } else {
+                            if(entryEntity.attr('navItemID') == navItemID){
+                                entryEntity.slideUp("slow");
+                            }
+                        }
+                    }
+                });
             });
         });
     });
     
-    $("#itemAdd").click(function(){
+    $("#itemAdd").click(function(event){
         var addItemID = $('#selectModule').val();
         var userID = $('#selectModule').attr('userid');
-        $('#usersNavItems').append('<div style="display: none;" class="navListPosition" id="navListPositionNew" navItemID=""><div style=" background-color: rgb(212, 237, 218);" id="navListItem">wot m8<span></span></div></div>');
-        $('#navListPositionNew').slideDown("slow");
-        $('#navListPositionNew').attr("id", "navListPosition");
         $.ajax({
             type: "POST",
             data: {doEntry: 'add', navItemID: addItemID, userID:userID},
             url: "modul/settings/modifyEntry.php",
-            success: function(){
-                
+            success: function(data){
+                if(data){
+                    $("#error").html(data).slideDown("fast"); 
+                } else {
+                    $("#selectModule").val("");
+                    $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
+                        $("#pageContent").load("modul/settings.php", function(){
+                            $('.loadScreen').fadeTo("fast", 0, function(){
+                                $('#pageContents').fadeTo("fast", 1);
+                            });
+                        });
+                    });
+                }
             }
         });
     });

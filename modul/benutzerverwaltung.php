@@ -1,6 +1,6 @@
 <?php include("session/session.php"); ?>
 <?php include("../database/connect.php"); ?>
-<?php if($usergroup == 1) : ?>
+<?php if($session_usergroup == 1) : ?>
 
     
     <head>
@@ -11,6 +11,11 @@
     
     
     <h1 class="mt-5">Benutzerverwaltung</h1>
+    
+    <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
+        <strong>Benutzer löschen</strong> Bitte bestätigen Sie ihre auswahl: <span id="useridWarn"></span>
+        <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning">Bestätigen</button>
+    </div>
     
     <div id="userTable" style="display: none;">
         <table id="users" class="display" cellspacing="0" width="100%">
@@ -53,7 +58,7 @@
                                     <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control" disabled><option>'. $row['name'] .'</option>'.$groups.'</select></td>
                                     <td><input fType="2" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['firstname'] .'"></input></td>
                                     <td><input fType="3" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['lastname'] .'"></input></td>
-                                    <td><span class="fa fa-trash-o" id="'. $row['ID'] .'" aria-hidden="true"></span></td>
+                                    <td><span class="fa fa-trash-o" bkey="'. $row['bKey'] .'" id="'. $row['ID'] .'" aria-hidden="true"></span></td>
                                 </tr>
                                 ';
                                     
@@ -82,6 +87,7 @@
         <br/>
         <h2>Benutzer hinzufügen:</h2>
         <form>
+            <div class="alert alert-danger" id="error" style="display: none;"></div>
             <div class="alert alert-success" id="userAddedNotif" style="display: none;">
                 <strong></strong> Benutzer wurde hinzugefügt.
             </div>
@@ -169,7 +175,7 @@
     </script>
     
       
-<?php elseif($usergroup == 2 || $usergroup == 3 || $usergroup == 4 || $usergroup == 5) : ?>
+<?php elseif($session_usergroup == 2 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 
     <br/><br/>
 
