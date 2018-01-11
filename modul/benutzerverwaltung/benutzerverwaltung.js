@@ -81,8 +81,12 @@ $(document).ready(function(){
                     method: "POST",
                     url: "./modul/benutzerverwaltung/modifyUser.php",
                     data: {action:"change", userid:usrID, fType:fType, content:content},
-                    success: function(){     
-                        $('#check'+ usrID).fadeTo("fast", 1);
+                    success: function(data){
+                        if(data){
+                            $("#error").html(data).slideDown("fast"); 
+                        } else {
+                            $('#check'+ usrID).fadeTo("fast", 1);
+                        }
                     }
                 });
             }

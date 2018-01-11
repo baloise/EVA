@@ -3,23 +3,34 @@
     include("../session/session.php");
     include("./../../database/connect.php");
     
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    
     if(isset($_POST['action'])){
         
         if($_POST['action'] == "add"){
             
             $error = "";
             
-            if(strlen($_POST['bkey']) != 7){
+            $bkey = test_input($_POST['bkey']);
+            $group = test_input($_POST['group']);
+            $firstname = test_input($_POST['firstname']);
+            $lastname = test_input($_POST['lastname']);
+            
+            if(strlen($bkey) != 7){
                 $error = $error . "Der B-Key muss aus 7 Zeichen bestehen.<br/>";
             }
             
-            if(!$_POST['group']){
+            if(!$group){
                 $error = $error . "Bitte Gruppe auswählen.<br/>";
             }
 
-            
             $stmt = $mysqli->prepare("SELECT id, deleted FROM `tb_user` WHERE bKey = ?");
-            $stmt->bind_param("s", $_POST['bkey']);
+            $stmt->bind_param("s", $bkey);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -42,7 +53,7 @@
                         
                             
                             $stmt = $mysqli->prepare("UPDATE `tb_user` SET deleted = NULL, tb_group_id = ? WHERE bkey = ?;");
-                            $stmt->bind_param("is", $_POST['group'], $_POST['bkey']);
+                            $stmt->bind_param("is", $group, $bkey);
                             $stmt->execute();
                             
                         
@@ -56,7 +67,7 @@
                 } else {
                             
                         $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`) VALUES (?, ?, ?, ?);");
-                        $stmt->bind_param("ssss", $_POST['bkey'], $_POST['group'], $_POST['firstname'],  $_POST['lastname']);
+                        $stmt->bind_param("ssss", $bkey, $group, $firstname, $lastname);
                         $stmt->execute();
                             
                 }
@@ -68,39 +79,43 @@
         
         if($_POST['action'] == "delete"){
             
+            $userid = test_input($_POST['userid']);
+            
             $stmt = $mysqli->prepare("UPDATE `tb_user` SET `deleted` = 1 WHERE `tb_user`.`ID` = ?");
-            $stmt->bind_param("s", $_POST['userid']);
+            $stmt->bind_param("s", $userid);
             $stmt->execute();
 
         }
         
         if($_POST['action'] == "change"){
 
+            $userid = test_input($_POST['userid']);
+            $content = test_input($_POST['content']);
+        
             if($_POST['fType'] == 1){
                 
                 $stmt = $mysqli->prepare("UPDATE `tb_user` SET `tb_group_ID` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $_POST['content'], $_POST['userid']);
+                $stmt->bind_param("ss", $content, $userid);
                 
             }
             
             if ($_POST['fType'] == 2){
                 
                 $stmt = $mysqli->prepare("UPDATE `tb_user` SET `firstname` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $_POST['content'], $_POST['userid']);
+                $stmt->bind_param("ss", $content, $userid);
                 
             }
             
             if ($_POST['fType'] == 3){
                 
                 $stmt = $mysqli->prepare("UPDATE `tb_user` SET `lastname` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $_POST['content'], $_POST['userid']);
+                $stmt->bind_param("ss", $content, $userid);
                 
             } 
             
             $stmt->execute();
             $stmt->close();
             $mysqli->close();
-            echo "Success";
             
         }
         

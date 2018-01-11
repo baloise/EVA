@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Jan 2018 um 16:13
+-- Erstellungszeit: 11. Jan 2018 um 09:21
 -- Server-Version: 10.1.28-MariaDB
 -- PHP-Version: 7.1.11
 
@@ -227,7 +227,9 @@ INSERT INTO `tb_modul_group` (`ID`, `tb_group_ID`, `tb_modul_ID`) VALUES
 (49, 3, 7),
 (50, 3, 10),
 (51, 3, 11),
-(52, 3, 12);
+(52, 3, 12),
+(53, 2, 3),
+(54, 2, 12);
 
 -- --------------------------------------------------------
 
@@ -289,7 +291,7 @@ INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `t
 (7, 'b000002', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'Matthias', 'Cullmann', NULL),
 (8, 'b000003', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', NULL),
 (9, 'b000004', NULL, NULL, 4, NULL, NULL, NULL, NULL, 'Tim', 'Labbl', NULL),
-(10, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super', 'User', NULL),
+(10, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super User', 'User', NULL),
 (103, 'b123123', NULL, NULL, 1, NULL, NULL, NULL, NULL, '', '', 1);
 
 -- --------------------------------------------------------
@@ -419,7 +421,7 @@ ALTER TABLE `tb_user_subject`
 -- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
@@ -461,7 +463,7 @@ ALTER TABLE `tb_modul`
 -- AUTO_INCREMENT für Tabelle `tb_modul_group`
 --
 ALTER TABLE `tb_modul_group`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_presentation`

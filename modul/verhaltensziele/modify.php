@@ -3,13 +3,21 @@
     include("../session/session.php");
     include("./../../database/connect.php");
 
+    //Werte trimmen und auf richtigkeit prüfen
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    
     if($_POST['todo'] == "checkAndDelete"){
 		
 		$error = "";
 		$userid = $session_userid;
-		$reason = $_POST['reason'];
-		$entryid = $_POST['entryID'];
-		
+		$reason = test_input($_POST['reason']);
+		$entryid = test_input($_POST['entryID']);
+        
 		if(!$reason){
 			$error = $error . "Bitte eine Begründung angeben. <br/>";
 		}
@@ -52,8 +60,8 @@
         
 		$error = "";
 		$userid = $session_userid;
-		$reason = $_POST['reason'];
-		$entryid = $_POST['entryID'];
+		$reason = test_input($_POST['reason']);
+		$entryid = test_input($_POST['entryID']);
 		
 		if(!$reason){
 			$error = $error . "Bitte eine Begründung angeben. <br/>";
@@ -93,9 +101,9 @@
         
         $error = "";
         $userid = $session_userid;
-        $stage = $_POST['fstage'];
-        $points = $_POST['fpoints'];
-        $pa = $_POST['fpa'];
+        $stage = test_input($_POST['fstage']);
+        $points = test_input($_POST['fpoints']);
+        $pa = test_input($_POST['fpa']);
         
         if(!isset($userid)){
             $error = $error . "Kein User in Session.<br/>";
