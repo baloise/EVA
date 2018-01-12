@@ -26,12 +26,18 @@
     </div>
     
     <div id="pageContents" style="opacity: 0;">
-      <!-- Navigation -->
-      <?php
-        include("database/connect.php");
-        include("modul/session/session.php");
-        include("modul/navi.php");
-      ?>
+        
+        <?php
+            include("database/connect.php");
+            include("modul/session/session.php");
+        ?>
+        
+        <!-- Navigation -->
+        <div id="naviLink">
+            <?php
+                include("modul/navi.php");
+            ?>
+        </div>
   
       <!-- Page Content -->
       <div class="container">

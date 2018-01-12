@@ -3,16 +3,23 @@
 
 <?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
 
+
+    <head>
+        <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+	</head>
+
     <?php
 		
 		if($session_usergroup == 1){
 			$sql = "SELECT bh.`stageName`, bh.`points`, bh.`creationDate`, us.firstname, us.lastname, bh.ID FROM `tb_behaviorgrade` AS bh
-                LEFT JOIN tb_user AS us ON bh.`tb_userPA_ID` = us.ID ORDER BY bh.`creationDate` DESC";
+                LEFT JOIN tb_user AS us ON bh.`tb_userPA_ID` = us.ID
+                WHERE us.deleted IS NULL ORDER BY bh.`creationDate` DESC LIMIT 800";
 		} else {
 			$sql = "SELECT bh.`stageName`, bh.`points`, bh.`creationDate`, us.firstname, us.lastname, bh.ID FROM `tb_behaviorgrade` AS bh
                 LEFT JOIN tb_user AS us ON bh.`tb_userPA_ID` = us.ID
-				WHERE bh.`tb_userPA_ID` = $session_userid ORDER BY bh.`creationDate` DESC";
-		}
+				WHERE bh.`tb_userPA_ID` = $session_userid AND us.deleted IS NULL ORDER BY bh.`creationDate` DESC LIMIT 800";
+		} 
         
         $entryList = "";
         
@@ -44,14 +51,21 @@
                 $entryList = $entryList . $listEntry;
                 $i = $i + 1;
                 
-            }
+            } 
+        } else {
+            $entryList = "Noch keine Einträge vorhanden.";
         }
     
     ?>
 
     <h1 class="mt-5">Verhaltensziele</h1>
     <p>Punktszahlen der Feedbacks zu Stagen. Eingetragen von den Lehrlingen.</p>
-    <table class="table table-responsive">
+    
+    <div id="loadingTable">
+        <img class="img-responsive" src="img/loading2.gif"/>
+    </div>
+    
+    <table class="table" id="dtmake" style="display: none;">
         <thead>
             <tr>
                 <th></th>
@@ -116,12 +130,66 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getScript( "modul/benutzerverwaltung/benutzerverwaltung.js");
+            $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
+                $("#dtmake").dataTable({
+                    "columnDefs": [{
+                        "targets": 0,
+                        "orderable": false
+                    }],
+                    "language": {
+                        "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
+                        "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
+                        "sInfoEmpty":       "0 bis 0 von 0 Einträgen",
+                        "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
+                        "sInfoPostFix":     "",
+                        "sInfoThousands":   ".",
+                        "sLengthMenu":      "_MENU_ Einträge anzeigen",
+                        "sLoadingRecords":  "Wird geladen...",
+                        "sProcessing":      "Bitte warten...",
+                        "sSearch":          "",
+                        "sZeroRecords":     "Keine Einträge vorhanden.",
+                        "oPaginate": {
+                            "sFirst":       "Erste",
+                            "sPrevious":    "Zurück",
+                            "sNext":        "Nächste",
+                            "sLast":        "Letzte"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                            "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+                        },
+                        select: {
+                                rows: {
+                                _: '%d Zeilen ausgewählt',
+                                0: 'Zum Auswählen auf eine Zeile klicken',
+                                1: '1 Zeile ausgewählt'
+                                }
+                        }
+                    }
+                });
+                $('#dtmake_filter label').attr('placeholder', 'Suchen');
+                $('#dtmake_filter input').attr('placeholder', 'Suchen');
+                $('#dtmake_filter input').addClass('form-control');
+                $('#loadingTable').slideUp("fast", function(){
+                    $("#dtmake").slideDown( "slow" );
+                });
+                
+                
+            });
+            
+            
+        } );
+    </script>
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4) : //IT-Lehrling & KV-Lehrling ?>
 
     <?php
         
-        $date = "08.01.2018";
+        $date = date('d.m.Y');
         $paList = "";
         $sql = "SELECT firstname, lastname, id FROM tb_user WHERE tb_group_ID = 2;";
         

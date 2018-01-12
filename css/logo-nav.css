@@ -114,7 +114,12 @@ html {
     height: 100%;
     vertical-align: middle;
 }
-.btn-primary {
+.btn-primary:hover {
   background-color: var(--link);
   border-color: var(--link);
+}
+.btn-primary {
+  background-color: var(--akzentfarbe);
+  border-color: var(--akzentfarbe);
+  color: var(--link);
 }

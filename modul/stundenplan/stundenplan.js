@@ -8,6 +8,7 @@
 	var thisWeekAndYear = thisWeek + "-" + today.getFullYear();
 	
 	$('#weekchangerDateNum').html(thisWeekAndYear);
+    
 	//Lädt die Klassen anhand des ausgewählten Berufes und fügt sie in das Dropdown ein
 	function SetKlassen() {
 		$("#k_auswahl").empty();
@@ -39,6 +40,10 @@
 		$("#meldung").remove();
 		
 		var klasseId = $('#k_auswahl').val();
+        
+        if (!klasseId){
+            klasseId = $('#k_auswahl').attr("value");
+        }
 		
 		var weekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 		
@@ -69,6 +74,7 @@
 						//+ '</td><td>' + field.tafel_raum + '</td><td>' + field.tafel_lehrer + '</td></tr>';
 
 						$('#tafel_content').append(tr);
+                        $('#k_auswahl').val(klasseId);
 	  
 					});
 	  
@@ -76,7 +82,7 @@
 					//Falls keine Daten zurückgegeben werden, wird davon ausgegangen, dass Ferien sind.
 					$('#kalender_tafel').fadeTo("fast", 0);
 					$('#kalender_tafel').after('<p id="meldung">Keine Daten: Ferien?</p>');
-	  
+                    
 				}
 	  
 		  }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -104,10 +110,11 @@
 			$('#kalender_tafel').fadeTo("fast", 0);
 		}
 	});
-	
+    
 	//ActionListener um zu erkennen, ob eine Klasse ausgewählt wurde, um danach den Stundenplan zu generieren und per Animation anzeigen zu lassen
 	$( "#klassenauswahl" ).change(function() {
 		if(this.value !== ""){
+            $("#saveClassButton").slideDown("slow");
 			thisWeekAndYear = thisWeek + "-" + today.getFullYear();
 			setKalender();
 			document.cookie = "beruf=" + $('#b_auswahl').val();
@@ -162,3 +169,58 @@
 		setKalender();
   
 	});
+    
+$(document).ready(function(){
+
+    if($("#k_auswahl").attr("value")){
+        
+        
+        $('#k_auswahl').val($('#k_auswahl').attr("value"));
+        thisWeekAndYear = thisWeek + "-" + today.getFullYear();
+		document.cookie = "beruf=" + $('#b_auswahl').val();
+		document.cookie = "klasse=" + $('#k_auswahl').val();
+        setKalender();
+        $("#stundenplan").fadeTo("fast", 1);
+        
+    }
+
+    $("#saveClassButton").click(function(){
+        
+        var error = "";
+        var classSel = $("#k_auswahl").val();
+        
+        if(!classSel && classSel != "-"){
+            error = error + "Keine Klasse ausgewählt";
+        }
+        
+        if(error){
+            
+        } else {
+            
+            $.ajax({
+                method: "POST",
+                url: "./modul/stundenplan/modify.php",
+                data: {classSel:classSel},
+                success: function(data){
+                        
+                    if(data){
+                        $("#error").html(data).slideDown("fast"); 
+                    } else {
+                                    
+                        $("#saveClassButton").css("background-color", "green").delay(1000).slideUp("slow", function(){
+                             $("#saveClassButton").css("background-color", "#007bff");
+                             $("#saveClassButton").html("Klasse speichern");
+                        });
+                        $("#saveClassButton").html("Klasse gespeichert!");
+                        
+                        
+                    }
+                                 
+                }
+            });
+            
+        }
+    
+    });
+    
+});

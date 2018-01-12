@@ -18,6 +18,11 @@ $(document).ready(function(){
                             if(entryEntity.attr('navItemID') == navItemID){
                                 entryEntity.slideUp("slow");
                             }
+                            $('#slideMe').slideUp("fast", function(){
+                                $('#naviLink').html("").load("modul/navi.php", function(){
+                                    $('#slideMe').slideDown("fast");
+                                }); 
+                            });
                         }
                     }
                 });
@@ -37,6 +42,11 @@ $(document).ready(function(){
                     $("#error").html(data).slideDown("fast"); 
                 } else {
                     $("#selectModule").val("");
+                    $('#slideMe').slideUp("fast", function(){
+                        $('#naviLink').html("").load("modul/navi.php", function(){
+                            $('#slideMe').slideDown("fast");
+                        }); 
+                    });
                     $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
                         $("#pageContent").load("modul/settings.php", function(){
                             $('.loadScreen').fadeTo("fast", 0, function(){
