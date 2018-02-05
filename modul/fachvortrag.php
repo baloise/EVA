@@ -4,7 +4,6 @@
 <?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
 
     <head>
-        <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
@@ -73,7 +72,7 @@
                 if($entryList){
                     echo $entryList;
                 } else {
-                    echo "<tr><td colspan='7' align='center'>Bisher keine Einträge<td></tr>";
+                    echo "<tr><td colspan='7' align='center'>Bisher keine Einträge</td></tr>";
                 }
             ?>
         </tbody>
@@ -120,7 +119,6 @@
     
     <script type="text/javascript">
         $(document).ready(function() {
-            $.getScript( "modul/benutzerverwaltung/benutzerverwaltung.js");
             $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
                 $("#dtmake").dataTable({
                     "columnDefs": [{

@@ -49,7 +49,7 @@
       
       <footer class="footer" id="slideMeFoot" style="display: none;">
         <div class="container">
-            <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2017</span>
+            <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | Cash Calculator <a href="">v.1.0</a></span>
         </div>
       </footer>
     </div>
