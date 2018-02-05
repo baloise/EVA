@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Jan 2018 um 09:21
--- Server-Version: 10.1.28-MariaDB
--- PHP-Version: 7.1.11
+-- Erstellungszeit: 05. Feb 2018 um 15:56
+-- Server-Version: 10.1.30-MariaDB
+-- PHP-Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -154,10 +154,19 @@ CREATE TABLE `tb_llit_semester` (
 
 CREATE TABLE `tb_malus` (
   `ID` int(11) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
   `description` text,
+  `weight` int(11) NOT NULL,
+  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tb_user_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `tb_malus`
+--
+
+INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_ID`) VALUES
+(2, 'Test', 20, '2018-02-05 14:54:43', 8),
+(3, 'Test 2', 15, '2018-02-05 14:54:52', 9);
 
 -- --------------------------------------------------------
 
@@ -451,7 +460,7 @@ ALTER TABLE `tb_llit_semester`
 -- AUTO_INCREMENT für Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul`
