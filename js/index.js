@@ -18,6 +18,9 @@ $(document).ready(function(){
     
     $(".nav-link").each(function(){
         makeDynamic(this);
+		$(this).hover(function(){
+			
+		});
     });
    
     $(".navbar-brand").each(function(){

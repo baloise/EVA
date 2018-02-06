@@ -1,7 +1,7 @@
 :root {
 	--akzentfarbe: #F1F4FB;
 	--hintergrund: white;
-	--link: #003399;
+	--link: #1C4E9C;
 	--schrift: black;
 }
 body {
@@ -121,8 +121,13 @@ html {
 }
 .btn-primary {
 	background-color: var(--akzentfarbe);
-	border-color: var(--akzentfarbe);
+	border: solid 2px var(--link);
+	font-weight: 500;
+	border-color: var(--link);
 	color: var(--link);
+}
+.btn {
+	cursor: pointer;
 }
 h3 {
 	font-size: 1rem;
@@ -139,4 +144,10 @@ select.form-control:not([size]):not([multiple]){
 }
 .btn {
 	font-size: 0.8rem;
+}
+.navbar {
+	border-bottom: solid var(--link);
+}
+.mt-5, .my-5 {
+	margin-top: 2rem !important;
 }
