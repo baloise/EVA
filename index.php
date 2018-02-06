@@ -41,9 +41,14 @@
   
       <!-- Page Content -->
       <div class="container">
-        <div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard.php";} ?>" id="pageContent">
-          
-        </div>
+		<div class="row">
+			<div class="col-lg-1"></div>
+			<div class="col-lg-10">
+				<div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard.php";} ?>" id="pageContent">
+			  
+				</div>
+			</div>
+		</div>
       </div>
       <!-- /.container -->
       
