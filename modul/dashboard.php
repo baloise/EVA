@@ -17,7 +17,6 @@
 	
 	<?php echo $welcome; ?>
     <h3>Alle Module</h3>
-    <p>Hier kannst du alle Module sehen, die dir zu Verfügung gestellt wurden.</p>
       
     <?php
 
