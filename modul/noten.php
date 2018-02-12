@@ -8,145 +8,201 @@
     
     <?php
     
-        $sql1 = "SELECT ID, bKey FROM `tb_user` WHERE tb_group_ID = 3 OR tb_group_ID = 4;";
-        $sql2 = "SELECT subjectName, ID, tb_semester_ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = ? ORDER BY creationDate DESC;";
-        $sql3 = "";
-        $sql4 = "";
-    
-    ?>
-    
-    <div class="row">
-        <div class="card col-lg-12 userGradeBox">
-            <div class="row userGradesHead" containerID="2">
-                <div class="col-lg-4"><b>Elia Reutlinger</b></div>
-                <div class="col-lg-4">Schnitt: 5.0</div>
-                <div class="col-lg-4 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 detailedGrades" containerID="2">
-                    <div class="card">
-                        <table class="table">
-                            <thead>
+        
+        $llEntries = "";
+        
+        
+        $sql1 = "SELECT ID, bKey, firstname, lastname, deleted FROM `tb_user` WHERE tb_group_ID IN (3, 4) AND deleted IS NULL;";
+        $result1 = $mysqli->query($sql1);
+        if ($result1->num_rows > 0) {
+            while($row1 = $result1->fetch_assoc()) {
+                
+                $llid = $row1['ID'];
+                $llbkey = $row1['bKey'];
+                $llfirst = $row1['firstname'];
+                $lllast = $row1['lastname'];
+                $llsubjs = 0;
+                $llallavg = 0;
+
+                $gradesunderEntries = "";
+                $subEntries = "";
+                
+                $sql2 = "SELECT us.subjectName, us.ID, us.correctedGrade, sem.semester FROM `tb_user_subject` AS us 
+                        INNER JOIN tb_semester AS sem ON us.tb_semester_ID = sem.ID
+                        WHERE us.tb_user_ID = $llid ORDER BY sem.semester DESC, us.creationDate DESC";
+                $result2 = $mysqli->query($sql2);
+                if ($result2->num_rows > 0) {
+                    while($row2 = $result2->fetch_assoc()) {
+                        
+                        $llsubjs = $llsubjs + 1;
+                        $llsubname = $row2['subjectName'];
+                        $llsubid = $row2['ID'];
+                        $llsubsem = $row2['semester'];
+                        $llsubcorrgrade = $row2['correctedGrade'];
+                        
+                        $sql3 = "SELECT ID, grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid";
+                        $result3 = $mysqli->query($sql3);
+                        if ($result3->num_rows > 0) {
+                            
+                            $countgrades = 0;
+                            $grades = 0;
+                            $weights = 0;
+                            
+                            while($row3 = $result3->fetch_assoc()) {
+                                
+                                $gradeid = $row3['ID'];
+                                $grade = $row3['grade'];
+                                $gradeweight = $row3['weighting'];
+                                
+                                $grades = $grades + ($grade*$gradeweight);
+                                $weights = $weights + $gradeweight;
+                                $countgrades = $countgrades + 1;
+                                
+                            }
+                            
+                            $subgradeavg = floor(($grades / $weights) * 100) / 100;
+                            $llallavg = $llallavg + $subgradeavg;
+                            
+                        } else {
+                            $subgradeavg = "Keine Noten gefunden.";
+                        }
+                        
+                        $countgradesunder = 0;
+                        
+                        $sql4 = "SELECT grade, title, reasoning FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid AND grade < 4";
+                        $result4 = $mysqli->query($sql4);
+                        if ($result4->num_rows > 0) {
+                            while($row4 = $result4->fetch_assoc()) {
+                                
+                                $gradesunderEntry = '
+                                        <div class="row gradeBelow">
+                                            <div class="col-lg-4">
+                                                <b>'. $llsubname .'</b>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <b>Titel:</b> '. $row4['title'] .'
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <b>Note:</b> '. $row4['grade'] .'
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <b>Begründung:</b> '. $row4['reasoning'] .'<br/><br/>
+                                            </div>
+                                        </div>
+                                ';
+                                
+                                $countgradesunder = $countgradesunder + 1;
+                                $gradesunderEntries = $gradesunderEntries . $gradesunderEntry;
+                            }
+                        } else {
+                            $countgradesunder = 0;
+                        }
+                        
+                        if($llsubcorrgrade){
+                            $subgradeavg = "<s>" . $subgradeavg . "</s> <b style='color:red;'>" . $llsubcorrgrade . "</b>";
+                        }
+                        
+                        $subEntry = '
                                 <tr>
-                                    <th scope="col">Fach/Modul</th>
-                                    <th scope="col">Noten unter 4</th>
-                                    <th scope="col">Semester</th>
-                                    <th scope="col">Schnitt</th>
-                                    <th scope="col">Korrektur</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">M151</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>5.5</td>
+                                    <th scope="row">'. $llsubname .'</th>
+                                    <td>'. $countgrades .'</td>
+                                    <td>'. $countgradesunder .'</td>
+                                    <td>'. $llsubsem .'</td>
+                                    <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-lg-10">
-                                                <input placeholder="Schnitt" type="number" class="form-control"/>
+                                                <input placeholder="Schnitt" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
                                             </div>
                                             <div class="col-lg-2" style="padding-left: 0;">
-                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                <button type="button" subjid="'. $llsubid .'" class="btn btn-secondary corrSubAvg"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">M151</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>5.5</td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-lg-10">
-                                                <input placeholder="Schnitt" type="number" class="form-control"/>
-                                            </div>
-                                            <div class="col-lg-2" style="padding-left: 0;">
-                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">M151</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>5.5</td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-lg-10">
-                                                <input placeholder="Schnitt" type="number" class="form-control"/>
-                                            </div>
-                                            <div class="col-lg-2" style="padding-left: 0;">
-                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3>Noten unter 4</h3>
-                            <div class="row gradeBelow">
-                                <div class="col-lg-2">
-                                    <b>M151</b>
-                                </div>
-                                <div class="col-lg-2">
-                                    <b>Note:</b> 3.5
-                                </div>
-                                <div class="col-lg-2">
-                                    <b>Semester:</b> 1
-                                </div>
-                                <div class="col-lg-6">
-                                    <b>Begründung:</b> Lorem Ipsum döner sit ahmed
-                                </div>
-                            </div>
-                            <div class="row gradeBelow">
-                                <div class="col-lg-2">
-                                    <b>M151</b>
-                                </div>
-                                <div class="col-lg-2">
-                                    <b>Note:</b> 3.5
-                                </div>
-                                <div class="col-lg-2">
-                                    <b>Semester:</b> 1
-                                </div>
-                                <div class="col-lg-6">
-                                    <b>Begründung:</b> Lorem Ipsum döner sit ahmed
-                                </div>
-                            </div>
+                        ';
+                        
+                        $subEntries = $subEntries . $subEntry;
+                        
+                    }
+                } else {
+                    $subEntries = "<tr><td colspan='5'>Keine Fächer gefunden.</td><tr/>";
+                }
+                
+                if($llsubjs > 0){
+                    $calcavg = ($llallavg/$llsubjs);
+                } else {
+                    $calcavg = "Keine Daten";
+                }
+                
+                if($gradesunderEntries){
+                    $gradesunderEntries = "<hr/><h3>Ungenügende Noten</h3>" . $gradesunderEntries;
+                }
+                
+                $llEntry = '
+                <div class="row">
+                    <div class="card col-lg-12 userGradeBox">
+                        <div class="row userGradesHead" containerID="'. $llid .'">
+                            <div class="col-lg-4"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
+                            <div class="col-lg-4">Schnitt: '. $calcavg .'</div>
+                            <div class="col-lg-4 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <hr/>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    Gesamtschnitt (alle Semester): 5.2
+                        <div class="row">
+                            <div class="col-lg-12 detailedGrades" containerID="'. $llid .'">
+                                <div class="card">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Fach/Modul</th>
+                                                <th scope="col">Noten</th>
+                                                <th scope="col">ungenügende</th>
+                                                <th scope="col">Semester</th>
+                                                <th scope="col">Schnitt</th>
+                                                <th scope="col">Korrektur</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            '. $subEntries .'
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-lg-4">
-                                    Fächer/Module: 13
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        '. $gradesunderEntries .'
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    Schnitt
-                                    <select>
-                                        <option>Semester 1</option>
-                                        <option>Semester 2</option>
-                                    </select>
-                                    : 5.0
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                Fächer/Module: '. $llsubjs .'
+                                            </div>
+                                            <br/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <br/>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                ';
+                
+                $llEntries = $llEntries . $llEntry;
+                
+            }
+            
+        } else {
+            $llEntries = "Keine Lehrlinge gefunden. <br/>";
+        }
+        
+        echo $llEntries;
+    
+    ?>
+    
+    
     
     <script type="text/javascript" src="modul/noten/noten.js"></script>  
     

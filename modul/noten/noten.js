@@ -1,5 +1,59 @@
 $(document).ready(function(){
     
+    $('.corrSubAvg').each(function(){
+    
+        $(this).click(function(){
+            
+            $(this).prop("disabled",true);
+        
+            var subid = $(this).attr('subjid');
+            
+            $('.corrSubAvgNum').each(function(){
+                
+                if($(this).attr('subjid') == subid){
+                    
+                    var corrGrade = $(this).val();
+                    
+                    $.ajax({
+                        method: "POST",
+                        url: "./modul/noten/modify.php",
+                        data: {todo:"correction", subid:subid, corrGrade:corrGrade},
+                        success: function(data){
+                            
+                            if(data){
+
+                                alert(data);
+                            
+                            } else {
+                                
+                                $(this).prop("disabled",false);
+                                
+                                $('.subAvg').each(function(){
+                                
+                                    if($(this).attr('subjid') == subid){
+                                        var text = $(this).html();
+                                        
+                                        var newText = "<s>" + text + "</s> <b style='color:red'>" + corrGrade + "</b>";
+                                        
+                                        $(this).html(newText);
+                                        
+                                    }
+                                    
+                                });
+                                
+                            }
+                                     
+                        }
+                    });
+                    
+                }
+            
+            });
+            
+        });
+        
+    });
+    
     $('.userGradesHead').each(function(){
         $(this).click(function(){
             

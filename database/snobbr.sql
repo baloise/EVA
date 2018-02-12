@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Feb 2018 um 12:31
+-- Erstellungszeit: 12. Feb 2018 um 16:26
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -155,7 +155,7 @@ CREATE TABLE `tb_malus` (
 INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_ID`) VALUES
 (2, 'Test', 20, '2018-02-05 14:54:43', 8),
 (3, 'Test 2', 15, '2018-02-05 14:54:52', 9),
-(4, 'Dumme Sau', 100, '2018-02-06 12:47:07', 8);
+(5, 'TestTest', 10, '2018-02-12 15:02:29', 104);
 
 -- --------------------------------------------------------
 
@@ -296,7 +296,7 @@ CREATE TABLE `tb_subject_grade` (
   `weighting` double DEFAULT NULL,
   `notes` text,
   `tb_user_subject_ID` int(11) NOT NULL,
-  `reasoning` varchar(255) DEFAULT NULL
+  `reasoning` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -304,7 +304,7 @@ CREATE TABLE `tb_subject_grade` (
 --
 
 INSERT INTO `tb_subject_grade` (`ID`, `title`, `grade`, `creationDate`, `weighting`, `notes`, `tb_user_subject_ID`, `reasoning`) VALUES
-(46, 'test', 1, '2018-02-09 13:23:45', 500, NULL, 11, NULL),
+(46, 'test', 1, '2018-02-09 13:23:45', 500, NULL, 11, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'),
 (47, 'test2', 6, '2018-02-09 13:24:20', 500, NULL, 11, NULL),
 (48, 'Test1', 5, '2018-02-09 13:29:15', 100, NULL, 12, NULL),
 (49, 'Test2', 5.2, '2018-02-09 13:30:58', 200, NULL, 12, NULL),
@@ -313,8 +313,8 @@ INSERT INTO `tb_subject_grade` (`ID`, `title`, `grade`, `creationDate`, `weighti
 (55, 'Projektarbeit', 6, '2018-02-09 14:39:42', 70, NULL, 27, NULL),
 (56, 'Test 1', 4.5, '2018-02-09 14:45:50', 100, NULL, 28, NULL),
 (57, 'Test 2', 4.6, '2018-02-09 14:45:59', 100, NULL, 28, NULL),
-(58, 'Test 3', 3, '2018-02-09 14:46:12', 100, NULL, 28, NULL),
-(59, 'Test 4', 2.5, '2018-02-09 14:46:30', 50, NULL, 28, NULL),
+(58, 'Test 3', 3, '2018-02-09 14:46:12', 100, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
+(59, 'Test 4', 2.5, '2018-02-09 14:46:30', 50, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
 (64, 'Test', 5, '2018-02-09 14:56:36', 20, NULL, 30, NULL),
 (66, 'Okcool', 4, '2018-02-12 06:33:40', 40, NULL, 27, NULL),
 (67, 'Test 2', 4, '2018-02-12 08:27:46', 20, NULL, 30, NULL),
@@ -351,7 +351,7 @@ INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `t
 (8, 'b000003', '2679040', NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', NULL),
 (9, 'b000004', NULL, NULL, 4, NULL, NULL, NULL, NULL, 'Tim', 'Labbl', NULL),
 (10, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super User', 'lel', NULL),
-(103, 'b123123', NULL, NULL, 1, NULL, NULL, NULL, NULL, '', '', 1),
+(103, 'b123123', NULL, NULL, 3, NULL, NULL, NULL, NULL, '', '', 1),
 (104, 'b000006', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Jakob', 'Abraham', NULL);
 
 -- --------------------------------------------------------
@@ -375,10 +375,10 @@ CREATE TABLE `tb_user_subject` (
 
 INSERT INTO `tb_user_subject` (`ID`, `subjectName`, `creationDate`, `tb_user_ID`, `tb_semester_ID`, `correctedGrade`) VALUES
 (11, 'Mathe', '2018-02-09 10:57:01', 8, 25, NULL),
-(12, 'Deutsch', '2018-02-09 11:46:43', 8, 25, NULL),
-(27, 'M151', '2018-02-09 14:38:01', 8, 29, NULL),
-(28, 'BWL', '2018-02-09 14:40:04', 8, 29, NULL),
-(30, 'Testfach 1', '2018-02-09 14:49:32', 9, 34, NULL);
+(12, 'Deutsch', '2018-02-09 11:46:43', 8, 25, 5),
+(27, 'M151', '2018-02-09 14:38:01', 8, 29, 4.5),
+(28, 'BWL', '2018-02-09 14:40:04', 8, 29, 5),
+(30, 'Testfach 1', '2018-02-09 14:49:32', 9, 34, 5.5);
 
 --
 -- Indizes der exportierten Tabellen
@@ -517,7 +517,7 @@ ALTER TABLE `tb_ind_nav`
 -- AUTO_INCREMENT für Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul`

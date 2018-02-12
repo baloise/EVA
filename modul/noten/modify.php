@@ -62,6 +62,43 @@
             }
             
             
+        } else if($_POST['todo'] == "correction"){
+            
+            $subjid = test_input($_POST['subid']);
+            $corrgrade = test_input($_POST['corrGrade']);
+            $error = "";
+            
+            $stmt = $mysqli->prepare("SELECT ID FROM `tb_user` WHERE ID = ? && tb_group_ID = 1");
+            $stmt->bind_param("i", $session_userid);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if(!$result->fetch_array(MYSQLI_NUM)){
+                $error = $error . "Berechtigungsfehler";
+            }
+            $stmt->close();
+            
+            if($session_usergroup != 1){
+                $error = $error . "Berechtigungsfehler";
+            }
+            
+            if(!$subjid){
+                $error = $error . "Keine Fach-ID angegeben.<br/>";
+            }
+            
+            if(!$corrgrade || $corrgrade < 1 || $corrgrade > 6){
+                $error = $error . "Keine/Ungültige Note angegeben.<br/>";
+            }
+            
+            if($error){
+                echo $error;
+            } else {
+                
+                $stmt = $mysqli->prepare("UPDATE `tb_user_subject` SET `correctedGrade` = ? WHERE `tb_user_subject`.`ID` = ?;");
+                $stmt->bind_param("di", $corrgrade, $subjid);
+                $stmt->execute();
+                
+            }
+            
         } else if($_POST['todo'] == "deleteGrade"){
             
             $error = "";

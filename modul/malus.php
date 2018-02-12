@@ -4,7 +4,7 @@
 
     <?php
     
-        $sql = "SELECT ID, firstname, lastname FROM `tb_user` WHERE tb_group_ID = 3 OR tb_group_ID = 4 AND deleted IS NULL";
+        $sql = "SELECT ID, firstname, lastname FROM `tb_user` WHERE tb_group_ID IN (3, 4) AND deleted IS NULL";
         
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
