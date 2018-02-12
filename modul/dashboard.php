@@ -17,7 +17,7 @@
 	
 	<?php echo $welcome; ?>
     <h3>Alle Module</h3>
-      
+	  
     <?php
 
     $result = $mysqli->query($sql);
@@ -26,16 +26,16 @@
         echo"<div class='row'>";
         while($row = $result->fetch_assoc()) {
             $generateDiv = '
-            <div class="col-lg-4">
-            <div class="dashModul" id="dashModule" href="'. $row["file_path"] .'">
-                <div id="dashModuleTitle">
-                   <h3>'. $row["title"] .'</h3>
-                </div>
-                <div id="dashModuleDescription">
-                    '. utf8_encode($row["description"]) .'
-                </div>
-            </div>
-            </div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="dashModul" href="'. $row["file_path"] .'">
+					<div class="dashModuleIcon">
+						<img src="'. $row["icon"] .'" class="dashIco img-fluid mx-auto d-block"/>
+					</div>
+					<div class="dashModuleTitle">
+					   <h3>'. $row["title"] .'</h3>
+					</div>
+				</div>
+			</div>
             ';
             if($row["title"] != "Dashboard"){
                 echo $generateDiv;

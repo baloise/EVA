@@ -1,5 +1,18 @@
 $(document).ready(function(){
     
+    $('.userGradesHead').each(function(){
+        $(this).click(function(){
+            
+            var selection = $(this).attr("containerID");
+            
+            $('.detailedGrades').each(function(){
+                if($(this).attr("containerID") == selection){
+                    $(this).slideToggle("slow");  
+                }   
+            }); 
+        });
+    });
+    
     $('.addGrade').each(function(){
         
         $(this).click(function(){
@@ -13,7 +26,7 @@ $(document).ready(function(){
             });
             
             var subjectId = $(this).attr('fSubject');
-            var weight, title, grade;
+            var weight, title, grade, reason;
             var error = "";
             
             $('.fgradeTitle').each(function(){
@@ -34,6 +47,12 @@ $(document).ready(function(){
                 }
             });
             
+            $('.fgradeReason').each(function(){
+                if($(this).attr('fSubject') == subjectId){
+                    reason = $(this).val();
+                }
+            });
+            
             if(!weight){
                 error = error + "Bitte Gewichtung angeben<br/>";
             }
@@ -44,6 +63,10 @@ $(document).ready(function(){
             
             if(!grade){
                 error = error + "Bitte Note angeben<br/>";
+            }
+            
+            if(grade < 4 && !reason){
+                error = error + "Bitte Begründung für Note unter 4.0 angeben<br/>";
             }
             
             if(error){
@@ -66,7 +89,7 @@ $(document).ready(function(){
                 $.ajax({
                     method: "POST",
                     url: "./modul/noten/modify.php",
-                    data: {todo:"addGrade", grade:grade, title:title, weight:weight, subjectId:subjectId},
+                    data: {todo:"addGrade", grade:grade, title:title, weight:weight, subjectId:subjectId, reason:reason},
                     success: function(data){
                         
                         if(data){
@@ -247,5 +270,26 @@ $(document).ready(function(){
         });
     
     });   
+ 
+    $('.fgradeNote').each(function(){
+        $(this).keyup(function(){
+            
+            var fid = $(this).attr("fSubject");
+            
+            if($(this).val() < 4 && $(this).val()){
+                $('.badDay').each(function(){
+                    if($(this).attr("fSubject") == fid){
+                        $(this).slideDown("slow");
+                    }    
+                });
+            } else {
+                $('.badDay').each(function(){
+                    if($(this).attr("fSubject") == fid){
+                        $(this).slideUp("slow");
+                    }    
+                });
+            }
+        }); 
+    });
  
 });

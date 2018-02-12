@@ -56,26 +56,27 @@ html {
 	background-color: white;
 	padding: 20px;
 }
-#dashModule {
-	background-color: var(--akzentfarbe);
+.dashModul {
 	color: var(--link);
-	border: solid var(--akzentfarbe);
-	border-radius: 15px;
-	border-width: 2px;
 	min-height: 150px;
 	max-height: 150px;
 	padding: 20px;
-	margin-bottom: 5px;
+	margin-top: 60px;
 }
-#dashModuleTitle {
+.dashModuleTitle {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 }
-#dashModuleDescription {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
+.dashIco {
+	max-width: 50%;
+	margin-bottom: 10px;
+	-webkit-transition: max-width 0.2s;
+	-moz-transition: max-width 0.2s;
+	transition: max-width 0.2s;
+}
+.dashIco:hover {
+	max-width: 65%;
 }
 #navListItem {
 	background-color: var(--akzentfarbe);
@@ -150,4 +151,15 @@ select.form-control:not([size]):not([multiple]){
 }
 .mt-5, .my-5 {
 	margin-top: 2rem !important;
+}
+.userGradeBox {
+	font-size: larger;
+	cursor: pointer;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.detailedGrades {
+	margin-top: 5px;
+	display: none;
 }

@@ -1,17 +1,162 @@
 <?php include("session/session.php"); ?>
 <?php include("../database/connect.php"); ?>
 
-<?php if($session_usergroup == 1) : ?>
+<?php if($session_usergroup == 1) : //HR ?>
 
-    <h1 class="mt-5">Alle HR-Module</h1>
-    <p>Sie sind Nachwuchsentwicklung</p>
-      
+    <h1 class="mt-5">Notensammlung</h1>
+    <h3>Lehrlinge</h3>
+    
+    <?php
+    
+        $sql1 = "SELECT ID, bKey FROM `tb_user` WHERE tb_group_ID = 3 OR tb_group_ID = 4;";
+        $sql2 = "SELECT subjectName, ID, tb_semester_ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = ? ORDER BY creationDate DESC;";
+        $sql3 = "";
+        $sql4 = "";
+    
+    ?>
+    
+    <div class="row">
+        <div class="card col-lg-12 userGradeBox">
+            <div class="row userGradesHead" containerID="2">
+                <div class="col-lg-4"><b>Elia Reutlinger</b></div>
+                <div class="col-lg-4">Schnitt: 5.0</div>
+                <div class="col-lg-4 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 detailedGrades" containerID="2">
+                    <div class="card">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fach/Modul</th>
+                                    <th scope="col">Noten unter 4</th>
+                                    <th scope="col">Semester</th>
+                                    <th scope="col">Schnitt</th>
+                                    <th scope="col">Korrektur</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">M151</th>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5.5</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <input placeholder="Schnitt" type="number" class="form-control"/>
+                                            </div>
+                                            <div class="col-lg-2" style="padding-left: 0;">
+                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">M151</th>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5.5</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <input placeholder="Schnitt" type="number" class="form-control"/>
+                                            </div>
+                                            <div class="col-lg-2" style="padding-left: 0;">
+                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">M151</th>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5.5</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <input placeholder="Schnitt" type="number" class="form-control"/>
+                                            </div>
+                                            <div class="col-lg-2" style="padding-left: 0;">
+                                                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3>Noten unter 4</h3>
+                            <div class="row gradeBelow">
+                                <div class="col-lg-2">
+                                    <b>M151</b>
+                                </div>
+                                <div class="col-lg-2">
+                                    <b>Note:</b> 3.5
+                                </div>
+                                <div class="col-lg-2">
+                                    <b>Semester:</b> 1
+                                </div>
+                                <div class="col-lg-6">
+                                    <b>Begründung:</b> Lorem Ipsum döner sit ahmed
+                                </div>
+                            </div>
+                            <div class="row gradeBelow">
+                                <div class="col-lg-2">
+                                    <b>M151</b>
+                                </div>
+                                <div class="col-lg-2">
+                                    <b>Note:</b> 3.5
+                                </div>
+                                <div class="col-lg-2">
+                                    <b>Semester:</b> 1
+                                </div>
+                                <div class="col-lg-6">
+                                    <b>Begründung:</b> Lorem Ipsum döner sit ahmed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr/>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    Gesamtschnitt (alle Semester): 5.2
+                                </div>
+                                <div class="col-lg-4">
+                                    Fächer/Module: 13
+                                </div>
+                                <div class="col-lg-4">
+                                    Schnitt
+                                    <select>
+                                        <option>Semester 1</option>
+                                        <option>Semester 2</option>
+                                    </select>
+                                    : 5.0
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="modul/noten/noten.js"></script>  
+    
 <?php elseif($session_usergroup == 2) : ?>
 
     <h1 class="mt-5">Alle PA-Module</h1>
     <p>Sie sind Praxisausbildner</p>
     
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4) : ?>
+    
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4) : //LLKV&IT ?>
 
     <?php
         
@@ -99,6 +244,9 @@
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="Gewichtung (in %)"/></td>
                                 <td></td>
                             </tr>
+                            <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
+                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="Begründung Note unter 4.0" class="form-control fgradeReason"></textarea></td>
+                            </tr>
                         </tbody>
                     </table>  
                     ';
@@ -119,6 +267,9 @@
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="Note"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="Gewichtung (in %)"/></td>
                                 <td></td>
+                            </tr>
+                            <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
+                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="Begründung Note unter 4.0" class="form-control fgradeReason"></textarea></td>
                             </tr>
                         </tbody>
                     </table>

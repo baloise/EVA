@@ -20,6 +20,7 @@
             $grade = test_input($_POST['grade']);
             $weight = test_input($_POST['weight']);
             $subject = test_input($_POST['subjectId']);
+            $reason = test_input($_POST['reason']);
             
             if(!$title){
                 $error = $error . "Bitte Titel angeben";
@@ -37,6 +38,12 @@
                 $error = $error . "Fehler: Kein Fach übergeben";
             }
             
+            if($grade < 4){
+                if(!$reason){
+                    $error = $error . "Bitte Begründung für Note unter 4.0 angeben";
+                }
+            }
+            
             $stmt = $mysqli->prepare("SELECT * FROM `tb_user_subject` WHERE ID = ? AND tb_user_ID = ?;");
             $stmt->bind_param("ss", $subject, $session_userid);
             $stmt->execute();
@@ -49,8 +56,8 @@
             if($error){
                 echo $error;
             } else {
-                $stmt = $mysqli->prepare("INSERT INTO `tb_subject_grade` (`title`, `grade`, `weighting`, `notes`, `tb_user_subject_ID`) VALUES (?, ?, ?, NULL, ?);");
-                $stmt->bind_param("sdii", $title, $grade, $weight, $subject);
+                $stmt = $mysqli->prepare("INSERT INTO `tb_subject_grade` (`title`, `grade`, `weighting`, `notes`, `tb_user_subject_ID`, reasoning) VALUES (?, ?, ?, NULL, ?, ?)");
+                $stmt->bind_param("sdiis", $title, $grade, $weight, $subject, $reason);
                 $stmt->execute();
             }
             
