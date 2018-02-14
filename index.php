@@ -20,16 +20,10 @@
   </head>
 
   
-  <body onbeforeunload="return myFunction()">
+  <body>
     <div class="loadScreen">
       <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.gif"/>
     </div>
-    
-	<script>
-		function myFunction() {
-			window.location.replace('http://google.ch');
-		}
-	</script>
 	
     <div id="pageContents" style="opacity: 0;">
         
