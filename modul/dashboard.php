@@ -9,21 +9,20 @@
         
     if ($result->num_rows == 1) {
 		$row = $result->fetch_assoc();
-		$welcome = "<h2 class='mt-5'>Willkommen " . $row['firstname'] . " " . $row['lastname'] . "!</h2>";
+		$welcome = "<h2 style='opacity: 0;' class='mt-5'>Willkommen ".$row['firstname']." ".$row['lastname']."!</h2>";
 	} 
 
 ?>
 <?php if($session_usergroup == 1 || $session_usergroup == 2 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
-	
-	<?php echo $welcome; ?>
-    <h3>Alle Module</h3>
-	  
+		  
     <?php
+	
+	echo $welcome;
 	
     $result = $mysqli->query($sql);
         
     if ($result->num_rows > 0) {
-        echo"<div class='row'>";
+        echo"<div class='row' style='margin-bottom:100px;'>";
         while($row = $result->fetch_assoc()) {
             $generateDiv = '
 			<div class="col-lg-4 col-md-6 col-sm-6">

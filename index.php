@@ -15,16 +15,22 @@
 
     <!-- Custom styles for this template -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="css/logo-nav.css" rel="stylesheet">
+    <link href="css/baletStyles.css" rel="stylesheet">
 
   </head>
 
   
-  <body>
+  <body onbeforeunload="return myFunction()">
     <div class="loadScreen">
       <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.gif"/>
     </div>
     
+	<script>
+		function myFunction() {
+			window.location.replace('http://google.ch');
+		}
+	</script>
+	
     <div id="pageContents" style="opacity: 0;">
         
         <?php
@@ -54,7 +60,7 @@
       
       <footer class="footer" id="slideMeFoot" style="display: none;">
         <div class="container">
-            <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | Cash Calculator <a href="">v.1.0</a></span>
+            <a class="foot-link" href="modul/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | BALET <a href="https://github.com/baloise/BALET">v.1.0</a></span>
         </div>
       </footer>
     </div>

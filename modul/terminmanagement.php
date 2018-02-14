@@ -62,6 +62,11 @@
         <div class="col-12">
             <h1 class="mt-5">Termine bearbeiten</h1>
             
+            <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
+                <strong>Termin löschen</strong> Bitte bestätigen Sie ihre auswahl:
+                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning">Bestätigen</button>
+            </div>
+            
             <div id="userTable" style="display: none;">
                 <table id="users" class="display" cellspacing="0" width="100%">
                     <thead>
@@ -121,7 +126,7 @@
                                         <td><input fType="3" did="'. $row['did'] .'" class="form-control changeInTable" type="date" value="'. $row['Ddeadline'] .'"></input></td>
                                         <td><select fType="5" class="form-control changeInTable updateSems" did="'. $row['did'] .'"><option value="'. $row['Gid'] .'">'. $row['Gname'] .'</option>'.$groups.'</select></td>
                                         <td><select fType="4" class="form-control changeInTable inTableSelect" did="'. $row['did'] .'"><option value="'. $row['Sid'] .'">'. $row['Ssemester'] .'</option>'.$listSemsInList.'</select></td>
-                                        <td class="text-center"><span style="cursor: pointer;" class="fa fa-trash-o" did="'. $row['did'] .'" aria-hidden="true"></span></td>
+                                        <td class="text-center"><span style="cursor: pointer;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span></td>
                                     </tr>
                                     ';
                                             
@@ -137,11 +142,11 @@
                     
                     <tr id="rowID'. $row['did'] .'">
                         <td>Neu</td>
-                        <td><input class="form-control " type="text" placeholder="Titel"></input></td>
-                        <td><textarea class="form-control" placeholder="Beschreibung"></textarea></td>
-                        <td><input class="form-control" type="date" placeholder="Deadline"></input></td>
+                        <td><input class="form-control " type="text" id="fTitle" placeholder="Titel" required></input></td>
+                        <td><textarea class="form-control" id="fDescription" placeholder="Beschreibung" ></textarea></td>
+                        <td><input class="form-control" id="fDeadline" type="date" placeholder="Deadline" required></input></td>
                         <td><select class="form-control updateSems"><option></option><?php echo $groups; ?></select></td>
-                        <td><select class="form-control" id="fsem" disabled><option></option></select></td>
+                        <td><select class="form-control" id="fSemester" disabled required><option></option></select></td>
                         <td><button type="button" class="btn" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
                     </tr>
                     </tbody>

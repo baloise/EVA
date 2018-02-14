@@ -26,7 +26,7 @@
                     $result = $mysqli->query($sql1);
                     
                     if (isset($result) && $result->num_rows > 0) {
-                        // output data of each row
+                        
                         while($row = $result->fetch_assoc()) {
                             $link = '
                             <li class="nav-item">
@@ -36,25 +36,16 @@
                             echo $link;
                             
                         }
+						
                     } else {
-                        $sql2 = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
-                    
-                        $result = $mysqli->query($sql2);
+						
+						$link = '
+                        <li class="nav-item">
+                            <a class="nav-link" href="modul/settings.php">Navigation bearbeiten</a>
+                        </li>
+                        ';
+                        echo $link;
                         
-                        if (isset($result) && $result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                $link = '
-                                <li class="nav-item">
-                                    <a class="nav-link" href="'. $row["file_path"].'">'. $row["title"].'</a>
-                                </li>
-                                ';
-                                echo $link;
-                                
-                            }
-                        } else {
-                            echo "0 results";
-                        }
                     }
                     
                     

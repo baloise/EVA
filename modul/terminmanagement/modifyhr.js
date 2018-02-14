@@ -144,7 +144,7 @@ $(document).ready(function(){
                                 });
                                 
                             } else {
-                                $('#fsem').html(data).removeAttr("disabled");   
+                                $('#fSemester').html(data).removeAttr("disabled");   
                             }
                             
                         } else {
@@ -161,6 +161,91 @@ $(document).ready(function(){
     });
 
     $('#addNewdid').click(function(){
+        
+        $(this).prop("disabled",true);
+        $('#error').slideUp("fast");
+        
+        var title = $('#fTitle').val();
+        var description = $('#fDescription').val();
+        var deadline = $('#fDeadline').val();
+        var semester = $('#fSemester').val();
+        var error = "";
+        
+        if(!title){
+            error = error + "Bitte Titel angeben.<br/>";
+        }
+        
+        if(!deadline){
+            error = error + "Bitte Deadline angeben.<br/>";
+        }
+        
+        if(!semester){
+            error = error + "Bitte Semester angeben.<br/>";
+        }
+        
+        if(error){
+            $('#error').html(error).slideDown("fast");
+            $(this).prop("disabled",false);
+        } else {
+            $.ajax({
+                method: "POST",
+                url: "./modul/terminmanagement/modify.php",
+                data: {todo:"addDid", title:title, description:description, deadline:deadline, semester:semester},
+                success: function(data){
+                    if(data){
+                        $('#addNewdid').prop("disabled",false);
+                        $('#error').html(data).slideDown("fast");
+                    } else {
+                                
+                        $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                            $("#pageContent").load("modul/terminmanagement.php", function(){
+                                $('.loadScreen').fadeTo("fast", 0, function(){
+                                    $('#pageContents').fadeTo("fast", 1);
+                                });
+                            });
+                        });
+                                
+                    }
+
+                }
+            });
+        }
+        
+    });
+    
+    $('.removeDid').each(function(){
+    
+        $(this).click(function(){
+        
+            var did = $(this).attr("did");
+            
+            $("#warning").slideDown("fast");
+            $("#warnButton").click(function(event){
+                if(did){
+					
+					$(this).prop("disabled",true);
+                    
+                    event.preventDefault();
+					
+                    $.ajax({
+                        method: "POST",
+                        url: "./modul/terminmanagement/modify.php",
+                        data: {todo:"deleteDid", did:did},
+                        success: function(data){
+                            if(data){
+                                
+                            } else {
+                                $("#rowID" + did).slideUp("slow");
+                                $("#warning").slideUp("fast");
+								$("#warnButton").prop("disabled",false);
+                            }
+                        }
+                    });
+                    
+                }
+            });
+            
+        });    
         
     });
     

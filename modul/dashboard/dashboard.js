@@ -7,7 +7,12 @@ $(".dashModul").each(function(){
     makeDynamic(this);
         
 });
-   
+
+$(document).ready(function(){
+	$('.mt-5').delay(1000).fadeTo("slow", 1);
+});
+
+
 function makeDynamic(objectThis){
     var href = ($(objectThis).attr('href'));
         

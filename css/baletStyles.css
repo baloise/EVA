@@ -4,13 +4,21 @@
 	--link: #1C4E9C;
 	--schrift: black;
 }
+@font-face {
+    font-family: 'RobotoThin'; /*a name to be used later*/
+    src: url('./font/Roboto-Thin.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'RobotoRegular'; /*a name to be used later*/
+    src: url('./font/Roboto-Regular.ttf'); /*URL to font*/
+}
 body {
 	padding-top: 54px;
-	font-family: ff-meta-web-pro,Helvetica,Arial,sans-serif;
+	font-family: 'RobotoRegular';
 	background-color: var(--hintergrund);
 	color: var(--schrift);
 	margin-bottom: 60px; /* Margin bottom by footer height */
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 }
 .bg-color {
 	background-color: var(--akzentfarbe) !important;
@@ -18,6 +26,12 @@ body {
 .nav-link {
 	color: var(--link) !important;
 	font-size: medium;
+	font-weight: 500;
+	transition: font-weight .4s ease-in-out;
+}
+.nav-link:hover {
+	color: var(--link) !important;
+	font-weight: 800;
 }
 .custom-toggler .navbar-toggler-icon {
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 51, 153, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -46,9 +60,15 @@ html {
 .footer span a{
 	color: inherit;
 }
+.text-muted {
+	font-family: 'RobotoThin';
+}
 .mt-5 {
 	background-color: white;
+	color: black;
 	padding: 20px;
+	font-family: 'RobotoThin';
+	font-size: 2rem;
 }
 .dashModul {
 	color: var(--link);
@@ -128,8 +148,8 @@ h3 {
 	font-size: 1rem;
 }
 h2, h1 {
-	font-size: 1.5rem;
-	font-weight: 200;
+	font-size: 1.2rem;
+	font-weight: 100;
 }
 select.form-control:not([size]):not([multiple]){
 	height: auto;
@@ -141,7 +161,7 @@ select.form-control:not([size]):not([multiple]){
 	font-size: 0.8rem;
 }
 .navbar {
-	border-bottom: solid var(--link);
+	border-bottom: solid 1.5px var(--link);
 }
 .mt-5, .my-5 {
 	margin-top: 2rem !important;

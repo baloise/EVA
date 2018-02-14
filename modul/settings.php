@@ -9,6 +9,7 @@
         <strong></strong> Menupunkt wurde hinzugefügt.
     </div>
     <div id="usersNavItems">
+		Navigation festlegen:
     <?php
 
         $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$session_username'")->fetch_assoc());
@@ -26,16 +27,14 @@
                     <div id="navListItem">
                         ' . $row["name"] . ' <span> </span>
                     </div>
-                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemUp"> ⇑ </span></div>
-                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDown"> ⇓ </span></div>
-                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDelete"> ⌫ </span></div>
+                    <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDelete"><i class="fa fa-minus" aria-hidden="true"></i></span></div>
                 </div>
                 ';
                 echo $link;
                             
             }
         } else {
-            echo "Menüpunkte festlegen:";
+
         }
         
     ?>
@@ -65,7 +64,7 @@
                 ?>
             </select><span></span>
         </div>
-        <div id="navListIcon"><span id="itemAdd"> + </span></div>
+        <div id="navListIcon"><span id="itemAdd"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
     </div>
 
     

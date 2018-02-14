@@ -91,6 +91,53 @@
                 echo "<option value='". $row[0] ."'>". $row[1] ."</option>";
             }
             
+        } else if($_POST['todo'] == "addDid"){
+            
+            $title = test_input($_POST['title']);
+            $description = test_input($_POST['description']);
+            $deadline = test_input($_POST['deadline']);
+            $semester = test_input($_POST['semester']);
+            $error = "";
+            
+            if(!$title){
+                $error = $error . "Bitte Titel angeben. <br/>";
+            }
+            
+            if(!$deadline){
+                $error = $error . "Bitte Deadline angeben. <br/>";
+            }
+            
+            if(!$semester){
+                $error = $error . "Bitte Semester angeben. <br/>";
+            }
+            
+            if($error){
+                echo $error;
+            } else {
+                
+                $stmt = $mysqli->prepare("INSERT INTO `tb_deadline` (`title`, `description`, `date`, `tb_semester_ID`) VALUES (?, ?, ?, ?);");
+                $stmt->bind_param("sssi", $title, $description, $deadline, $semester);
+                $stmt->execute();
+                
+            }
+            
+            
+        } else if($_POST['todo'] == "deleteDid"){
+            
+            $did = test_input($_POST['did']);
+            
+            if($did){
+                
+                
+                $stmt = $mysqli->prepare("DELETE FROM `tb_deadline_check` WHERE `tb_deadline_ID` = ?");
+                $stmt->bind_param("i", $did);
+                $stmt->execute();
+                
+                
+            } else {
+                echo "Keine Termin-ID übergeben.";
+            }
+            
         } else {
             echo "Ungültige Anweisung übergeben.";
         }
