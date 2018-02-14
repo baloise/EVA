@@ -188,7 +188,8 @@
             }
         }
         
-        $sql = "SELECT `title`, `points`, `creationDate`, ID FROM `tb_presentation`
+        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_presentation` AS pres
+                INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
         
         $entryList = "";
@@ -207,6 +208,7 @@
                     <th scope="row">'.$i.'</th>
                     <td>'. $row['title'] .'</td>
                     <td>'. $row['points'] .'</td>
+                    <td>'. $row['semester'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
                 
@@ -214,6 +216,17 @@
                 $i = $i + 1;
                 
             }
+        }
+        
+        $semList = "";
+        $semSql = "SELECT ID, semester FROM `tb_semester` WHERE tb_group_ID = $session_usergroup";
+        $semResult = $mysqli->query($semSql);
+        if ($semResult->num_rows > 0) {
+            while($semRow = $semResult->fetch_assoc()) {
+                $semList = $semList . "<option value='". $semRow['ID'] ."'>". $semRow['semester'] ."</option>";
+            }
+        } else {
+            $semList = "<option>Keine Semester vorhanden.</option>";
         }
         
     ?>
@@ -227,6 +240,7 @@
                 <th>#</th>
                 <th>Fachvortrag-Titel</th>
                 <th>Punktzahl</th>
+                <th>Semester</th>
                 <th>Erstellungsdatum</th>
             </tr>
         </thead>
@@ -236,10 +250,16 @@
                 <th scope="row" style="padding-top: 20px;">#</th>
                 <td><input class="form-control" type="text" id="fTitle"/></td>
                 <td><input class="form-control" type="number" id="fPoints"/></td>
+                <td>
+                    <select class="form-control" id="fSem">
+                        <option></option>
+                        <?php echo $semList; ?>
+                    </select>
+                </td>
                 <td style="padding-top: 20px;"><?php echo $date; ?></td>
             </tr>
             <tr>
-                <td colspan="5" align="center">
+                <td colspan="6" align="center">
                     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
                         <strong></strong> Eintrag wurde hinzugefügt.
                     </div><br/>

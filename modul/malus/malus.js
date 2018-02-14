@@ -1,4 +1,29 @@
 $(document).ready(function(){
+    
+    $('#fselUser').change(function(){
+    
+        var selUser = $(this).val();
+        
+        if(selUser){
+            $.ajax({
+                method: "POST",
+                url: "./modul/malus/modify.php",
+                data: {todo:"getSemester", selUser:selUser},
+                success: function(data){
+                    if(data){
+                        
+                        $('#fsem').html(data).removeAttr("disabled");
+                        
+                    } else {
+                        alert("Fehler: Semester konnten nicht gefunden werden.");
+                    }       
+                }
+            });
+        } else {
+            $('#fsem').html("").attr("disabled", true);
+        }
+        
+    });
 
     $("#fsenMal").click(function(){
     
@@ -7,20 +32,25 @@ $(document).ready(function(){
         $(this).prop("disabled",true);
         
         var error = "";
+        var fselsem = $('#fsem').val();
         var fselUser = $("#fselUser").val();
         var fweigth = $("#fweigth").val();    
         var freasoning = $("#freasoning").val();
+        
+        if(!fselsem){
+            error = error + "Bitte ein Semester angeben.<br/>";
+        }
         
         if(!fselUser){
             error = error + "Bitte einen Stage-Titel angeben.<br/>";
         }
         
         if(!fweigth){
-            error = error + "Bitte eine Punktzahl angeben.<br/>";
+            error = error + "Bitte eine Gewichtung angeben.<br/>";
         }
         
         if(!freasoning){
-            error = error + "Bitte eine Punktzahl angeben.<br/>";
+            error = error + "Bitte eine Begründung angeben.<br/>";
         }
     
         if(error){
@@ -32,7 +62,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "./modul/malus/modify.php",
-                data: {todo:"addEntry", fselUser:fselUser, fweigth:fweigth, freasoning:freasoning},
+                data: {todo:"addEntry", fselUser:fselUser, fweigth:fweigth, freasoning:freasoning, fselsem:fselsem},
                 success: function(data){
                     
                     if(data){

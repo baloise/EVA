@@ -9,7 +9,7 @@
     
         $linkList = "";
     
-        $sql = "SELECT firstname, lastname, timetable FROM tb_user WHERE timetable IS NOT NULL";
+        $sql = "SELECT firstname, lastname, timetable FROM tb_user WHERE NOT (timetable IS NULL OR deleted IS NOT NULL)";
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {

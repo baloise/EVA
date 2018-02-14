@@ -103,6 +103,19 @@
         $userid = $session_userid;
         $title = test_input($_POST['fTitle']);
         $points = test_input($_POST['fpoints']);
+        $semester = test_input($_POST['fsem']);
+        
+        if(!isset($semester)){
+            $error = $error . "Kein Semester Angegeben.<br/>";
+        } else {
+            $stmtSem = $mysqli->prepare("SELECT ID FROM `tb_semester` WHERE tb_group_ID = ? AND ID = ?");
+            $stmtSem->bind_param("ii", $session_usergroup, $semester);
+            $stmtSem->execute();
+            $resultSem = $stmtSem->get_result();
+            if($resultSem->num_rows != 1){
+                $error = $error . "Die Semester-Eingabe ist ungültig";
+            }
+        }
         
         if(!isset($userid)){
             $error = $error . "Kein User in Session.<br/>";
@@ -120,8 +133,8 @@
             echo $error;
         } else {
                 
-            $stmt = $mysqli->prepare("INSERT INTO `tb_presentation` (`tb_user_ID`, `title`, `points`) VALUES (?, ?, ?);");
-            $stmt->bind_param("isi", $userid, $title, $points);
+            $stmt = $mysqli->prepare("INSERT INTO `tb_presentation` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`) VALUES (?, ?, ?,?);");
+            $stmt->bind_param("isii", $userid, $title, $points, $semester);
             $stmt->execute();
 
         }

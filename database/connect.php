@@ -1,4 +1,5 @@
 <?php
+
 	$_db_host = "localhost";
 	$_db_database = "snobbr";
 	$_db_username = "root";
@@ -9,5 +10,7 @@
     if (!$mysqli) {
         die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
     }
+	
+	$mysqli->set_charset('utf8');
 
 ?>

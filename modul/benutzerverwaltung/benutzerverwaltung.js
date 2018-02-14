@@ -100,7 +100,6 @@ $(document).ready(function(){
     
     function doneTyping() {
         
-        console.log("Start doneTyping");
         if ($.active == 0){
             
             $('#loadingTable').slideUp("fast");

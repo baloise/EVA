@@ -147,6 +147,11 @@ $(document).ready(function(){
         var fstage = $("#fStage").val();
         var fpoints = $("#fPoints").val();
         var fpa = $("#fPa").val();
+        var fsem = $("#fSem").val();
+        
+        if(!fsem){
+            error = error + "Bitte ein Semester angeben.<br/>";
+        }
         
         if(!fstage){
             error = error + "Bitte einen Stage-Titel angeben.<br/>";
@@ -174,7 +179,7 @@ $(document).ready(function(){
                 $.ajax({
                     method: "POST",
                     url: "./modul/verhaltensziele/modify.php",
-                    data: {todo:"addEntry", fstage:fstage, fpoints:fpoints, fpa:fpa},
+                    data: {todo:"addEntry", fstage:fstage, fpoints:fpoints, fpa:fpa, fsem:fsem},
                     success: function(data){
                         
                         if(data){

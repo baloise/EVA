@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Feb 2018 um 16:26
+-- Erstellungszeit: 14. Feb 2018 um 15:29
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `snobbr`
 --
-CREATE DATABASE IF NOT EXISTS `snobbr` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `snobbr` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `snobbr`;
 
 -- --------------------------------------------------------
@@ -36,19 +36,9 @@ CREATE TABLE `tb_behaviorgrade` (
   `tb_userPA_ID` int(11) NOT NULL,
   `stageName` varchar(255) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
-  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `tb_behaviorgrade`
---
-
-INSERT INTO `tb_behaviorgrade` (`ID`, `tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `creationDate`) VALUES
-(11, 8, 7, 'ITCH', 65, '2018-01-08 13:26:04'),
-(12, 8, 7, 'ITBE', 66, '2018-01-08 13:26:15'),
-(14, 8, 7, 'Blabla', 12, '2018-01-08 14:30:56'),
-(19, 8, 7, 'asdf', 20, '2018-02-06 12:38:25'),
-(20, 9, 7, 'TestStage', 100, '2018-02-12 08:26:14');
+  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tb_semester_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -60,8 +50,20 @@ CREATE TABLE `tb_deadline` (
   `ID` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date` date DEFAULT NULL,
+  `tb_semester_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tb_deadline`
+--
+
+INSERT INTO `tb_deadline` (`ID`, `title`, `description`, `date`, `tb_semester_ID`) VALUES
+(1, 'Verhaltensziele Vereinbarung bei PVL eingetroffen', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2018-02-16', 25),
+(2, 'Verhaltensziele Bewertung bei PVL eingetroffen', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2018-02-12', 25),
+(3, 'Fachvortrag Vereinbarungs', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2018-02-12', 25),
+(4, 'Semesterbericht eingetroffen', 'Lorem ipsum dolor sist amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2018-02-12', 35),
+(5, 'Zeiterfassung elektronisch an PVL', 'Lorem ipsum dolor sit samet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', '2018-02-28', 25);
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,7 @@ CREATE TABLE `tb_deadline` (
 CREATE TABLE `tb_deadline_check` (
   `tb_deadline_ID` int(11) NOT NULL,
   `tb_user_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,7 @@ CREATE TABLE `tb_deadline_check` (
 CREATE TABLE `tb_deadline_group` (
   `tb_deadline_ID` int(11) NOT NULL,
   `tb_group_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,7 @@ CREATE TABLE `tb_group` (
   `ID` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `prefix` varchar(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_group`
@@ -105,8 +107,8 @@ INSERT INTO `tb_group` (`ID`, `name`, `prefix`) VALUES
 (1, 'Nachwuchsentwicklung', 'NW'),
 (2, 'Praxisausbildner', 'PA'),
 (3, 'Lehrling Informatik', 'LIT'),
-(4, 'Lehrling KV', 'LKV'),
-(5, 'Superuser', 'SU');
+(4, 'Lehrling KV Versicherung', 'LKV'),
+(5, 'Lehrling KV Bank', 'LKB');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,7 @@ CREATE TABLE `tb_ind_nav` (
   `position` int(11) DEFAULT NULL,
   `tb_user_ID` int(11) NOT NULL,
   `tb_modul_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_ind_nav`
@@ -132,7 +134,8 @@ INSERT INTO `tb_ind_nav` (`ID`, `position`, `tb_user_ID`, `tb_modul_ID`) VALUES
 (54, NULL, 6, 5),
 (55, NULL, 6, 12),
 (88, NULL, 6, 4),
-(89, NULL, 8, 3);
+(89, NULL, 8, 3),
+(90, NULL, 103, 14);
 
 -- --------------------------------------------------------
 
@@ -145,17 +148,17 @@ CREATE TABLE `tb_malus` (
   `description` text,
   `weight` int(11) NOT NULL,
   `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tb_user_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tb_user_ID` int(11) NOT NULL,
+  `tb_semester_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_malus`
 --
 
-INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_ID`) VALUES
-(2, 'Test', 20, '2018-02-05 14:54:43', 8),
-(3, 'Test 2', 15, '2018-02-05 14:54:52', 9),
-(5, 'TestTest', 10, '2018-02-12 15:02:29', 104);
+INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
+(12, 'Test', 100, '2018-02-14 06:51:21', 8, 30),
+(13, 'Test 2', 50, '2018-02-14 06:56:31', 9, 34);
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,7 @@ CREATE TABLE `tb_modul` (
   `file_path` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_modul`
@@ -189,7 +192,7 @@ INSERT INTO `tb_modul` (`ID`, `name`, `description`, `file_path`, `title`, `icon
 (10, 'Stundenplan', 'Modul zur speicherung eines GIBM Stundenplans.', 'modul/stundenplan.php', 'Stundenplan', 'img/dashico/002-people.svg'),
 (11, 'Terminmanagement', 'Modul zur betreuung von Terminen', 'modul/terminmanagement.php', 'Terminmanagement', 'img/dashico/001-clock.svg'),
 (12, 'Verhaltensziele', 'Modul zur Sammlung der Bewertung der Verhaltensziele', 'modul/verhaltensziele.php', 'Verhaltensziele', 'img/dashico/002-man.svg'),
-(13, 'Falscher Pfad', 'Beschreibt Verhalten bei falscher Pfadangabe', 'modul/jksdafasdf.php', 'FalscherPfad', NULL);
+(14, 'ÜK', 'Überbetriebliche Kurse LKB', 'modul/uek.php', 'ÜK', NULL);
 
 -- --------------------------------------------------------
 
@@ -201,35 +204,42 @@ CREATE TABLE `tb_modul_group` (
   `ID` int(11) NOT NULL,
   `tb_group_ID` int(11) NOT NULL,
   `tb_modul_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_modul_group`
 --
 
 INSERT INTO `tb_modul_group` (`ID`, `tb_group_ID`, `tb_modul_ID`) VALUES
-(35, 1, 2),
-(36, 1, 3),
-(37, 1, 4),
-(38, 1, 5),
-(39, 1, 6),
-(40, 1, 7),
-(43, 1, 10),
-(44, 1, 11),
-(45, 1, 12),
-(46, 3, 3),
-(47, 3, 4),
-(48, 3, 5),
-(49, 3, 7),
-(50, 3, 10),
-(51, 3, 11),
-(52, 3, 12),
-(53, 2, 3),
-(54, 2, 12),
-(55, 4, 7),
-(63, 4, 11),
-(64, 4, 12),
-(65, 4, 5);
+(66, 5, 7),
+(67, 5, 5),
+(68, 5, 11),
+(69, 5, 1),
+(70, 5, 14),
+(78, 4, 7),
+(79, 4, 5),
+(80, 4, 11),
+(81, 4, 1),
+(82, 4, 8),
+(83, 4, 9),
+(84, 3, 7),
+(85, 3, 10),
+(86, 3, 5),
+(87, 3, 12),
+(88, 3, 11),
+(89, 3, 4),
+(90, 1, 7),
+(91, 1, 10),
+(92, 1, 5),
+(93, 1, 12),
+(94, 1, 11),
+(95, 1, 4),
+(96, 1, 1),
+(97, 1, 8),
+(98, 1, 14),
+(99, 1, 9),
+(100, 1, 6),
+(101, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -241,17 +251,17 @@ CREATE TABLE `tb_presentation` (
   `ID` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `points` int(11) DEFAULT NULL,
-  `creationDate` timestamp NULL DEFAULT NULL,
-  `tb_user_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tb_user_ID` int(11) NOT NULL,
+  `tb_semester_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_presentation`
 --
 
-INSERT INTO `tb_presentation` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`) VALUES
-(1, 'Kanban', 60, NULL, 8),
-(2, 'Java', 2, NULL, 8);
+INSERT INTO `tb_presentation` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
+(7, 'Test2', 524, '2018-02-13 11:02:31', 8, 28);
 
 -- --------------------------------------------------------
 
@@ -264,7 +274,7 @@ CREATE TABLE `tb_semester` (
   `semester` int(11) NOT NULL,
   `info` varchar(255) DEFAULT NULL,
   `tb_group_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_semester`
@@ -280,7 +290,17 @@ INSERT INTO `tb_semester` (`ID`, `semester`, `info`, `tb_group_ID`) VALUES
 (31, 7, NULL, 3),
 (32, 8, NULL, 3),
 (33, 1, NULL, 4),
-(34, 2, NULL, 4);
+(34, 2, NULL, 4),
+(35, 3, NULL, 4),
+(36, 4, NULL, 4),
+(37, 5, NULL, 4),
+(38, 6, NULL, 4),
+(39, 1, NULL, 5),
+(40, 2, NULL, 5),
+(41, 3, NULL, 5),
+(42, 4, NULL, 5),
+(43, 5, NULL, 5),
+(44, 6, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -297,28 +317,34 @@ CREATE TABLE `tb_subject_grade` (
   `notes` text,
   `tb_user_subject_ID` int(11) NOT NULL,
   `reasoning` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_subject_grade`
 --
 
 INSERT INTO `tb_subject_grade` (`ID`, `title`, `grade`, `creationDate`, `weighting`, `notes`, `tb_user_subject_ID`, `reasoning`) VALUES
-(46, 'test', 1, '2018-02-09 13:23:45', 500, NULL, 11, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'),
-(47, 'test2', 6, '2018-02-09 13:24:20', 500, NULL, 11, NULL),
-(48, 'Test1', 5, '2018-02-09 13:29:15', 100, NULL, 12, NULL),
-(49, 'Test2', 5.2, '2018-02-09 13:30:58', 200, NULL, 12, NULL),
-(50, 'sdf', 12, '2018-02-09 13:59:39', 314, NULL, 11, NULL),
-(54, 'Test', 5.5, '2018-02-09 14:39:32', 30, NULL, 27, NULL),
-(55, 'Projektarbeit', 6, '2018-02-09 14:39:42', 70, NULL, 27, NULL),
-(56, 'Test 1', 4.5, '2018-02-09 14:45:50', 100, NULL, 28, NULL),
-(57, 'Test 2', 4.6, '2018-02-09 14:45:59', 100, NULL, 28, NULL),
-(58, 'Test 3', 3, '2018-02-09 14:46:12', 100, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
-(59, 'Test 4', 2.5, '2018-02-09 14:46:30', 50, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
-(64, 'Test', 5, '2018-02-09 14:56:36', 20, NULL, 30, NULL),
-(66, 'Okcool', 4, '2018-02-12 06:33:40', 40, NULL, 27, NULL),
-(67, 'Test 2', 4, '2018-02-12 08:27:46', 20, NULL, 30, NULL),
-(68, 'AbschlussprÃ¼fung', 6, '2018-02-12 08:28:02', 100, NULL, 30, NULL);
+(46, 'test', 1, '2018-02-09 12:23:45', 500, NULL, 11, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'),
+(47, 'test2', 6, '2018-02-09 12:24:20', 500, NULL, 11, NULL),
+(48, 'Test1', 5, '2018-02-09 12:29:15', 100, NULL, 12, NULL),
+(49, 'Test2', 5.2, '2018-02-09 12:30:58', 200, NULL, 12, NULL),
+(50, 'sdf', 12, '2018-02-09 12:59:39', 314, NULL, 11, NULL),
+(54, 'Test', 5.5, '2018-02-09 13:39:32', 30, NULL, 27, NULL),
+(55, 'Projektarbeit', 6, '2018-02-09 13:39:42', 70, NULL, 27, NULL),
+(56, 'Test 1', 4.5, '2018-02-09 13:45:50', 100, NULL, 28, NULL),
+(57, 'Test 2', 4.6, '2018-02-09 13:45:59', 100, NULL, 28, NULL),
+(58, 'Test 3', 3, '2018-02-09 13:46:12', 100, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
+(59, 'Test 4', 2.5, '2018-02-09 13:46:30', 50, NULL, 28, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'),
+(64, 'Test', 5, '2018-02-09 13:56:36', 20, NULL, 30, NULL),
+(66, 'Okcool', 4, '2018-02-12 05:33:40', 40, NULL, 27, NULL),
+(67, 'Test 2', 4, '2018-02-12 07:27:46', 20, NULL, 30, NULL),
+(68, 'AbschlussprÃ¼fung', 6, '2018-02-12 07:28:02', 100, NULL, 30, NULL),
+(73, 'Hallo', 5, '2018-02-12 15:11:18', 100, NULL, 28, ''),
+(74, 'Tschau', 3, '2018-02-12 15:11:45', 100, NULL, 28, 'Nei so doof'),
+(75, 'Test1', 5, '2018-02-13 15:06:55', 100, NULL, 31, ''),
+(76, 'Test2', 6, '2018-02-13 15:07:07', 100, NULL, 31, ''),
+(77, 'Test 1', 5, '2018-02-14 07:09:41', 100, NULL, 32, ''),
+(78, 'Test 2', 3, '2018-02-14 07:10:05', 100, NULL, 32, 'Hallo');
 
 -- --------------------------------------------------------
 
@@ -332,27 +358,23 @@ CREATE TABLE `tb_user` (
   `timetable` varchar(255) DEFAULT NULL,
   `lastLogin` timestamp NULL DEFAULT NULL,
   `tb_group_ID` int(11) NOT NULL,
-  `tb_ind_backgroundcolor` varchar(6) DEFAULT NULL,
-  `tb_ind_akzentcolor` varchar(6) DEFAULT NULL,
-  `tb_ind_linkcolor` varchar(6) DEFAULT NULL,
-  `tb_ind_textcolor` varchar(6) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_user`
 --
 
-INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `tb_ind_backgroundcolor`, `tb_ind_akzentcolor`, `tb_ind_linkcolor`, `tb_ind_textcolor`, `firstname`, `lastname`, `deleted`) VALUES
-(6, 'b000001', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'Lara', 'Muster', NULL),
-(7, 'b000002', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'Matthias', 'Cullmann', NULL),
-(8, 'b000003', '2679040', NULL, 3, NULL, NULL, NULL, NULL, 'Elia', 'Reutlinger', NULL),
-(9, 'b000004', NULL, NULL, 4, NULL, NULL, NULL, NULL, 'Tim', 'Labbl', NULL),
-(10, 'b000005', NULL, NULL, 5, NULL, NULL, NULL, NULL, 'Super User', 'lel', NULL),
-(103, 'b123123', NULL, NULL, 3, NULL, NULL, NULL, NULL, '', '', 1),
-(104, 'b000006', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'Jakob', 'Abraham', NULL);
+INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `firstname`, `lastname`, `deleted`) VALUES
+(6, 'b000001', NULL, NULL, 1, 'Nachwuchs', 'Entwicklung', NULL),
+(7, 'b000002', NULL, NULL, 2, 'PA', 'IT', NULL),
+(8, 'b000003', '2679040', NULL, 3, 'Lehrling', 'IT', NULL),
+(9, 'b000004', NULL, NULL, 4, 'Lehrling', 'KV Versicherung', NULL),
+(103, 'b123123', NULL, NULL, 5, '', '', 1),
+(105, 'b111111', '2679040', NULL, 3, 'Muster', 'Lehrling', 1),
+(107, 'b000005', NULL, NULL, 5, 'Lehrling', 'KV Bank', NULL);
 
 -- --------------------------------------------------------
 
@@ -367,18 +389,20 @@ CREATE TABLE `tb_user_subject` (
   `tb_user_ID` int(11) NOT NULL,
   `tb_semester_ID` int(11) NOT NULL,
   `correctedGrade` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_user_subject`
 --
 
 INSERT INTO `tb_user_subject` (`ID`, `subjectName`, `creationDate`, `tb_user_ID`, `tb_semester_ID`, `correctedGrade`) VALUES
-(11, 'Mathe', '2018-02-09 10:57:01', 8, 25, NULL),
-(12, 'Deutsch', '2018-02-09 11:46:43', 8, 25, 5),
-(27, 'M151', '2018-02-09 14:38:01', 8, 29, 4.5),
-(28, 'BWL', '2018-02-09 14:40:04', 8, 29, 5),
-(30, 'Testfach 1', '2018-02-09 14:49:32', 9, 34, 5.5);
+(11, 'Mathe', '2018-02-09 09:57:01', 8, 25, 4),
+(12, 'Deutsch', '2018-02-09 10:46:43', 8, 25, 5),
+(27, 'M151', '2018-02-09 13:38:01', 8, 29, 5.32),
+(28, 'BWL', '2018-02-09 13:40:04', 8, 29, 5),
+(30, 'Testfach 1', '2018-02-09 13:49:32', 9, 34, 5.5),
+(31, 'Test', '2018-02-13 15:06:46', 103, 42, NULL),
+(32, 'Testfach', '2018-02-14 07:09:07', 107, 40, 5);
 
 --
 -- Indizes der exportierten Tabellen
@@ -388,15 +412,17 @@ INSERT INTO `tb_user_subject` (`ID`, `subjectName`, `creationDate`, `tb_user_ID`
 -- Indizes für die Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  ADD PRIMARY KEY (`ID`,`tb_userLL_ID`,`tb_userPA_ID`),
+  ADD PRIMARY KEY (`ID`,`tb_userLL_ID`,`tb_userPA_ID`,`tb_semester_ID`),
   ADD KEY `fk_tb_behaviorgrade_tb_user1_idx` (`tb_userLL_ID`),
-  ADD KEY `fk_tb_behaviorgrade_tb_user2_idx` (`tb_userPA_ID`);
+  ADD KEY `fk_tb_behaviorgrade_tb_user2_idx` (`tb_userPA_ID`),
+  ADD KEY `tb_semester_ID` (`tb_semester_ID`);
 
 --
 -- Indizes für die Tabelle `tb_deadline`
 --
 ALTER TABLE `tb_deadline`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`,`tb_semester_ID`),
+  ADD KEY `tb_semester_ID` (`tb_semester_ID`);
 
 --
 -- Indizes für die Tabelle `tb_deadline_check`
@@ -432,8 +458,9 @@ ALTER TABLE `tb_ind_nav`
 -- Indizes für die Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  ADD PRIMARY KEY (`ID`,`tb_user_ID`),
-  ADD KEY `fk_tb_malus_tb_user1_idx` (`tb_user_ID`);
+  ADD PRIMARY KEY (`ID`,`tb_user_ID`,`tb_semester_ID`),
+  ADD KEY `fk_tb_malus_tb_user1_idx` (`tb_user_ID`),
+  ADD KEY `tb_semester_ID` (`tb_semester_ID`);
 
 --
 -- Indizes für die Tabelle `tb_modul`
@@ -453,15 +480,17 @@ ALTER TABLE `tb_modul_group`
 -- Indizes für die Tabelle `tb_presentation`
 --
 ALTER TABLE `tb_presentation`
-  ADD PRIMARY KEY (`ID`,`tb_user_ID`),
+  ADD PRIMARY KEY (`ID`,`tb_user_ID`,`tb_semester_ID`),
+  ADD KEY `fk_tb_presentation_tb_semester_idx` (`tb_semester_ID`),
   ADD KEY `fk_tb_presentation_tb_user1_idx` (`tb_user_ID`);
 
 --
 -- Indizes für die Tabelle `tb_semester`
 --
 ALTER TABLE `tb_semester`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `tb_group_ID` (`tb_group_ID`);
+  ADD PRIMARY KEY (`ID`,`tb_group_ID`),
+  ADD KEY `tb_group_ID` (`tb_group_ID`),
+  ADD KEY `ID_2` (`ID`);
 
 --
 -- Indizes für die Tabelle `tb_subject_grade`
@@ -493,13 +522,13 @@ ALTER TABLE `tb_user_subject`
 -- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
 --
 ALTER TABLE `tb_deadline`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_group`
@@ -511,55 +540,55 @@ ALTER TABLE `tb_group`
 -- AUTO_INCREMENT für Tabelle `tb_ind_nav`
 --
 ALTER TABLE `tb_ind_nav`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul`
 --
 ALTER TABLE `tb_modul`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul_group`
 --
 ALTER TABLE `tb_modul_group`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_presentation`
 --
 ALTER TABLE `tb_presentation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_semester`
 --
 ALTER TABLE `tb_semester`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_subject_grade`
 --
 ALTER TABLE `tb_subject_grade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user_subject`
 --
 ALTER TABLE `tb_user_subject`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints der exportierten Tabellen
@@ -570,7 +599,14 @@ ALTER TABLE `tb_user_subject`
 --
 ALTER TABLE `tb_behaviorgrade`
   ADD CONSTRAINT `fk_tb_behaviorgrade_tb_user1` FOREIGN KEY (`tb_userLL_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tb_behaviorgrade_tb_user2` FOREIGN KEY (`tb_userPA_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tb_behaviorgrade_tb_user2` FOREIGN KEY (`tb_userPA_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tb_behaviorgrade_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
+
+--
+-- Constraints der Tabelle `tb_deadline`
+--
+ALTER TABLE `tb_deadline`
+  ADD CONSTRAINT `tb_deadline_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_deadline_check`
@@ -597,7 +633,8 @@ ALTER TABLE `tb_ind_nav`
 -- Constraints der Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  ADD CONSTRAINT `fk_tb_malus_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tb_malus_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tb_malus_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_modul_group`
@@ -610,7 +647,8 @@ ALTER TABLE `tb_modul_group`
 -- Constraints der Tabelle `tb_presentation`
 --
 ALTER TABLE `tb_presentation`
-  ADD CONSTRAINT `fk_tb_presentation_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tb_presentation_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tb_presentation_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_semester`

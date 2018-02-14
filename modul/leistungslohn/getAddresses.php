@@ -37,7 +37,7 @@ echo $body;
 $opts = array('http' =>
     array(
         'method'  => 'POST',
-        'header'  => array("Authorization: Basic XYZ==" ,
+        'header'  => array("Authorization: Basic YjAyODE3ODpiYWxtYXQxMA==" ,
             "Content-Type: text/xml"
         ),
         'content' => $body,

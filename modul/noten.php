@@ -12,7 +12,7 @@
         $llEntries = "";
         
         
-        $sql1 = "SELECT ID, bKey, firstname, lastname, deleted FROM `tb_user` WHERE tb_group_ID IN (3, 4) AND deleted IS NULL;";
+        $sql1 = "SELECT ID, bKey, firstname, lastname, deleted FROM `tb_user` WHERE tb_group_ID IN (3, 4, 5) AND deleted IS NULL;";
         $result1 = $mysqli->query($sql1);
         if ($result1->num_rows > 0) {
             while($row1 = $result1->fetch_assoc()) {
@@ -130,7 +130,7 @@
                 }
                 
                 if($llsubjs > 0){
-                    $calcavg = ($llallavg/$llsubjs);
+                    $calcavg = number_format((float)($llallavg/$llsubjs), 2, '.', '');
                 } else {
                     $calcavg = "Keine Daten";
                 }
@@ -141,14 +141,19 @@
                 
                 $llEntry = '
                 <div class="row">
-                    <div class="card col-lg-12 userGradeBox">
-                        <div class="row userGradesHead" containerID="'. $llid .'">
-                            <div class="col-lg-4"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
-                            <div class="col-lg-4">Schnitt: '. $calcavg .'</div>
+                    <div class="card col-lg-12 userContentBox">
+                        <div class="row userGradesHead header" containerID="'. $llid .'">
+                            <div class="col-lg-6"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
+                            <div class="col-lg-2">Schnitt: '. $calcavg .'</div>
                             <div class="col-lg-4 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 detailedGrades" containerID="'. $llid .'">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <hr/>
+                                    </div>
+                                </div>
                                 <div class="card">
                                     <table class="table">
                                         <thead>
@@ -212,7 +217,7 @@
     <p>Sie sind Praxisausbildner</p>
     
     
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4) : //LLKV&IT ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
 
     <?php
         
@@ -438,11 +443,6 @@
     </div>
     
     <script type="text/javascript" src="modul/noten/noten.js"></script>  
-
-<?php elseif($session_usergroup == 5) : ?>
-
-    <h1 class="mt-5">Alle Module</h1>
-    <p>Sie sind Superuser</p>
     
 <?php else : ?>
     

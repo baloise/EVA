@@ -165,13 +165,9 @@
                 $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#userTable").slideDown( "slow" );
-                });
-                
-                
+                });   
             });
-            
-            
-        } );
+        });
     </script>
     
       

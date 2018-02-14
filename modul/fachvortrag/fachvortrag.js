@@ -143,6 +143,11 @@ $(document).ready(function(){
         var error = "";
         var fTitle = $("#fTitle").val();
         var fpoints = $("#fPoints").val();
+        var fsem = $("#fSem").val();
+        
+        if(!fsem){
+            error = error + "Bitte ein Semester angeben.<br/>";
+        }
         
         if(!fTitle){
             error = error + "Bitte einen Stage-Titel angeben.<br/>";
@@ -166,7 +171,7 @@ $(document).ready(function(){
                 $.ajax({
                     method: "POST",
                     url: "./modul/fachvortrag/modify.php",
-                    data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints},
+                    data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem},
                     success: function(data){
                         
                         if(data){

@@ -203,8 +203,9 @@
             }
         }
         
-        $sql = "SELECT bh.`stageName`, bh.`points`, bh.`creationDate`, us.firstname, us.lastname, bh.ID FROM `tb_behaviorgrade` AS bh
+        $sql = "SELECT bh.`stageName`, bh.`points`, bh.`creationDate`, us.firstname, us.lastname, bh.ID, sem.semester FROM `tb_behaviorgrade` AS bh
                 LEFT JOIN tb_user AS us ON bh.`tb_userPA_ID` = us.ID
+                INNER JOIN tb_semester AS sem ON sem.ID = bh.tb_semester_ID
                 WHERE `tb_userLL_ID`= $session_userid;";
         
         $entryList = "";
@@ -224,6 +225,7 @@
                     <td>'. $row['stageName'] .'</td>
                     <td>'. $row['points'] .'</td>
                     <td>'. $row['firstname'] .' '. $row['lastname'] .'</td>
+                    <td>'. $row['semester'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
                 
@@ -231,6 +233,17 @@
                 $i = $i + 1;
                 
             }
+        }
+        
+        $semList = "";
+        $semSql = "SELECT ID, semester FROM `tb_semester` WHERE tb_group_ID = $session_usergroup";
+        $semResult = $mysqli->query($semSql);
+        if ($semResult->num_rows > 0) {
+            while($semRow = $semResult->fetch_assoc()) {
+                $semList = $semList . "<option value='". $semRow['ID'] ."'>". $semRow['semester'] ."</option>";
+            }
+        } else {
+            $semList = "<option>Keine Semester vorhanden.</option>";
         }
         
     ?>
@@ -245,6 +258,7 @@
                 <th>Stage</th>
                 <th>Punktzahl</th>
                 <th>PA</th>
+                <th>Semester</th>
                 <th>Erstellungsdatum</th>
             </tr>
         </thead>
@@ -260,10 +274,16 @@
                         <?php echo $paList; ?>
                     </select>
                 </td>
+                <td>
+                    <select class="form-control" id="fSem">
+                        <option></option>
+                        <?php echo $semList; ?>
+                    </select>
+                </td>
                 <td style="padding-top: 20px;"><?php echo $date; ?></td>
             </tr>
             <tr>
-                <td colspan="5" align="center">
+                <td colspan="6" align="center">
                     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
                         <strong></strong> Eintrag wurde hinzugefügt.
                     </div><br/>

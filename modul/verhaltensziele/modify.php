@@ -104,6 +104,19 @@
         $stage = test_input($_POST['fstage']);
         $points = test_input($_POST['fpoints']);
         $pa = test_input($_POST['fpa']);
+        $semester = test_input($_POST['fsem']);
+        
+        if(!isset($semester)){
+            $error = $error . "Kein Semester Angegeben.<br/>";
+        } else {
+            $stmtSem = $mysqli->prepare("SELECT ID FROM `tb_semester` WHERE tb_group_ID = ? AND ID = ?");
+            $stmtSem->bind_param("ii", $session_usergroup, $semester);
+            $stmtSem->execute();
+            $resultSem = $stmtSem->get_result();
+            if($resultSem->num_rows != 1){
+                $error = $error . "Die Semester-Eingabe ist ungültig";
+            }
+        }
         
         if(!isset($userid)){
             $error = $error . "Kein User in Session.<br/>";
@@ -141,8 +154,8 @@
                 
                 if($row['tb_group_ID'] == 2){
                     
-                    $stmt = $mysqli->prepare("INSERT INTO `tb_behaviorgrade` (`tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`) VALUES (?, ?, ?, ?);");
-                    $stmt->bind_param("iisi", $userid, $pa, $stage, $points);
+                    $stmt = $mysqli->prepare("INSERT INTO `tb_behaviorgrade` (`tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?, ?);");
+                    $stmt->bind_param("iisii", $userid, $pa, $stage, $points, $semester);
                     $stmt->execute();
                     
                 } else {

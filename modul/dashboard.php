@@ -13,13 +13,13 @@
 	} 
 
 ?>
-<?php if($session_usergroup == 1 || $session_usergroup = 2 || $session_usergroup = 3 || $session_usergroup = 4) : ?>
+<?php if($session_usergroup == 1 || $session_usergroup == 2 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 	
 	<?php echo $welcome; ?>
     <h3>Alle Module</h3>
 	  
     <?php
-
+	
     $result = $mysqli->query($sql);
         
     if ($result->num_rows > 0) {
@@ -47,18 +47,13 @@
     }
     
     ?>
-
-<?php elseif($session_usergroup == 5) : ?>
-
-    <h1 class="mt-5">Alle Module</h1>
-    <p>Sie sind Superuser</p>
     
 <?php else : ?>
     
     <br/><br/>
     
     <div class='alert alert-danger'>
-        <strong>Fehler </strong> Ihr Account wurde keiner Gruppe zugewiesen.
+        <strong>Fehler </strong> Ihr Account wurde keiner gültigen Gruppe zugewiesen.
         Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.
     </div>
     

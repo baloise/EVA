@@ -4,7 +4,7 @@
 
     <?php
     
-        $sql = "SELECT ID, firstname, lastname FROM `tb_user` WHERE tb_group_ID IN (3, 4) AND deleted IS NULL";
+        $sql = "SELECT ID, firstname, lastname FROM `tb_user` WHERE tb_group_ID IN (3, 4, 5) AND deleted IS NULL";
         
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
@@ -23,10 +23,10 @@
             $llist = "Keine Lehrlinge im System";
         }
         
-        $entryList = "Noch keine Einträge";
         
-        $sql = "SELECT ml.`description`, ml.`creationDate`, ml.weight, ml.ID FROM `tb_malus` AS ml
+        $sql = "SELECT ml.`description`, ml.`creationDate`, ml.weight, ml.ID, us.firstname, us.lastname, sem.semester FROM `tb_malus` AS ml
                 LEFT JOIN tb_user AS us ON us.ID = ml.tb_user_ID
+                INNER JOIN tb_semester AS sem ON ml.tb_semester_ID = sem.ID
                 WHERE us.deleted IS NULL ORDER BY ml.`creationDate` DESC LIMIT 400;";
         
         $entryList = "";
@@ -37,19 +37,16 @@
             while($row = $result->fetch_assoc()) {
                 
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
-                
-                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_malus` AS ml
-                LEFT JOIN tb_user AS us ON ml.`tb_user_ID` = us.ID WHERE ml.ID = " . $row['ID'];
-                $result2 = $mysqli->query($sql2);
-                $row2 = $result2->fetch_assoc();
+
                 
                 $listEntry = '
                 <tr class="lEntry" entryID="'. $row['ID'] .'">
                     <td><span class="fa fa-trash-o delEntry" entryID="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
                     <th scope="row">'. $row['ID'] .'</th>
+                    <td>'. $row['firstname'] .' '. $row['lastname'] .'</td>
                     <td>'. $row['weight'] .' %</td>
-                    <td>'. $row2['firstname'] .' '. $row2['lastname'] .'</td>
                     <td>'. $row['description'] .'</td>
+                    <td>'. $row['semester'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
                 
@@ -59,6 +56,8 @@
         } else {
             $entryList = "Noch keine Einträge";
         }
+        
+        $semList = "";
     
     ?>
     
@@ -81,14 +80,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <label for="fselUser">Lehrling:</label>
                 <select id="fselUser" class="form-control">
                     <option></option>
                     <?php echo $llist; ?>
                 </select>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
+                <label for="fsem">Semester:</label>
+                <select id="fsem" class="form-control" disabled>
+                    <option></option>
+                    <?php echo $semList; ?>
+                </select>
+            </div>
+            <div class="col-lg-4">
                 <label for="fweigth">Gewichtung:</label>
                 <input id="fweigth" class="form-control" type="text" placeholder="%"/>
             </div>
@@ -124,9 +130,10 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Gewichtung</th>
                 <th>Lehrling</th>
+                <th>Gewichtung</th>
                 <th>Begründung</th>
+                <th>Semester</th>
                 <th>Erstellungsdatum</th>
             </tr>
         </thead>

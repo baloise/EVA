@@ -74,10 +74,7 @@
                 
             }
                     
-        }
-            
-        
-        if($_POST['action'] == "delete"){
+        } else if($_POST['action'] == "delete"){
             
             $userid = test_input($_POST['userid']);
             
@@ -85,9 +82,7 @@
             $stmt->bind_param("s", $userid);
             $stmt->execute();
 
-        }
-        
-        if($_POST['action'] == "change"){
+        } else if($_POST['action'] == "change"){
 
             $userid = test_input($_POST['userid']);
             $content = test_input($_POST['content']);
@@ -117,6 +112,8 @@
             $stmt->close();
             $mysqli->close();
             
+        } else {
+            echo "Unbekannter Befehl übergeben";
         }
         
     } 
