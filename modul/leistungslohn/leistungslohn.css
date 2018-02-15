@@ -13,3 +13,6 @@
 .groupContent, .userContent, .cycleContent, .semesterContent, .cycleContentExam {
     display: none;
 }
+.calcTableResult {
+	text-align: right;
+}

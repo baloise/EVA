@@ -250,7 +250,7 @@
                                                                         <div class="row">
                                                                             <div class="col-lg-12">
                                                                                 
-                                                                                Aktuelle Lohnberechnung: <b>1500.-</b><br/>
+                                                                                Leistungslohn anhand aktueller Werte: <b>1500.-</b> (88.9%)<br/>
                                                                                 <i>(Durchschnitt Semester 1-4)</i>
                                                                                 
                                                                                 <!-- SEMESTER -->
@@ -262,6 +262,7 @@
                                                                                                 <h2>Semester 1</h2>
                                                                                             </div>
                                                                                             <div class="col-2 text-right">
+																								<span><b>88.9%</b></span>
                                                                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                                                                                             </div>
                                                                                         </div>
@@ -276,39 +277,47 @@
                                                                                                         <!-- BERECHNUNGEN -->
                                                                                                         
                                                                                                         <div class="col-lg-12 card">
-                                                                                                            <b>Leistung Informatik</b><br/>
-                                                                                                            <table class="table">
+                                                                                                            <br/>
+                                                                                                            <table class="table calcTable">
+																												<tr>
+                                                                                                                    <td><b>Leistung Informatik</b></td>
+                                                                                                                    <td class="calcTableResult"><b>90%</b></td>
+                                                                                                                </tr>
                                                                                                                 <tr>
                                                                                                                     <td>Notenschnitt Informatik-Module und ÜKs</td>
-                                                                                                                    <td>5.5</td>
-                                                                                                                    <td>90%</td>
+                                                                                                                    <td class="calcTableResult">90%</td>
                                                                                                                 </tr>
                                                                                                             </table>
                                                                                                         </div>
                                                                                                         
                                                                                                         <div class="col-lg-12 card">
-                                                                                                            <b>Leistung Schule</b><br/>
-                                                                                                            <table class="table">
+                                                                                                            <br/>
+                                                                                                            <table class="table calcTable">
+																												<tr>
+                                                                                                                    <td><b>Leistung Schule</b></td>
+                                                                                                                    <td class="calcTableResult"><b>90%</b></td>
+                                                                                                                </tr>
                                                                                                                 <tr>
                                                                                                                     <td>Notenschnitt Schulfächer und ÜKs</td>
-                                                                                                                    <td>5.5</td>
-                                                                                                                    <td>90%</td>
+                                                                                                                    <td class="calcTableResult">90%</td>
                                                                                                                 </tr>
                                                                                                             </table>
                                                                                                         </div>
                                                                                                         
                                                                                                         <div class="col-lg-12 card">
-                                                                                                            <b>Verhalten Betrieb</b><br/>
-                                                                                                            <table class="table">
+                                                                                                            <br/>
+                                                                                                            <table class="table calcTable">
+																												<tr>
+																													<td><b>Verhalten Betrieb</b></td>
+                                                                                                                    <td class="calcTableResult"><b>87.5%</b></td>
+																												</tr>
                                                                                                                 <tr>
                                                                                                                     <td>Verhaltensziele</td>
-                                                                                                                    <td>130 von 150</td>
-                                                                                                                    <td>80%</td>
+                                                                                                                    <td class="calcTableResult">80%</td>
                                                                                                                 </tr>
                                                                                                                 <tr>
                                                                                                                     <td>Terminmanagement</td>
-                                                                                                                    <td>145 von 150</td>
-                                                                                                                    <td>95%</td>
+                                                                                                                    <td class="calcTableResult">95%</td>
                                                                                                                 </tr>
                                                                                                             </table>
                                                                                                         </div>

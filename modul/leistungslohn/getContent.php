@@ -22,7 +22,7 @@
         
         function LITcalcInformatik(){
             
-            $LITmodule = LITcalculateModule();
+            $LITmodule = LITcalculateSemesterModule();
             $LITpresentation = LITcalculatePresentation();
             
             if($LITpresentation){
@@ -43,10 +43,25 @@
         }
         
         function LITcalcSchool(){
-            
+			
+			if($cycleID == 1){
+				
+				$LITsemester1 = LITcalculateSchool($semester);
+				$LITsemester1 = LITcalculateSchool($semester);
+				$LITsemester2 = LITcalculateSchool($semester);
+				$LITsemester3 = LITcalculateSchool($semester);
+				
+			}
+			
         }
+		
+		function LITcalculateSemesterSchool($semester){
+			
+			$sql = "SELECT subject.ID AS subjectID, subject.correctedGrade AS correction FROM `tb_user_subject` AS subject WHERE subject.tb_user_ID = $userID AND subject.tb_semester_ID = $semester";
+			
+		}
         
-        function LITcalculateModule(){
+        function LITcalculateSemesterModule(){
             
         }
         
