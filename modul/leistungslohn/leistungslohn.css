@@ -1,0 +1,15 @@
+.card {
+    padding-top: 10px;
+    margin: 5px;
+    max-width: 99%;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(201,201,201,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(201,201,201,1);
+    box-shadow: 0px 0px 5px 0px rgba(201,201,201,1);
+    border-radius: 5px;
+}
+.groupHeader, .userHeader, .cycleHeader, .semesterHeader, .cycleHeaderExam {
+    cursor: pointer;
+}
+.groupContent, .userContent, .cycleContent, .semesterContent, .cycleContentExam {
+    display: none;
+}

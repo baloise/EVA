@@ -36,7 +36,7 @@ $(document).ready(function(){
                         
                         $(".addUserInput").val("");
                         $("#userAddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
-                            $("#pageContent").load("modul/benutzerverwaltung.php", function(){
+                            $("#pageContent").load("modul/benutzerverwaltung/benutzerverwaltung.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
                                 });

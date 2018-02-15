@@ -162,7 +162,7 @@ $(document).ready(function(){
                         } else {
                                     
                             $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                $("#pageContent").load("modul/noten.php", function(){
+                                $("#pageContent").load("modul/noten/noten.php", function(){
                                     $('.loadScreen').fadeTo("fast", 0, function(){
                                         $('#pageContents').fadeTo("fast", 1);
                                     });
@@ -179,6 +179,24 @@ $(document).ready(function(){
             
         });
             
+    });
+    
+    $('.divtoggler').each(function(){
+        
+        $(this).click(function(){
+        
+            var subSemId = $(this).attr("subSemid");
+            
+            $(".divtogglercontent").each(function(){
+                
+                if($(this).attr("subSemid") == subSemId){
+                    $(this).slideToggle("fast");
+                }
+            
+            });
+            
+        });
+    
     });
 
     $('.delGrade').each(function(){
@@ -206,7 +224,7 @@ $(document).ready(function(){
                             $('.gradeEntry').each(function(){
                                 if($(this).attr('gradeId') == gradeId){
                                     $(this).slideUp("slow", function(){
-                                       $("#pageContent").load("modul/noten.php", function(){
+                                       $("#pageContent").load("modul/noten/noten.php", function(){
                                             $('.loadScreen').fadeTo("fast", 0, function(){
                                                 $('#pageContents').fadeTo("fast", 1);
                                             });
@@ -264,7 +282,7 @@ $(document).ready(function(){
                     } else {
                         
                         $("#addedNotif2").slideDown("fast").delay(1300).slideUp("fast",function(){
-                            $("#pageContent").load("modul/noten.php", function(){
+                            $("#pageContent").load("modul/noten/noten.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
                                 });

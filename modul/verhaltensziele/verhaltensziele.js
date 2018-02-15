@@ -111,7 +111,7 @@ $(document).ready(function(){
                                     $("#fcheckEntryPoints").val("");
                                     
                                     $("#checkedNotif").html("Beanstandung abgeschickt & Eintrag gelöscht").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                        $("#pageContent").load("modul/verhaltensziele.php", function(){
+                                        $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
                                             $('.loadScreen').fadeTo("fast", 0, function(){
                                                 $('#pageContents').fadeTo("fast", 1);
                                             });
@@ -191,7 +191,7 @@ $(document).ready(function(){
                             $("#fPa").val("");
                                 
                             $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                $("#pageContent").load("modul/verhaltensziele.php", function(){
+                                $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
                                     $('.loadScreen').fadeTo("fast", 0, function(){
                                         $('#pageContents').fadeTo("fast", 1);
                                     });

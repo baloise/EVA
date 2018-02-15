@@ -1,5 +1,5 @@
-<?php include("session/session.php"); ?>
-<?php include("../database/connect.php"); ?>
+<?php include("../session/session.php"); ?>
+<?php include("../../database/connect.php"); ?>
 <?php
 
 	$welcome = "<h3>Willkommen!</h3>";

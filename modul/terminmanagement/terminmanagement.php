@@ -1,5 +1,5 @@
-<?php include("session/session.php"); ?>
-<?php include("../database/connect.php"); ?>
+<?php include("../session/session.php"); ?>
+<?php include("../../database/connect.php"); ?>
 <?php if($session_usergroup == 1) : ?>
 
     <head>
@@ -119,7 +119,7 @@
                                     }
                                     
                                     $generateDiv = '
-                                    <tr id="rowID'. $row['did'] .'">
+                                    <tr class="rowID'. $row['did'] .'">
                                         <td>'. $row['did'] .' </td>
                                         <td><input fType="1" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel'] .'"></input></td>
                                         <td><textarea fType="2" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung'] .'</textarea></td>

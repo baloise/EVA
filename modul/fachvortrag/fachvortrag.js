@@ -108,7 +108,7 @@ $(document).ready(function(){
                                     $("#fcheckEntryPoints").val("");
                                     
                                     $("#checkedNotif").html("Beanstandung abgeschickt & Eintrag gelöscht").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                        $("#pageContent").load("modul/fachvortrag.php", function(){
+                                        $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
                                             $('.loadScreen').fadeTo("fast", 0, function(){
                                                 $('#pageContents').fadeTo("fast", 1);
                                             });
@@ -182,7 +182,7 @@ $(document).ready(function(){
                             $("#fPoints").val("");
                                 
                             $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                $("#pageContent").load("modul/fachvortrag.php", function(){
+                                $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
                                     $('.loadScreen').fadeTo("fast", 0, function(){
                                         $('#pageContents').fadeTo("fast", 1);
                                     });

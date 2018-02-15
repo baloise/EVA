@@ -133,6 +133,10 @@
                 $stmt->bind_param("i", $did);
                 $stmt->execute();
                 
+                $stmt = $mysqli->prepare("DELETE FROM `tb_deadline` WHERE `ID` = ?");
+                $stmt->bind_param("i", $did);
+                $stmt->execute();
+                
                 
             } else {
                 echo "Keine Termin-ID übergeben.";

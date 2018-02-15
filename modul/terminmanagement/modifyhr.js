@@ -235,7 +235,9 @@ $(document).ready(function(){
                             if(data){
                                 
                             } else {
-                                $("#rowID" + did).slideUp("slow");
+                                $(".rowID" + did).each(function(){
+                                    $(this).slideUp("slow");    
+                                });
                                 $("#warning").slideUp("fast");
 								$("#warnButton").prop("disabled",false);
                             }

@@ -1,5 +1,5 @@
-<?php include("session/session.php"); ?>
-<?php include("../database/connect.php"); ?>
+<?php include("../session/session.php"); ?>
+<?php include("../../database/connect.php"); ?>
 <?php if($session_usergroup == 1) : ?>
 
     <h1 class="mt-5">Stundenpläne</h1>

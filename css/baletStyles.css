@@ -181,6 +181,7 @@ select.form-control:not([size]):not([multiple]){
 	padding-top: 10px;
 	font-size: 1.1rem;
 	cursor: pointer;
+	padding-bottom: 10px;
 }
 .inCard {
 	margin: 10px;

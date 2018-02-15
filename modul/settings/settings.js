@@ -18,16 +18,14 @@ $(document).ready(function(){
                             if(entryEntity.attr('navItemID') == navItemID){
                                 entryEntity.slideUp("slow");
                             }
-                            $('#slideMe').slideUp("fast", function(){
-                                $('#naviLink').html("").load("modul/navi.php", function(){
-                                    $('#slideMe').slideDown("fast");
-									$(".nav-link").each(function(){
-										makeDynamic(this);
-									});
-									$(".navbar-brand").each(function(){
-										makeDynamic(this);
-									});
-                                }); 
+                            $(".nav-link").each(function(){
+                            
+                                if($(this).attr("navlinkid") == navItemID){
+                                    $(this).fadeOut("slow", function(){
+                                        $(this).remove();    
+                                    });
+                                }
+                                
                             });
                         }
                     }
@@ -45,27 +43,27 @@ $(document).ready(function(){
             url: "modul/settings/modifyEntry.php",
             success: function(data){
                 if(data){
-                    $("#error").html(data).slideDown("fast"); 
-                } else {
+                    
                     $("#selectModule").val("");
-                    $('#slideMe').slideUp("fast", function(){
-                        $('#naviLink').html("").load("modul/navi.php", function(){
-                            $('#slideMe').slideDown("fast");
-							$(".nav-link").each(function(){
-								makeDynamic(this);
-							});
-							$(".navbar-brand").each(function(){
-								makeDynamic(this);
-							});
-                        }); 
-                    });
-                    $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
-                        $("#pageContent").load("modul/settings.php", function(){
+                    $('.navbar-nav').append(data).children(':last').slideDown("slow");
+                    $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast", function(){
+                    
+                        $("#pageContent").load("modul/settings/settings.php", function(){
                             $('.loadScreen').fadeTo("fast", 0, function(){
                                 $('#pageContents').fadeTo("fast", 1);
                             });
                         });
+                        
                     });
+                    
+                    $('.nav-link').each(function(){
+                        makeDynamic(this);    
+                    });
+                    
+                } else {
+                    
+                    $("#error").html("FEHLER").slideDown("fast"); 
+                    
                 }
             }
         });

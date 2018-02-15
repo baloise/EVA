@@ -1,5 +1,5 @@
-<?php include("session/session.php"); ?>
-<?php include("../database/connect.php"); ?>
+<?php include("../session/session.php"); ?>
+<?php include("../../database/connect.php"); ?>
 
 <?php if($session_usergroup == 1) : //HR ?>
 
@@ -61,7 +61,11 @@
                             }
                             
                             $subgradeavg = floor(($grades / $weights) * 100) / 100;
-                            $llallavg = $llallavg + $subgradeavg;
+                            if($llsubcorrgrade){
+                                $llallavg = $llallavg + $llsubcorrgrade;
+                            } else {
+                                $llallavg = $llallavg + $subgradeavg;   
+                            }
                             
                         } else {
                             $subgradeavg = "Keine Noten gefunden.";
@@ -76,17 +80,25 @@
                                 
                                 $gradesunderEntry = '
                                         <div class="row gradeBelow">
-                                            <div class="col-lg-4">
-                                                <b>'. $llsubname .'</b>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <b>Titel:</b> '. $row4['title'] .'
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <b>Note:</b> '. $row4['grade'] .'
-                                            </div>
                                             <div class="col-lg-12">
-                                                <b>Begründung:</b> '. $row4['reasoning'] .'<br/><br/>
+                                                <div class="card" style="padding-top: 10px;margin-bottom:10px;">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <b>'. $llsubname .'</b>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <b>Titel:</b> '. $row4['title'] .'
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <b>Note:</b> '. $row4['grade'] .'
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <b>Begründung:</b> '. $row4['reasoning'] .'<br/><br/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                 ';
@@ -211,11 +223,6 @@
     
     <script type="text/javascript" src="modul/noten/noten.js"></script>  
     
-<?php elseif($session_usergroup == 2) : ?>
-
-    <h1 class="mt-5">Alle PA-Module</h1>
-    <p>Sie sind Praxisausbildner</p>
-    
     
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
 
@@ -223,13 +230,15 @@
         
         
         //---------------------------------- Bestehende Fächer generieren ---------------------------------------
-        $sql = "SELECT us.*  FROM `tb_user_subject` AS us
+        $sql = "SELECT us.*, ss.ID AS subSemId  FROM `tb_user_subject` AS us
             INNER JOIN tb_semester AS ss ON ss.ID = us.tb_semester_ID
             WHERE us.tb_user_ID = $session_userid
             ORDER BY ss.semester DESC, us.`creationDate` DESC";
             
         $result = $mysqli->query($sql);
         $subjects = "";
+        $currentSem = "";
+        $subSemId = "";
         
         if (isset($result) && $result->num_rows > 0) {
             
@@ -251,6 +260,7 @@
                 }
                 
                 $subjectId = $row['ID'];
+                $subSemId = $row['subSemId'];
                 $grades = "";
                 $average = "";
                 
@@ -338,37 +348,78 @@
                     ';
                 }
                 
-                $subjectEntry = '
-                    <div fSubject="'. $row['ID'] .'" class="col-lg-1 delSubTag"></div>
-                    <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag" style="padding: 20px;margin: 5px;">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h2>'. $row['subjectName'] .'</h2>
-                            </div>
-                            <div class="col-lg-6" style="text-align: right;">
-                                '. $average .'
+
+                if($subSemId == $currentSem){
+                    $sorterDiv = "";
+                } else if($currentSem == ""){
+                    $sorterDiv = "
+                    <div class='col-lg-12'>
+                        <div class='divtoggler' subSemid='".$subSemId."' style='cursor:pointer;'>
+                            <hr/>
+                            <div class='row'>
+                                <div class='col-lg-10'>
+                                    <h2> " . $subjectSemester . " </h2>
+                                </div>
+                                <div class='col-lg-2 text-right'>
+                                    <i class='fa fa-chevron-down toggleDetails' style='margin-top: 5px;' aria-hidden='true'></i>
+                                </div>
                             </div>
                         </div>
-                        <br/>
+                        <div class='divtogglercontent' subSemid='".$subSemId."'>
                         
-                        <div class="row">
-                            <div class="col-lg-11" style="margin-left: auto; margin-right: auto;">
-                            '. $grades .'
+                    ";
+                } else {
+                    $sorterDiv = "
+                    </div>
+                    <div class='divtoggler' subSemid='".$subSemId."' style='cursor:pointer;'>
+                        <hr/>
+                        <div class='row'>
+                            <div class='col-lg-10'>
+                                <h2> " . $subjectSemester . " </h2>
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <a href="#" class="deleteSubject" subjectId="'. $row['ID'] .'">
-                                    <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> Fach löschen
-                                </a>
-                            </div>
-                            <div class="col-lg-6" style="text-align: right;">
-                                '. $subjectSemester .'
+                            <div class='col-lg-2 text-right'>
+                                <i class='fa fa-chevron-down toggleDetails' style='margin-top: 5px;' aria-hidden='true'></i>
                             </div>
                         </div>
                     </div>
+                    <div class='divtogglercontent' style='display:none;' subSemid='".$subSemId."'>
+                    ";
+                }
+                
+                $subjectEntry = '
+                    '. $sorterDiv .'
+                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h2>'. $row['subjectName'] .'</h2>
+                                </div>
+                                <div class="col-lg-6" style="text-align: right;">
+                                    '. $average .'
+                                </div>
+                            </div>
+                            <br/>
+                            
+                            <div class="row">
+                                <div class="col-lg-11" style="margin-left: auto; margin-right: auto;">
+                                '. $grades .'
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="#" class="deleteSubject" subjectId="'. $row['ID'] .'">
+                                        <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> Fach löschen
+                                    </a>
+                                </div>
+                                <div class="col-lg-6" style="text-align: right;">
+                                    '. $subjectSemester .'
+                                </div>
+                            </div>
+                        </div>
                 ';
+                     
+                     
+                $currentSem = $subSemId;
                      
                 $subjects = $subjects . $subjectEntry;
                             
@@ -403,43 +454,42 @@
         </div>
     </div>
     <div class="row">
-        
-        <?php echo $subjects; ?>
-        
-        <!-- Neues Fach hinzufügen -->
-        <hr/>
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="alert alert-success col-lg-10" id="addedNotif2" style="display: none; margin-bottom: 0px;">
-                    <strong></strong> Fach wurde hinzugefügt.
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10 card" style="padding: 20px;margin: 5px;">
-            <div class="row">
-                <div class="col-lg-6">
-                    <input type="text" id="newSubNam" class="form-control" placeholder="Fach">
-                </div>
-                <div class="col-lg-6">
-                    <select class="form-control" id="newSubSem" placeholder="Zählt in Semester">
-                        <option>Semester:</option>
-                        <?php echo $semesterList; ?>
-                    </select>
-                </div>
-            </div>
+            <?php echo $subjects; ?>
             
-            <div class="row">
-                <div class="col-lg-12" style="margin-top: 10px;">
-                    <button type="button" class="btn col-lg-12" id="addSubject">
-                        <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> Neues Fach hinzufügen</b>
-                    </button>
-                    <br/><br/>
-                    <div class="alert alert-danger" id="errorForm" style="display: none;" role="alert"></div>
+            <!-- Neues Fach hinzufügen -->
+    </div>
+            <hr/>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="alert alert-success col-lg-10" id="addedNotif2" style="display: none; margin-bottom: 0px;">
+                        <strong></strong> Fach wurde hinzugefügt.
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input type="text" id="newSubNam" class="form-control" placeholder="Fach">
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="form-control" id="newSubSem" placeholder="Zählt in Semester">
+                            <option>Semester:</option>
+                            <?php echo $semesterList; ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 10px;">
+                        <button type="button" class="btn col-lg-12" id="addSubject">
+                            <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> Neues Fach hinzufügen</b>
+                        </button>
+                        <br/><br/>
+                        <div class="alert alert-danger" id="errorForm" style="display: none;" role="alert"></div>
+                    </div>
+                </div>
+            </div>
     </div>
     
     <script type="text/javascript" src="modul/noten/noten.js"></script>  
