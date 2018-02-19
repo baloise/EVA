@@ -11,6 +11,12 @@
         return $data;
     }
     
+    if($session_usergroup != 3 && $session_usergroup != 1 && $session_usergroup != 2){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
+    
+    
+    
     if($_POST['todo'] == "checkAndDelete"){
 		
 		$error = "";
@@ -122,7 +128,7 @@
         }
         
         if(!isset($title)){
-            $error = $error . "Bitte Stage-Titel angeben.<br/>";
+            $error = $error . "Bitte Fachvortrag-Titel angeben.<br/>";
         }
         
         if(!isset($points)){

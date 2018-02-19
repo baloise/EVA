@@ -1,15 +1,17 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 
-<?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
+<?php if($session_usergroup == 1) : ?>
 
+    <h1 class="mt-5">ALS</h1>
+    
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
     <?php
 		
-		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_presentation` AS pr
+		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID, pr.performance FROM `tb_als` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
                 WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
         
@@ -24,10 +26,16 @@
                 
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
                 
-                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_presentation` AS pr
+                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_als` AS pr
                 LEFT JOIN tb_user AS us ON pr.`tb_user_ID` = us.ID WHERE pr.ID = " . $row['ID'];
                 $result2 = $mysqli->query($sql2);
                 $row2 = $result2->fetch_assoc();
+                
+                if($row['performance'] == 1){
+                    $performance = "Leistungsziele";
+                } else {
+                    $performance = "Verhaltensziele";
+                }
                 
                 $listEntry = '
                 <tr>
@@ -36,6 +44,7 @@
                     <td>'. $row['title'] .'</td>
                     <td>'. $row['points'] .'</td>
                     <td>'. $row2['firstname'] .' '. $row2['lastname'] .'</td>
+                    <td>'.$performance.'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
                 
@@ -48,9 +57,6 @@
         }
     
     ?>
-
-    <h1 class="mt-5">Fachvortrag</h1>
-    <p>Punktzahlen der Fachvorträge. Eingetragen von den Lehrlingen.</p>
     
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
@@ -61,9 +67,10 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
+                <th>ALS-Titel</th>
                 <th>Punktzahl</th>
-                <th>Lehrling</th>
+                <th>Lernende/r</th>
+                <th>Typ</th>
                 <th>Erstellungsdatum</th>
             </tr>
         </thead>
@@ -170,14 +177,17 @@
         } );
     </script>
 
-<?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
+<?php elseif($session_usergroup == 4 || $session_usergroup == 5) : ?>
 
+    <h1 class="mt-5">ALS</h1>
+    
     <?php
         
-        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_presentation` AS pres
+        $sql = "SELECT pres.*, sem.semester FROM `tb_als` AS pres
                 INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
         
+        $entryListPerf = "";
         $entryList = "";
         
         $result = $mysqli->query($sql);
@@ -198,7 +208,13 @@
                     <td>'. $dateSet .' </td>
                 </tr>';
                 
-                $entryList = $entryList . $listEntry;
+                
+                if($row['performance'] == 1){
+                    $entryListPerf = $entryListPerf . $listEntry;
+                } else {
+                    $entryList = $entryList . $listEntry;
+                }
+                
                 $i = $i + 1;
                 
             }
@@ -216,50 +232,95 @@
         }
         
     ?>
-
-    <h1 class="mt-5">Fachvortrag</h1>
-    <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p>Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden.</p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Fachvortrag-Titel</th>
-                <th>Punktzahl</th>
-                <th>Semester</th>
-                <th>Erstellungsdatum</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if($entryList){echo $entryList;} else {echo "Du hast bisher nichts eingetragen.";} ?>
-            <tr id="newEntry">
-                <th scope="row" style="padding-top: 20px;">#</th>
-                <td><input class="form-control" type="text" id="fTitle"/></td>
-                <td><input class="form-control" type="number" id="fPoints"/></td>
-                <td>
-                    <select class="form-control" id="fSem">
-                        <option></option>
-                        <?php echo $semList; ?>
-                    </select>
-                </td>
-                <td style="padding-top: 20px;"><?php echo date("d.m.Y"); ?></td>
-            </tr>
-            <tr>
-                <td colspan="6" align="center">
-                    <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> Eintrag wurde hinzugefügt.
-                    </div><br/>
-                    <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
-                        Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten <strong>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Es können Stichproben durchgeführt werden.</strong>
-                    </div><br/>
-                    <button id="addNewEntryButton" type="button" class="btn btn-primary">Eintrag hinzufügen</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-<?php else : //No Usergroup ?>
+    
+    <div class="alert alert-danger" id="errorPerf" style="display: none;" role="alert"></div>
+    <div class="card col-12" style="padding-top: 15px; margin-bottom: 10px;">
+        <h2>ALS-Leistungsziele:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ALS-Titel</th>
+                    <th>Punktzahl</th>
+                    <th>Semester</th>
+                    <th>Erstellungsdatum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if($entryListPerf){echo $entryListPerf;} else {echo "Du hast bisher nichts eingetragen.";} ?>
+                <tr id="newEntry">
+                    <th scope="row" style="padding-top: 20px;">#</th>
+                    <td><input class="form-control" type="text" id="fTitlePerf"/></td>
+                    <td><input class="form-control" type="number" id="fPointsPerf"/></td>
+                    <td>
+                        <select class="form-control" id="fSemPerf">
+                            <option></option>
+                            <?php echo $semList; ?>
+                        </select>
+                    </td>
+                    <td style="padding-top: 20px;"><?php echo date("d.m.Y"); ?></td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">
+                        <div class="alert alert-success" id="addedNotifPerf" style="display: none; margin-bottom: 0px;">
+                            <strong></strong> Eintrag wurde hinzugefügt.
+                        </div><br/>
+                        <div class="alert alert-warning" id="warnEntryPerf" style="display: none; margin-bottom: 0px;">
+                            Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten <strong>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i> Es können Stichproben durchgeführt werden.</strong>
+                        </div><br/>
+                        <button id="addNewEntryButtonPerf" type="button" class="btn btn-primary">Eintrag hinzufügen</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
+    <div class="card col-12" style="padding-top: 15px;">
+        <h2>ALS-Verhaltensziele:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ALS-Titel</th>
+                    <th>Punktzahl</th>
+                    <th>Semester</th>
+                    <th>Erstellungsdatum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if($entryList){echo $entryList;} else {echo "Du hast bisher nichts eingetragen.";} ?>
+                <tr id="newEntry">
+                    <th scope="row" style="padding-top: 20px;">#</th>
+                    <td><input class="form-control" type="text" id="fTitle"/></td>
+                    <td><input class="form-control" type="number" id="fPoints"/></td>
+                    <td>
+                        <select class="form-control" id="fSem">
+                            <option></option>
+                            <?php echo $semList; ?>
+                        </select>
+                    </td>
+                    <td style="padding-top: 20px;"><?php echo date("d.m.Y"); ?></td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">
+                        <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
+                            <strong></strong> Eintrag wurde hinzugefügt.
+                        </div><br/>
+                        <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
+                            Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten <strong>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i> Es können Stichproben durchgeführt werden.</strong>
+                        </div><br/>
+                        <button id="addNewEntryButton" type="button" class="btn btn-primary">Eintrag hinzufügen</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+<?php else : ?>
     
     <br/><br/>
     
@@ -270,4 +331,4 @@
     
 <?php endif; ?>
 
-<script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+<script type="text/javascript" src="modul/als/als.js"></script>

@@ -18,7 +18,6 @@ $(document).ready(function(){
 			
             $("#fcheckEntryPoints").val($(this).attr("entryPoints"));
             $("#fcheckEntryLL").val($(this).attr("entryLL"));
-            $("#fcheckEntryPA").val($(this).attr("entryPA"));
             $("#fsend").attr("entryID", $(this).attr("entryID"));
             $("#fsendAndDelete").attr("entryID", $(this).attr("entryID"));
             
@@ -42,7 +41,7 @@ $(document).ready(function(){
                 
             $.ajax({
                 method: "POST",
-                url: "./modul/verhaltensziele/modify.php",
+                url: "./modul/pe/modify.php",
                 data: {todo:"check", entryID:entryID, reason:reason},
                 success: function(data){
                                 
@@ -54,7 +53,6 @@ $(document).ready(function(){
                             
                             $("#fcheckEntryLL").val("");
                             $("#fcheckEntryReason").val("");
-                            $("#fcheckEntryPA").val("");
                             $("#fcheckEntryPoints").val("");
                             $("#fsend").prop("disabled",false);
 							$("#fsendAndDelete").prop("disabled",false);
@@ -74,62 +72,56 @@ $(document).ready(function(){
     $("#fsendAndDelete").click(function(event){
         
         event.preventDefault();
-        var reason = $("#fcheckEntryReason").val();
-        var entryID = $(this).attr("entryID");
+            
+        $("#error").slideUp("fast"); 
+        $(this).html("Löschen bestätigen").removeClass("btn-danger").addClass("btn-warning");
         
-        if(!reason){
-            $("#error").html("Bitte eine Begründung angeben").slideDown("fast"); 
-        } else {
+        $(this).click(function(){
             
-            $("#error").slideUp("fast"); 
-            $(this).html("Löschen bestätigen").removeClass("btn-danger").addClass("btn-warning");
+            var reason = $("#fcheckEntryReason").val();
+            var entryID = $(this).attr("entryID");
             
-            $(this).click(function(){
+            if(!reason){
+                $("#error").html("Bitte eine Begründung angeben").slideDown("fast"); 
+            } else {
                 
-                if(!reason){
-                    $("#error").html("Bitte eine Begründung angeben").slideDown("fast"); 
-                } else {
-                    
-					$("#fsend").prop("disabled",true);
-					$(this).prop("disabled",true);
-					
-                    $.ajax({
-                        method: "POST",
-                        url: "./modul/verhaltensziele/modify.php",
-                        data: {todo:"checkAndDelete", entryID:entryID, reason:reason},
-                        success: function(data){
-                            
-                            if(data){
-                                $("#error").html(data).slideDown("fast"); 
-                            } else {
-                                    
-                                $("#checkEntryForm").slideUp("slow",function(){
-                            
-                                    $("#fcheckEntryLL").val("");
-                                    $("#fcheckEntryReason").val("");
-                                    $("#fcheckEntryPA").val("");
-                                    $("#fcheckEntryPoints").val("");
-                                    
-                                    $("#checkedNotif").html("Beanstandung abgeschickt & Eintrag gelöscht").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                        $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
-                                            $('.loadScreen').fadeTo("fast", 0, function(){
-                                                $('#pageContents').fadeTo("fast", 1);
-                                            });
+                $("#fsend").prop("disabled",true);
+                $(this).prop("disabled",true);
+                
+                $.ajax({
+                    method: "POST",
+                    url: "./modul/pe/modify.php",
+                    data: {todo:"checkAndDelete", entryID:entryID, reason:reason},
+                    success: function(data){
+                        
+                        if(data){
+                            $("#error").html(data).slideDown("fast"); 
+                        } else {
+                                
+                            $("#checkEntryForm").slideUp("slow",function(){
+                        
+                                $("#fcheckEntryLL").val("");
+                                $("#fcheckEntryReason").val("");
+                                $("#fcheckEntryPoints").val("");
+                                
+                                $("#checkedNotif").html("Beanstandung abgeschickt & Eintrag gelöscht").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                    $("#pageContent").load("modul/pe/pe.php", function(){
+                                        $('.loadScreen').fadeTo("fast", 0, function(){
+                                            $('#pageContents').fadeTo("fast", 1);
                                         });
                                     });
-                                    
-                                });   
-                                    
-                            }
-                                 
+                                });
+                                
+                            });   
+                                
                         }
-                    });
-                    
-                }
+                             
+                    }
+                });
                 
-            });
+            }
             
-        }
+        });
     
     });
     
@@ -142,34 +134,29 @@ $(document).ready(function(){
     $("#addNewEntryButton").click(function(event){
         
         event.preventDefault();
+        $("#error").slideUp("fast");
         
         var error = "";
-        var fstage = $("#fStage").val();
+        var fTitle = $("#fTitle").val();
         var fpoints = $("#fPoints").val();
-        var fpa = $("#fPa").val();
         var fsem = $("#fSem").val();
         
         if(!fsem){
             error = error + "Bitte ein Semester angeben.<br/>";
         }
         
-        if(!fstage){
-            error = error + "Bitte einen Verhaltensziele-Titel angeben.<br/>";
+        if(!fTitle){
+            error = error + "Bitte einen PE-Titel angeben.<br/>";
         }
         
         if(!fpoints){
             error = error + "Bitte eine Punktzahl angeben.<br/>";
         }
         
-        if(!fpa){
-            error = error + "Bitte einen PA angeben.<br/>";
-        }
-    
         if(error){
             $("#error").html(error).slideDown("fast");
         } else {
-            $("#error").slideUp("fast");
-            
+        
             $("#warnEntry").slideDown("fast");
             $("#addNewEntryButton").html("Bestätigen");
             
@@ -177,49 +164,41 @@ $(document).ready(function(){
                 event.preventDefault();
                 
                 var error = "";
-                var fstage = $("#fStage").val();
+                var fTitle = $("#fTitle").val();
                 var fpoints = $("#fPoints").val();
-                var fpa = $("#fPa").val();
                 var fsem = $("#fSem").val();
                 
                 if(!fsem){
                     error = error + "Bitte ein Semester angeben.<br/>";
                 }
                 
-                if(!fstage){
-                    error = error + "Bitte einen Verhaltensziele-Titel angeben.<br/>";
+                if(!fTitle){
+                    error = error + "Bitte einen Stage-Titel angeben.<br/>";
                 }
                 
                 if(!fpoints){
                     error = error + "Bitte eine Punktzahl angeben.<br/>";
                 }
                 
-                if(!fpa){
-                    error = error + "Bitte einen PA angeben.<br/>";
-                }
-            
                 if(error){
-                    $("#error").html(error).slideDown("fast");
+                    $("#error").html(error).slideDown("fast"); 
                 } else {
-                
-                
                     $("#warnEntry").slideUp("fast");
                     $.ajax({
                         method: "POST",
-                        url: "./modul/verhaltensziele/modify.php",
-                        data: {todo:"addEntry", fstage:fstage, fpoints:fpoints, fpa:fpa, fsem:fsem},
+                        url: "./modul/pe/modify.php",
+                        data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem},
                         success: function(data){
                             
                             if(data){
                                 $("#error").html(data).slideDown("fast"); 
                             } else {
                                     
-                                $("#fStage").val("");
+                                $("#fTitle").val("");
                                 $("#fPoints").val("");
-                                $("#fPa").val("");
                                     
                                 $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                    $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
+                                    $("#pageContent").load("modul/pe/pe.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);
                                         });
@@ -234,7 +213,6 @@ $(document).ready(function(){
                 }
                     
             });
-             
         }
         
     });

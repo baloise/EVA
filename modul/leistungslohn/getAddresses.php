@@ -1,5 +1,9 @@
 <?php
 
+    if($session_usergroup != 1){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
+
     function formatAddress($person){
         return  trim ("{$person['firstname']} {$person['lastname']}\n{$person['street']}\n{$person['city']}");
     }

@@ -10,6 +10,10 @@
         return $data;
     }
     
+    if($session_usergroup != 1){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
+    
     if(isset($_POST['action'])){
         
         if($_POST['action'] == "add"){

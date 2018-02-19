@@ -223,25 +223,142 @@
 
     <script type="text/javascript" src="modul/terminmanagement/modifyhr.js"></script> 
     
-<?php elseif($session_usergroup == 2) : ?>
-
-    <h1 class="mt-5">Alle PA-Module</h1>
-    <p>Sie sind Praxisausbildner</p>
     
-<?php elseif($session_usergroup == 3) : ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 
-    <h1 class="mt-5">Alle IT-Module</h1>
-    <p>Sie sind Informatik-Lehrling</p>
+    <h1 class="mt-5">Terminmanagement</h1>
+    
+    
+    
+    <?php
+    
+        $sql = "SELECT * FROM `tb_semester` AS sem WHERE sem.tb_group_ID = $session_usergroup";
+        $result = $mysqli->query($sql);
+        
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                
+                $semesterid = $row['ID'];
+                $semesterTitle = $row['semester'];
+                $today = date("Y-m-d");
+                $entriesBefore = "";
+                $entriesPassed = "";
+                
+                $sql2 = "SELECT * FROM `tb_deadline` WHERE tb_semester_ID = $semesterid;";
+                $result2 = $mysqli->query($sql2);
+        
+                if ($result2->num_rows > 0) {
+                    while($row2 = $result2->fetch_assoc()) {
+                        
+                        $deadlineID = $row2['ID'];
+                        $deadlineTitle = $row2['title'];
+                        $deadlineDescription = $row2['description'];
+                        $deadlineDate = $row2['date'];
+                        
+                        $sql3 = "SELECT * FROM `tb_deadline_check` WHERE tb_deadline_ID = $deadlineID AND tb_user_ID = $session_userid;";
+                        $result3 = $mysqli->query($sql3);
+                        
+                        if ($result3->num_rows > 0) {
 
-<?php elseif($session_usergroup == 4) : ?>
-
-    <h1 class="mt-5">Alle KV-Module</h1>
-    <p>Sie sind KV-Lehrling</p>
-
-<?php elseif($session_usergroup == 5) : ?>
-
-    <h1 class="mt-5">Alle Module</h1>
-    <p>Sie sind Superuser</p>
+                            $entry = '
+                                <div class="row">
+                                    <div class="col-lg-12 card alert-success" style="padding-top: 10px; margin-bottom: 10px;">
+                                        <h3>'.$deadlineTitle.'</h3>
+                                        <p>'.$deadlineDescription.'</p>
+                                        <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                    </div>
+                                </div>
+                            ';
+                            if($deadlineDate < $today){
+                                $entriesPassed = $entriesPassed . $entry;
+                            } else {
+                                $entriesBefore = $entriesBefore . $entry;
+                            }
+                            
+                        } else {
+                            if($deadlineDate < $today){
+                                
+                                $entry = '
+                                    <div class="row">
+                                        <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px;">
+                                            <h3>'.$deadlineTitle.'</h3>
+                                            <p>'.$deadlineDescription.'</p>
+                                            <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                        </div>
+                                    </div>
+                                ';
+                                
+                                $entriesPassed = $entriesPassed . $entry;
+                                
+                            } else {
+                                $entry = '
+                                    <div class="row">
+                                        <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px;">
+                                            <h3>'.$deadlineTitle.'</h3>
+                                            <p>'.$deadlineDescription.'</p>
+                                            <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                        </div>
+                                    </div>
+                                ';
+                                
+                                $entriesBefore = $entriesBefore . $entry;
+                                
+                            }
+                        }
+                        
+                    }
+                } else {
+                    $entriesBefore = "Keine Einträge";
+                    $entriesPassed = "Keine Einträge";
+                }
+                
+                
+            
+                $entry = '
+                    <div class="divtoggler" subSemid="'.$semesterid.'" style="cursor:pointer;">
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h2>Semester '.$semesterTitle.'</h2>
+                            </div>
+                            <div class="col-lg-2 text-right">
+                                <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divtogglercontent" style="display:none;" subSemid="'.$semesterid.'">
+                        <div class="row">
+                            <div class="col-12">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Bevorstehende Termine:</h2>
+                            </div>
+                            <div class="col-12">
+                                '.$entriesBefore.'
+                            </div>
+                            <div class="col-12">
+                                <br/><br/>
+                                <h2>Vergangene Termine:</h2>
+                            </div>
+                            <div class="col-12">
+                                '.$entriesPassed.'
+                            </div>
+                        </div>
+                    </div>
+                ';
+                
+                echo $entry;
+            
+            }
+        }
+        
+    
+    ?>
+    
+    <script type="text/javascript" src="modul/terminmanagement/modifyll.js"></script> 
     
 <?php else : ?>
     

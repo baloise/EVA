@@ -11,7 +11,7 @@
         return $data;
     }
     
-    if($session_usergroup != 3 && $session_usergroup != 1 && $session_usergroup != 2){
+    if($session_usergroup != 4 || $session_usergroup != 1 || $session_usergroup != 5){
         die("Sie haben keine Berechtigungen zu diesem Modul");
     }
     
@@ -48,7 +48,7 @@
 				
 			} else {
 				
-				$stmt = $mysqli->prepare("DELETE FROM `tb_behaviorgrade` WHERE `tb_behaviorgrade`.`ID` = ?");
+				$stmt = $mysqli->prepare("DELETE FROM `tb_als` WHERE `tb_als`.`ID` = ?");
 				$stmt->bind_param("i", $entryid);
 				$stmt->execute();
 				
@@ -105,10 +105,10 @@
         
         $error = "";
         $userid = $session_userid;
-        $stage = test_input($_POST['fstage']);
+        $title = test_input($_POST['fTitle']);
         $points = test_input($_POST['fpoints']);
-        $pa = test_input($_POST['fpa']);
         $semester = test_input($_POST['fsem']);
+        $perf = test_input($_POST['perf']);
         
         if(!isset($semester)){
             $error = $error . "Kein Semester Angegeben.<br/>";
@@ -126,48 +126,27 @@
             $error = $error . "Kein User in Session.<br/>";
         }
         
-        if(!isset($stage)){
-            $error = $error . "Bitte Stage-Titel angeben.<br/>";
+        if(!isset($title)){
+            $error = $error . "Bitte ALS-Titel angeben.<br/>";
         }
         
         if(!isset($points)){
             $error = $error . "Bitte Punktzahl angeben.<br/>";
         }
         
-        if(!isset($pa)){
-            $error = $error . "Bitte PA angeben.<br/>";
-        }
-        
         if($error){
             echo $error;
         } else {
             
-            $stmt = $mysqli->prepare("SELECT tb_group_ID FROM `tb_user` WHERE id = ?");
-            $stmt->bind_param("s", $pa);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            if($result->num_rows != 1){
-                
-                $error = $error . "Die PA-Eingabe ist ungültig";
-                echo $error;
-                
+            if($perf == 1){
+                $stmt = $mysqli->prepare("INSERT INTO `tb_als` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`, performance) VALUES (?, ?, ?, ?, ?);");
+                $stmt->bind_param("isiii", $userid, $title, $points, $semester, $perf);
             } else {
-                
-                $row = $result->fetch_assoc();
-                
-                if($row['tb_group_ID'] == 2){
-                    
-                    $stmt = $mysqli->prepare("INSERT INTO `tb_behaviorgrade` (`tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?, ?);");
-                    $stmt->bind_param("iisii", $userid, $pa, $stage, $points, $semester);
-                    $stmt->execute();
-                    
-                } else {
-                    $error = $error . "Der Ausgewähle User ist kein PA";
-                    echo $error;
-                }
-                
+                $stmt = $mysqli->prepare("INSERT INTO `tb_als` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?);");
+                $stmt->bind_param("isii", $userid, $title, $points, $semester);
             }
+            
+            $stmt->execute();
 
         }
          

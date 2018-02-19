@@ -3,6 +3,10 @@
     include("../session/session.php");
     include("../../database/connect.php");
     
+    if($session_usergroup != 1 && $session_usergroup != 2 && $session_usergroup != 3 && $session_usergroup != 4 && $session_usergroup != 5){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
+    
     if(isset($_POST['doEntry']) && isset($_POST['navItemID'])) {
         
         if($_POST['doEntry'] == "delete"){

@@ -2,6 +2,10 @@
 
     include("../session/session.php");
     include("./../../database/connect.php");
+    
+    if($session_usergroup != 3){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
 
     //Werte trimmen und auf richtigkeit prüfen
     function test_input($data) {

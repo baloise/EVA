@@ -3,6 +3,10 @@
     include("../session/session.php");
     include("./../../database/connect.php");
     
+    if($session_usergroup != 1){
+        echo "Sie haben keine Berechtigungen zu diesem Modul";
+    }
+    
     function designDeadlineEntry($state, $id, $title, $date, $usrid){
             
         if($state == 0){

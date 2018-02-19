@@ -1,5 +1,5 @@
 <?php
-
+	
 	$_db_host = "localhost";
 	$_db_database = "snobbr";
 	$_db_username = "root";

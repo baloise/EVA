@@ -23,6 +23,7 @@
                 $lllast = $row1['lastname'];
                 $llsubjs = 0;
                 $llallavg = 0;
+                $oldllsubsem = "";
 
                 $gradesunderEntries = "";
                 $subEntries = "";
@@ -30,6 +31,8 @@
                 $sql2 = "SELECT us.subjectName, us.ID, us.correctedGrade, sem.semester FROM `tb_user_subject` AS us 
                         INNER JOIN tb_semester AS sem ON us.tb_semester_ID = sem.ID
                         WHERE us.tb_user_ID = $llid ORDER BY sem.semester DESC, us.creationDate DESC";
+                        
+                        
                 $result2 = $mysqli->query($sql2);
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {
@@ -58,7 +61,7 @@
                                 $weights = $weights + $gradeweight;
                                 $countgrades = $countgrades + 1;
                                 
-                            }
+                            } 
                             
                             $subgradeavg = floor(($grades / $weights) * 100) / 100;
                             if($llsubcorrgrade){
@@ -69,11 +72,12 @@
                             
                         } else {
                             $subgradeavg = "Keine Noten gefunden.";
+                            $countgrades = 0;
                         }
                         
                         $countgradesunder = 0;
                         
-                        $sql4 = "SELECT grade, title, reasoning FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid AND grade < 4";
+                        $sql4 = "SELECT grade, title, reasoning FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid AND grade <= 4";
                         $result4 = $mysqli->query($sql4);
                         if ($result4->num_rows > 0) {
                             while($row4 = $result4->fetch_assoc()) {
@@ -114,12 +118,12 @@
                             $subgradeavg = "<s>" . $subgradeavg . "</s> <b style='color:red;'>" . $llsubcorrgrade . "</b>";
                         }
                         
-                        $subEntry = '
+                        if($llsubsem == $oldllsubsem){
+                            $subEntry = '
                                 <tr>
                                     <th scope="row">'. $llsubname .'</th>
                                     <td>'. $countgrades .'</td>
                                     <td>'. $countgradesunder .'</td>
-                                    <td>'. $llsubsem .'</td>
                                     <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
                                     <td>
                                         <div class="row">
@@ -132,11 +136,61 @@
                                         </div>
                                     </td>
                                 </tr>
-                        ';
+                            ';
+                        
+                        } else {
+                            $subEntry = '
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12 contentToggler" semID="'.$llsubsem.'" style="margin-bottom: 10px; cursor: pointer">
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h2>Semester '.$llsubsem.'</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card toggleContent" semID="'.$llsubsem.'" style="display:none;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fach/Modul</th>
+                                            <th scope="col">Noten</th>
+                                            <th scope="col">ungenügende</th>
+                                            <th scope="col">Schnitt</th>
+                                            <th scope="col">Korrektur</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">'. $llsubname .'</th>
+                                            <td>'. $countgrades .'</td>
+                                            <td>'. $countgradesunder .'</td>
+                                            <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-lg-10">
+                                                        <input placeholder="Schnitt" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
+                                                    </div>
+                                                    <div class="col-lg-2" style="padding-left: 0;">
+                                                        <button type="button" subjid="'. $llsubid .'" class="btn btn-secondary corrSubAvg"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                            ';
+                            $oldllsubsem = $llsubsem;
+                        }
+                        
                         
                         $subEntries = $subEntries . $subEntry;
                         
                     }
+                    
                 } else {
                     $subEntries = "<tr><td colspan='5'>Keine Fächer gefunden.</td><tr/>";
                 }
@@ -166,18 +220,8 @@
                                         <hr/>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Fach/Modul</th>
-                                                <th scope="col">Noten</th>
-                                                <th scope="col">ungenügende</th>
-                                                <th scope="col">Semester</th>
-                                                <th scope="col">Schnitt</th>
-                                                <th scope="col">Korrektur</th>
-                                            </tr>
-                                        </thead>
+                                <div class="xxx">
+                                    <table>
                                         <tbody>
                                             
                                             '. $subEntries .'
@@ -261,6 +305,14 @@
                 
                 $subjectId = $row['ID'];
                 $subSemId = $row['subSemId'];
+                $subType = $row['school'];
+                
+                if($subType == 0){
+                    $subType = "Informatik-Modul";
+                } else {
+                    $subType = "Schulfach";
+                }
+                
                 $grades = "";
                 $average = "";
                 
@@ -412,7 +464,7 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-6" style="text-align: right;">
-                                    '. $subjectSemester .'
+                                    '. $subjectSemester .' ('.$subType.')
                                 </div>
                             </div>
                         </div>
@@ -455,9 +507,10 @@
     </div>
     <div class="row">
             <?php echo $subjects; ?>
-            
-            <!-- Neues Fach hinzufügen -->
     </div>
+        
+        <!-- Neues Fach hinzufügen -->
+    
             <hr/>
             <div class="col-lg-12">
                 <div class="row">
@@ -469,10 +522,29 @@
             </div>
             <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
                         <input type="text" id="newSubNam" class="form-control" placeholder="Fach">
                     </div>
-                    <div class="col-lg-6">
+                
+                    <?php
+                    
+                        if($session_usergroup == 3){
+                            echo '
+                            <div class="col-lg-4" id="LIT">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" selected="" value="1" class="btn btnSelect">Schulfach</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" selected="" value="0" class="btn btnSelect">IT-Modul</button>
+                                    </div>
+                                </div>
+                            </div>';
+                        }
+                    
+                    ?>
+                    
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
                         <select class="form-control" id="newSubSem" placeholder="Zählt in Semester">
                             <option>Semester:</option>
                             <?php echo $semesterList; ?>

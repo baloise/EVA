@@ -46,6 +46,9 @@ $(document).ready(function(){
                     
                     $("#selectModule").val("");
                     $('.navbar-nav').append(data).children(':last').slideDown("slow");
+                    if($("#editNavLink")){
+                        $("#editNavLink").slideUp("slow");
+                    }
                     $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast", function(){
                     
                         $("#pageContent").load("modul/settings/settings.php", function(){

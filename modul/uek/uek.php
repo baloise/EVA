@@ -1,7 +1,7 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 
-<?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
+<?php if($session_usergroup == 1) : //HR ?>
 
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
@@ -9,7 +9,7 @@
 
     <?php
 		
-		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_presentation` AS pr
+		$sql = "SELECT pr.`title`, pr.`grade`, pr.`creationDate`, pr.ID FROM `tb_uek` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
                 WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
         
@@ -24,17 +24,17 @@
                 
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
                 
-                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_presentation` AS pr
+                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_uek` AS pr
                 LEFT JOIN tb_user AS us ON pr.`tb_user_ID` = us.ID WHERE pr.ID = " . $row['ID'];
                 $result2 = $mysqli->query($sql2);
                 $row2 = $result2->fetch_assoc();
                 
                 $listEntry = '
                 <tr>
-                    <td><button entryID="'. $row['ID'] .'"  entryPoints="'. $row['points'] .'" entryLL="'. $row2['firstname'] .' '. $row2['lastname'] .'" type="button" class="btn btn-warning checkEntry" style="padding-bottom: 0px; padding-top: 0px;"><b>!</b></button></td>
+                    <td><button entryID="'. $row['ID'] .'"  entryPoints="'. $row['grade'] .'" entryLL="'. $row2['firstname'] .' '. $row2['lastname'] .'" type="button" class="btn btn-warning checkEntry" style="padding-bottom: 0px; padding-top: 0px;"><b>!</b></button></td>
                     <th scope="row">'.$i.'</th>
                     <td>'. $row['title'] .'</td>
-                    <td>'. $row['points'] .'</td>
+                    <td>'. $row['grade'] .'</td>
                     <td>'. $row2['firstname'] .' '. $row2['lastname'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
@@ -49,8 +49,7 @@
     
     ?>
 
-    <h1 class="mt-5">Fachvortrag</h1>
-    <p>Punktzahlen der Fachvorträge. Eingetragen von den Lehrlingen.</p>
+    <h1 class="mt-5">Überbetriebliche-Kurse</h1>
     
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
@@ -61,8 +60,8 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
-                <th>Punktzahl</th>
+                <th>ÜK-Titel</th>
+                <th>Note</th>
                 <th>Lehrling</th>
                 <th>Erstellungsdatum</th>
             </tr>
@@ -170,11 +169,11 @@
         } );
     </script>
 
-<?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
+<?php elseif($session_usergroup == 5) : //IT-Lehrling ?>
 
     <?php
         
-        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_presentation` AS pres
+        $sql = "SELECT pres.`title`, pres.`grade`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_uek` AS pres
                 INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
         
@@ -193,7 +192,7 @@
                 <tr>
                     <th scope="row">'.$i.'</th>
                     <td>'. $row['title'] .'</td>
-                    <td>'. $row['points'] .'</td>
+                    <td>'. $row['grade'] .'</td>
                     <td>'. $row['semester'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
@@ -217,15 +216,15 @@
         
     ?>
 
-    <h1 class="mt-5">Fachvortrag</h1>
+    <h1 class="mt-5">Überbetriebliche-Kurse</h1>
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p>Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden.</p>
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
-                <th>Punktzahl</th>
+                <th>ÜK-Titel</th>
+                <th>Note</th>
                 <th>Semester</th>
                 <th>Erstellungsdatum</th>
             </tr>
@@ -270,4 +269,4 @@
     
 <?php endif; ?>
 
-<script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+<script type="text/javascript" src="modul/uek/uek.js"></script>

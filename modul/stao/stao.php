@@ -1,15 +1,17 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 
-<?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
+<?php if($session_usergroup == 1) : ?>
 
+    <h1 class="mt-5">STAO</h1>
+    
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
     <?php
 		
-		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_presentation` AS pr
+		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_stao` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
                 WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
         
@@ -24,7 +26,7 @@
                 
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
                 
-                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_presentation` AS pr
+                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_stao` AS pr
                 LEFT JOIN tb_user AS us ON pr.`tb_user_ID` = us.ID WHERE pr.ID = " . $row['ID'];
                 $result2 = $mysqli->query($sql2);
                 $row2 = $result2->fetch_assoc();
@@ -48,9 +50,6 @@
         }
     
     ?>
-
-    <h1 class="mt-5">Fachvortrag</h1>
-    <p>Punktzahlen der Fachvorträge. Eingetragen von den Lehrlingen.</p>
     
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
@@ -61,8 +60,8 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
-                <th>Punktzahl</th>
+                <th>STAO-Titel</th>
+                <th>Punkte (in Prozent)</th>
                 <th>Lehrling</th>
                 <th>Erstellungsdatum</th>
             </tr>
@@ -116,6 +115,7 @@
             </div>
         </div>
     </div>
+    <hr/>
     
     <script type="text/javascript">
         $(document).ready(function() {
@@ -169,12 +169,39 @@
             
         } );
     </script>
+    
+    <div class="row">
+        <div class="col-12 card" style="padding-top: 15px;">
+            <h2>Prozentrechner</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="calcProzPoints">Erreichte Punktzahl</label>
+                    <input class="form-control" type="number" id="calcProzPoints"/>
+                </div>
+                <div class="col-lg-4">
+                    <label for="calcProzPoints">Maximale Punktzahl</label>
+                    <input class="form-control" type="number" id="calcProzMaxPoints" value=""/>
+                </div>
+                <div class="col-lg-2">
+                    <br/>
+                    <button type="button" class="btn" id="calcProz">Berechnen</button>
+                </div>
+                <div class="col-lg-2">
+                    <br/>
+                    <span id="calcProzResult"></span>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
 
-<?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
+<?php elseif($session_usergroup == 4) : ?>
 
+    <h1 class="mt-5">STAO</h1>
+    
     <?php
         
-        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_presentation` AS pres
+        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_stao` AS pres
                 INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
         
@@ -217,15 +244,14 @@
         
     ?>
 
-    <h1 class="mt-5">Fachvortrag</h1>
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p>Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden.</p>
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
-                <th>Punktzahl</th>
+                <th>STAO-Titel</th>
+                <th>Punkte (in Prozent)</th>
                 <th>Semester</th>
                 <th>Erstellungsdatum</th>
             </tr>
@@ -258,8 +284,35 @@
             </tr>
         </tbody>
     </table>
+    
+    <div class="row">
+        <div class="col-12 card" style="padding-top: 15px;">
+            <h2>Prozentrechner</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="calcProzPoints">Erreichte Punktzahl</label>
+                    <input class="form-control" type="number" id="calcProzPoints"/>
+                </div>
+                <div class="col-lg-4">
+                    <label for="calcProzPoints">Maximale Punktzahl</label>
+                    <input class="form-control" type="number" id="calcProzMaxPoints" value=""/>
+                </div>
+                <div class="col-lg-2">
+                    <br/>
+                    <button type="button" class="btn" id="calcProz">Berechnen</button>
+                </div>
+                <div class="col-lg-2">
+                    <br/>
+                    <span id="calcProzResult"></span>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+    
+    
 
-<?php else : //No Usergroup ?>
+<?php else : ?>
     
     <br/><br/>
     
@@ -270,4 +323,4 @@
     
 <?php endif; ?>
 
-<script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+<script type="text/javascript" src="modul/stao/stao.js"></script>

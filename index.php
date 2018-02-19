@@ -68,8 +68,8 @@
                               } else {
                       
                       $link = '
-                                  <li class="nav-item">
-                                      <a class="nav-link" href="modul/settings.php">Navigation bearbeiten</a>
+                                  <li class="nav-item" id="editNavLink">
+                                      <a class="nav-link" href="modul/settings/settings.php">Navigation bearbeiten</a>
                                   </li>
                                   ';
                                   echo $link;

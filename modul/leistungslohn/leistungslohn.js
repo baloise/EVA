@@ -44,7 +44,7 @@ function toggleCycle(userID, cycleID){
             
             $.ajax({
                 method: "POST",
-                url: "./modul/leistungslohn/getContent.php",
+                url: "./modul/leistungslohn/createContent.php",
                 data: {userID:userID, cycleID:cycleID},
                 success: function(data){
                     if(data){           

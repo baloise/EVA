@@ -10,6 +10,10 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+    
+    if($session_usergroup != 3 && $session_usergroup != 4 && $session_usergroup != 5 && $session_usergroup != 1){
+        die("Sie haben keine Berechtigungen zu diesem Modul");
+    }
 
     if(isset($_POST['todo'])){
         
@@ -130,6 +134,7 @@
             $error = "";
             $subName = test_input($_POST['subName']);
             $subSem = test_input($_POST['subSem']);
+            $subType = test_input($_POST['subType']);
             
             if(!$subName){
                 $error = $error . "Bitte Fach angeben.<br/>";
@@ -151,8 +156,8 @@
             if($error){
                 echo $error;
             } else {
-                $stmt = $mysqli->prepare("INSERT INTO `tb_user_subject` (`subjectName`, `tb_user_ID`, `tb_semester_ID`) VALUES (?, ?, ?);");
-                $stmt->bind_param("sii", $subName, $session_userid, $subSem);
+                $stmt = $mysqli->prepare("INSERT INTO `tb_user_subject` (`subjectName`, `tb_user_ID`, `tb_semester_ID`, `school`) VALUES (?, ?, ?, ?);");
+                $stmt->bind_param("siii", $subName, $session_userid, $subSem, $subType);
                 $stmt->execute();
             }
             

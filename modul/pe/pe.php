@@ -1,7 +1,7 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 
-<?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
+<?php if($session_usergroup == 1) : ?>
 
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
@@ -9,7 +9,7 @@
 
     <?php
 		
-		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_presentation` AS pr
+		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID FROM `tb_pe` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
                 WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
         
@@ -24,7 +24,7 @@
                 
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
                 
-                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_presentation` AS pr
+                $sql2 = "SELECT us.firstname, us.lastname FROM `tb_pe` AS pr
                 LEFT JOIN tb_user AS us ON pr.`tb_user_ID` = us.ID WHERE pr.ID = " . $row['ID'];
                 $result2 = $mysqli->query($sql2);
                 $row2 = $result2->fetch_assoc();
@@ -49,8 +49,7 @@
     
     ?>
 
-    <h1 class="mt-5">Fachvortrag</h1>
-    <p>Punktzahlen der Fachvorträge. Eingetragen von den Lehrlingen.</p>
+    <h1 class="mt-5">Prozesseinheit</h1>
     
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
@@ -61,7 +60,7 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
+                <th>PE-Titel</th>
                 <th>Punktzahl</th>
                 <th>Lehrling</th>
                 <th>Erstellungsdatum</th>
@@ -169,12 +168,14 @@
             
         } );
     </script>
+    
+<?php elseif($session_usergroup == 4) : ?>
 
-<?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
-
-    <?php
+    <h1 class="mt-5">Prozesseinheit</h1>
+    
+     <?php
         
-        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_presentation` AS pres
+        $sql = "SELECT pres.`title`, pres.`points`, pres.`creationDate`, sem.semester, pres.ID FROM `tb_pe` AS pres
                 INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
         
@@ -217,14 +218,13 @@
         
     ?>
 
-    <h1 class="mt-5">Fachvortrag</h1>
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p>Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden.</p>
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Fachvortrag-Titel</th>
+                <th>PE-Titel</th>
                 <th>Punktzahl</th>
                 <th>Semester</th>
                 <th>Erstellungsdatum</th>
@@ -259,7 +259,7 @@
         </tbody>
     </table>
 
-<?php else : //No Usergroup ?>
+<?php else : ?>
     
     <br/><br/>
     
@@ -270,4 +270,4 @@
     
 <?php endif; ?>
 
-<script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+<script type="text/javascript" src="modul/pe/pe.js"></script>

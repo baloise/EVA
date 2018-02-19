@@ -41,7 +41,7 @@ $(document).ready(function(){
                 
             $.ajax({
                 method: "POST",
-                url: "./modul/fachvortrag/modify.php",
+                url: "./modul/als/modify.php",
                 data: {todo:"check", entryID:entryID, reason:reason},
                 success: function(data){
                                 
@@ -90,7 +90,7 @@ $(document).ready(function(){
                 
                 $.ajax({
                     method: "POST",
-                    url: "./modul/fachvortrag/modify.php",
+                    url: "./modul/als/modify.php",
                     data: {todo:"checkAndDelete", entryID:entryID, reason:reason},
                     success: function(data){
                         
@@ -105,7 +105,7 @@ $(document).ready(function(){
                                 $("#fcheckEntryPoints").val("");
                                 
                                 $("#checkedNotif").html("Beanstandung abgeschickt & Eintrag gelöscht").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                    $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
+                                    $("#pageContent").load("modul/als/als.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);
                                         });
@@ -173,7 +173,7 @@ $(document).ready(function(){
                 }
                 
                 if(!fTitle){
-                    error = error + "Bitte einen ÜK-Titel angeben.<br/>";
+                    error = error + "Bitte einen Stage-Titel angeben.<br/>";
                 }
                 
                 if(!fpoints){
@@ -186,8 +186,8 @@ $(document).ready(function(){
                     $("#warnEntry").slideUp("fast");
                     $.ajax({
                         method: "POST",
-                        url: "./modul/fachvortrag/modify.php",
-                        data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem},
+                        url: "./modul/als/modify.php",
+                        data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem, perf:0},
                         success: function(data){
                             
                             if(data){
@@ -198,7 +198,7 @@ $(document).ready(function(){
                                 $("#fPoints").val("");
                                     
                                 $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                    $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
+                                    $("#pageContent").load("modul/als/als.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);
                                         });
@@ -216,5 +216,70 @@ $(document).ready(function(){
         }
         
     });
+
+    $("#addNewEntryButtonPerf").click(function(event){
+        
+        event.preventDefault();
     
+        $("#errorPerf").slideUp("fast");
+        
+        $("#warnEntryPerf").slideDown("fast");
+        $("#addNewEntryButtonPerf").html("Bestätigen");
+        
+        $("#addNewEntryButtonPerf").click(function(event){
+            event.preventDefault();
+            
+            var error = "";
+            var fTitle = $("#fTitlePerf").val();
+            var fpoints = $("#fPointsPerf").val();
+            var fsem = $("#fSemPerf").val();
+            
+            if(!fsem){
+                error = error + "Bitte ein Semester angeben.<br/>";
+            }
+            
+            if(!fTitle){
+                error = error + "Bitte einen Stage-Titel angeben.<br/>";
+            }
+            
+            if(!fpoints){
+                error = error + "Bitte eine Punktzahl angeben.<br/>";
+            }
+            
+            if(error){
+                $("#errorPerf").html(error).slideDown("fast"); 
+            } else {
+                $("#warnEntryPerf").slideUp("fast");
+                $.ajax({
+                    method: "POST",
+                    url: "./modul/als/modify.php",
+                    data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem, perf:1},
+                    success: function(data){
+                        
+                        if(data){
+                            $("#errorPerf").html(data).slideDown("fast"); 
+                        } else {
+                                
+                            $("#fTitlePerf").val("");
+                            $("#fPointsPerf").val("");
+                                
+                            $("#addedNotifPerf").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $("#pageContent").load("modul/als/als.php", function(){
+                                    $('.loadScreen').fadeTo("fast", 0, function(){
+                                        $('#pageContents').fadeTo("fast", 1);
+                                    });
+                                });
+                            });
+                            
+                        }
+                             
+                    }
+                });
+                
+            }
+                
+        });
+        
+    });
+        
 });

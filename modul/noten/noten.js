@@ -67,6 +67,24 @@ $(document).ready(function(){
         });
     });
     
+    $(".btnSelect").each(function(){
+        
+        $(this).click(function(){
+            
+            var object = $(this);
+            
+            $(".btnSelect").each(function(){
+                $(this).removeClass("btn-success", 1000);
+                $(this).removeClass("selectedType");
+            });
+            
+            $(object).addClass("btn-success", 1000);
+            $(object).addClass("selectedType");
+                
+        });
+        
+    });
+    
     $('.addGrade').each(function(){
         
         $(this).click(function(){
@@ -249,9 +267,30 @@ $(document).ready(function(){
         $('#errorForm').html(error).slideUp("fast");
         $('#addSubject').prop("disabled",true);
     
+        var error = "";
+    
         var subName = $('#newSubNam').val();
         var subSem = $('#newSubSem').val();
-        var error = "";
+        var subType = 1;
+        
+        if($("#LIT").length){
+            
+            alert("is LIT");
+            
+            var i = 0;
+            $('.selectedType').each(function(){
+                i = i + 1;    
+            });
+            
+            if(i == 1){
+                subType = $('.selectedType').attr("value");
+            } else {
+                error = error + "Bitte Fach-Typ angeben.<br/>";
+            }
+            
+            alert(subType);
+            
+        }
         
         if(!subName){
             error = error + "Bitte Fach angeben.<br/>";
@@ -271,7 +310,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "./modul/noten/modify.php",
-                data: {todo:"addSubject", subName:subName, subSem:subSem},
+                data: {todo:"addSubject", subName:subName, subSem:subSem, subType:subType},
                 success: function(data){
                             
                     if(data){
@@ -348,7 +387,7 @@ $(document).ready(function(){
             
             var fid = $(this).attr("fSubject");
             
-            if($(this).val() < 4 && $(this).val()){
+            if($(this).val() <= 4 && $(this).val()){
                 $('.badDay').each(function(){
                     if($(this).attr("fSubject") == fid){
                         $(this).slideDown("slow");
@@ -362,6 +401,24 @@ $(document).ready(function(){
                 });
             }
         }); 
+    });
+ 
+    $('.contentToggler').each(function(){
+        
+        $(this).click(function(){
+            
+            var semID = $(this).attr("semID");
+            
+            $(".toggleContent").each(function(){
+            
+                if($(this).attr("semID") == semID){
+                    $(this).slideToggle("fast");
+                }
+                
+            });
+        
+        });
+    
     });
  
 });
