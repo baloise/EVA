@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+    $('#newSelLang').change(function(){
+
+        $('#changeLanguageButton').slideDown("slow");
+
+    });
+
     $('#changeLanguageButton').click(function(){
 
         var newLang = $("#newSelLang").val();

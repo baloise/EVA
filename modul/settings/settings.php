@@ -88,7 +88,7 @@
 
         <div class="col-12">
             <br/>
-            <button class="btn btn-block" id="changeLanguageButton"><?php echo $translate["Ändern"];?></button>
+            <button class="btn btn-block" style="display:none;" id="changeLanguageButton"><?php echo $translate["Ändern"];?></button>
         </div>
 
     </div>

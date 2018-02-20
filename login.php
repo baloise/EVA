@@ -1,5 +1,5 @@
 <form method="POST" action="login.php">
-    <input type="text" name="username" placeholder="B-Key" required/>
+    <input type="text" name="username" placeholder="B-Key" required autofocus/>
     <input type="submit"/>
 </form>
 
@@ -24,17 +24,17 @@
 
                 ini_set('session.cookie_lifetime', 60 * 60 * 24 * 100);
 				ini_set('session.gc_maxlifetime', 60 * 60 * 24 * 100);
-						
+
 				session_start();
- 
+
 				$_SESSION = array('login' => true,'user'  => array('username'  => $_POST['username']));
-                
+
                 header("Location: auth.php");
-            
+
             }
         }
     }
-    
+
     if (isset($message['error'])){
         echo $message['error'];
     }
