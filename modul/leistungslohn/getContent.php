@@ -5,12 +5,12 @@
     
     $error = "";
     
-    if($session_usergroup == 1 || $session_usergroup == 3){
+    if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
     
         //ALS-Verhaltensziele
         function LKVBcalcBehavior($semesterID, $userID, $mysqli){
             
-            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
+            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance IS NULL;";
             
             $result = $mysqli->query($sql);
           
@@ -36,7 +36,7 @@
         //ALS-Leistungsziele
         function LKVBcalcPerform($semesterID, $userID, $mysqli){
             
-            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance IS NULL;";
+            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
             
             $result = $mysqli->query($sql);
           
@@ -140,60 +140,9 @@
             }
             
         }
-    
-        function LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli){
-            
-            $LKVBbehavior = LKVBcalcBehavior($semesterID, $userID, $mysqli);
-            $LKVBdeadline = calculateDeadline($semesterID, $userID, $mysqli);
-            
-            if($LKVBbehavior != 0 & $LKVBdeadline != 0){
-                return ( (($LKVBdeadline/3)*2) + (($LKVBbehavior/3)*1) );
-            } else if ($LKVBdeadline != 0) {
-                return ($LKVBdeadline);
-            } else if ($LKVBbehavior != 0) {
-                return ($LKVBbehavior);
-            }
-            
-        }
         
-        function LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli){
-            
-            $LKVBperformance = LKVBcalcPerform($semesterID, $userID, $mysqli);
-            $LKBuek = LKBcalcUek($semesterID, $userID, $mysqli);
-            $LKVpe = LKVcalcPe($semesterID, $userID, $mysqli);
-            $LKVstao = LKVcalcStao($semesterID, $userID, $mysqli);
-            
-            if($LKVBperformance > 0 && $LKBuek > 0){
-                return ($LKVBperformance+$LKBuek)/2;
-            } else if ($LKVBperformance > 0 && $LKVpe > 0 && $LKVstao > 0){
-                return ($LKVBperformance + $LKVpe + $LKVstao)/3;
-            } else if ($LKVBperformance > 0 && $LKVpe > 0){
-                return ($LKVBperformance+$LKVpe)/2;
-            } else if ($LKVBperformance > 0 && $LKVstao > 0){
-                return ($LKVBperformance+$LKVstao)/2;
-            } else if($LKVstao > 0 && $LKVpe > 0){
-                return ($LKVstao+$LKVpe)/2;
-            } else {
-                
-                if($LKVstao > 0){
-                    return $LKVstao;
-                } else if ($LKVpe > 0){
-                    return $LKVpe;
-                } else if ($LKVBperformance > 0){
-                    return $LKVBperformance;
-                } else if ($LKBuek > 0){
-                    return $LKBuek;
-                } else {
-                    return 0;
-                }
-                
-            }
-            
-            
-            
-        }
-        
-        function LITcalculateSubject($subjectID, $mysqli){
+        //
+        function calculateSubject($subjectID, $mysqli){
             
             $sql = "SELECT grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $subjectID";
             $result = $mysqli->query($sql);
@@ -246,7 +195,6 @@
             
             //TODO: Alle Deadlines des Users des Users Suchen und Testen ob diese erfüllt wurden oder nicht.
             $sql = "SELECT ID, date FROM tb_deadline WHERE tb_semester_ID = $semesterID";
-            
                     
             $result = $mysqli->query($sql);
             
@@ -271,6 +219,7 @@
                     }
                     
                 }
+                
             }
             
             $passes = $countDeadlines - $countUserChecks;
@@ -283,6 +232,43 @@
                 return 0;
             }
             
+        }
+        
+        //Verhalten Betrieb KV
+        function LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli){
+            
+            $LKVBbehavior = LKVBcalcBehavior($semesterID, $userID, $mysqli);
+            $LKVBdeadline = calculateDeadline($semesterID, $userID, $mysqli);
+            
+            if($LKVBbehavior != 0 & $LKVBdeadline != 0){
+                return ((($LKVBdeadline) + ($LKVBbehavior*2))/3);
+            } else if ($LKVBdeadline != 0) {
+                return ($LKVBdeadline);
+            } else if ($LKVBbehavior != 0) {
+                return ($LKVBbehavior);
+            }
+            
+        }
+        
+        //Leistung Betrieb KV
+        function LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli){
+            
+            $i = 0;
+            $coSu = 0;
+            
+            if(LKVBcalcPerform($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVBcalcPerform($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LKBcalcUek($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKBcalcUek($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LKVcalcPe($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVcalcPe($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LKVcalcStao($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVcalcStao($semesterID, $userID, $mysqli); $i = $i + 1; }
+                
+            switch ($i) {
+                case 0:
+                    return 0;
+                    break;
+                default:
+                    return $coSu/$i;
+            }
+                
         }
         
         //Fachvortrag
@@ -331,7 +317,7 @@
                         
                     } else {
                         
-                        $grade = LITcalculateSubject($row['ID'], $mysqli);
+                        $grade = calculateSubject($row['ID'], $mysqli);
                         $percentage = $grade / 6;
                         
                     }
@@ -348,7 +334,7 @@
             
         }
         
-        ////Leistung Informatik
+        //Leistung Informatik
         function LITcalcInformatik($semesterID, $userID, $mysqli){
             
             $LITmodule = LITcalculateModule($semesterID, $userID, $mysqli);
@@ -399,7 +385,7 @@
                         
                     } else {
                         
-                        $grade = LITcalculateSubject($row['ID'], $mysqli);
+                        $grade = calculateSubject($row['ID'], $mysqli);
                         $percentage = $grade / 6;
                         
                     }
@@ -423,28 +409,40 @@
         //Gesamtes Semester berechnen bzw. Durchschnitt Verhalten, Schule und Leistung
         function LKVBcalculateSemester($semesterID, $userID, $mysqli){
             
-            $LKVBschule = calcSchool($semesterID, $userID, $mysqli);
-            $LKVBleistung = LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli);
-            $LBVBverhalten = LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli);
+            $coSu = 0;
+            $i = 0;
+            
+            if(calcSchool($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli); $i = $i + 1; }
+                
+            switch ($i) {
+                case 0:
+                    return 0;
+                    break;
+                default:
+                    return $coSu/$i;
+            }
             
         }
         
         //Gesamtes Semester berechnen bzw. Durchschnitt Verhalten, Schule und Informatik
         function LITcalculateSemester($semesterID, $userID, $mysqli){
             
-            $LITinformatik = LITcalcInformatik($semesterID, $userID, $mysqli);
-            $LITschule = calcSchool($semesterID, $userID, $mysqli);
-            $LITbetrieb = LITcalcBetieb($semesterID, $userID, $mysqli);
+            $coSu = 0;
+            $i = 0;
             
-            if ($LITinformatik != 0 && $LITschule != 0){
-                return ( ($LITinformatik/3) + ($LITschule/3) + ($LITbetrieb/3) );
-            } else if ($LITinformatik == 0 && $LITschule != 0){
-                return ($LITschule/2) + ($LITbetrieb/2);
-            } else if($LITschule == 0 && $LITinformatik != 0){
-                return ($LITinformatik/2) + ($LITbetrieb/2);
-            } else if($LITinformatik == 0 && $LITschule == 0){
-                return $LITbetrieb;  
-            } 
+            if(LITcalcInformatik($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcInformatik($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(calcSchool($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LITcalcBetieb($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcBetieb($semesterID, $userID, $mysqli); $i = $i + 1; }
+                
+            switch ($i) {
+                case 0:
+                    return 0;
+                    break;
+                default:
+                    return $coSu/$i;
+            }
             
         }
         

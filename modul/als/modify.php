@@ -11,7 +11,7 @@
         return $data;
     }
     
-    if($session_usergroup != 4 || $session_usergroup != 1 || $session_usergroup != 5){
+    if($session_usergroup != 4 && $session_usergroup != 1 && $session_usergroup != 5){
         die("Sie haben keine Berechtigungen zu diesem Modul");
     }
     

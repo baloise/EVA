@@ -53,18 +53,18 @@
     
     ?>
 
-    <h1 class="mt-5">Terminmanagement</h1>
+    <h1 class="mt-5"><?php echo $translate["Terminmanagement"];?></h1>
     <p></p>
     
     <?php echo $listEntries; ?>
     
     <div class="row">
         <div class="col-12">
-            <h1 class="mt-5">Termine bearbeiten</h1>
+            <h1 class="mt-5"><?php echo $translate["Termine bearbeiten"];?></h1>
             
             <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
-                <strong>Termin löschen</strong> Bitte bestätigen Sie ihre auswahl:
-                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning">Bestätigen</button>
+                <strong><?php echo $translate["Termin löschen"];?></strong> <?php echo $translate["Bitte bestätigen Sie ihre auswahl"];?>:
+                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate["Bestätigen"];?></button>
             </div>
             
             <div id="userTable" style="display: none;">
@@ -72,11 +72,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Titel</th>
-                            <th>Beschreibung</th>
-                            <th>Deadline</th>
-                            <th>Gruppe</th>
-                            <th>Semester</th>
+                            <th><?php echo $translate["Titel"];?></th>
+                            <th><?php echo $translate["Beschreibung"];?></th>
+                            <th><?php echo $translate["Deadline"];?></th>
+                            <th><?php echo $translate["Gruppe"];?></th>
+                            <th><?php echo $translate["Semester"];?></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -97,10 +97,10 @@
                             
                             if ($result2->num_rows > 0) {
                                 while($row = $result2->fetch_assoc()) {
-                                    $groups = $groups . "<option value='". $row['ID'] ."'>". $row["name"] ."</option>";
+                                    $groups = $groups . "<option value='". $row['ID'] ."'>". $translate[$row["name"]] ."</option>";
                                 }
                             } else {
-                                $groups = "Keine Gruppen gefunden";
+                                $groups = $translate["Keine Gruppen gefunden"];
                             }
                 
                             if ($result->num_rows > 0) {
@@ -115,7 +115,7 @@
                                             $listSemsInList = $listSemsInList . "<option value='". $row3['ID'] ."'>". $row3["semester"] ."</option>";
                                         }
                                     } else {
-                                        $listSemsInList = "Keine weiteren Semester vohanden.";
+                                        $listSemsInList = $translate["Keine weiteren Semester vohanden"].".";
                                     }
                                     
                                     $generateDiv = '
@@ -124,7 +124,7 @@
                                         <td><input fType="1" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel'] .'"></input></td>
                                         <td><textarea fType="2" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung'] .'</textarea></td>
                                         <td><input fType="3" did="'. $row['did'] .'" class="form-control changeInTable" type="date" value="'. $row['Ddeadline'] .'"></input></td>
-                                        <td><select fType="5" class="form-control changeInTable updateSems" did="'. $row['did'] .'"><option value="'. $row['Gid'] .'">'. $row['Gname'] .'</option>'.$groups.'</select></td>
+                                        <td><select fType="5" class="form-control changeInTable updateSems" did="'. $row['did'] .'"><option value="'. $row['Gid'] .'">'. $translate[$row['Gname']] .'</option>'.$groups.'</select></td>
                                         <td><select fType="4" class="form-control changeInTable inTableSelect" did="'. $row['did'] .'"><option value="'. $row['Sid'] .'">'. $row['Ssemester'] .'</option>'.$listSemsInList.'</select></td>
                                         <td class="text-center"><span style="cursor: pointer;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span></td>
                                     </tr>
@@ -134,7 +134,7 @@
 
                                 }
                             } else {
-                                $generateDiv = "<tr><td colspan='6'> Keine Daten gefunden. </td></tr>";
+                                $generateDiv = "<tr><td colspan='6'> ".$translate["Keine Daten gefunden"].". </td></tr>";
                                 echo $generateDiv;
                             }
                         
@@ -142,9 +142,9 @@
                     
                     <tr id="rowID'. $row['did'] .'">
                         <td>Neu</td>
-                        <td><input class="form-control " type="text" id="fTitle" placeholder="Titel" required></input></td>
-                        <td><textarea class="form-control" id="fDescription" placeholder="Beschreibung" ></textarea></td>
-                        <td><input class="form-control" id="fDeadline" type="date" placeholder="Deadline" required></input></td>
+                        <td><input class="form-control " type="text" id="fTitle" placeholder="<?php echo $translate["Titel"];?>" required></input></td>
+                        <td><textarea class="form-control" id="fDescription" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea></td>
+                        <td><input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate["Deadline"];?>" required></input></td>
                         <td><select class="form-control updateSems"><option></option><?php echo $groups; ?></select></td>
                         <td><select class="form-control" id="fSemester" disabled required><option></option></select></td>
                         <td><button type="button" class="btn" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
@@ -154,7 +154,7 @@
             </div>
             
             <div class="alert alert-success" id="changesSaveNotif" style="display: none;">
-                <strong></strong> Änderungen wurden gespeichert!
+                <strong></strong> <?php echo $translate["Änderungen wurden gespeichert"];?>!
             </div>
             
             <div id="loadingTable">
@@ -162,7 +162,7 @@
             </div>
             
             <div class="alert alert-success col-lg-10" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                <strong></strong> Termin wurde hinzugefügt.
+                <strong></strong> <?php echo $translate["Termin wurde hinzugefügt"];?>.
             </div>
             
             <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div
@@ -181,22 +181,22 @@
                         "orderable": false
                     }],
                     "language": {
-                        "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
-                        "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
-                        "sInfoEmpty":       "0 bis 0 von 0 Einträgen",
+                        "sEmptyTable":      "<?php echo $translate["Keine Daten in der Tabelle vorhanden"];?>",
+                        "sInfo":            "_START_ <?php echo $translate["bis"];?> _END_ <?php echo $translate["von"];?> _TOTAL_ <?php echo $translate["Einträgen"];?>",
+                        "sInfoEmpty":       "0 <?php echo $translate["bis"];?> 0 <?php echo $translate["von"];?> 0 <?php echo $translate["Einträgen"];?>",
                         "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
                         "sInfoPostFix":     "",
                         "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ Einträge anzeigen",
+                        "sLengthMenu":      "_MENU_ <?php echo $translate["Einträge anzeigen"];?>",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
                         "sSearch":          "",
-                        "sZeroRecords":     "Keine Einträge vorhanden.",
+                        "sZeroRecords":     "<?php echo $translate["Keine Einträge vorhanden"];?>.",
                         "oPaginate": {
-                            "sFirst":       "Erste",
-                            "sPrevious":    "Zurück",
-                            "sNext":        "Nächste",
-                            "sLast":        "Letzte"
+                            "sFirst":       "<?php echo $translate["Erste"];?>",
+                            "sPrevious":    "<?php echo $translate["Zurück"];?>",
+                            "sNext":        "<?php echo $translate["Nächste"];?>",
+                            "sLast":        "<?php echo $translate["Letzte"];?>"
                         },
                         "oAria": {
                             "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
@@ -211,8 +211,7 @@
                         }
                     }
                 });
-                $('#users_filter label').attr('placeholder', 'Suchen');
-                $('#users_filter input').attr('placeholder', 'Suchen');
+                $('#users_filter input').attr('placeholder', '<?php echo $translate["Suchen"];?>');
                 $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#userTable").slideDown( "slow" );
@@ -226,7 +225,7 @@
     
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 
-    <h1 class="mt-5">Terminmanagement</h1>
+    <h1 class="mt-5"><?php echo $translate["Terminmanagement"];?></h1>
     
     
     
@@ -265,7 +264,7 @@
                                     <div class="col-lg-12 card alert-success" style="padding-top: 10px; margin-bottom: 10px;">
                                         <h3>'.$deadlineTitle.'</h3>
                                         <p>'.$deadlineDescription.'</p>
-                                        <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                        <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                     </div>
                                 </div>
                             ';
@@ -283,7 +282,7 @@
                                         <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                         </div>
                                     </div>
                                 ';
@@ -296,7 +295,7 @@
                                         <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>Ablaufdatum: <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                         </div>
                                     </div>
                                 ';
@@ -308,8 +307,8 @@
                         
                     }
                 } else {
-                    $entriesBefore = "Keine Einträge";
-                    $entriesPassed = "Keine Einträge";
+                    $entriesBefore = $translate["Keine Einträge"];
+                    $entriesPassed = $translate["Keine Einträge"];
                 }
                 
                 
@@ -319,7 +318,7 @@
                         <hr/>
                         <div class="row">
                             <div class="col-lg-10">
-                                <h2>Semester '.$semesterTitle.'</h2>
+                                <h2>'.$translate["Semester"].' '.$semesterTitle.'</h2>
                             </div>
                             <div class="col-lg-2 text-right">
                                 <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -334,14 +333,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2>Bevorstehende Termine:</h2>
+                                <h2>'.$translate["Bevorstehende Termine"].':</h2>
                             </div>
                             <div class="col-12">
                                 '.$entriesBefore.'
                             </div>
                             <div class="col-12">
                                 <br/><br/>
-                                <h2>Vergangene Termine:</h2>
+                                <h2>'.$translate["Vergangene Termine"].':</h2>
                             </div>
                             <div class="col-12">
                                 '.$entriesPassed.'
@@ -365,8 +364,7 @@
     <br/><br/>
     
     <div class='alert alert-danger'>
-        <strong>Fehler </strong> Ihr Account wurde keiner Gruppe zugewiesen.
-        Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.
+        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
     </div>
     
 <?php endif; ?>

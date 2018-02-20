@@ -38,7 +38,7 @@ $(document).ready(function(){
                     $("#pageContent").load(href, function(response, status, xhr){
                         
                         if ( status == "error" ) {
-                            var msg = "Sorry but there was an error: ";
+                            var msg = "Fehler beim Umsetzen der Links (makeDynamic Error).";
                             alert( msg + xhr.status + " " + xhr.statusText );
                         } else {
                             

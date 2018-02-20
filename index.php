@@ -58,7 +58,7 @@
                                   while($row = $result->fetch_assoc()) {
                                       $link = '
                                       <li class="nav-item">
-                                          <a class="nav-link" navLinkId="'. $row["ID"].'" href="'. $row["file_path"].'">'. $row["title"].'</a>
+                                          <a class="nav-link" navLinkId="'. $row["ID"].'" href="'. $row["file_path"].'">'. $translate[$row["title"]].'</a>
                                       </li>
                                       ';
                                       echo $link;
@@ -69,7 +69,7 @@
                       
                       $link = '
                                   <li class="nav-item" id="editNavLink">
-                                      <a class="nav-link" href="modul/settings/settings.php">Navigation bearbeiten</a>
+                                      <a class="nav-link" href="modul/settings/settings.php">'. $translate["Navigation bearbeiten"].'</a>
                                   </li>
                                   ';
                                   echo $link;
@@ -101,7 +101,7 @@
       
       <footer class="footer" id="slideMeFoot" style="display: none;">
         <div class="container">
-            <a class="foot-link" href="modul/settings/settings.php">Einstellungen</a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | BALET <a href="https://github.com/baloise/BALET">v.1.0</a></span>
+            <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate["Einstellungen"] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | BALET <a href="https://github.com/baloise/BALET">v.1.0</a></span>
         </div>
       </footer>
     </div>

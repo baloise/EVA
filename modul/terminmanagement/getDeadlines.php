@@ -7,7 +7,7 @@
         echo "Sie haben keine Berechtigungen zu diesem Modul";
     }
     
-    function designDeadlineEntry($state, $id, $title, $date, $usrid){
+    function designDeadlineEntry($state, $id, $title, $date, $usrid, $translate){
             
         if($state == 0){
             $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 0);" >';
@@ -22,7 +22,7 @@
         $entry = '
             <b>'.$title.'</b>
             <br/><br/>
-            <i>Bis '.date('d.m.Y', strtotime($date)).'</i>
+            <i>'.$translate["Bis"].' '.date('d.m.Y', strtotime($date)).'</i>
         </div>
         ';
             
@@ -30,7 +30,7 @@
             
     }
         
-    function designSemesterEntry($usrid, $semid, $semtitle, $deadEntries){
+    function designSemesterEntry($usrid, $semid, $semtitle, $deadEntries, $translate){
         
         if($deadEntries){
             
@@ -38,7 +38,7 @@
             <div class="card col-12 inCard">
                 <div class="row deadlineHeader" deadlineSemesterID="'.$semid.'" userId="'.$usrid.'" onclick="expandDeadlines('.$semid.', '.$usrid.');">
                     <div class="col-10">
-                        <b>Semester '.$semtitle.'</b>
+                        <b>'.$translate["Semester"].' '.$semtitle.'</b>
                     </div>
                     <div class="col-2 text-right">
                         <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -87,7 +87,7 @@
         $userid = test_input($_POST['userid']);
         
         if(!isset($userid)){
-            $error = $error . "Keine Benutzer-ID vorhanden";
+            $error = $error . $translate["Keine Benutzer-ID vorhanden"];
         }
         
         if($error){
@@ -135,14 +135,14 @@
                             }
                         }
                         
-                        $deadlineEntries = $deadlineEntries .  designDeadlineEntry($deadlineState, $deadlineID, $deadlineTitle, $deadlineDate, $userid);
+                        $deadlineEntries = $deadlineEntries .  designDeadlineEntry($deadlineState, $deadlineID, $deadlineTitle, $deadlineDate, $userid, $translate);
                         
                     }   
                 } else {
                     $deadlineEntries = "";
                 }
                 
-                $semesterEntries = $semesterEntries . designSemesterEntry($userid, $semesterid, $semesterTitle, $deadlineEntries);
+                $semesterEntries = $semesterEntries . designSemesterEntry($userid, $semesterid, $semesterTitle, $deadlineEntries, $translate);
                 
             }
             
@@ -152,7 +152,7 @@
 
            
     } else {
-        echo "Sie haben keinen Zugriff auf diese Funktionen.";
+        echo $translate["Sie haben keinen Zugriff auf diese Funktionen"].".";
     }
     
 ?>

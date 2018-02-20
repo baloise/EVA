@@ -44,12 +44,12 @@
                 
             }
         } else {
-            $entryList = "Noch keine Einträge";
+            $entryList = $translate["Noch keine Einträge"];
         }
     
     ?>
 
-    <h1 class="mt-5">Prozesseinheit</h1>
+    <h1 class="mt-5"><?php echo $translate["Prozesseinheit"];?></h1>
     
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
@@ -60,10 +60,10 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>PE-Titel</th>
-                <th>Punktzahl</th>
-                <th>Lehrling</th>
-                <th>Erstellungsdatum</th>
+                <th><?php echo $translate["PE-Titel"];?></th>
+                <th><?php echo $translate["Punktzahl"];?></th>
+                <th><?php echo $translate["Lernende/r"];?></th>
+                <th><?php echo $translate["Erstellungsdatum"];?></th>
             </tr>
         </thead>
         <tbody>
@@ -71,7 +71,7 @@
                 if($entryList){
                     echo $entryList;
                 } else {
-                    echo "<tr><td colspan='7' align='center'>Bisher keine Einträge</td></tr>";
+                    echo "<tr><td colspan='7' align='center'>".$translate["Bisher keine Einträge"]."</td></tr>";
                 }
             ?>
         </tbody>
@@ -81,37 +81,37 @@
     <div id="checkEntryForm" style="display: none;">
         <hr/>
         <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
-        <h3>Eintrag beanstanden</h3>
+        <h3><?php echo $translate["Eintrag beanstanden"];?></h3>
         <div class="row">
             <div class="col-lg-6">
-                <label for="fcheckEntryPoints">Punktzahl</label>
+                <label for="fcheckEntryPoints"><?php echo $translate["Punktzahl"];?></label>
                 <input class="form-control" type="text" id="fcheckEntryPoints" value="" disabled/>
             </div>
             <div class="col-lg-6">
-                <label for="fcheckEntryLL">Lehrling</label>
+                <label for="fcheckEntryLL"><?php echo $translate["Lernende/r"];?></label>
                 <input class="form-control" type="text" id="fcheckEntryLL" value="" disabled/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div class="col-lg-12">
-                <label for="fcheckEntryReason">Begründung</label>
+                <label for="fcheckEntryReason"><?php echo $translate["Begründung"];?></label>
                 <textarea class="form-control" id="fcheckEntryReason"></textarea><br/>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <button type="button" entryID="" id="fsend" class="btn btn-primary">Abschicken</button>
-                <?php if($session_usergroup == 1){echo '<button type="button" entryID="" id="fsendAndDelete" class="btn btn-danger">Abschicken & Eintrag löschen</button>';} ?>
+                <button type="button" entryID="" id="fsend" class="btn btn-primary"><?php echo $translate["Abschicken"];?></button>
+                <?php if($session_usergroup == 1){echo '<button type="button" entryID="" id="fsendAndDelete" class="btn btn-danger">'.$translate["Abschicken & Eintrag löschen"].'</button>';} ?>
             </div>
             <div class="col-lg-6">
-                <button type="button" style="float: right;" id="finterrupt" class="btn btn-secondary">Abbrechen</button>
+                <button type="button" style="float: right;" id="finterrupt" class="btn btn-secondary"><?php echo $translate["Abbrechen"];?></button>
             </div>
         </div>
         <br/>
         <div class="row">
             <div class="col-lg-12">
-                <p>Beim Abschicken werden die verantwortlichen Personen per E-Mail benachrichtigt, um den Eintrag zu überprüfen.</p>
+                <p><?php echo $translate["Beim Abschicken werden die verantwortlichen Personen per E-Mail benachrichtigt, um den Eintrag zu überprüfen"];?>.</p>
             </div>
         </div>
     </div>
@@ -125,22 +125,22 @@
                         "orderable": false
                     }],
                     "language": {
-                        "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
-                        "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
-                        "sInfoEmpty":       "0 bis 0 von 0 Einträgen",
+                        "sEmptyTable":      "<?php echo $translate["Keine Daten in der Tabelle vorhanden"];?>",
+                        "sInfo":            "_START_ <?php echo $translate["bis"];?> _END_ <?php echo $translate["von"];?> _TOTAL_ <?php echo $translate["Einträgen"];?>",
+                        "sInfoEmpty":       "0 <?php echo $translate["bis"];?> 0 <?php echo $translate["von"];?> 0 <?php echo $translate["Einträgen"];?>",
                         "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
                         "sInfoPostFix":     "",
                         "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ Einträge anzeigen",
+                        "sLengthMenu":      "_MENU_ <?php echo $translate["Einträge anzeigen"];?>",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
                         "sSearch":          "",
-                        "sZeroRecords":     "Keine Einträge vorhanden.",
+                        "sZeroRecords":     "<?php echo $translate["Keine Einträge vorhanden"];?>.",
                         "oPaginate": {
-                            "sFirst":       "Erste",
-                            "sPrevious":    "Zurück",
-                            "sNext":        "Nächste",
-                            "sLast":        "Letzte"
+                            "sFirst":       "<?php echo $translate["Erste"];?>",
+                            "sPrevious":    "<?php echo $translate["Zurück"];?>",
+                            "sNext":        "<?php echo $translate["Nächste"];?>",
+                            "sLast":        "<?php echo $translate["Letzte"];?>"
                         },
                         "oAria": {
                             "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
@@ -155,23 +155,20 @@
                         }
                     }
                 });
-                $('#dtmake_filter label').attr('placeholder', 'Suchen');
-                $('#dtmake_filter input').attr('placeholder', 'Suchen');
-                $('#dtmake_filter input').addClass('form-control');
+                $('#users_filter input').attr('placeholder', '<?php echo $translate["Suchen"];?>');
+                $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#dtmake").slideDown( "slow" );
-                });
-                
-                
+                });   
             });
-            
-            
-        } );
+        });
     </script>
+    
+    <script type="text/javascript" src="modul/pe/pe.js"></script>
     
 <?php elseif($session_usergroup == 4) : ?>
 
-    <h1 class="mt-5">Prozesseinheit</h1>
+    <h1 class="mt-5"><?php echo $translate["Prozesseinheit"];?></h1>
     
      <?php
         
@@ -213,25 +210,25 @@
                 $semList = $semList . "<option value='". $semRow['ID'] ."'>". $semRow['semester'] ."</option>";
             }
         } else {
-            $semList = "<option>Keine Semester vorhanden.</option>";
+            $semList = "<option>".$translate["Keine Semester vorhanden"].".</option>";
         }
         
     ?>
 
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
-    <p>Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden.</p>
+    <p><?php echo $translate["Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden"];?>.</p>
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>PE-Titel</th>
-                <th>Punktzahl</th>
-                <th>Semester</th>
-                <th>Erstellungsdatum</th>
+                <th><?php echo $translate["PE-Titel"];?></th>
+                <th><?php echo $translate["Punktzahl"];?></th>
+                <th><?php echo $translate["Semester"];?></th>
+                <th><?php echo $translate["Erstellungsdatum"];?></th>
             </tr>
         </thead>
         <tbody>
-            <?php if($entryList){echo $entryList;} else {echo "Du hast bisher nichts eingetragen.";} ?>
+            <?php if($entryList){echo $entryList;} else {echo $translate["Du hast bisher nichts eingetragen"].".";} ?>
             <tr id="newEntry">
                 <th scope="row" style="padding-top: 20px;">#</th>
                 <td><input class="form-control" type="text" id="fTitle"/></td>
@@ -247,27 +244,26 @@
             <tr>
                 <td colspan="6" align="center">
                     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> Eintrag wurde hinzugefügt.
+                        <strong></strong> <?php echo $translate["Eintrag wurde hinzugefügt"];?>.
                     </div><br/>
                     <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
-                        Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten <strong>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Es können Stichproben durchgeführt werden.</strong>
+                        <?php echo $translate["Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten"];?> <strong>
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $translate["Es können Stichproben durchgeführt werden"];?>.</strong>
                     </div><br/>
-                    <button id="addNewEntryButton" type="button" class="btn btn-primary">Eintrag hinzufügen</button>
+                    <button id="addNewEntryButton" type="button" class="btn btn-primary"><?php echo $translate["Eintrag hinzufügen"];?></button>
                 </td>
             </tr>
         </tbody>
     </table>
+    
+    <script type="text/javascript" src="modul/pe/pe.js"></script>
 
 <?php else : ?>
     
     <br/><br/>
     
     <div class='alert alert-danger'>
-        <strong>Fehler </strong> Ihr Account wurde keiner Gruppe zugewiesen.
-        Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.
+        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
     </div>
     
 <?php endif; ?>
-
-<script type="text/javascript" src="modul/pe/pe.js"></script>

@@ -1,15 +1,17 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+
 <?php
 
-	$welcome = "<h3>Willkommen!</h3>";
+	$welcome = "<h3>".$translate['Willkommen']."!</h3>";
+	
     $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
 	$sql2 = "SELECT firstname, lastname FROM tb_user WHERE id = $session_userid";
 	$result = $mysqli->query($sql2);
         
     if ($result->num_rows == 1) {
 		$row = $result->fetch_assoc();
-		$welcome = "<h2 style='opacity: 0;' class='mt-5'>Willkommen ".$row['firstname']." ".$row['lastname']."!</h2>";
+		$welcome = "<h2 style='opacity: 0;' class='mt-5'>".$translate['Willkommen']." ".$row['firstname']." ".$row['lastname']."!</h2>";
 	} 
 
 ?>
@@ -31,7 +33,7 @@
 						<img src="'. $row["icon"] .'" class="dashIco img-fluid mx-auto d-block"/>
 					</div>
 					<div class="dashModuleTitle">
-					   <h3>'. $row["title"] .'</h3>
+					   <h3>'. $translate[$row["title"]] .'</h3>
 					</div>
 				</div>
 			</div>

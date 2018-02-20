@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="modul/leistungslohn/leistungslohn.css"/>
     </head>
 
-    <h1 class="mt-5">Leistungslohn</h1>
+    <h1 class="mt-5"><?php echo $translate["Leistungslohn"];?></h1>
     
     <?php
     
@@ -47,7 +47,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                             <div class="col-10">
-                                                <h2>Jahr 3</h2>
+                                                <h2>'.$translate["Lohnzyklus"].' ' . $translate["Jahr"] .' 3</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -69,7 +69,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
                                             <div class="col-10">
-                                                <h2>Semester 7</h2>
+                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 7</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -91,7 +91,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
                                             <div class="col-10">
-                                                <h2>Semester 8</h2>
+                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 8</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -121,7 +121,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
                                             <div class="col-10">
-                                                <h2>Semester 5</h2>
+                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 5</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -143,7 +143,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
                                             <div class="col-10">
-                                                <h2>Semester 6</h2>
+                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 6</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -213,7 +213,7 @@
                         <div class="col-lg-12 card">
                             <div class="row groupHeader" groupID="'.$groupID.'" onclick="toggleGroup('.$groupID.');">
                                 <div class="col-10">
-                                    <h2>'.$groupName.'</h2>
+                                    <h2>'.$translate[$groupName].'</h2>
                                 </div>
                                 <div class="col-2 text-right">
                                     <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -242,24 +242,25 @@
             echo $groups;
             
         } else {
-            echo "Keine Gruppen gefunden.";
+            echo $translate['Keine Gruppen gefunden'].".";
         }
         
         //GRUPPEN ENDE
-        
     ?>
 
     
+    <br/>
+    <hr/>
+    <h2><?php echo $translate["CSV-Export"];?></h2>
     <script type="text/javascript" src="modul/leistungslohn/leistungslohn.js"></script> 
-    
-    
-<?php elseif($session_usergroup == 3) : ?>
 
+<?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
+    
     <head>
         <link rel="stylesheet" href="modul/leistungslohn/leistungslohn.css"/>
     </head>
 
-    <h1 class="mt-5">Leistungslohn</h1>
+    <h1 class="mt-5"><?php echo $translate["Leistungslohn"];?></h1>
     
     <?php
     
@@ -276,18 +277,146 @@
                 $userLastname = $row['userLastname'];
                 $userBkey = $row['userBkey'];
                 
+                if($session_usergroup == 3){
+                    
+                    $cycleList = '
+                        <!-- BERECHNUNGSZYKLEN INFORMATIKER -->
+                                            
+                        <div class="row">
+                            <div class="col-lg-12 card">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
+                                    <div class="col-10">
+                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Jahr"].' 3</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
+                                    
+                                    <div class="col-12 text-center loading">
+                                        <img src="img/loading2_big.gif"/>
+                                    </div>
+                                    
+                                    <!-- AJAX CALL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12 card">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
+                                    <div class="col-10">
+                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 7</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
+                                    
+                                    <div class="col-12 text-center loading">
+                                        <img src="img/loading2_big.gif"/>
+                                    </div>
+                                    
+                                    <!-- AJAX CALL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12 card">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
+                                    <div class="col-10">
+                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 8</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
+                                    
+                                    <div class="col-12 text-center loading">
+                                        <img src="img/loading2_big.gif"/>
+                                    </div>
+                                    
+                                    <!-- AJAX CALL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- BERECHNUNGSZYKLEN INFORMATIKER ENDE -->
+                    ';
+                    
+                } else if ($session_usergroup == 4 || $session_usergroup == 5){
+                    
+                    $cycleList = '
+                        <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG -->
+                                            
+                        <div class="row">
+                            <div class="col-lg-12 card">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
+                                    <div class="col-10">
+                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 5</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="4">
+                                    
+                                    <div class="col-12 text-center loading">
+                                        <img src="img/loading2_big.gif"/>
+                                    </div>
+                                    
+                                    <!-- AJAX CALL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12 card">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
+                                    <div class="col-10">
+                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 6</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="5">
+                                    
+                                    <div class="col-12 text-center loading">
+                                        <img src="img/loading2_big.gif"/>
+                                    </div>
+                                    
+                                    <!-- AJAX CALL -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG ENDE -->
+                    ';
+                    
+                } 
+                
                 $usersEntry = '
                     <div class="row">
-                        <div class="col-lg-12 card">
-                            <div class="row userHeader" userID="'.$userID.'">
+                        <div class="col-lg-12 card" style="background-color: #F1F4FB;">
+                            <div class="row userHeader" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
                                 <div class="col-10">
                                     <h2>'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
                                 </div>
                                 <div class="col-2 text-right">
-
+                                    <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row" userID="'.$userID.'">
+                            <div class="row userContent" userID="'.$userID.'">
                                 <div class="col-12">
                                     <hr/>
                                 </div>
@@ -296,72 +425,8 @@
                                         <div class="col-lg-12">
                                         
                                             <!-- BERECHNUNGSZYKLEN -->
-                                        
-                                            <div class="row">
-                                                <div class="col-lg-12 card">
-                                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
-                                                        <div class="col-10">
-                                                            <h2>Jahr 3</h2>
-                                                        </div>
-                                                        <div class="col-2 text-right">
-                                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
-                                                        
-                                                        <div class="col-12 text-center loading">
-                                                            <img src="img/loading2_big.gif"/>
-                                                        </div>
-                                                        
-                                                        <!-- AJAX CALL -->
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
                                             
-                                            <div class="row">
-                                                <div class="col-lg-12 card">
-                                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
-                                                        <div class="col-10">
-                                                            <h2>Semester 7</h2>
-                                                        </div>
-                                                        <div class="col-2 text-right">
-                                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
-                                                        
-                                                        <div class="col-12 text-center loading">
-                                                            <img src="img/loading2_big.gif"/>
-                                                        </div>
-                                                        
-                                                        <!-- AJAX CALL -->
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="row">
-                                                <div class="col-lg-12 card">
-                                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
-                                                        <div class="col-10">
-                                                            <h2>Semester 8</h2>
-                                                        </div>
-                                                        <div class="col-2 text-right">
-                                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
-                                                        
-                                                        <div class="col-12 text-center loading">
-                                                            <img src="img/loading2_big.gif"/>
-                                                        </div>
-                                                        
-                                                        <!-- AJAX CALL -->
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            '.$cycleList.'
                                             
                                             <!-- BERECHNUNGSZYKLEN ENDE -->
                                             
@@ -372,37 +437,26 @@
                         </div>
                     </div>
                 ';
-  
+                
+                echo $usersEntry;
+                
             }
-         } else {
-            $usersEntry = "Kein Benutzer gefunden.";
-         }
-         
-         echo $usersEntry;
+        } else {
+            echo $translate["Kein Benutzer gefunden"].".";
+        }
         
         //LEHRLINGE ENDE
     
     ?>
     
     <script type="text/javascript" src="modul/leistungslohn/leistungslohn.js"></script> 
-
-<?php elseif($session_usergroup == 4) : ?>
-
-    <h1 class="mt-5">Leistungslohn</h1>
-    <p>Sie sind KV-Lehrling Versicherung</p>
-
-<?php elseif($session_usergroup == 5) : ?>
-
-    <h1 class="mt-5">Leistungslohn</h1>
-    <p>Sie sind KV-Lehrling Bank</p>
     
 <?php else : ?>
     
     <br/><br/>
     
     <div class='alert alert-danger'>
-        <strong>Fehler </strong> Sie haben keine Berechtigungen zu diesem Modul.
-        Falls Sie das für einen Fehler halten, wenden Sie sich bitte an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.
+        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
     </div>
     
 <?php endif; ?>

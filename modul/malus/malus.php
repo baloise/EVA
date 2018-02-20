@@ -20,7 +20,7 @@
             }
         
         } else {
-            $llist = "Keine Lehrlinge im System";
+            $llist = $translate["Keine Lehrlinge im System"];
         }
         
         
@@ -54,7 +54,7 @@
                 
             }
         } else {
-            $entryList = "Noch keine Einträge";
+            $entryList = $translate["Noch keine Einträge"];
         }
         
         $semList = "";
@@ -65,51 +65,50 @@
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
-    <h1 class="mt-5">Malus</h1>
-    <p>Malus-Werte für Lehrlinge definieren.</p>
+    <h1 class="mt-5"><?php echo $translate["Malus"];?></h1>
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-        <strong></strong> Eintrag wurde hinzugefügt.
+        <strong></strong> <?php echo $translate["Eintrag wurde hinzugefügt"];?>.
     </div><br/>
     <div class="col-lg-12 card">
         <div class="row">
             <div class="col-lg-12">
                 <br/>
-                <h3>Neuen Malus eintragen</h3>
+                <h3><?php echo $translate["Neuen Malus eintragen"];?></h3>
                 <hr/>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4">
-                <label for="fselUser">Lehrling:</label>
+                <label for="fselUser"><?php echo $translate["Lernende/r"];?>:</label>
                 <select id="fselUser" class="form-control">
                     <option></option>
                     <?php echo $llist; ?>
                 </select>
             </div>
             <div class="col-lg-4">
-                <label for="fsem">Semester:</label>
+                <label for="fsem"><?php echo $translate["Semester"];?>:</label>
                 <select id="fsem" class="form-control" disabled>
                     <option></option>
                     <?php echo $semList; ?>
                 </select>
             </div>
             <div class="col-lg-4">
-                <label for="fweigth">Gewichtung:</label>
+                <label for="fweigth"><?php echo $translate["Gewichtung"];?>:</label>
                 <input id="fweigth" class="form-control" type="text" placeholder="%"/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div class="col-lg-12">
-                <label for="freasoning">Begründung</label>
+                <label for="freasoning"><?php echo $translate["Begründung"];?></label>
                 <textarea id="freasoning" class="form-control"></textarea>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <br/>
-                <button type="button" id="fsenMal" class="btn btn-primary">Abschicken</button>
+                <button type="button" id="fsenMal" class="btn btn-primary"><?php echo $translate["Abschicken"];?></button>
                 <br/><br/>
             </div>
         </div>
@@ -117,7 +116,7 @@
     
     <div class="col-lg-12">
         <hr/>
-        <h3>Definierte Werte</h3>
+        <h3><?php echo $translate["Definierte Werte"];?></h3>
         <br/>
     </div>
     
@@ -130,11 +129,11 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th>Lehrling</th>
-                <th>Gewichtung</th>
-                <th>Begründung</th>
-                <th>Semester</th>
-                <th>Erstellungsdatum</th>
+                <th><?php echo $translate["Lernende/r"];?></th>
+                <th><?php echo $translate["Gewichtung"];?></th>
+                <th><?php echo $translate["Begründung"];?></th>
+                <th><?php echo $translate["Semester"];?></th>
+                <th><?php echo $translate["Erstellungsdatum"];?></th>
             </tr>
         </thead>
         <tbody>
@@ -142,7 +141,7 @@
                 if($entryList){
                     echo $entryList;
                 } else {
-                    echo "<tr><td colspan='7' align='center'>Bisher keine Einträge</td></tr>";
+                    echo "<tr><td colspan='7' align='center'>".$translate["Bisher keine Einträge"]."</td></tr>";
                 }
             ?>
         </tbody>
@@ -157,22 +156,22 @@
                         "orderable": false
                     }],
                     "language": {
-                        "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
-                        "sInfo":            "_START_ bis _END_ von _TOTAL_ Einträgen",
-                        "sInfoEmpty":       "0 bis 0 von 0 Einträgen",
+                        "sEmptyTable":      "<?php echo $translate["Keine Daten in der Tabelle vorhanden"];?>",
+                        "sInfo":            "_START_ <?php echo $translate["bis"];?> _END_ <?php echo $translate["von"];?> _TOTAL_ <?php echo $translate["Einträgen"];?>",
+                        "sInfoEmpty":       "0 <?php echo $translate["bis"];?> 0 <?php echo $translate["von"];?> 0 <?php echo $translate["Einträgen"];?>",
                         "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
                         "sInfoPostFix":     "",
                         "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ Einträge anzeigen",
+                        "sLengthMenu":      "_MENU_ <?php echo $translate["Einträge anzeigen"];?>",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
                         "sSearch":          "",
-                        "sZeroRecords":     "Keine Einträge vorhanden.",
+                        "sZeroRecords":     "<?php echo $translate["Keine Einträge vorhanden"];?>.",
                         "oPaginate": {
-                            "sFirst":       "Erste",
-                            "sPrevious":    "Zurück",
-                            "sNext":        "Nächste",
-                            "sLast":        "Letzte"
+                            "sFirst":       "<?php echo $translate["Erste"];?>",
+                            "sPrevious":    "<?php echo $translate["Zurück"];?>",
+                            "sNext":        "<?php echo $translate["Nächste"];?>",
+                            "sLast":        "<?php echo $translate["Letzte"];?>"
                         },
                         "oAria": {
                             "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
@@ -187,34 +186,23 @@
                         }
                     }
                 });
-                $('#dtmake_filter label').attr('placeholder', 'Suchen');
-                $('#dtmake_filter input').attr('placeholder', 'Suchen');
-                $('#dtmake_filter input').addClass('form-control');
+                $('#users_filter input').attr('placeholder', '<?php echo $translate["Suchen"];?>');
+                $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#dtmake").slideDown( "slow" );
-                });
-                
-                
+                });   
             });
-            
-            
-        } );
+        });
     </script>
       
     <script type="text/javascript" src="modul/malus/malus.js"></script>  
-    
-<?php elseif($session_usergroup != 1) : ?>
-
-    <h1 class="mt-5">Berechtigung fehlt</h1>
-    <p>Sie haben keine Berechtigungen für dieses Modul. Falls dies ein Fehler ist, wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.</p>
     
 <?php else : ?>
     
     <br/><br/>
     
     <div class='alert alert-danger'>
-        <strong>Fehler </strong> Ihr Account wurde keiner Gruppe zugewiesen.
-        Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.
+        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
     </div>
     
 <?php endif; ?>
