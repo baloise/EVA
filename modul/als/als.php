@@ -4,39 +4,39 @@
 <?php if($session_usergroup == 1) : ?>
 
     <h1 class="mt-5">ALS</h1>
-    
+
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
     <?php
-		
+
 		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID, pr.performance FROM `tb_als` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
                 WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
-        
+
         $entryList = "";
-        
+
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
-            
+
             $i = 1;
-            
+
             while($row = $result->fetch_assoc()) {
-                
+
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
-                
+
                 $sql2 = "SELECT us.firstname, us.lastname FROM `tb_als` AS pr
                 LEFT JOIN tb_user AS us ON pr.`tb_user_ID` = us.ID WHERE pr.ID = " . $row['ID'];
                 $result2 = $mysqli->query($sql2);
                 $row2 = $result2->fetch_assoc();
-                
+
                 if($row['performance'] == 1){
                     $performance = $translate["Leistungsziele"];
                 } else {
                     $performance = $translate["Verhaltensziele"];
                 }
-                
+
                 $listEntry = '
                 <tr>
                     <td><button entryID="'. $row['ID'] .'"  entryPoints="'. $row['points'] .'" entryLL="'. $row2['firstname'] .' '. $row2['lastname'] .'" type="button" class="btn btn-warning checkEntry" style="padding-bottom: 0px; padding-top: 0px;"><b>!</b></button></td>
@@ -47,21 +47,21 @@
                     <td>'.$performance.'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
-                
+
                 $entryList = $entryList . $listEntry;
                 $i = $i + 1;
-                
+
             }
         } else {
             $entryList = $translate["Noch keine Einträge"];
         }
-    
+
     ?>
-    
+
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
     </div>
-    
+
     <table class="table" id="dtmake" style="display: none;">
         <thead>
             <tr>
@@ -84,7 +84,7 @@
             ?>
         </tbody>
     </table>
-	
+
 	<div class="alert alert-success" id="checkedNotif" style="display: none; margin-bottom: 0px;"></div><br/>
     <div id="checkEntryForm" style="display: none;">
         <hr/>
@@ -123,7 +123,7 @@
             </div>
         </div>
     </div>
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
@@ -167,33 +167,43 @@
                 $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#dtmake").slideDown( "slow" );
-                });   
+                });
             });
         });
     </script>
 
+    <script type="text/javascript">
+        var translate = {};
+        <?php
+            foreach ($translate as $key => $value) {
+                echo ("translate['".$key."'] = '".$value."';");
+            };
+        ?>;
+    </script>
+    <script type="text/javascript" src="modul/als/als.js"></script>
+
 <?php elseif($session_usergroup == 4 || $session_usergroup == 5) : ?>
 
     <h1 class="mt-5"><?php echo $translate["ALS"]; ?></h1>
-    
+
     <?php
-        
+
         $sql = "SELECT pres.*, sem.semester FROM `tb_als` AS pres
                 INNER JOIN tb_semester AS sem ON sem.ID = pres.tb_semester_ID
                 WHERE `tb_user_ID`= $session_userid;";
-        
+
         $entryListPerf = "";
         $entryList = "";
-        
+
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
-            
+
             $i = 1;
-            
+
             while($row = $result->fetch_assoc()) {
-                
+
                 $dateSet =  date("d.m.Y", strtotime($row['creationDate']));
-                
+
                 $listEntry = '
                 <tr>
                     <th scope="row">'.$i.'</th>
@@ -202,19 +212,19 @@
                     <td>'. $row['semester'] .'</td>
                     <td>'. $dateSet .' </td>
                 </tr>';
-                
-                
+
+
                 if($row['performance'] == 1){
                     $entryListPerf = $entryListPerf . $listEntry;
                 } else {
                     $entryList = $entryList . $listEntry;
                 }
-                
+
                 $i = $i + 1;
-                
+
             }
         }
-        
+
         $semList = "";
         $semSql = "SELECT ID, semester FROM `tb_semester` WHERE tb_group_ID = $session_usergroup";
         $semResult = $mysqli->query($semSql);
@@ -225,11 +235,11 @@
         } else {
             $semList = "<option>". $translate["Keine Semester vorhanden"] .".</option>";
         }
-        
+
     ?>
-    
-    <p><?php echo $translate["Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden."];?></p>
-    
+
+    <p><?php echo $translate["Diese Punktzahlen sind Leistungslohnrelevant. Bitte achte auf die Korrektheit deiner Einträge, es können Stichproben durchgeführt werden"];?>.</p>
+
     <div class="alert alert-danger" id="errorPerf" style="display: none;" role="alert"></div>
     <div class="card col-12" style="padding-top: 15px; margin-bottom: 10px;">
         <h2><?php echo $translate["ALS-Leistungsziele"]; ?></h2>
@@ -272,7 +282,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <div class="card col-12" style="padding-top: 15px;">
         <h2><?php echo $translate["ALS-Verhaltensziele"];?>:</h2>
@@ -306,7 +316,7 @@
                             <strong></strong> <?php echo $translate["Eintrag wurde hinzugefügt"];?>.
                         </div><br/>
                         <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
-                            <?php echo $translate[""];?> <strong>
+                            <?php echo $translate["Sind alle Angaben korrekt? Du kannst den Eintrag nach dem Bestätigen nicht mehr bearbeiten"];?> <strong>
                             <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $translate["Es können Stichproben durchgeführt werden"];?>.</strong>
                         </div><br/>
                         <button id="addNewEntryButton" type="button" class="btn btn-primary"><?php echo $translate["Eintrag hinzufügen"];?></button>
@@ -315,15 +325,23 @@
             </tbody>
         </table>
     </div>
-    
+
+    <script type="text/javascript">
+        var translate = {};
+        <?php
+            foreach ($translate as $key => $value) {
+                echo ("translate['".$key."'] = '".$value."';");
+            };
+        ?>;
+    </script>
+    <script type="text/javascript" src="modul/als/als.js"></script>
+
 <?php else : ?>
-    
+
     <br/><br/>
-    
+
     <div class='alert alert-danger'>
         <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
     </div>
-    
-<?php endif; ?>
 
-<script type="text/javascript" src="modul/als/als.js"></script>
+<?php endif; ?>

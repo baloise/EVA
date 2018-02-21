@@ -20,6 +20,11 @@ body {
 	margin-bottom: 60px; /* Margin bottom by footer height */
 	font-size: 0.8rem;
 }
+.svg path {
+	fill: var(--link);
+	color: var(--link);
+	background-color: var(--link);
+}
 .bg-color {
 	background-color: var(--akzentfarbe) !important;
 }
@@ -124,7 +129,7 @@ html {
 }
 .loadScreen img {
 	vertical-align: middle;
-}	
+}
 .helper {
   display: inline-block;
   height: 100%;

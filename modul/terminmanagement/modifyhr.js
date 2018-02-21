@@ -38,7 +38,7 @@ $(document).ready(function(){
                                     containerToLoad.attr('loaded', "1");
 
                                 } else {
-                                    containerToLoad.html("<div class='col-12'> Fehler: Keine Einträge gefunden.</div>");
+                                    containerToLoad.html("<div class='col-12'> "+translate["Fehler: Keine/Leere Antwort erhalten"]+".</div>");
                                 }
 
                             }
@@ -175,7 +175,7 @@ $(document).ready(function(){
                             });
 
                         } else {
-                            alert("Fehler: Semester konnten nicht gefunden werden.");
+                            alert(translate["Fehler: Semester konnten nicht gefunden werden"]);
                         }
                     }
                 });
@@ -199,15 +199,15 @@ $(document).ready(function(){
         var error = "";
 
         if(!title){
-            error = error + "Bitte Titel angeben.<br/>";
+            error = error + "<br/>" + translate["Bitte Termin-Titel angeben"]+".";
         }
 
         if(!deadline){
-            error = error + "Bitte Deadline angeben.<br/>";
+            error = error + "<br/>" + translate["Bitte Deadline angeben"]+".";
         }
 
         if(!semester){
-            error = error + "Bitte Semester angeben.<br/>";
+            error = error + "<br/>" + translate["Bitte Semester angeben"]+".";
         }
 
         if(error){
@@ -336,11 +336,11 @@ function modifyEntry(deadlineid, userid, state) {
                     });
 
                 } else {
-                    alert("Error: No state Attr set");
+                    alert("Error");
                 }
 
             } else {
-                alert("Error: Attributes Empty");
+                alert("Error");
             }
 
 

@@ -39,7 +39,7 @@
 
             $result = $stmt->get_result();
             while ($row = $result->fetch_array(MYSQLI_NUM)){
-                $naventry = '<li style="display: none;" class="nav-item"><a class="nav-link" navlinkid="'. $row[0] .'" href="'.$row[2].'">'. $row[1] .'</a></li>';
+                $naventry = '<li style="display: none;" class="nav-item"><a class="nav-link" navlinkid="'. $row[0] .'" href="'.$row[2].'">'. $translate[$row[1]] .'</a></li>';
                 echo $naventry;
             }
 

@@ -96,7 +96,7 @@ $(document).ready(function(){
 
                 } else {
 
-                    $("#error").html("FEHLER").slideDown("fast");
+                    $("#error").html(translate["Fehler"]).slideDown("fast");
 
                 }
             }
@@ -114,7 +114,7 @@ $(document).ready(function(){
                     $("#pageContent").load(href, function(responseTxt,statusTxt){
 
                         if(statusTxt=="error"){
-                            $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>Fehler </strong> Seite enth?lt keinen gültigen Pfad. Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.</div>");
+                            $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate["Fehler"]+" </strong> "+translate["Seite enthält keinen gültigen Pfad"]+".</div>");
                         } else {
                             $('.loadScreen').fadeTo("fast", 0, function(){
                                 $('#pageContent').fadeTo("fast", 1);
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
                     });
                 } else {
-                    $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>Fehler </strong> Seite wurde noch nicht verlinkt. Bitte wenden Sie sich an einen <a href='mailto:elia.reutlinger@baloise.ch'>Administrator</a>.</div>");
+                    $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate["Fehler"]+" </strong> "+translate["Seite wurde noch nicht verlinkt"]+".</div>");
                 }
             });
         });

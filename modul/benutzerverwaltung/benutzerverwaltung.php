@@ -2,21 +2,21 @@
 <?php include("../../database/connect.php"); ?>
 <?php if($session_usergroup == 1) : ?>
 
-    
+
     <head>
         <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
-    
-    
-    
+
+
+
     <h1 class="mt-5"><?php echo $translate["Benutzerverwaltung"];?></h1>
-    
+
     <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
         <strong><?php echo $translate["Benutzer löschen"];?></strong> <?php echo $translate["Bitte bestätigen Sie ihre auswahl"];?>: <span id="useridWarn"></span>
         <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate["Bestätigen"];?></button>
     </div>
-    
+
     <div id="userTable" style="display: none;">
         <table id="users" class="display" cellspacing="0" width="100%">
             <thead>
@@ -31,15 +31,15 @@
             </thead>
             <tbody id="userTableBody">
                 <?php
-                
+
                     $sql ="SELECT us.ID, us.bKey, gr.name, us.firstname, us.lastname, us.deleted FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
                     $sql2 ="SELECT ID, name FROM tb_group";
-                    
+
                     $groups = "";
-                    
+
                     $result = $mysqli->query($sql);
                     $result2 = $mysqli->query($sql2);
-                    
+
                     if ($result2->num_rows > 0) {
                         while($row = $result2->fetch_assoc()) {
                             $groups = $groups . "<option value='". $row['ID'] ."'>". $row["name"] ."</option>";
@@ -47,7 +47,7 @@
                     } else {
                         $groups = "Keine Gruppen gefunden";
                     }
-        
+
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             if($row['deleted'] != 1){
@@ -55,33 +55,33 @@
                                 <tr id="rowID'. $row['ID'] .'">
                                     <td>'. $row['ID'] .' </td>
                                     <td>'. $row['bKey'] .'</td>
-                                    <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control" disabled><option>'. $row['name'] .'</option>'.$groups.'</select></td>
+                                    <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control" disabled><option>'. $translate[$row['name']] .'</option>'.$groups.'</select></td>
                                     <td><input fType="2" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['firstname'] .'"></input></td>
                                     <td><input fType="3" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['lastname'] .'"></input></td>
                                     <td><span class="fa fa-trash-o" bkey="'. $row['bKey'] .'" id="'. $row['ID'] .'" aria-hidden="true"></span></td>
                                 </tr>
                                 ';
-                                    
+
                                 echo $generateDiv;
                             }
                         }
                     } else {
                         echo $translate["Keine Daten gefunden"] .".";
                     }
-                
+
                 ?>
             </tbody>
         </table>
     </div>
-    
+
     <div class="alert alert-success" id="changesSaveNotif" style="display: none;">
         <strong></strong> <?php echo $translate["Änderungen wurden gespeichert"];?>!
     </div>
-    
+
     <div id="loadingTable">
         <img class="img-responsive" src="img/loading2.gif"/>
     </div>
-    
+
     <div id="editForm">
         <hr/>
         <br/>
@@ -117,9 +117,16 @@
             </div>
         </form>
     </div>
-    
-    
-    
+
+
+    <script type="text/javascript">
+        var translate = {};
+        <?php
+            foreach ($translate as $key => $value) {
+                echo ("translate['".$key."'] = '".$value."';");
+            };
+        ?>;
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $.getScript( "modul/benutzerverwaltung/benutzerverwaltung.js");
@@ -165,17 +172,17 @@
                 $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#userTable").slideDown( "slow" );
-                });   
+                });
             });
         });
     </script>
-    
+
 <?php else : ?>
-    
+
     <br/><br/>
-    
+
     <div class='alert alert-danger'>
         <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
     </div>
-    
+
 <?php endif; ?>
