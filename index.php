@@ -13,6 +13,16 @@
             $appinfo = $result->fetch_assoc();
         }
 
+        $sql = "SELECT * FROM `tb_ind_design` WHERE tb_user_ID = $session_userid;";
+
+        $result = $mysqli->query($sql);
+
+        if (isset($result) && $result->num_rows == 1) {
+
+            $row = $result->fetch_assoc();
+
+        }
+
     ?>
 
     <head>
@@ -29,10 +39,60 @@
 
         <!-- Custom styles for this template -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <style>
-            <?php echo $appinfo["default_style"];?>
-        </style>
-        <link href="css/evaStyles.css" rel="stylesheet">
+
+        <?php
+
+            if (preg_match("/(Trident\/(\d{2,}|7|8|9)(.*)rv:(\d{2,}))|(MSIE\ (\d{2,}|8|9)(.*)Tablet\ PC)|(Trident\/(\d{2,}|7|8|9))/", $_SERVER["HTTP_USER_AGENT"], $match) != 0) {
+
+                echo '<link href="css/evaStyles_ie.css" rel="stylesheet">';
+
+            } else {
+
+                if(isset($row)){
+
+                    echo '
+                    <style>
+                        :root {
+                            --hintergrund: '.$row["hintergrund"].';
+                            --akzentfarbe: '.$row["akzentfarbe"].';
+                            --schrift: '.$row["schrift"].';
+                            --link: '.$row["link"].';
+                        }
+                        html {
+                            --hintergrund: '.$row["hintergrund"].';
+                            --akzentfarbe: '.$row["akzentfarbe"].';
+                            --schrift: '.$row["schrift"].';
+                            --link: '.$row["link"].';
+                        }
+                    </style>
+                    <link href="css/evaStyles.css" rel="stylesheet">
+                    ';
+
+                } else {
+
+                    echo '
+                    <style>
+                        :root {
+                            --hintergrund: '.$appinfo["hintergrund"].';
+                            --akzentfarbe: '.$appinfo["akzentfarbe"].';
+                            --schrift: '.$appinfo["schrift"].';
+                            --link: '.$appinfo["link"].';
+                        }
+                        html {
+                            --hintergrund: '.$appinfo["hintergrund"].';
+                            --akzentfarbe: '.$appinfo["akzentfarbe"].';
+                            --schrift: '.$appinfo["schrift"].';
+                            --link: '.$appinfo["link"].';
+                        }
+                    </style>
+                    <link href="css/evaStyles.css" rel="stylesheet">
+                    ';
+
+                }
+
+            }
+
+        ?>
 
     </head>
 

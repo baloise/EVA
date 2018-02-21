@@ -2,6 +2,7 @@
     font-family: 'RobotoThin';
     src: url('font/roboto-thin.eot');
     src: url('font/roboto-thin.eot?#iefix') format('eot'),
+         url('font/roboto-thin.woff') format('woff'),
          url('font/roboto-thin.ttf') format('truetype'),
          url('font/roboto-thin.svg') format('svg');
 }
@@ -9,33 +10,34 @@
     font-family: 'RobotoRegular';
     src: url('font/roboto-regular.eot');
     src: url('font/roboto-regular.eot?#iefix') format('eot'),
+         url('font/roboto-regular.woff') format('woff'),
          url('font/roboto-regular.ttf') format('truetype'),
          url('font/roboto-regular.svg') format('svg');
 }
 body {
 	padding-top: 54px;
-	font-family: 'RobotoRegular';
-	background-color: var(--hintergrund);
-	color: var(--schrift);
+	font-family: 'RobotoRegular', 'sans-serif';
+	background-color: white;
+	color: #333333;
 	margin-bottom: 60px; /* Margin bottom by footer height */
 	font-size: 0.8rem;
 }
 .svg path {
-	fill: var(--link);
-	color: var(--link);
-	background-color: var(--link);
+	fill: #1C4E9C;
+	color: #1C4E9C;
+	background-color: #1C4E9C;
 }
 .bg-color{
-	background-color: var(--akzentfarbe) !important;
+	background-color: #F1F4FB !important;
 }
 .nav-link {
-	color: var(--link) !important;
+	color: #1C4E9C !important;
 	font-size: medium;
 	font-weight: 500;
 	transition: font-weight .4s ease-in-out;
 }
 .nav-link:hover, .navbar-brand{
-	color: var(--link) !important;
+	color: #1C4E9C !important;
 	font-weight: 800;
 }
 .custom-toggler .navbar-toggler-icon {
@@ -54,10 +56,10 @@ html {
 	width: 100%;
 	height: 60px; /* Set the fixed height of the footer here */
 	line-height: 60px; /* Vertically center the text there */
-	background-color: var(--akzentfarbe);
+	background-color: #F1F4FB;
 }
 .footer a {
-	color: var(--link);
+	color: #1C4E9C;
 }
 .footer span {
 	float: right;
@@ -69,8 +71,8 @@ html {
 	font-family: 'RobotoThin';
 }
 .mt-5 {
-	background-color: var(--hintergrund);
-	color: var(--schrift);
+	background-color: white;
+	color: #333333;
 	padding: 20px;
 	font-family: 'RobotoThin';
 	font-size: 2rem;
@@ -99,9 +101,9 @@ html {
 	max-width: 65%;
 }
 #navListItem {
-	background-color: var(--akzentfarbe);
-	color: var(--link);
-	border: solid var(--akzentfarbe);
+	background-color: #F1F4FB;
+	color: #1C4E9C;
+	border: solid #F1F4FB;
 	border-radius: 15px;
 	border-width: 2px;
 	padding: 10px;
@@ -115,7 +117,7 @@ html {
 #navListIcon {
 	display: inline-block;
 	font-size: larger;
-	color: var(--link);
+	color: #1C4E9C;
 	cursor: pointer;
 }
 .loadScreen {
@@ -137,15 +139,15 @@ html {
 	vertical-align: middle;
 }
 .btn-primary:hover {
-	background-color: var(--link);
-	border-color: var(--link);
+	background-color: #1C4E9C;
+	border-color: #1C4E9C;
 }
 .btn-primary {
-	background-color: var(--akzentfarbe);
-	border: solid 2px var(--link);
+	background-color: #F1F4FB;
+	border: solid 2px #1C4E9C;
 	font-weight: 500;
-	border-color: var(--link);
-	color: var(--link);
+	border-color: #1C4E9C;
+	color: #1C4E9C;
 }
 .btn {
 	cursor: pointer;
@@ -167,7 +169,7 @@ select.form-control:not([size]):not([multiple]){
 	font-size: 0.8rem;
 }
 .navbar {
-	border-bottom: solid 1.5px var(--link);
+	border-bottom: solid 1.5px #1C4E9C;
 }
 .mt-5, .my-5 {
 	margin-top: 2rem !important;

@@ -6,6 +6,52 @@ $(document).ready(function(){
 
     });
 
+    $("#removeColor").click(function(){
+
+        $.ajax({
+            type: "POST",
+            data: {doEntry: 'deleteColor'},
+            url: "modul/settings/modifyEntry.php",
+            success: function(data){
+                if(data){
+
+                } else {
+
+                    resetColors();
+
+                }
+            }
+        });
+
+    });
+
+
+    $("#saveColor").click(function(){
+
+        var hintergrund = $("#color1").val();
+        var akzentfarbe = $("#color2").val();
+        var schrift = $("#color3").val();
+        var link = $("#color4").val();
+
+        $.ajax({
+            type: "POST",
+            data: {doEntry: 'changeColor', hintergrund:hintergrund, akzentfarbe:akzentfarbe, schrift:schrift, link:link},
+            url: "modul/settings/modifyEntry.php",
+            success: function(data){
+                if(data){
+
+
+
+                } else {
+
+                    $("#saveColor").slideUp("slow");
+
+                }
+            }
+        });
+
+    });
+
     $('#changeLanguageButton').click(function(){
 
         var newLang = $("#newSelLang").val();
