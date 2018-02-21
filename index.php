@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <?php
+
+        include("database/connect.php");
+        include("modul/session/session.php");
+
+        $sql = "SELECT * FROM `tb_appinfo`;";
+        $result = $mysqli->query($sql);
+
+        if (isset($result) && $result->num_rows == 1) {
+            $appinfo = $result->fetch_assoc();
+        }
+
+    ?>
+
     <head>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Evaluation-Tool for trainees">
+        <meta name="description" content="<?php echo $appinfo["description"];?>">
         <meta name="author" content="Elia Reutlinger">
 
-        <title>EVA</title>
+        <title><?php echo $appinfo["title"];?></title>
 
         <!-- Bootstrap core CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
         <!-- Custom styles for this template -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <style>
+            <?php echo $appinfo["default_style"];?>
+        </style>
         <link href="css/evaStyles.css" rel="stylesheet">
 
     </head>
@@ -27,17 +44,13 @@
 
         <div id="pageContents" style="opacity: 0;">
 
-            <?php
-                include("database/connect.php");
-                include("modul/session/session.php");
-            ?>
-
             <!-- Navigation -->
             <div id="naviLink">
                 <nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top" id="slideMe" style="display: none;">
                     <div class="container">
                         <a class="navbar-brand" href="modul/dashboard/dashboard.php">
-                            <img src="img/logoBaslerBalet.svg" width="300" alt="Logo">
+                            <img src="<?php echo $appinfo["logo_path"];?>" width="<?php echo $appinfo["logo_width"];?>" alt="Logo">
+                            <span style="margin-left:20px;"><?php echo $appinfo["title"];?></span>
                         </a>
                         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -99,7 +112,7 @@
 
             <footer class="footer" id="slideMeFoot" style="display: none;">
                 <div class="container">
-                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate["Einstellungen"] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | EVA <a href="https://github.com/baloise/eva">v.1.0</a></span>
+                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate["Einstellungen"] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | <?php echo $appinfo["title"];?> <a href="https://github.com/baloise/eva">v.1.0</a></span>
                 </div>
             </footer>
         </div>

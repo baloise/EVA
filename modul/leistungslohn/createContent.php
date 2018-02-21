@@ -7,7 +7,17 @@
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
         //Generate IT-Contents
-        function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate){
+        function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
+
+            $malusEntry = "";
+
+            if($malus > 0){
+                $malusEntry = $malusEntry . '
+                <div class="col-lg-12 text-center">
+                    <h2><b>'.$translate["Malus"].': '.$malus.' %</b></h2>
+                </div>
+                ';
+            }
 
             $semester = '
 
@@ -20,7 +30,7 @@
                                 <h2>'.$translate["Semester"].' '.$semesterName.'</h2>
                             </div>
                             <div class="col-2 text-right">
-                                <span><b>'. round((LITcalculateSemester($semesterID, $userID, $mysqli)*100), 2) .' %</b></span>
+                                <span><b>'. bcadd(round((LITcalculateSemester($semesterID, $userID, $mysqli)*100), 2), ($malus*-1), 2) .' %</b></span>
                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -33,6 +43,8 @@
                                     <div class="col-lg-12">
 
                                         <!-- BERECHNUNGEN -->
+
+                                        '.$malusEntry.'
 
                                         <div class="col-lg-12 card">
                                             <br/>
@@ -154,8 +166,6 @@
 
         };
 
-
-
         function calcActualSalaryIT($w1){
             if($w1*100 < 70){
                 return 1200;
@@ -175,11 +185,18 @@
         }
 
 
-
-
-
         //Generate LKVB-Contents
-        function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate){
+        function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
+
+            $malusEntry = "";
+
+            if($malus > 0){
+                $malusEntry = $malusEntry . '
+                <div class="col-lg-12 text-center">
+                    <h2><b>'.$translate["Malus"].': '.$malus.' %</b></h2>
+                </div>
+                ';
+            }
 
             $performBetrieb = "";
 
@@ -210,7 +227,7 @@
                                 <h2>'.$translate["Semester"].' '.$semesterName.'</h2>
                             </div>
                             <div class="col-2 text-right">
-                                <span><b>'. round((LKVBcalculateSemester($semesterID, $userID, $mysqli)*100), 2) .' %</b></span>
+                                <span><b>'. bcadd(round((LKVBcalculateSemester($semesterID, $userID, $mysqli)*100), 2), $malus*-1, 2) .' %</b></span>
                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -223,6 +240,8 @@
                                     <div class="col-lg-12">
 
                                         <!-- BERECHNUNGEN -->
+
+                                        '.$malusEntry.'
 
                                         <div class="col-lg-12 card">
                                             <br/>
@@ -340,8 +359,6 @@
 
         };
 
-
-
         function calcActualSalaryLKVB($w1){
 
             if($w1*100 < 70){
@@ -388,13 +405,22 @@
                 while($row = $result->fetch_assoc()) {
 
                     $semesterCount = $semesterCount + 1;
+                    $malus = 0;
 
-                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                        }
+                    }
+
+                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
@@ -421,11 +447,11 @@
             $cycleTotalItPercentAverage = $cycleTotalItPercent / $semesterCount;
             $cycleTotalSchoolPercentAverage = $cycleTotalSchoolPercent / $semesterCount;
             $cycleTotalBetriebPercentAverage = $cycleTotalBetriebPercent / $semesterCount;
-            $cycleTotalPercentAverage = ($cycleTotalItPercentAverage + $cycleTotalSchoolPercentAverage + $cycleTotalBetriebPercentAverage)/3;
+            $cycleTotalPercentAverage = $cycleTotalPercent / $semesterCount;
 
             $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
 
-            echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+            echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate, $totalMalus);
 
         }
 
@@ -452,14 +478,25 @@
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
 
+                    $malus = 0;
+
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                            $totalMalus = $totalMalus + $malusRow["weight"];
+                        }
+                    }
+
                     $semesterCount = $semesterCount + 1;
 
-                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
@@ -486,7 +523,7 @@
             $cycleTotalItY3 = $cycleTotalItPercent / $semesterCount;
             $cycleTotalSchoolY3 = $cycleTotalSchoolPercent / $semesterCount;
             $cycleTotalBetriebY3 = $cycleTotalBetriebPercent / $semesterCount;
-            $cycleTotalPercentY3 = ($cycleTotalItY3 + $cycleTotalSchoolY3 + $cycleTotalBetriebY3)/3;
+            $cycleTotalPercentY3 = $cycleTotalPercent / $semesterCount;
 
             $sql = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 4, 2";
             $result = $mysqli->query($sql);
@@ -500,14 +537,25 @@
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
 
+                    $malus = 0;
+
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                            $totalMalus = $totalMalus + $malusRow["weight"];
+                        }
+                    }
+
                     $semesterCount = $semesterCount + 1;
 
-                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
@@ -534,7 +582,8 @@
             $cycleTotalItPercentAverage = (($cycleTotalItY3/3)) + ((($cycleTotalItPercent/$semesterCount)/3)*2);
             $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolY3/3)) + ((($cycleTotalSchoolPercent/$semesterCount)/3)*2);
             $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebY3/3)) + ((($cycleTotalBetriebPercent/$semesterCount)/3)*2);
-            $cycleTotalPercentAverage = ($cycleTotalItPercentAverage + $cycleTotalSchoolPercentAverage + $cycleTotalBetriebPercentAverage)/3;
+            $cycleTotalPercentAverage = (($cycleTotalPercentY3/3)) + ((($cycleTotalPercent/$semesterCount)/3)*2);
+
 
             $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
 
@@ -566,14 +615,25 @@
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
 
+                    $malus = 0;
+
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                            $totalMalus = $totalMalus + $malusRow["weight"];
+                        }
+                    }
+
                     $semesterCount = $semesterCount + 1;
 
-                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
@@ -600,7 +660,7 @@
             $cycleTotalItY3 = $cycleTotalItPercent / $semesterCount;
             $cycleTotalSchoolY3 = $cycleTotalSchoolPercent / $semesterCount;
             $cycleTotalBetriebY3 = $cycleTotalBetriebPercent / $semesterCount;
-            $cycleTotalPercentY3 = ($cycleTotalItY3 + $cycleTotalSchoolY3 + $cycleTotalBetriebY3)/3;
+            $cycleTotalPercentY3 = $cycleTotalPercent / $semesterCount;
 
             $sql = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 6, 1";
             $result = $mysqli->query($sql);
@@ -614,14 +674,25 @@
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
 
+                    $malus = 0;
+
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                            $totalMalus = $totalMalus + $malusRow["weight"];
+                        }
+                    }
+
                     $semesterCount = $semesterCount + 1;
 
-                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
@@ -648,7 +719,8 @@
             $cycleTotalItPercentAverage = (($cycleTotalItY3/3)) + ((($cycleTotalItPercent/$semesterCount)/3)*2);
             $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolY3/3)) + ((($cycleTotalSchoolPercent/$semesterCount)/3)*2);
             $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebY3/3)) + ((($cycleTotalBetriebPercent/$semesterCount)/3)*2);
-            $cycleTotalPercentAverage = ($cycleTotalItPercentAverage + $cycleTotalSchoolPercentAverage + $cycleTotalBetriebPercentAverage)/3;
+            $cycleTotalPercentAverage = (($cycleTotalPercentY3/3)) + ((($cycleTotalPercent/$semesterCount)/3)*2);
+
 
             $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
 
@@ -681,14 +753,24 @@
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
 
+                    $malus = 0;
+
+                    $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                    $malusResult = $mysqli->query($malusSql);
+                    if (isset($malusResult) && $malusResult->num_rows > 0) {
+                        while($malusRow = $malusResult->fetch_assoc()) {
+                            $malus = $malus + $malusRow["weight"];
+                        }
+                    }
+
                     $semesterCount = $semesterCount + 1;
 
-                    $semesterList = $semesterList . generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                    $semesterList = $semesterList . generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + LKVBcalculateSemester($row['ID'], $userID, $mysqli);
+                        $cycleTotalPercent = $cycleTotalPercent + (LKVBcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
                     } else {
-                        $cycleTotalPercent = $cycleTotalPercent + 1;
+                        $cycleTotalPercent = ($cycleTotalPercent + 1) - ($malus/100);
                     }
 
                     if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) != 0){
@@ -715,7 +797,7 @@
             $cycleTotalPerformPercentAverage = $cycleTotalPerformPercent / $semesterCount;
             $cycleTotalSchoolPercentAverage = $cycleTotalSchoolPercent / $semesterCount;
             $cycleTotalBehavePercentAverage = $cycleTotalBehavePercent / $semesterCount;
-            $cycleTotalPercentAverage = ($cycleTotalPerformPercentAverage + $cycleTotalSchoolPercentAverage + $cycleTotalBehavePercentAverage)/3;
+            $cycleTotalPercentAverage = $cycleTotalPercent / $semesterCount;
 
             $actualSalary = calcActualSalaryLKVB($cycleTotalPercentAverage);
 

@@ -68,7 +68,7 @@
             <?php
 
                 $sql ="
-                SELECT dead.ID AS did, dead.title AS Dtitel, dead.description AS Dbeschreibung, dead.date AS Ddeadline, sem.ID AS Sid, sem.semester AS Ssemester, grou.ID AS Gid, grou.name AS Gname FROM `tb_deadline` AS dead
+                SELECT dead.ID AS did, dead.title_de AS Dtitel_de, dead.title_fr AS Dtitel_fr, dead.title_it AS Dtitel_it, dead.description_de AS Dbeschreibung_de, dead.description_fr AS Dbeschreibung_fr, dead.description_it AS Dbeschreibung_it, dead.date AS Ddeadline, sem.ID AS Sid, sem.semester AS Ssemester, grou.ID AS Gid, grou.name AS Gname FROM `tb_deadline` AS dead
                 INNER JOIN tb_semester AS sem ON dead.tb_semester_ID = sem.ID
                 INNER JOIN tb_group AS grou ON grou.ID = sem.tb_group_ID
                 ORDER BY Ssemester ASC, Gid ASC;
@@ -136,12 +136,19 @@
 
                         }
 
+                        $translateTitle = "";
+                        if($row['Dtitel_' . $session_language]){
+                            $translateTitle = $row['Dtitel_' . $session_language];
+                        } else {
+                            $translateTitle = $row['Dtitel_de'];
+                        }
+
                         $generateDiv = $generateDiv .'
                         <div class="row" style="max-width: 98%; margin-left: auto; margin-right: auto;">
                             <div class="col-12 card" style="padding-top:10px; padding-bottom:10px; margin-bottom:20px;">
                                 <div class="deadlineHead row" style="cursor:pointer;" did="'. $row['did'] .'">
                                     <div class="col-10">
-                                        <h2>'. $row['Dtitel'] .'</h2>
+                                        <h2>'. $translateTitle .'</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -160,15 +167,15 @@
                                         <div class="row">
                                             <div class="col-lg-4 text-center">
                                                 <label for="">'.$translate["Deutsch"].'</label>
-                                                <input fType="1" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel'] .'"></input>
+                                                <input fType="1" lang="de" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_de'] .'"></input>
                                             </div>
                                             <div class="col-lg-4 text-center">
                                                 <label for="">'.$translate["Französisch"].'</label>
-                                                <input fType="1" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel'] .'"></input>
+                                                <input fType="1" lang="fr" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_fr'] .'"></input>
                                             </div>
                                             <div class="col-lg-4 text-center">
                                                 <label for="">'.$translate["Italienisch"].'</label>
-                                                <input fType="1" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel'] .'"></input>
+                                                <input fType="1" lang="it" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_it'] .'"></input>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -178,13 +185,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 text-center">
-                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung'] .'</textarea>
+                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" lang="de" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung_de'] .'</textarea>
                                             </div>
                                             <div class="col-lg-4 text-center">
-                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung'] .'</textarea>
+                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" lang="fr" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung_fr'] .'</textarea>
                                             </div>
                                             <div class="col-lg-4 text-center">
-                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung'] .'</textarea>
+                                                <textarea style="min-height: 100px; max-width: 98%;" fType="2" lang="it" did="'. $row['did'] .'" class="form-control changeInTable">'. $row['Dbeschreibung_it'] .'</textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -235,22 +242,74 @@
 
             ?>
 
-            <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
-
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <h2><?php echo $translate["Neuer Termin"];?></h2>
+    <div class="col-12">
+        <div class="col-12" style="margin-bottom:20px;">
+            <hr/>
+            <h1 class="mt-5"><?php echo $translate["Neuer Termin"];?></h1>
+            <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3><?php echo $translate["Titel"];?></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <label for=""><?php echo $translate["Deutsch"];?></label>
+                    <input class="form-control " type="text" id="fTitle_de" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <label for=""><?php echo $translate["Französisch"];?></label>
+                    <input class="form-control " type="text" id="fTitle_fr" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <label for=""><?php echo $translate["Italienisch"];?></label>
+                    <input class="form-control " type="text" id="fTitle_it" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center" style="margin-top:30px;">
+                    <h3><?php echo $translate["Beschreibung"];?></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_de" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_fr" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_it" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for=""><?php echo $translate["Deadline"];?></label>
+                    <input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate["Deadline"];?>" required></input>
+                </div>
+                <div class="col-lg-4">
+                    <label for=""><?php echo $translate["Gruppe"];?></label>
+                    <select class="form-control updateSems" did="newDID"><option></option><?php echo $groups; ?></select>
+                </div>
+                <div class="col-lg-4">
+                    <label for=""><?php echo $translate["Semester"];?></label>
+                    <select class="form-control inTableSelect" did="newDID" id="fSemester" disabled required><option></option></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <br/>
+                    <button type="button" class="btn btn-block" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+            </div>
 
-            <input class="form-control " type="text" id="fTitle" placeholder="<?php echo $translate["Titel"];?>" required></input>
-
-            <td><input class="form-control " type="text" id="fTitle" placeholder="<?php echo $translate["Titel"];?>" required></input></td>
-            <td><textarea class="form-control" id="fDescription" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea></td>
-            <td><input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate["Deadline"];?>" required></input></td>
-            <td><select class="form-control updateSems"><option></option><?php echo $groups; ?></select></td>
-            <td><select class="form-control" id="fSemester" disabled required><option></option></select></td>
-            <td><button type="button" class="btn" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button></td>
         </div>
     </div>
 
@@ -285,15 +344,24 @@
                 $entriesBefore = "";
                 $entriesPassed = "";
 
-                $sql2 = "SELECT * FROM `tb_deadline` WHERE tb_semester_ID = $semesterid;";
+                $sql2 = "SELECT ID, title_".$session_language.", title_de, description_".$session_language.", description_de, date, tb_semester_ID FROM `tb_deadline` WHERE tb_semester_ID = $semesterid;";
                 $result2 = $mysqli->query($sql2);
 
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {
 
                         $deadlineID = $row2['ID'];
-                        $deadlineTitle = $row2['title'];
-                        $deadlineDescription = $row2['description'];
+
+                        $deadlineTitle = $row2['title_'.$session_language];
+                        if(!$deadlineTitle){
+                            $deadlineTitle = $row2['title_de'];
+                        }
+
+                        $deadlineDescription = $row2['description_'.$session_language];
+                        if(!$deadlineDescription){
+                            $deadlineDescription = $row2['description_de'];
+                        }
+
                         $deadlineDate = $row2['date'];
 
                         $sql3 = "SELECT * FROM `tb_deadline_check` WHERE tb_deadline_ID = $deadlineID AND tb_user_ID = $session_userid;";

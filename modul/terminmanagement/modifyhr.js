@@ -120,6 +120,7 @@ $(document).ready(function(){
 
             did = $(this).attr("did");
             var fType = $(this).attr("fType");
+            var lang = $(this).attr("lang");
             var content = $(this).val();
 
             $('#loadingTable' + did).slideDown("fast");
@@ -131,7 +132,7 @@ $(document).ready(function(){
                     async: true,
                     method: "POST",
                     url: "./modul/terminmanagement/modify.php",
-                    data: {todo:"editList", did:did, fType:fType, content:content},
+                    data: {todo:"editList", did:did, fType:fType, lang:lang, content:content},
                     success: function(data){
                         if(data){
                             $("#error"+did).html(data).slideDown("fast");
@@ -192,22 +193,24 @@ $(document).ready(function(){
         $(this).prop("disabled",true);
         $('#error').slideUp("fast");
 
-        var title = $('#fTitle').val();
-        var description = $('#fDescription').val();
+        var title_de = $('#fTitle_de').val();
+        var title_fr = $('#fTitle_fr').val();
+        var title_it = $('#fTitle_it').val();
+
+        var description_de = $('#fDescription_de').val();
+        var description_fr = $('#fDescription_fr').val();
+        var description_it = $('#fDescription_it').val();
+
         var deadline = $('#fDeadline').val();
         var semester = $('#fSemester').val();
         var error = "";
-
-        if(!title){
-            error = error + "<br/>" + translate["Bitte Termin-Titel angeben"]+".";
-        }
 
         if(!deadline){
             error = error + "<br/>" + translate["Bitte Deadline angeben"]+".";
         }
 
         if(!semester){
-            error = error + "<br/>" + translate["Bitte Semester angeben"]+".";
+            error = error + "<br/>" + translate["Bitte ein Semester angeben"]+".";
         }
 
         if(error){
@@ -217,7 +220,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "./modul/terminmanagement/modify.php",
-                data: {todo:"addDid", title:title, description:description, deadline:deadline, semester:semester},
+                data: {todo:"addDid", title_de:title_de, title_fr:title_fr, title_it:title_it, description_de:description_de, description_fr:description_fr, description_it:description_it, deadline:deadline, semester:semester},
                 success: function(data){
                     if(data){
                         $('#addNewdid').prop("disabled",false);

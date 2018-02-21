@@ -278,7 +278,7 @@
         $sql = "SELECT us.ID AS userID, us.firstname AS userFirstname, us.lastname AS userLastname, us.bKey AS userBkey FROM `tb_user` AS us WHERE us.ID = $session_userid";
         $result = $mysqli->query($sql);
 
-        if (isset($result) && $result->num_rows > 0) {
+        if (isset($result) && $result->num_rows == 1) {
             while($row = $result->fetch_assoc()) {
 
                 $userID = $row['userID'];
@@ -414,18 +414,45 @@
 
                 }
 
+                $sql2 = "SELECT mal.*, sem.semester FROM `tb_malus` AS mal
+                        INNER JOIN tb_semester AS sem ON mal.tb_semester_ID = sem.ID
+                        WHERE tb_user_ID = $session_userid ORDER BY tb_semester_ID";
+                $result2 = $mysqli->query($sql2);
+
+                $malusList = "";
+
+                if (isset($result2) && $result2->num_rows > 0) {
+                    while($row2 = $result2->fetch_assoc()) {
+
+                        $malusList = $malusList . '
+                        <div class="row">
+                            <div class="col-2 text-center">
+                                <h2>'.$row2["weight"].' %</h2>
+                            </div>
+                            <div class="col-10">
+                                <b>'.$translate["Zählt in Semester"].': '.$row2["semester"].'</b><br/>
+                                '.$row2["description"].'
+                                <br/><br/>
+                            </div>
+                        </div>
+                        ';
+
+                    }
+                } else {
+                    $malusList = "";
+                }
+
                 $usersEntry = '
                     <div class="row">
                         <div class="col-lg-12 card" style="background-color: #F1F4FB;">
-                            <div class="row userHeader" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
+                            <div class="row" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
                                 <div class="col-10">
                                     <h2>'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
                                 </div>
                                 <div class="col-2 text-right">
-                                    <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row userContent" userID="'.$userID.'">
+                            <div class="row" userID="'.$userID.'">
                                 <div class="col-12">
                                     <hr/>
                                 </div>
@@ -443,6 +470,16 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="mt-5">'.$translate["Malus"].'</h1>
+                        </div>
+                        <div class="col-12">
+
+                            '.$malusList.'
+
                         </div>
                     </div>
                 ';
