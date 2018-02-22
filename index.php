@@ -99,7 +99,7 @@
 
     <body>
         <div class="loadScreen">
-            <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.gif"/>
+            <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.svg"/>
         </div>
 
         <div id="pageContents" style="opacity: 0;">

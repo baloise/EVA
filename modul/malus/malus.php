@@ -24,7 +24,7 @@
         }
 
 
-        $sql = "SELECT ml.`description`, ml.`creationDate`, ml.weight, ml.ID, us.firstname, us.lastname, sem.semester FROM `tb_malus` AS ml
+        $sql = "SELECT ml.`description`, ml.`creationDate`, ml.weight, ml.ID, us.firstname, us.lastname, us.ID AS userID, sem.semester FROM `tb_malus` AS ml
                 LEFT JOIN tb_user AS us ON us.ID = ml.tb_user_ID
                 INNER JOIN tb_semester AS sem ON ml.tb_semester_ID = sem.ID
                 WHERE us.deleted IS NULL ORDER BY ml.`creationDate` DESC LIMIT 400;";
@@ -41,7 +41,7 @@
 
                 $listEntry = '
                 <tr class="lEntry" entryID="'. $row['ID'] .'">
-                    <td><span class="fa fa-trash-o delEntry" entryID="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
+                    <td><span class="fa fa-trash-o delEntry" userID="'. $row['userID'] .'" entryID="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
                     <th scope="row">'. $row['ID'] .'</th>
                     <td>'. $row['firstname'] .' '. $row['lastname'] .'</td>
                     <td>'. $row['weight'] .' %</td>
@@ -121,7 +121,7 @@
     </div>
 
     <div id="loadingTable">
-        <img class="img-responsive" src="img/loading2.gif"/>
+        <img class="img-responsive" src="img/loading2_big.svg"/>
     </div>
 
     <table class="table" id="dtmake" style="display: none;">

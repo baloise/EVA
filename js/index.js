@@ -5,11 +5,13 @@ $(document).ready(function(){
     });
 
     $("#pageContent").load( $("#pageContent").attr("page"), function(){
+
         $('.loadScreen').fadeTo("fast", 0, function(){
 			$("#slideMe").slideDown("slow");
 			$("#slideMeFoot").slideDown("slow");
             $('#pageContents').fadeTo("fast", 1);
         });
+
     });
 
     $(".foot-link").each(function(){

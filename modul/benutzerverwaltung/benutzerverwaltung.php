@@ -79,7 +79,7 @@
     </div>
 
     <div id="loadingTable">
-        <img class="img-responsive" src="img/loading2.gif"/>
+        <img class="img-responsive" src="img/loading2_big.svg"/>
     </div>
 
     <div id="editForm">

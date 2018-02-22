@@ -622,7 +622,6 @@
                     if (isset($malusResult) && $malusResult->num_rows > 0) {
                         while($malusRow = $malusResult->fetch_assoc()) {
                             $malus = $malus + $malusRow["weight"];
-                            $totalMalus = $totalMalus + $malusRow["weight"];
                         }
                     }
 

@@ -30,7 +30,7 @@
                                 <div class="row loadContent" userId="'.$row['ID'].'" loaded="0">
 
                                     <div class="col-12 text-center">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                 </div>
@@ -222,7 +222,7 @@
                                                 </div>
 
                                                 <div id="loadingTable'. $row['did'] .'" style="display:none;">
-                                                    <img class="img-responsive" src="img/loading2.gif"/>
+                                                    <img class="img-responsive" src="img/loading2_big.svg"/>
                                                 </div>
                                             </div>
                                         </div>

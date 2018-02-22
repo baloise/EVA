@@ -61,7 +61,7 @@
     <h1 class="mt-5"><?php echo $translate["Verhaltensziele"];?></h1>
 
     <div id="loadingTable">
-        <img class="img-responsive" src="img/loading2.gif"/>
+        <img class="img-responsive" src="img/loading2_big.svg"/>
     </div>
 
     <table class="table" id="dtmake" style="display: none;">

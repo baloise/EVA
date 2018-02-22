@@ -56,7 +56,7 @@
                                         <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
 
                                             <div class="col-12 text-center loading">
-                                                <img src="img/loading2_big.gif"/>
+                                                <img class="img-responsive" src="img/loading2_big.svg"/>
                                             </div>
 
                                             <!-- AJAX CALL -->
@@ -78,7 +78,7 @@
                                         <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
 
                                             <div class="col-12 text-center loading">
-                                                <img src="img/loading2_big.gif"/>
+                                                <img class="img-responsive" src="img/loading2_big.svg"/>
                                             </div>
 
                                             <!-- AJAX CALL -->
@@ -100,7 +100,7 @@
                                         <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
 
                                             <div class="col-12 text-center loading">
-                                                <img src="img/loading2_big.gif"/>
+                                                <img class="img-responsive" src="img/loading2_big.svg"/>
                                             </div>
 
                                             <!-- AJAX CALL -->
@@ -130,7 +130,7 @@
                                         <div class="row cycleContent" userID="'.$userID.'" cycleID="4">
 
                                             <div class="col-12 text-center loading">
-                                                <img src="img/loading2_big.gif"/>
+                                                <img class="img-responsive" src="img/loading2_big.svg"/>
                                             </div>
 
                                             <!-- AJAX CALL -->
@@ -152,7 +152,7 @@
                                         <div class="row cycleContent" userID="'.$userID.'" cycleID="5">
 
                                             <div class="col-12 text-center loading">
-                                                <img src="img/loading2_big.gif"/>
+                                                <img class="img-responsive" src="img/loading2_big.svg"/>
                                             </div>
 
                                             <!-- AJAX CALL -->
@@ -304,7 +304,7 @@
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
 
                                     <div class="col-12 text-center loading">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                     <!-- AJAX CALL -->
@@ -326,7 +326,7 @@
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
 
                                     <div class="col-12 text-center loading">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                     <!-- AJAX CALL -->
@@ -348,7 +348,7 @@
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
 
                                     <div class="col-12 text-center loading">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                     <!-- AJAX CALL -->
@@ -378,7 +378,7 @@
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="4">
 
                                     <div class="col-12 text-center loading">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                     <!-- AJAX CALL -->
@@ -400,7 +400,7 @@
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="5">
 
                                     <div class="col-12 text-center loading">
-                                        <img src="img/loading2_big.gif"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
                                     </div>
 
                                     <!-- AJAX CALL -->

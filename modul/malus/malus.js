@@ -95,6 +95,7 @@ $(document).ready(function(){
 
             var error;
             var fentryId = $(this).attr("entryID");
+            var $fselUser = $(this).attr("userID");
 
             if(!fentryId){
                 error = error + "<br/>" + translate["Kein Eintrag angegeben"]+".";
@@ -108,7 +109,7 @@ $(document).ready(function(){
                 $.ajax({
                     method: "POST",
                     url: "./modul/malus/modify.php",
-                    data: {todo:"deleteEntry", fentryId:fentryId},
+                    data: {todo:"deleteEntry", fentryId:fentryId, $fselUser:$fselUser},
                     success: function(data){
 
                         if(data){
