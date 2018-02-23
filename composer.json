@@ -1,0 +1,17 @@
+{
+    "name": "eliareutlinger/eva",
+    "description": "Evaluation-Tool for trainees",
+    "type": "project",
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "php": "^7.2"
+    },
+    "authors": [
+        {
+            "name": "Elia Reutlinger",
+            "email": "mail@eliareutlinger.ch"
+        }
+    ]
+}
