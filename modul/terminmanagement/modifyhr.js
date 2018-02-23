@@ -38,7 +38,7 @@ $(document).ready(function(){
                                     containerToLoad.attr('loaded', "1");
 
                                 } else {
-                                    containerToLoad.html("<div class='col-12'> "+translate["Fehler: Keine/Leere Antwort erhalten"]+".</div>");
+                                    containerToLoad.html("<div class='col-12'> "+translate[157]+".</div>");
                                 }
 
                             }
@@ -176,7 +176,7 @@ $(document).ready(function(){
                             });
 
                         } else {
-                            alert(translate["Fehler: Semester konnten nicht gefunden werden"]);
+                            alert(translate[158]);
                         }
                     }
                 });
@@ -206,11 +206,11 @@ $(document).ready(function(){
         var error = "";
 
         if(!deadline){
-            error = error + "<br/>" + translate["Bitte Deadline angeben"]+".";
+            error = error + "<br/>" + translate[179]+".";
         }
 
         if(!semester){
-            error = error + "<br/>" + translate["Bitte ein Semester angeben"]+".";
+            error = error + "<br/>" + translate[150]+".";
         }
 
         if(error){
@@ -228,7 +228,7 @@ $(document).ready(function(){
                     } else {
 
                         $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
-                            $("#pageContent").load("modul/terminmanagement.php", function(){
+                            $("#pageContent").load("modul/terminmanagement/terminmanagement.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
                                 });
@@ -361,4 +361,22 @@ function expandDeadlines(semesterid, userid){
 
     });
 
+}
+
+function unCountSem(semID, userID, state){
+    $(".SemUncounter").each(function(){
+
+        if($(this).attr("did") == semID && $(this).attr("userID") == userID){
+
+            var button = $(this);
+
+            if(state == 1){
+
+            } else {
+
+            }
+
+        }
+
+    });
 }

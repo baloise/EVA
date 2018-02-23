@@ -33,7 +33,7 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate["Bitte eine Begründung angeben"]).slideDown("fast");
+            $("#error").html(translate[146]).slideDown("fast");
         } else {
 
 			$("#fsendAndDelete").prop("disabled",true);
@@ -58,7 +58,7 @@ $(document).ready(function(){
                             $("#fcheckEntryPoints").val("");
                             $("#fsend").prop("disabled",false);
 							$("#fsendAndDelete").prop("disabled",false);
-                            $("#checkedNotif").html(translate["Beanstandung abgeschickt"]).slideDown("fast").delay(2000).slideUp("slow");
+                            $("#checkedNotif").html(translate[147]).slideDown("fast").delay(2000).slideUp("slow");
 
                         });
 
@@ -78,16 +78,16 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate["Bitte eine Begründung angeben"]).slideDown("fast");
+            $("#error").html(translate[146]).slideDown("fast");
         } else {
 
             $("#error").slideUp("fast");
-            $(this).html(translate["Löschen bestätigen"]).removeClass("btn-danger").addClass("btn-warning");
+            $(this).html(translate[148]).removeClass("btn-danger").addClass("btn-warning");
 
             $(this).click(function(){
 
                 if(!reason){
-                    $("#error").html(translate["Bitte eine Begründung angeben"]).slideDown("fast");
+                    $("#error").html(translate[146]).slideDown("fast");
                 } else {
 
 					$("#fsend").prop("disabled",true);
@@ -110,7 +110,7 @@ $(document).ready(function(){
                                     $("#fcheckEntryPA").val("");
                                     $("#fcheckEntryPoints").val("");
 
-                                    $("#checkedNotif").html(translate["Beanstandung abgeschickt & Eintrag gelöscht"]).slideDown("fast").delay(1300).slideUp("fast",function(){
+                                    $("#checkedNotif").html(translate[149]).slideDown("fast").delay(1300).slideUp("fast",function(){
                                         $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
                                             $('.loadScreen').fadeTo("fast", 0, function(){
                                                 $('#pageContents').fadeTo("fast", 1);
@@ -150,19 +150,19 @@ $(document).ready(function(){
         var fsem = $("#fSem").val();
 
         if(!fsem){
-            error = error + "<br/>" + translate["Bitte ein Semester angeben"]+".";
+            error = error + "<br/>" + translate[150]+".";
         }
 
         if(!fstage){
-            error = error + "<br/>" + translate["Bitte einen Verhaltensziele-Titel angeben"]+".";
+            error = error + "<br/>" + translate[169]+".";
         }
 
         if(!fpoints){
-            error = error + "<br/>" + translate["Bitte eine Punktzahl angeben"]+".";
+            error = error + "<br/>" + translate[152]+".";
         }
 
         if(!fpa){
-            error = error + "<br/>" + translate["Bitte einen PA angeben"]+".";
+            error = error + "<br/>" + translate[170]+".";
         }
 
         if(error){
@@ -183,19 +183,19 @@ $(document).ready(function(){
                 var fsem = $("#fSem").val();
 
                 if(!fsem){
-                    error = error + "<br/>" + translate["Bitte ein Semester angeben"]+".";
+                    error = error + "<br/>" + translate[150]+".";
                 }
 
                 if(!fstage){
-                    error = error + "<br/>" + translate["Bitte einen Verhaltensziele-Titel angeben"]+".";
+                    error = error + "<br/>" + translate[169]+".";
                 }
 
                 if(!fpoints){
-                    error = error + "<br/>" + translate["Bitte eine Punktzahl angeben"]+".";
+                    error = error + "<br/>" + translate[152]+".";
                 }
 
                 if(!fpa){
-                    error = error + "<br/>" + translate["Bitte einen PA angeben"]+".";
+                    error = error + "<br/>" + translate[170]+".";
                 }
 
                 if(error){

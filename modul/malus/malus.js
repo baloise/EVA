@@ -15,7 +15,7 @@ $(document).ready(function(){
                         $('#fsem').html(data).removeAttr("disabled");
 
                     } else {
-                        alert(translate["Fehler: Semester konnten nicht gefunden werden"]);
+                        alert(translate[158]);
                     }
                 }
             });
@@ -38,19 +38,19 @@ $(document).ready(function(){
         var freasoning = $("#freasoning").val();
 
         if(!fselsem){
-            error = error + "<br/>" + translate["Bitte ein Semester angeben"]+".";
+            error = error + "<br/>" + translate[150]+".";
         }
 
         if(!fselUser){
-            error = error + "<br/>" + translate["Bitte einen Malus-Titel angeben"]+".";
+            error = error + "<br/>" + translate[159]+".";
         }
 
         if(!fweigth){
-            error = error + "<br/>" + translate["Bitte eine Gewichtung angeben"]+".";
+            error = error + "<br/>" + translate[159]+".";
         }
 
         if(!freasoning){
-            error = error + "<br/>" + translate["Bitte eine Begründung angeben"]+".";
+            error = error + "<br/>" + translate[146]+".";
         }
 
         if(error){
@@ -98,7 +98,7 @@ $(document).ready(function(){
             var $fselUser = $(this).attr("userID");
 
             if(!fentryId){
-                error = error + "<br/>" + translate["Kein Eintrag angegeben"]+".";
+                error = error + "<br/>" + translate[161]+".";
             }
 
             if(error){

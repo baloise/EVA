@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 
     $('#newSelLang').change(function(){
@@ -148,36 +150,5 @@ $(document).ready(function(){
             }
         });
     });
-
-	function makeDynamic(objectThis){
-        var href = ($(objectThis).attr('href'));
-
-        $(objectThis).click(function(event){
-            event.preventDefault();
-            $("#pageContent").fadeOut("fast", function(){
-                $('.loadScreen').fadeTo("fast", 1);
-                if (href){
-                    $("#pageContent").load(href, function(responseTxt,statusTxt){
-
-                        if(statusTxt=="error"){
-                            $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate["Fehler"]+" </strong> "+translate["Seite enthält keinen gültigen Pfad"]+".</div>");
-                        } else {
-                            $('.loadScreen').fadeTo("fast", 0, function(){
-                                $('#pageContent').fadeTo("fast", 1);
-                            });
-                            $.ajax({
-                                method: "GET",
-                                url: "modul/session/setCurrentPath.php",
-                                data: {path:href},
-                            });
-                        }
-
-                    });
-                } else {
-                    $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate["Fehler"]+" </strong> "+translate["Seite wurde noch nicht verlinkt"]+".</div>");
-                }
-            });
-        });
-    }
 
 });

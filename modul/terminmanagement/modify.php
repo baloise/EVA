@@ -40,6 +40,7 @@
 
                 $stmt->bind_param("ii", $deadlineid, $userid);
                 $stmt->execute();
+
             }
 
         } else if($_POST['todo'] == "editList"){

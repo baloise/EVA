@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="modul/leistungslohn/leistungslohn.css"/>
     </head>
 
-    <h1 class="mt-5"><?php echo $translate["Leistungslohn"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[7];?></h1>
 
     <?php
 
@@ -47,7 +47,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                             <div class="col-10">
-                                                <h2>'.$translate["Lohnzyklus"].' ' . $translate["Jahr"] .' 3</h2>
+                                                <h2>'.$translate[47].' ' . $translate[47] .' 3</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -69,7 +69,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
                                             <div class="col-10">
-                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 7</h2>
+                                                <h2>'.$translate[47].' '.$translate[38].' 7</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -91,7 +91,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
                                             <div class="col-10">
-                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 8</h2>
+                                                <h2>'.$translate[47].' '.$translate[38].' 8</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -121,7 +121,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
                                             <div class="col-10">
-                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 5</h2>
+                                                <h2>'.$translate[47].' '.$translate[38].' 5</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -143,7 +143,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
                                             <div class="col-10">
-                                                <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 6</h2>
+                                                <h2>'.$translate[47].' '.$translate[38].' 6</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -251,7 +251,7 @@
 
     <br/>
     <hr/>
-    <h2><?php echo $translate["CSV-Export"];?></h2>
+    <h2><?php echo $translate[106];?></h2>
 
     <script type="text/javascript">
         var translate = {};
@@ -269,7 +269,7 @@
         <link rel="stylesheet" href="modul/leistungslohn/leistungslohn.css"/>
     </head>
 
-    <h1 class="mt-5"><?php echo $translate["Leistungslohn"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[7];?></h1>
 
     <?php
 
@@ -295,7 +295,7 @@
                             <div class="col-lg-12 card">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                     <div class="col-10">
-                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Jahr"].' 3</h2>
+                                        <h2>'.$translate[47].' '.$translate[47].' 3</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -317,7 +317,7 @@
                             <div class="col-lg-12 card">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
                                     <div class="col-10">
-                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 7</h2>
+                                        <h2>'.$translate[47].' '.$translate[38].' 7</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -339,7 +339,7 @@
                             <div class="col-lg-12 card">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
                                     <div class="col-10">
-                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 8</h2>
+                                        <h2>'.$translate[47].' '.$translate[38].' 8</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -369,7 +369,7 @@
                             <div class="col-lg-12 card">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
                                     <div class="col-10">
-                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 5</h2>
+                                        <h2>'.$translate[47].' '.$translate[38].' 5</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -391,7 +391,7 @@
                             <div class="col-lg-12 card">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
                                     <div class="col-10">
-                                        <h2>'.$translate["Lohnzyklus"].' '.$translate["Semester"].' 6</h2>
+                                        <h2>'.$translate[47].' '.$translate[38].' 6</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -430,7 +430,7 @@
                                 <h2>'.$row2["weight"].' %</h2>
                             </div>
                             <div class="col-10">
-                                <b>'.$translate["Zählt in Semester"].': '.$row2["semester"].'</b><br/>
+                                <b>'.$translate[113].': '.$row2["semester"].'</b><br/>
                                 '.$row2["description"].'
                                 <br/><br/>
                             </div>
@@ -474,7 +474,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="mt-5">'.$translate["Malus"].'</h1>
+                            <h1 class="mt-5">'.$translate[8].'</h1>
                         </div>
                         <div class="col-12">
 
@@ -510,7 +510,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
     </div>
 
 <?php endif; ?>

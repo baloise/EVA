@@ -3,8 +3,8 @@
 
 <?php if($session_usergroup == 1) : //HR ?>
 
-    <h1 class="mt-5"><?php echo $translate["Noten"];?></h1>
-    <h3><?php echo $translate["Lernende"];?></h3>
+    <h1 class="mt-5"><?php echo $translate[2];?></h1>
+    <h3><?php echo $translate[46];?></h3>
 
     <?php
 
@@ -71,7 +71,7 @@
                             }
 
                         } else {
-                            $subgradeavg = $translate["Keine Noten gefunden"].".";
+                            $subgradeavg = $translate[107].".";
                             $countgrades = 0;
                         }
 
@@ -92,15 +92,15 @@
                                                                 <b>'. $llsubname .'</b>
                                                             </div>
                                                             <div class="col-lg-4">
-                                                                <b>'.$translate["Titel"].':</b> '. $row4['title'] .'
+                                                                <b>'.$translate[55].':</b> '. $row4['title'] .'
                                                             </div>
                                                             <div class="col-lg-4">
-                                                                <b>'.$translate["Note"].':</b> '. $row4['grade'] .'
+                                                                <b>'.$translate[56].':</b> '. $row4['grade'] .'
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <b>'.$translate["Begründung"].':</b> '. $row4['reasoning'] .'<br/><br/>
+                                                        <b>'.$translate[30].':</b> '. $row4['reasoning'] .'<br/><br/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,7 +128,7 @@
                                     <td>
                                         <div class="row">
                                             <div class="col-lg-10">
-                                                <input placeholder="'.$translate["Notenschnitt"].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
+                                                <input placeholder="'.$translate[52].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
                                             </div>
                                             <div class="col-lg-2" style="padding-left: 0;">
                                                 <button type="button" subjid="'. $llsubid .'" class="btn btn-secondary corrSubAvg"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -147,7 +147,7 @@
                                 <hr/>
                                 <div class="row">
                                     <div class="col-10">
-                                        <h2>'.$translate["Semester"].' '.$llsubsem.'</h2>
+                                        <h2>'.$translate[38].' '.$llsubsem.'</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -158,11 +158,11 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">'.$translate["Fach/Modul"].'</th>
-                                            <th scope="col">'.$translate["Noten"].'</th>
-                                            <th scope="col">'.$translate["ungenügende"].'</th>
-                                            <th scope="col">'.$translate["Notenschnitt"].'</th>
-                                            <th scope="col">'.$translate["Korrektur"].'</th>
+                                            <th scope="col">'.$translate[114].'</th>
+                                            <th scope="col">'.$translate[2].'</th>
+                                            <th scope="col">'.$translate[115].'</th>
+                                            <th scope="col">'.$translate[52].'</th>
+                                            <th scope="col">'.$translate[116].'</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,7 +174,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-lg-10">
-                                                        <input placeholder="'.$translate["Notenschnitt"].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
+                                                        <input placeholder="'.$translate[52].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
                                                     </div>
                                                     <div class="col-lg-2" style="padding-left: 0;">
                                                         <button type="button" subjid="'. $llsubid .'" class="btn btn-secondary corrSubAvg"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -192,26 +192,26 @@
                     }
 
                 } else {
-                    $subEntries = "<tr><td colspan='5'>".$translate["Keine Fächer gefunden"].".</td><tr/>";
+                    $subEntries = "<tr><td colspan='5'>".$translate[108].".</td><tr/>";
                 }
 
                 if($llsubjs > 0){
                     $calcavg = number_format((float)($llallavg/$llsubjs), 2, '.', '');
                 } else {
-                    $calcavg = "Keine Daten";
+                    $calcavg = $translate[100];
                 }
 
                 if($gradesunderEntries){
-                    $gradesunderEntries = "<hr/><h3>".$translate["Ungenügende Noten"]."</h3>" . $gradesunderEntries;
+                    $gradesunderEntries = "<hr/><h3>".$translate[53]."</h3>" . $gradesunderEntries;
                 }
 
                 $llEntry = '
                 <div class="row">
                     <div class="card col-lg-12 userContentBox">
                         <div class="row userGradesHead header" containerID="'. $llid .'">
-                            <div class="col-lg-6"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
-                            <div class="col-lg-4 text-right">'.$translate["Notenschnitt"].': '. $calcavg .'</div>
-                            <div class="col-lg-2 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
+                            <div class="col-5"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
+                            <div class="col-6 text-right">'.$translate[52].': '. $calcavg .'</div>
+                            <div class="col-1 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 detailedGrades" containerID="'. $llid .'">
@@ -239,7 +239,7 @@
                                         <hr/>
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                '.$translate["Fächer/Module"].': '. $llsubjs .'
+                                                '.$translate[54].': '. $llsubjs .'
                                             </div>
                                             <br/>
                                         </div>
@@ -256,7 +256,7 @@
             }
 
         } else {
-            $llEntries = $translate["Keine Lernende im System"].". <br/>";
+            $llEntries = $translate[104].". <br/>";
         }
 
         echo $llEntries;
@@ -303,7 +303,7 @@
 
                     while($row3 = $result3->fetch_assoc()) {
                         if($row3['ID'] == $row['tb_semester_ID']){
-                            $subjectSemester = $translate["Semester"].": " . $row3['semester'];
+                            $subjectSemester = $translate[38].": " . $row3['semester'];
                         }
                         $semesterList = $semesterList . "<option value='". $row3['ID'] ."'>". $row3['semester'] ."</option>";
                     }
@@ -315,9 +315,9 @@
                 $subType = $row['school'];
 
                 if($subType == 0){
-                    $subType = $translate["Informatik-Modul"];
+                    $subType = $translate[60];
                 } else {
-                    $subType = $translate["Schulfach"];
+                    $subType = $translate[59];
                 }
 
                 $grades = "";
@@ -336,10 +336,10 @@
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
-                                    <th>'.$translate["Datum"].'</th>
-                                    <th>'.$translate["Titel"].'</th>
-                                    <th>'.$translate["Note"].'</th>
-                                    <th>'.$translate["Gewichtung"].'</th>
+                                    <th>'.$translate[57].'</th>
+                                    <th>'.$translate[55].'</th>
+                                    <th>'.$translate[56].'</th>
+                                    <th>'.$translate[49].'</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -369,37 +369,37 @@
                     $grades = $grades . '
                             <tr>
                                 <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate["Titel"].'"/></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate["Titel"].'"/></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate["Gewichtung"].' ('.$translate["in %"].')"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[56].'"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
                                 <td></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
-                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate["Begründung für Note unter 4.0"].'" class="form-control fgradeReason"></textarea></td>
+                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
                             </tr>
                         </tbody>
                     </table>
                     ';
 
                     if (isset($allGrades)){
-                        $average = '<h2>'.$translate["Notenschnitt"].': ' . floor(($allGrades / $allWeight) * 100) / 100 . '</h2>';
+                        $average = '<h2>'.$translate[52].': ' . floor(($allGrades / $allWeight) * 100) / 100 . '</h2>';
                     }
 
                 } else {
                     $grades = '
-                    <p>'.$translate["Noch keine Noten vorhanden"].'.</p>
+                    <p>'.$translate[61].'.</p>
                     <div class="alert alert-danger" fSubject="'. $row['ID'] .'" id="error" style="display: none;" role="alert"></div>
                     <table>
                         <tbody>
                             <tr>
                                 <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate["Titel"].'"/></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate["Titel"].'"/></td>
-                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate["Gewichtung"].' ('.$translate["in %"].')"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[55].'"/></td>
+                                <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
                                 <td></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
-                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate["Begründung für Note unter 4.0"].'" class="form-control fgradeReason"></textarea></td>
+                                <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
                             </tr>
                         </tbody>
                     </table>
@@ -467,7 +467,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <a href="#" class="deleteSubject" subjectId="'. $row['ID'] .'">
-                                        <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> '.$translate["Fach löschen"].'
+                                        <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> '.$translate[58].'
                                     </a>
                                 </div>
                                 <div class="col-lg-6" style="text-align: right;">
@@ -484,7 +484,7 @@
 
             }
         } else {
-            $subjects = "<p>".$translate["Noch keine Fächer vorhanden"].".</p>";
+            $subjects = "<p>".$translate[112].".</p>";
 
             $sql3 = "SELECT * FROM `tb_semester` WHERE tb_group_ID = $session_usergroup";
             $result3 = $mysqli->query($sql3);
@@ -504,12 +504,12 @@
 
     ?>
 
-    <h1 class="mt-5"><?php echo $translate["Noten"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[2];?></h1>
     <p></p>
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="alert alert-success col-lg-10" id="addedNotif" style="display: none; margin-bottom: 0px;">
-            <strong></strong> <?php echo $translate["Eintrag wurde hinzugefügt"];?>.
+            <strong></strong> <?php echo $translate[103];?>.
         </div>
     </div>
     <div class="row">
@@ -523,14 +523,14 @@
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="alert alert-success col-lg-10" id="addedNotif2" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> <?php echo $translate["Fach wurde hinzugefügt"];?>.
+                        <strong></strong> <?php echo $translate[175];?>.
                     </div>
                 </div>
             </div>
             <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
                     <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
-                        <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate["Fach/Modul"];?>">
+                        <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate[114];?>">
                     </div>
 
                     <?php
@@ -540,10 +540,10 @@
                             <div class="col-lg-4" id="LIT">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="button" selected="" value="1" class="btn btnSelect">'.$translate["Schulfach"].'</button>
+                                        <button type="button" selected="" value="1" class="btn btnSelect">'.$translate[59].'</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" selected="" value="0" class="btn btnSelect">'.$translate["IT-Modul"].'</button>
+                                        <button type="button" selected="" value="0" class="btn btnSelect">'.$translate[117].'</button>
                                     </div>
                                 </div>
                             </div>';
@@ -552,8 +552,8 @@
                     ?>
 
                     <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
-                        <select class="form-control" id="newSubSem" placeholder="<?php echo $translate["Zählt in Semester"];?>">
-                            <option><?php echo $translate["Semester"];?>:</option>
+                        <select class="form-control" id="newSubSem" placeholder="<?php echo $translate[113];?>">
+                            <option><?php echo $translate[38];?>:</option>
                             <?php echo $semesterList; ?>
                         </select>
                     </div>
@@ -562,7 +562,7 @@
                 <div class="row">
                     <div class="col-lg-12" style="margin-top: 10px;">
                         <button type="button" class="btn col-lg-12" id="addSubject">
-                            <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> <?php echo $translate["Neues Fach hinzufügen"];?></b>
+                            <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> <?php echo $translate[63];?></b>
                         </button>
                         <br/><br/>
                         <div class="alert alert-danger" id="errorForm" style="display: none;" role="alert"></div>
@@ -586,7 +586,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>

@@ -141,7 +141,7 @@
 
                                         $link = '
                                         <li class="nav-item" id="editNavLink">
-                                            <a class="nav-link" href="modul/settings/settings.php">'. $translate["Navigation bearbeiten"].'</a>
+                                            <a class="nav-link" href="modul/settings/settings.php">'. $translate[15].'</a>
                                         </li>
                                         ';
 
@@ -172,7 +172,7 @@
 
             <footer class="footer" id="slideMeFoot" style="display: none;">
                 <div class="container">
-                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate["Einstellungen"] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | <?php echo $appinfo["title"];?> <a href="https://github.com/baloise/eva">v.1.0</a></span>
+                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate[16] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | <?php echo $appinfo["title"];?> <a href="https://github.com/baloise/eva">v.1.0</a></span>
                 </div>
             </footer>
         </div>

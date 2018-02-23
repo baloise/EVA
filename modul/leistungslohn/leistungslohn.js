@@ -61,7 +61,7 @@ function toggleCycle(userID, cycleID){
                             $(this).slideUp("slow");
                         });
 
-                        $(cycleContentObject).html(translate["Fehler: Keine/Leere Antwort erhalten"]);
+                        $(cycleContentObject).html($translate[157]);
 
                     }
 

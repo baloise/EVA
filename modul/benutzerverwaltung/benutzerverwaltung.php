@@ -10,11 +10,11 @@
 
 
 
-    <h1 class="mt-5"><?php echo $translate["Benutzerverwaltung"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[4];?></h1>
 
     <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
-        <strong><?php echo $translate["Benutzer löschen"];?></strong> <?php echo $translate["Bitte bestätigen Sie ihre auswahl"];?>: <span id="useridWarn"></span>
-        <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate["Bestätigen"];?></button>
+        <strong><?php echo $translate[97];?></strong> <?php echo $translate[98];?>: <span id="useridWarn"></span>
+        <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate[99];?></button>
     </div>
 
     <div id="userTable" style="display: none;">
@@ -23,9 +23,9 @@
                 <tr>
                     <th>ID</th>
                     <th>B-Key</th>
-                    <th><?php echo $translate["Gruppe"];?></th>
-                    <th><?php echo $translate["Vorname"];?></th>
-                    <th><?php echo $translate["Nachname"];?></th>
+                    <th><?php echo $translate[40];?></th>
+                    <th><?php echo $translate[41];?></th>
+                    <th><?php echo $translate[42];?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -42,7 +42,7 @@
 
                     if ($result2->num_rows > 0) {
                         while($row = $result2->fetch_assoc()) {
-                            $groups = $groups . "<option value='". $row['ID'] ."'>". $row["name"] ."</option>";
+                            $groups = $groups . "<option value='". $row['ID'] ."'>". $translate[$row["name"]] ."</option>";
                         }
                     } else {
                         $groups = "Keine Gruppen gefunden";
@@ -66,7 +66,7 @@
                             }
                         }
                     } else {
-                        echo $translate["Keine Daten gefunden"] .".";
+                        echo $translate[100] .".";
                     }
 
                 ?>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="alert alert-success" id="changesSaveNotif" style="display: none;">
-        <strong></strong> <?php echo $translate["Änderungen wurden gespeichert"];?>!
+        <strong></strong> <?php echo $translate[101];?>!
     </div>
 
     <div id="loadingTable">
@@ -85,11 +85,11 @@
     <div id="editForm">
         <hr/>
         <br/>
-        <h2><?php echo $translate["Benutzer hinzufügen"];?>:</h2>
+        <h2><?php echo $translate[43];?>:</h2>
         <form>
             <div class="alert alert-danger" id="error" style="display: none;"></div>
             <div class="alert alert-success" id="userAddedNotif" style="display: none;">
-                <strong></strong> <?php echo $translate["Benutzer wurde hinzugefügt"];?>.
+                <strong></strong> <?php echo $translate[102];?>.
             </div>
             <div class="row" id="addUserForm">
                 <div class="col-lg-2">
@@ -97,22 +97,22 @@
                     <input type="text" class="form-control addUserInput" id="usrFormBkey" maxlength="7" required>
                 </div>
                 <div class="col-lg-3">
-                    <label for="usrFormGroup"><?php echo $translate["Gruppe"];?>:</label>
+                    <label for="usrFormGroup"><?php echo $translate[40];?>:</label>
                     <select class="form-control addUserInput" id="usrFormGroup" required><option value=""></option><?php echo $groups; ?></select>
                 </div>
                 <div class="col-lg-3">
-                    <label for="usrFormFirstname"><?php echo $translate["Vorname"];?>:</label>
+                    <label for="usrFormFirstname"><?php echo $translate[41];?>:</label>
                     <input type="text" class="form-control addUserInput" id="usrFormFirstname">
                 </div>
                 <div class="col-lg-3">
-                    <label for="usrFormLastname"><?php echo $translate["Nachname"];?>:</label>
+                    <label for="usrFormLastname"><?php echo $translate[42];?>:</label>
                     <input type="text" class="form-control addUserInput" id="usrFormLastname">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <br/>
-                    <button type="submit" href="#" id="addUser" class="btn btn-primary"><?php echo $translate["Hinzufügen"];?></a>
+                    <button type="submit" href="#" id="addUser" class="btn btn-primary"><?php echo $translate[44];?></a>
                 </div>
             </div>
         </form>
@@ -137,22 +137,22 @@
                         "orderable": false
                     }],
                     "language": {
-                        "sEmptyTable":      "<?php echo $translate["Keine Daten in der Tabelle vorhanden"];?>",
-                        "sInfo":            "_START_ <?php echo $translate["bis"];?> _END_ <?php echo $translate["von"];?> _TOTAL_ <?php echo $translate["Einträgen"];?>",
-                        "sInfoEmpty":       "0 <?php echo $translate["bis"];?> 0 <?php echo $translate["von"];?> 0 <?php echo $translate["Einträgen"];?>",
+                        "sEmptyTable":      "<?php echo $translate[86];?>",
+                        "sInfo":            "_START_ <?php echo $translate[23];?> _END_ <?php echo $translate[24];?> _TOTAL_ <?php echo $translate[25];?>",
+                        "sInfoEmpty":       "0 <?php echo $translate[23];?> 0 <?php echo $translate[24];?> 0 <?php echo $translate[25];?>",
                         "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
                         "sInfoPostFix":     "",
                         "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ <?php echo $translate["Einträge anzeigen"];?>",
+                        "sLengthMenu":      "_MENU_ <?php echo $translate[17];?>",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
                         "sSearch":          "",
-                        "sZeroRecords":     "<?php echo $translate["Keine Einträge vorhanden"];?>.",
+                        "sZeroRecords":     "<?php echo $translate[87];?>.",
                         "oPaginate": {
-                            "sFirst":       "<?php echo $translate["Erste"];?>",
-                            "sPrevious":    "<?php echo $translate["Zurück"];?>",
-                            "sNext":        "<?php echo $translate["Nächste"];?>",
-                            "sLast":        "<?php echo $translate["Letzte"];?>"
+                            "sFirst":       "<?php echo $translate[88];?>",
+                            "sPrevious":    "<?php echo $translate[26];?>",
+                            "sNext":        "<?php echo $translate[27];?>",
+                            "sLast":        "<?php echo $translate[89];?>"
                         },
                         "oAria": {
                             "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
@@ -182,7 +182,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>

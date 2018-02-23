@@ -81,7 +81,7 @@
 				}else{
 					//Falls keine Daten zurückgegeben werden, wird davon ausgegangen, dass Ferien sind.
 					$('#kalender_tafel').fadeTo("fast", 0);
-					$('#kalender_tafel').after('<p id="meldung">'+translate["Keine Daten aus dieser Kalenderwoche: Ferien"]+ '?</p>');
+					$('#kalender_tafel').after('<p id="meldung">'+translate[167]+ '?</p>');
 
 				}
 
@@ -190,7 +190,7 @@ $(document).ready(function(){
         var classSel = $("#k_auswahl").val();
 
         if(!classSel && classSel != "-"){
-            error = error + translate["Keine Klasse ausgewählt"];
+            error = error + translate[166];
         }
 
         if(error){
@@ -209,9 +209,9 @@ $(document).ready(function(){
 
                         $("#saveClassButton").css("background-color", "green").delay(1000).slideUp("slow", function(){
                              $("#saveClassButton").css("background-color", "#007bff");
-                             $("#saveClassButton").html((translate["Klasse speichern"]));
+                             $("#saveClassButton").html((translate[164]));
                         });
-                        $("#saveClassButton").html(translate["Klasse gespeichert"] + "!");
+                        $("#saveClassButton").html(translate[165] + "!");
 
 
                     }

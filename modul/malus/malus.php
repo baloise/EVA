@@ -54,7 +54,7 @@
 
             }
         } else {
-            $entryList = $translate["Noch keine Einträge"];
+            $entryList = $translate[105];
         }
 
         $semList = "";
@@ -65,50 +65,50 @@
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
-    <h1 class="mt-5"><?php echo $translate["Malus"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[8];?></h1>
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-        <strong></strong> <?php echo $translate["Eintrag wurde hinzugefügt"];?>.
+        <strong></strong> <?php echo $translate[103];?>.
     </div><br/>
     <div class="col-lg-12 card">
         <div class="row">
             <div class="col-lg-12">
                 <br/>
-                <h3><?php echo $translate["Neuen Malus eintragen"];?></h3>
+                <h3><?php echo $translate[51];?></h3>
                 <hr/>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4">
-                <label for="fselUser"><?php echo $translate["Lernende/r"];?>:</label>
+                <label for="fselUser"><?php echo $translate[20];?>:</label>
                 <select id="fselUser" class="form-control">
                     <option></option>
                     <?php echo $llist; ?>
                 </select>
             </div>
             <div class="col-lg-4">
-                <label for="fsem"><?php echo $translate["Semester"];?>:</label>
+                <label for="fsem"><?php echo $translate[38];?>:</label>
                 <select id="fsem" class="form-control" disabled>
                     <option></option>
                     <?php echo $semList; ?>
                 </select>
             </div>
             <div class="col-lg-4">
-                <label for="fweigth"><?php echo $translate["Gewichtung"];?>:</label>
+                <label for="fweigth"><?php echo $translate[49];?>:</label>
                 <input id="fweigth" class="form-control" type="text" placeholder="%"/>
             </div>
         </div>
         <br/>
         <div class="row">
             <div class="col-lg-12">
-                <label for="freasoning"><?php echo $translate["Begründung"];?></label>
+                <label for="freasoning"><?php echo $translate[30];?></label>
                 <textarea id="freasoning" class="form-control"></textarea>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <br/>
-                <button type="button" id="fsenMal" class="btn btn-primary"><?php echo $translate["Abschicken"];?></button>
+                <button type="button" id="fsenMal" class="btn btn-primary"><?php echo $translate[31];?></button>
                 <br/><br/>
             </div>
         </div>
@@ -116,7 +116,7 @@
 
     <div class="col-lg-12">
         <hr/>
-        <h3><?php echo $translate["Definierte Werte"];?></h3>
+        <h3><?php echo $translate[50];?></h3>
         <br/>
     </div>
 
@@ -129,11 +129,11 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th><?php echo $translate["Lernende/r"];?></th>
-                <th><?php echo $translate["Gewichtung"];?></th>
-                <th><?php echo $translate["Begründung"];?></th>
-                <th><?php echo $translate["Semester"];?></th>
-                <th><?php echo $translate["Erstellungsdatum"];?></th>
+                <th><?php echo $translate[20];?></th>
+                <th><?php echo $translate[49];?></th>
+                <th><?php echo $translate[30];?></th>
+                <th><?php echo $translate[38];?></th>
+                <th><?php echo $translate[22];?></th>
             </tr>
         </thead>
         <tbody>
@@ -156,22 +156,22 @@
                         "orderable": false
                     }],
                     "language": {
-                        "sEmptyTable":      "<?php echo $translate["Keine Daten in der Tabelle vorhanden"];?>",
-                        "sInfo":            "_START_ <?php echo $translate["bis"];?> _END_ <?php echo $translate["von"];?> _TOTAL_ <?php echo $translate["Einträgen"];?>",
-                        "sInfoEmpty":       "0 <?php echo $translate["bis"];?> 0 <?php echo $translate["von"];?> 0 <?php echo $translate["Einträgen"];?>",
+                        "sEmptyTable":      "<?php echo $translate[86];?>",
+                        "sInfo":            "_START_ <?php echo $translate[23];?> _END_ <?php echo $translate[24];?> _TOTAL_ <?php echo $translate[25];?>",
+                        "sInfoEmpty":       "0 <?php echo $translate[23];?> 0 <?php echo $translate[24];?> 0 <?php echo $translate[25];?>",
                         "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
                         "sInfoPostFix":     "",
                         "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ <?php echo $translate["Einträge anzeigen"];?>",
+                        "sLengthMenu":      "_MENU_ <?php echo $translate[17];?>",
                         "sLoadingRecords":  "Wird geladen...",
                         "sProcessing":      "Bitte warten...",
                         "sSearch":          "",
-                        "sZeroRecords":     "<?php echo $translate["Keine Einträge vorhanden"];?>.",
+                        "sZeroRecords":     "<?php echo $translate[87];?>.",
                         "oPaginate": {
-                            "sFirst":       "<?php echo $translate["Erste"];?>",
-                            "sPrevious":    "<?php echo $translate["Zurück"];?>",
-                            "sNext":        "<?php echo $translate["Nächste"];?>",
-                            "sLast":        "<?php echo $translate["Letzte"];?>"
+                            "sFirst":       "<?php echo $translate[88];?>",
+                            "sPrevious":    "<?php echo $translate[26];?>",
+                            "sNext":        "<?php echo $translate[27];?>",
+                            "sLast":        "<?php echo $translate[89];?>"
                         },
                         "oAria": {
                             "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
@@ -186,7 +186,7 @@
                         }
                     }
                 });
-                $('#users_filter input').attr('placeholder', '<?php echo $translate["Suchen"];?>');
+                $('#users_filter input').attr('placeholder', '<?php echo $translate[28];?>');
                 $('#users_filter input').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#dtmake").slideDown( "slow" );
@@ -210,7 +210,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>

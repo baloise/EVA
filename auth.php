@@ -39,16 +39,17 @@
 
                 $translations = array();
 
-                $sql2 = "SELECT de, " . $_SESSION['user']['language'] . " FROM tb_translation";
+                $sql2 = "SELECT id, de, " . $_SESSION['user']['language'] . " FROM tb_translation";
                 $result2 = $mysqli->query($sql2);
 
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {
 
-                        if(isset($row2[''.$_SESSION['user']['language'].''])){
-                            $translations += [$row2['de'] => $row2[''.$_SESSION['user']['language'].'']];
+                        if(isset($row2[$_SESSION['user']['language']]) && !$row2[$_SESSION['user']['language']] == ""){
+                            $content = str_replace("'", "\'", $row2[$_SESSION['user']['language']]);
+                            $translations += [$row2['id'] => $content];
                         } else {
-                            $translations += [$row2['de'] => $row2['de']];
+                            $translations += [$row2['id'] => $row2['de']];
                         }
 
 

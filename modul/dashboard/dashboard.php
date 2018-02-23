@@ -3,7 +3,7 @@
 
 <?php
 
-	$welcome = "<h3>".$translate['Willkommen']."!</h3>";
+	$welcome = "<h3>".$translate[1]."!</h3>";
 
     $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
 	$sql2 = "SELECT firstname, lastname FROM tb_user WHERE id = $session_userid";
@@ -11,7 +11,7 @@
 
     if ($result->num_rows == 1) {
 		$row = $result->fetch_assoc();
-		$welcome = "<h2 style='opacity: 0;' class='mt-5'>".$translate['Willkommen']." ".$row['firstname']." ".$row['lastname']."!</h2>";
+		$welcome = "<h2 style='opacity: 0;' class='mt-5'>".$translate[1]." ".$row['firstname']." ".$row['lastname']."!</h2>";
 	}
 
 ?>
@@ -65,7 +65,7 @@
     <br/><br/>
 
 	<div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
     </div>
 
 <?php endif; ?>

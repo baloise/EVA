@@ -49,18 +49,18 @@
 
     ?>
 
-    <h1 class="mt-5"><?php echo $translate["Terminmanagement"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[12];?></h1>
     <p></p>
 
     <?php echo $listEntries; ?>
 
     <div class="row">
         <div class="col-12">
-            <h1 class="mt-5"><?php echo $translate["Termine bearbeiten"];?></h1>
+            <h1 class="mt-5"><?php echo $translate[81];?></h1>
 
             <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
-                <strong><?php echo $translate["Termin löschen"];?></strong> <?php echo $translate["Bitte bestätigen Sie ihre auswahl"];?>:
-                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate["Bestätigen"];?></button>
+                <strong><?php echo $translate[122];?></strong> <?php echo $translate[98];?>:
+                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate[99];?></button>
             </div>
 
             </br>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-10">
-                                        <h2>'.$translate["Semester"].' '.$row['Ssemester'].'</h2>
+                                        <h2>'.$translate[38].' '.$row['Ssemester'].'</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -161,26 +161,26 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-12 text-center">
-                                                <h3>'.$translate["Titel"].'</h3>
+                                                <h3>'.$translate[55].'</h3>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 text-center">
-                                                <label for="">'.$translate["Deutsch"].'</label>
+                                                <label for="">'.$translate[140].'</label>
                                                 <input fType="1" lang="de" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_de'] .'"></input>
                                             </div>
                                             <div class="col-lg-4 text-center">
-                                                <label for="">'.$translate["Französisch"].'</label>
+                                                <label for="">'.$translate[142].'</label>
                                                 <input fType="1" lang="fr" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_fr'] .'"></input>
                                             </div>
                                             <div class="col-lg-4 text-center">
-                                                <label for="">'.$translate["Italienisch"].'</label>
+                                                <label for="">'.$translate[141].'</label>
                                                 <input fType="1" lang="it" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Dtitel_it'] .'"></input>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12 text-center" style="margin-top:30px;">
-                                                <h3>'.$translate["Beschreibung"].'</h3>
+                                                <h3>'.$translate[82].'</h3>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -201,15 +201,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <label for="">'.$translate["Deadline"].'</label>
+                                                <label for="">'.$translate[83].'</label>
                                                 <input fType="3" did="'. $row['did'] .'" class="form-control changeInTable" type="date" value="'. $row['Ddeadline'] .'"></input>
                                             </div>
                                             <div class="col-lg-4">
-                                                <label for="">'.$translate["Gruppe"].'</label>
+                                                <label for="">'.$translate[40].'</label>
                                                 <select fType="5" class="form-control updateSems" did="'. $row['did'] .'"><option value="'. $row['Gid'] .'">'. $translate[$row['Gname']] .'</option>'.$groups.'</select>
                                             </div>
                                             <div class="col-lg-4">
-                                                <label for="">'.$translate["Semester"].'</label>
+                                                <label for="">'.$translate[38].'</label>
                                                 <select fType="4" class="form-control changeInTable inTableSelect" did="'. $row['did'] .'"><option value="'. $row['Sid'] .'">'. $row['Ssemester'] .'</option>'.$listSemsInList.'</select>
                                             </div>
                                         </div>
@@ -218,7 +218,7 @@
                                                 <span style="cursor: pointer; margin-top:10px; font-size:1.5rem;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span>
 
                                                 <div class="alert alert-success" id="changesSaveNotif'. $row['did'] .'" style="display: none; margin-top: 5px;">
-                                                    <strong></strong>'.$translate["Änderungen wurden gespeichert"].'!
+                                                    <strong></strong>'.$translate[101].'!
                                                 </div>
 
                                                 <div id="loadingTable'. $row['did'] .'" style="display:none;">
@@ -236,7 +236,7 @@
 
                     }
                 } else {
-                    $generateDiv = $translate["Keine Daten gefunden"];
+                    $generateDiv = $translate[100];
                     echo $generateDiv;
                 }
 
@@ -247,41 +247,41 @@
     <div class="col-12">
         <div class="col-12" style="margin-bottom:20px;">
             <hr/>
-            <h1 class="mt-5"><?php echo $translate["Neuer Termin"];?></h1>
+            <h1 class="mt-5"><?php echo $translate[144];?></h1>
             <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3><?php echo $translate["Titel"];?></h3>
+                    <h3><?php echo $translate[55];?></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 text-center">
-                    <label for=""><?php echo $translate["Deutsch"];?></label>
-                    <input class="form-control " type="text" id="fTitle_de" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                    <label for=""><?php echo $translate[140];?></label>
+                    <input class="form-control " type="text" id="fTitle_de" placeholder="<?php echo $translate[55];?>" required></input>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <label for=""><?php echo $translate["Französisch"];?></label>
-                    <input class="form-control " type="text" id="fTitle_fr" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                    <label for=""><?php echo $translate[142];?></label>
+                    <input class="form-control " type="text" id="fTitle_fr" placeholder="<?php echo $translate[55];?>" required></input>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <label for=""><?php echo $translate["Italienisch"];?></label>
-                    <input class="form-control " type="text" id="fTitle_it" placeholder="<?php echo $translate["Titel"];?>" required></input>
+                    <label for=""><?php echo $translate[141];?></label>
+                    <input class="form-control " type="text" id="fTitle_it" placeholder="<?php echo $translate[55];?>" required></input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center" style="margin-top:30px;">
-                    <h3><?php echo $translate["Beschreibung"];?></h3>
+                    <h3><?php echo $translate[82];?></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 text-center">
-                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_de" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_de" placeholder="<?php echo $translate[82];?>" ></textarea>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_fr" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_fr" placeholder="<?php echo $translate[82];?>" ></textarea>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_it" placeholder="<?php echo $translate["Beschreibung"];?>" ></textarea>
+                    <textarea style="min-height: 100px; max-width: 98%;" class="form-control" id="fDescription_it" placeholder="<?php echo $translate[82];?>" ></textarea>
                 </div>
             </div>
             <div class="row">
@@ -291,15 +291,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <label for=""><?php echo $translate["Deadline"];?></label>
-                    <input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate["Deadline"];?>" required></input>
+                    <label for=""><?php echo $translate[83];?></label>
+                    <input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate[83];?>" required></input>
                 </div>
                 <div class="col-lg-4">
-                    <label for=""><?php echo $translate["Gruppe"];?></label>
+                    <label for=""><?php echo $translate[40];?></label>
                     <select class="form-control updateSems" did="newDID"><option></option><?php echo $groups; ?></select>
                 </div>
                 <div class="col-lg-4">
-                    <label for=""><?php echo $translate["Semester"];?></label>
+                    <label for=""><?php echo $translate[38];?></label>
                     <select class="form-control inTableSelect" did="newDID" id="fSemester" disabled required><option></option></select>
                 </div>
             </div>
@@ -326,7 +326,7 @@
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 
-    <h1 class="mt-5"><?php echo $translate["Terminmanagement"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[12];?></h1>
 
 
 
@@ -374,7 +374,7 @@
                                     <div class="col-lg-12 card alert-success" style="padding-top: 10px; margin-bottom: 10px;">
                                         <h3>'.$deadlineTitle.'</h3>
                                         <p>'.$deadlineDescription.'</p>
-                                        <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                        <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                     </div>
                                 </div>
                             ';
@@ -392,7 +392,7 @@
                                         <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                         </div>
                                     </div>
                                 ';
@@ -405,7 +405,7 @@
                                         <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>'.$translate["Ablaufdatum"].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
                                         </div>
                                     </div>
                                 ';
@@ -417,8 +417,8 @@
 
                     }
                 } else {
-                    $entriesBefore = $translate["Keine Einträge"];
-                    $entriesPassed = $translate["Keine Einträge"];
+                    $entriesBefore = $translate[123];
+                    $entriesPassed = $translate[123];
                 }
 
 
@@ -428,7 +428,7 @@
                         <hr/>
                         <div class="row">
                             <div class="col-lg-10">
-                                <h2>'.$translate["Semester"].' '.$semesterTitle.'</h2>
+                                <h2>'.$translate[38].' '.$semesterTitle.'</h2>
                             </div>
                             <div class="col-lg-2 text-right">
                                 <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -443,14 +443,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2>'.$translate["Bevorstehende Termine"].':</h2>
+                                <h2>'.$translate[78].':</h2>
                             </div>
                             <div class="col-12">
                                 '.$entriesBefore.'
                             </div>
                             <div class="col-12">
                                 <br/><br/>
-                                <h2>'.$translate["Vergangene Termine"].':</h2>
+                                <h2>'.$translate[79].':</h2>
                             </div>
                             <div class="col-12">
                                 '.$entriesPassed.'
@@ -474,7 +474,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>

@@ -4,7 +4,7 @@
     include("./../../database/connect.php");
 
     if($session_usergroup != 1){
-        echo $translate["Sie haben keine Berechtigungen zu diesem Modul"];
+        echo $translate[145];
     }
 
     function designDeadlineEntry($state, $id, $title, $date, $usrid, $translate){
@@ -22,7 +22,7 @@
         $entry = '
             <b>'.$title.'</b>
             <br/><br/>
-            <i>'.$translate["Bis"].' '.date('d.m.Y', strtotime($date)).'</i>
+            <i>'.$translate[23].' '.date('d.m.Y', strtotime($date)).'</i>
         </div>
         ';
 
@@ -38,7 +38,7 @@
             <div class="card col-12 inCard">
                 <div class="row deadlineHeader" deadlineSemesterID="'.$semid.'" userId="'.$usrid.'" onclick="expandDeadlines('.$semid.', '.$usrid.');">
                     <div class="col-10">
-                        <b>'.$translate["Semester"].' '.$semtitle.'</b>
+                        <b>'.$translate[38].' '.$semtitle.'</b>
                     </div>
                     <div class="col-2 text-right">
                         <i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -46,6 +46,7 @@
                 </div>
 
                 <div class="deadlineContent" deadlineSemesterID="'.$semid.'" userId="'.$usrid.'" style="display: none;">
+                    <button type="button" did="'.$semid.'" userId="'.$usrid.'" onclick="unCountSem('.$semid.', '.$usrid.', 1);" class="btn SemUncounter">Semester in Lohnrechnung nicht zählen</button>
                     <div class="row">
                         <div class="col-lg-12">
                             <hr/>
@@ -87,7 +88,7 @@
         $userid = test_input($_POST['userid']);
 
         if(!isset($userid)){
-            $error = $error . $translate["Keine Benutzer-ID vorhanden"];
+            $error = $error . $translate[136];
         }
 
         if($error){
@@ -152,7 +153,7 @@
 
 
     } else {
-        echo $translate["Sie haben keinen Zugriff auf diese Funktionen"].".";
+        echo $translate[137].".";
     }
 
 ?>

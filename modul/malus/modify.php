@@ -68,15 +68,10 @@
 
                 //SENDMAIL
                 include("../../modul/mail/generateMail.php");
-                $subject = "Neuer Malus hinzugefügt";
-                $message = "
-                Du hast einen Malus erhalten! Dieser wird ab sofort
-                in der Lohnberechnung berücksichtigt und ist unter 'Leistungslohn'
-                ersichtlich.<br/><br/>
-                Malus-Gewichtung: <b>$fweigth</b> %<br/>
-                Begründung:<br/>$freasoning<br/>
-                ";
-                sendMail($subject, $message, $fselUser, $session_appinfo, $mysqli);
+                $msgcontent = array('{weigth}' => $fweigth, '{reason}' => $freasoning);
+                $subject = strtr($translate[198], $msgcontent);
+                $message = strtr($translate[199], $msgcontent);
+                sendMail($subject, $message, $session_userid, $fselUser, $session_appinfo, $mysqli, $translate);
 
             }
 
@@ -100,11 +95,9 @@
 
                 //SENDMAIL
                 include("../../modul/mail/generateMail.php");
-                $subject = "Malus gelöscht";
-                $message = "
-                Ein Malus wurde aus deinem Profil entfernt und entsprechend in der Lohnberechnung angepasst.
-                ";
-                sendMail($subject, $message, $fselUser, $session_appinfo, $mysqli);
+                $subject = ($translate[200]);
+                $message = ($translate[201]);
+                sendMail($subject, $message, $session_userid, $fselUser, $session_appinfo, $mysqli, $translate);
 
             }
 

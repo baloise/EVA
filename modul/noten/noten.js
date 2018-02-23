@@ -5,6 +5,7 @@ $(document).ready(function(){
         $(this).click(function(){
 
             $(this).prop("disabled",true);
+            var button = $(this);
 
             var subid = $(this).attr('subjid');
 
@@ -23,10 +24,11 @@ $(document).ready(function(){
                             if(data){
 
                                 alert(data);
+                                button.prop("disabled",false);
 
                             } else {
 
-                                $(this).prop("disabled",false);
+                                button.prop("disabled",false);
 
                                 $('.subAvg').each(function(){
 
@@ -126,19 +128,19 @@ $(document).ready(function(){
             });
 
             if(!weight){
-                error = error + "<br/>" + translate["Bitte Gewichtung angeben"]+".";
+                error = error + "<br/>" + translate[173]+".";
             }
 
             if(!title){
-                error = error + "<br/>" + translate["Bitte Titel angeben"]+".";
+                error = error + "<br/>" + translate[172]+".";
             }
 
             if(!grade){
-                error = error + "<br/>" + translate["Bitte Note angeben"]+".";
+                error = error + "<br/>" + translate[171]+".";
             }
 
             if(grade < 4 && !reason){
-                error = error + "<br/>" + translate["Bitte Begründung für Note unter 4.0 angeben"]+".";
+                error = error + "<br/>" + translate[174]+".";
             }
 
             if(error){
@@ -283,17 +285,17 @@ $(document).ready(function(){
             if(i == 1){
                 subType = $('.selectedType').attr("value");
             } else {
-                error = error + "<br/>" + translate["Bitte Fach-Typ angeben"]+".";
+                error = error + "<br/>" + translate[195]+".";
             }
 
         }
 
         if(!subName){
-            error = error + "<br/>" + translate["Bitte Fach angeben"]+".";
+            error = error + "<br/>" + translate[196]+".";
         }
 
         if(!subSem || subSem == "Semester:"){
-            error = error + "<br/>" + translate["Bitte Semester angeben"]+".";
+            error = error + "<br/>" + translate[197]+".";
         }
 
         if(error){
@@ -337,14 +339,14 @@ $(document).ready(function(){
 
         $(this).click(function(){
 
-            $(this).html("<b style='color: orange; text-decoration: underline'>"+"<br/>" + translate["Bist du dir sicher? Dabei werden alle Noten gelöscht"] + "...</b>");
+            $(this).html("<b style='color: orange; text-decoration: underline'>"+"<br/>" + translate[162] + "...</b>");
 
             $(this).click(function(){
 
                var subId = $(this).attr('subjectId');
 
                 if(!subId){
-                    alert(translate["Kein Fach angegeben"]);
+                    alert(translate[163]);
                 } else {
                     $.ajax({
                         method: "POST",

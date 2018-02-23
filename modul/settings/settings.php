@@ -5,21 +5,21 @@
         <link href="modul/settings/color-picker.min.css" rel="stylesheet">
     </head>
 
-<h1 class="mt-5"><?php echo $translate["Einstellungen"];?></h1>
+<h1 class="mt-5"><?php echo $translate[16];?></h1>
 
 <div class="row">
     <div class="col-lg-6">
         <div class="alert alert-danger" id="error" style="display: none;"></div>
         <div class="alert alert-success" id="AddedNotif" style="display: none;">
-            <strong></strong> <?php echo $translate["Menüpunkt wurde hinzugefügt"];?>.
+            <strong></strong> <?php echo $translate[118];?>.
         </div>
         <div id="usersNavItems">
-            <h2><?php echo $translate["Navigation bearbeiten"];?></h2>
+            <h2><?php echo $translate[15];?></h2>
         <?php
 
             $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$session_username'")->fetch_assoc());
 
-            $sql1 = "SELECT mg.ID, mg.position, mm.name FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID['ID'] ." ORDER BY mg.position";
+            $sql1 = "SELECT mg.ID, mg.position, mm.title FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID['ID'] ." ORDER BY mg.position";
 
             $result = $mysqli->query($sql1);
 
@@ -30,7 +30,7 @@
                     $link = '
                     <div class="navListPosition" id="navListPosition" navItemID="' . $row["ID"] . '">
                         <div id="navListItem">
-                            ' . $translate[$row["name"]] . ' <span> </span>
+                            ' . $translate[$row["title"]] . ' <span> </span>
                         </div>
                         <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDelete"><i class="fa fa-minus" aria-hidden="true"></i></span></div>
                     </div>
@@ -77,23 +77,23 @@
     <div class="col-lg-6">
         <div class="col-lg-12">
 
-            <h2><?php echo $translate["Sprache anpassen"];?></h2>
+            <h2><?php echo $translate[139];?></h2>
             <div class="alert alert-danger" id="errorLang" style="display: none;"></div>
             <div class="alert alert-success" id="AddedNotifLang" style="display: none;">
-                <strong></strong> <?php echo $translate["Sprache wurde angepasst"];?>.
+                <strong></strong> <?php echo $translate[138];?>.
             </div>
 
             <div class="col-12">
                 <select class="form-control" id="newSelLang">
-                    <option <?php if($session_language == "de"){echo "selected";}?> value="de">de - <?php echo $translate["Deutsch"];?></option>
-                    <option <?php if($session_language == "fr"){echo "selected";}?> value="fr">fr - <?php echo $translate["Französisch"];?></option>
-                    <option <?php if($session_language == "it"){echo "selected";}?> value="it">it - <?php echo $translate["Italienisch"];?></option>
+                    <option <?php if($session_language == "de"){echo "selected";}?> value="de">de - <?php echo $translate[140];?></option>
+                    <option <?php if($session_language == "fr"){echo "selected";}?> value="fr">fr - <?php echo $translate[142];?></option>
+                    <option <?php if($session_language == "it"){echo "selected";}?> value="it">it - <?php echo $translate[141];?></option>
                 </select>
             </div>
 
             <div class="col-12">
                 <br/>
-                <button class="btn btn-block" style="display:none;" id="changeLanguageButton"><?php echo $translate["Ändern"];?></button>
+                <button class="btn btn-block" style="display:none;" id="changeLanguageButton"><?php echo $translate[143];?></button>
             </div>
 
         </div>
@@ -116,47 +116,47 @@
 
         <div class="col-lg-12">
 
-            <h2><?php echo $translate["Design anpassen"];?> (ALPHA)</h2>
+            <h2><?php echo $translate[180];?> (ALPHA)</h2>
             <div class="alert alert-danger" id="errorLang" style="display: none;"></div>
 
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <label><?php echo $translate["Hintergrund"];?></label>
+                        <label><?php echo $translate[181];?></label>
                         <input type="text"  id="color1" class="form-control colorer" value="<?php echo $row['hintergrund']; ?>">
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <label><?php echo $translate["Hintergrund"];?> 2</label>
+                        <label><?php echo $translate[181];?> 2</label>
                         <input type="text" id="color2" class="form-control colorer" value="<?php echo $row['akzentfarbe']; ?>">
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <label><?php echo $translate["Schrift"];?></label>
+                        <label><?php echo $translate[182];?></label>
                         <input type="text" id="color3" class="form-control colorer" value="<?php echo $row['schrift']; ?>">
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <label><?php echo $translate["Links"];?></label>
+                        <label><?php echo $translate[183];?></label>
                         <input type="text" id="color4" class="form-control colorer" value="<?php echo $row['link']; ?>">
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="saveColor" style="display:none;" class="btn btn-block btn-success"><?php echo $translate['Ändern']; ?></button>
+                        <button type="button" id="saveColor" style="display:none;" class="btn btn-block btn-success"><?php echo $translate['143']; ?></button>
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="removeColor" class="btn btn-block"><?php echo $translate['Zurücksetzen']; ?></button>
+                        <button type="button" id="removeColor" class="btn btn-block"><?php echo $translate['189']; ?></button>
                     </div>
                 </div>
             </div>

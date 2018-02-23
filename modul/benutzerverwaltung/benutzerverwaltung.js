@@ -10,11 +10,11 @@ $(document).ready(function(){
         var lastname = $("#usrFormLastname").val();
 
         if(bkey.length != 7){
-            error = error + "<br/>" + translate["Der B-Key muss aus 7 Zeichen bestehen"]+".";
+            error = error + "<br/>" + translate[153]+".";
         }
 
         if(!group){
-            error = error + "<br/>" + translate["Bitte Gruppe auswählen"]+".";
+            error = error + "<br/>" + translate[154]+".";
         }
 
         if(error){

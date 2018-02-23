@@ -2,7 +2,7 @@
 <?php include("../../database/connect.php"); ?>
 <?php if($session_usergroup == 1 || $session_usergroup == 2) : ?>
 
-    <h1 class="mt-5"><?php echo $translate["Stundenpläne"];?></h1>
+    <h1 class="mt-5"><?php echo $translate[72];?></h1>
 
     <?php
 
@@ -32,16 +32,16 @@
 
 			<div class="weekchanger weekchangerBefore">
                 <button type="button" class="btn btn-default btn-block">
-                    <span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate["Vorherige Woche"];?>
+                    <span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate[73];?>
                 </button>
             </div>
 
 			<div style="text-align: center;" class="weekchanger weekchangerDate">
-                <b><?php echo $translate["Kalenderwoche"];?>: <div id="weekchangerDateNum">43-2016</div></b>
+                <b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b>
             </div>
 			<div class="weekchanger weekchangerNext">
                 <button type="button" class="btn btn-default btn-block">
-                    <?php echo $translate["Nächste Woche"];?> <span class="glyphicon glyphicon-arrow-right"></span>
+                    <?php echo $translate[74];?> <span class="glyphicon glyphicon-arrow-right"></span>
                 </button>
             </div>
 
@@ -52,11 +52,11 @@
 						<table class="table table-condensed table-bordered">
 							<thead>
 								<tr>
-									<th><?php echo $translate["Datum"];?></th>
-									<th><?php echo $translate["Zeit"];?></th>
-									<th><?php echo $translate["Fach"];?></th>
-									<th><?php echo $translate["Raum"];?></th>
-									<th><?php echo $translate["Lehrer"];?></th>
+									<th><?php echo $translate[57];?></th>
+									<th><?php echo $translate[119];?></th>
+									<th><?php echo $translate[62];?></th>
+									<th><?php echo $translate[120];?></th>
+									<th><?php echo $translate[121];?></th>
 								</tr>
 							</thead>
 							<tbody id="tafel_content">
@@ -98,22 +98,22 @@
     ?>
 
     <div class="col-lg-12 text-center">
-				<h1 class="mt-5">Gibm <?php echo $translate["Stundenplan"];?></h1>
+				<h1 class="mt-5">Gibm <?php echo $translate[11];?></h1>
                     <div class="form-group" id="klassenauswahl">
-						<label for="k_auswahl"><?php echo $translate["Klassenauswahl"];?></label>
+						<label for="k_auswahl"><?php echo $translate[76];?></label>
 						<select <?php if(isset($classSel)){echo "value='".$classSel."'";} ?> class="form-control" id="k_auswahl">
 						</select>
                         <div class="saveClass">
                             <button id="saveClassButton" type="button" class="btn btn-primary" style="border-top-left-radius: 0; border-top-right-radius: 0; display: none;">
-                                <?php echo $translate["Klasse speichern"];?>
+                                <?php echo $translate[77];?>
                             </button>
                         </div>
 					</div>
 				<div id="stundenplan" style="opacity: 0;">
 
-					<div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate["Vorherige Woche"];?></button></div>
-					<div class="weekchanger weekchangerDate"><b><?php echo $translate["Kalenderwoche"];?>: <div id="weekchangerDateNum">43-2016</div></b></div>
-					<div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block"><?php echo $translate["Nächste Woche"];?> <span class="glyphicon glyphicon-arrow-right"></span></button></div>
+					<div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate[73];?></button></div>
+					<div class="weekchanger weekchangerDate"><b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b></div>
+					<div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block"><?php echo $translate[74];?> <span class="glyphicon glyphicon-arrow-right"></span></button></div>
 					<br/>
 					<div id="kalender_tafel">
 						 <div class="agenda">
@@ -121,11 +121,11 @@
 								<table class="table table-condensed table-bordered">
 									<thead>
 										<tr>
-											<th><?php echo $translate["Datum"];?></th>
-											<th><?php echo $translate["Zeit"];?></th>
-											<th><?php echo $translate["Fach"];?></th>
-											<th><?php echo $translate["Raum"];?></th>
-											<th><?php echo $translate["Lehrer"];?></th>
+											<th><?php echo $translate[57];?></th>
+											<th><?php echo $translate[119];?></th>
+											<th><?php echo $translate[62];?></th>
+											<th><?php echo $translate[120];?></th>
+											<th><?php echo $translate[121];?></th>
 										</tr>
 									</thead>
 									<tbody id="tafel_content">
@@ -155,7 +155,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate["Fehler"];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte"];?>.
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>
