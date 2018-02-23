@@ -193,49 +193,49 @@
 195;Bitte Fach-Typ angeben;;
 196;Bitte Fach angeben;;
 197;Bitte Semester angeben;;
-198;Neuer Malus hinzugefügt;This isch Italian;This isch French
-199;Du hast einen Malus erhalten! Dieser wird ab in der Lohnberechnung berücksichtigt und ist für dich unter Leistungslohn ersichtlich.<br/><br/>Malus-Gewichtung: <b>{weigth}</b> %<br/>Begründung:<br/>{reason}<br/>;This isch Italian;This isch French
-200;Malus gelöscht;This isch Italian;This isch French
-201;Ein Malus wurde aus deinem Profil entfernt und entsprechend in der Lohnberechnung angepasst.;This isch Italian;This isch French
-202;{firstname} {lastname} hat eine ungenügende Note;This isch Italian;This isch French
-203;Der benutzer {firstname} {lastname} ({bkey}) hat soeben eine ungenügende Note mit dem Titel {gradeTitle} eingetragen.<br/><br/>Note: {grade} (Gewichtung: {gradeWeight} %)<br/>Begründung/Erklärung: <br/> {gradeReason};This isch Italian;This isch French
-204;Notenschnitt wurde angepasst;This isch Italian;This isch French
-205;Dein Notenschnitt für das Fach {subjectName} wurde gerade durch das HR angepasst. Dein neuer Notenschnitt für dieses Fach ist {newGrade};This isch Italian;This isch French
-206;{firstname} {lastname} hat eine ungenügende Note gelöscht;This isch Italian;This isch French
-207;Der benutzer {firstname} {lastname} ({bkey}) hat soeben eine ungenügende Note gelöscht<br/><br/>Titel: {gradeTitle}<br/>Note: {grade} (Gewichtung: {gradeWeight} %)<br/>Begründung/Erklärung: <br/> {gradeReason};This isch Italian;This isch French
-208;Verhaltensziele - Eintrag gelöscht;This isch Italian;This isch French
-209;Der Eintrag zu {title} in den Verhaltenszielen wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-210;Verhaltensziele - Eintrag beanstandet;This isch Italian;This isch French
-211;Der Eintrag zu {title} in den Verhaltenszielen wurde gerade Beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-212;Verhaltensziele - Neuer Eintrag;This isch Italian;This isch French
-213;In den Verhaltenszielen wurde soeben ein neuer Eintrag von {firstname} {lastname} erfasst:<br/><br/>Stage: {stageName}<br/>Punktzahl: {stagePoints}<br/>;This isch Italian;This isch French
-214;Fachvortrag - Eintrag gelöscht;This isch Italian;This isch French
-215;Der Eintrag zum Fachvortrag {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-216;Fachvortrag - Eintrag beanstandet;This isch Italian;This isch French
-217;Der Eintrag zum Fachvortrag {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-218;Fachvortrag - Neuer Eintrag;This isch Italian;This isch French
-219;In den Fachvorträgen wurde soeben ein neuer Eintrag von {firstname} {lastname} erfasst:<br/><br/>Fachvortrag-Titel: {title}<br/>Punktzahl: {points}<br/>;This isch Italian;This isch French
-220;ALS - Eintrag gelöscht;This isch Italian;This isch French
-221;Der Eintrag zur ALS {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-222;ALS - Eintrag beanstandet;This isch Italian;This isch French
-223;Der Eintrag zur ALS {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-224;ALS - Neuer Eintrag;This isch Italian;This isch French
-225;Es wurde soeben ein neuer ALS Eintrag von {firstname} {lastname} erfasst:<br/><br/>ALS-Titel: {title}<br/>Punktzahl: {points}<br/>;This isch Italian;This isch French
-226;PE - Eintrag gelöscht;This isch Italian;This isch French
-227;Der Eintrag zur PE {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-228;PE - Eintrag beanstandet;This isch Italian;This isch French
-229;Der Eintrag zur PE {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-230;PE - Neuer Eintrag;This isch Italian;This isch French
-231;Es wurde soeben ein neuer PE Eintrag von {firstname} {lastname} erfasst:<br/><br/>PE-Titel: {title}<br/>Punktzahl: {points}<br/>;This isch Italian;This isch French
-232;ÜK - Eintrag gelöscht;This isch Italian;This isch French
-233;Der Eintrag zum ÜK {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-234;ÜK - Eintrag beanstandet;This isch Italian;This isch French
-235;Der Eintrag zum ÜK {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-236;ÜK - Neuer Eintrag;This isch Italian;This isch French
-237;Es wurde soeben ein neuer ÜK Eintrag von {firstname} {lastname} erfasst:<br/><br/>ÜK-Titel: {title}<br/>Note: {points}<br/>;This isch Italian;This isch French
-238;STAO - Eintrag gelöscht;This isch Italian;This isch French
-239;Der Eintrag zur STAO {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};This isch Italian;This isch French
-240;STAO - Eintrag beanstandet;This isch Italian;This isch French
-241;Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};This isch Italian;This isch French
-242;STAO - Neuer Eintrag;This isch Italian;This isch French
-243;Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>;This isch Italian;This isch French
+198;Neuer Malus hinzugefügt;;
+199;Du hast einen Malus erhalten! Dieser wird ab in der Lohnberechnung berücksichtigt und ist für dich unter Leistungslohn ersichtlich.<br/><br/>Malus-Gewichtung: <b>{weigth}</b> %<br/>Begründung:<br/>{reason}<br/>;;
+200;Malus gelöscht;;
+201;Ein Malus wurde aus deinem Profil entfernt und entsprechend in der Lohnberechnung angepasst.;;
+202;{firstname} {lastname} hat eine ungenügende Note;;
+203;Der benutzer {firstname} {lastname} ({bkey}) hat soeben eine ungenügende Note mit dem Titel {gradeTitle} eingetragen.<br/><br/>Note: {grade} (Gewichtung: {gradeWeight} %)<br/>Begründung/Erklärung: <br/> {gradeReason};;
+204;Notenschnitt wurde angepasst;;
+205;Dein Notenschnitt für das Fach {subjectName} wurde gerade durch das HR angepasst. Dein neuer Notenschnitt für dieses Fach ist {newGrade};;
+206;{firstname} {lastname} hat eine ungenügende Note gelöscht;;
+207;Der benutzer {firstname} {lastname} ({bkey}) hat soeben eine ungenügende Note gelöscht<br/><br/>Titel: {gradeTitle}<br/>Note: {grade} (Gewichtung: {gradeWeight} %)<br/>Begründung/Erklärung: <br/> {gradeReason};;
+208;Verhaltensziele - Eintrag gelöscht;;
+209;Der Eintrag zu {title} in den Verhaltenszielen wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+210;Verhaltensziele - Eintrag beanstandet;;
+211;Der Eintrag zu {title} in den Verhaltenszielen wurde gerade Beanstandet.<br/><br/>Begründung:<br/> {reason};;
+212;Verhaltensziele - Neuer Eintrag;;
+213;In den Verhaltenszielen wurde soeben ein neuer Eintrag von {firstname} {lastname} erfasst:<br/><br/>Stage: {stageName}<br/>Punktzahl: {stagePoints}<br/>;;
+214;Fachvortrag - Eintrag gelöscht;;
+215;Der Eintrag zum Fachvortrag {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+216;Fachvortrag - Eintrag beanstandet;;
+217;Der Eintrag zum Fachvortrag {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
+218;Fachvortrag - Neuer Eintrag;;
+219;In den Fachvorträgen wurde soeben ein neuer Eintrag von {firstname} {lastname} erfasst:<br/><br/>Fachvortrag-Titel: {title}<br/>Punktzahl: {points}<br/>;;
+220;ALS - Eintrag gelöscht;;
+221;Der Eintrag zur ALS {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+222;ALS - Eintrag beanstandet;;
+223;Der Eintrag zur ALS {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
+224;ALS - Neuer Eintrag;;
+225;Es wurde soeben ein neuer ALS Eintrag von {firstname} {lastname} erfasst:<br/><br/>ALS-Titel: {title}<br/>Punktzahl: {points}<br/>;;
+226;PE - Eintrag gelöscht;;
+227;Der Eintrag zur PE {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+228;PE - Eintrag beanstandet;;
+229;Der Eintrag zur PE {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
+230;PE - Neuer Eintrag;;
+231;Es wurde soeben ein neuer PE Eintrag von {firstname} {lastname} erfasst:<br/><br/>PE-Titel: {title}<br/>Punktzahl: {points}<br/>;;
+232;ÜK - Eintrag gelöscht;;
+233;Der Eintrag zum ÜK {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+234;ÜK - Eintrag beanstandet;;
+235;Der Eintrag zum ÜK {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
+236;ÜK - Neuer Eintrag;;
+237;Es wurde soeben ein neuer ÜK Eintrag von {firstname} {lastname} erfasst:<br/><br/>ÜK-Titel: {title}<br/>Note: {points}<br/>;;
+238;STAO - Eintrag gelöscht;;
+239;Der Eintrag zur STAO {title} wurde gerade vom HR entfernt.<br/><br/>Begründung:<br/>{reason};;
+240;STAO - Eintrag beanstandet;;
+241;Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
+242;STAO - Neuer Eintrag;;
+243;Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>;;

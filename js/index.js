@@ -37,7 +37,7 @@ function goBack(href){
             }
         });
     } else {
-        $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate["Fehler"]+" </strong> "+$translate[156]+ ".</div>");
+        $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate[95]+" </strong> "+$translate[156]+ ".</div>");
     }
 }
 

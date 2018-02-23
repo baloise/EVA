@@ -242,7 +242,7 @@
             echo $groups;
 
         } else {
-            echo $translate['Keine Gruppen gefunden'].".";
+            echo $translate[100].".";
         }
 
         //GRUPPEN ENDE
@@ -488,7 +488,7 @@
 
             }
         } else {
-            echo $translate["Kein Benutzer gefunden"].".";
+            echo $translate[100].".";
         }
 
         //LEHRLINGE ENDE
@@ -510,7 +510,7 @@
     <br/><br/>
 
     <div class='alert alert-danger'>
-        <strong><?php echo $translate[95];?> </strong> <?php echo $translate["Ihr Account wurde keiner Gruppe zugewiesen, oder Ihnen fehlen Rechte."];?>
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>
     </div>
 
 <?php endif; ?>

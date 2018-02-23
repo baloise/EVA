@@ -224,13 +224,18 @@
 
             $passes = $countDeadlines - $countUserChecks;
 
-            if($passes == 0){
-                return 1;
-            } else if($passes == 1){
-                return 0.5;
-            } else if($passes > 1){
-                return 0;
+            if($countDeadlines > 0){
+                if($passes == 0){
+                    return 1;
+                } else if($passes == 1){
+                    return 0.5;
+                } else if($passes > 1){
+                    return 0;
+                }
+            } else {
+                return "false";
             }
+
 
         }
 
@@ -240,9 +245,9 @@
             $LKVBbehavior = LKVBcalcBehavior($semesterID, $userID, $mysqli);
             $LKVBdeadline = calculateDeadline($semesterID, $userID, $mysqli);
 
-            if($LKVBbehavior != 0 && $LKVBdeadline != 0){
+            if($LKVBbehavior != 0 && $LKVBdeadline != "false"){
                 return ((($LKVBdeadline) + ($LKVBbehavior*2))/3);
-            } else if ($LKVBdeadline != 0) {
+            } else if ($LKVBdeadline != "false") {
                 return ($LKVBdeadline);
             } else if ($LKVBbehavior != 0) {
                 return ($LKVBbehavior);
@@ -366,8 +371,6 @@
             }
 
         }
-
-        LITcalcBetieb(27, 108, $mysqli);
 
         //Leistung Schule
         function calcSchool($semesterID, $userID, $mysqli){

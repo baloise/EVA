@@ -158,7 +158,7 @@ $(document).ready(function(){
         } else {
 
             $("#warnEntry").slideDown("fast");
-            $("#addNewEntryButton").html(translate["Bestätigen"]);
+            $("#addNewEntryButton").html(translate[99]);
 
             $("#addNewEntryButton").click(function(event){
                 event.preventDefault();
@@ -224,7 +224,7 @@ $(document).ready(function(){
         $("#errorPerf").slideUp("fast");
 
         $("#warnEntryPerf").slideDown("fast");
-        $("#addNewEntryButtonPerf").html(translate["Bestätigen"]);
+        $("#addNewEntryButtonPerf").html(translate[99]);
 
         $("#addNewEntryButtonPerf").click(function(event){
             event.preventDefault();

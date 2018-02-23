@@ -20,7 +20,7 @@
             }
 
         } else {
-            $llist = $translate["Keine Lehrlinge im System"];
+            $llist = $translate[104];
         }
 
 
@@ -141,7 +141,7 @@
                 if($entryList){
                     echo $entryList;
                 } else {
-                    echo "<tr><td colspan='7' align='center'>".$translate["Bisher keine Einträge"]."</td></tr>";
+                    echo "<tr><td colspan='7' align='center'>".$translate[87]."</td></tr>";
                 }
             ?>
         </tbody>

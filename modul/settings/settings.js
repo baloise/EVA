@@ -144,7 +144,7 @@ $(document).ready(function(){
 
                 } else {
 
-                    $("#error").html(translate["Fehler"]).slideDown("fast");
+                    $("#error").html(translate[95]).slideDown("fast");
 
                 }
             }

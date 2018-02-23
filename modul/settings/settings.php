@@ -63,7 +63,7 @@
 
                             }
                         } else {
-                            echo "<option>".$translate["Fehler beim suchen der Einträge"]."</option>";
+                            echo "<option>".$translate[100]."</option>";
                         }
 
                     ?>

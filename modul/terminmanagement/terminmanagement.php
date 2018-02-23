@@ -85,7 +85,7 @@
                         $groups = $groups . "<option value='". $row['ID'] ."'>". $translate[$row["name"]] ."</option>";
                     }
                 } else {
-                    $groups = $translate["Keine Gruppen gefunden"];
+                    $groups = $translate[123];
                 }
 
                 $oldSem = "";
@@ -102,7 +102,7 @@
                                 $listSemsInList = $listSemsInList . "<option value='". $row3['ID'] ."'>". $row3["semester"] ."</option>";
                             }
                         } else {
-                            $listSemsInList = $translate["Keine weiteren Semester vohanden"].".";
+                            $listSemsInList = $translate[91].".";
                         }
 
                         $generateDiv = "";

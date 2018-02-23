@@ -79,7 +79,7 @@
                 if($entryList){
                     echo $entryList;
                 } else {
-                    echo "<tr><td colspan='7' align='center'>". $translate["Bisher keine Einträge"]."</td></tr>";
+                    echo "<tr><td colspan='7' align='center'>". $translate[87]."</td></tr>";
                 }
             ?>
         </tbody>
@@ -253,7 +253,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if($entryListPerf){echo $entryListPerf;} else {echo $translate["Du hast bisher nichts eingetragen."];} ?>
+                <?php if($entryListPerf){echo $entryListPerf;} else {echo $translate[187];} ?>
                 <tr id="newEntry">
                     <th scope="row" style="padding-top: 20px;">#</th>
                     <td><input class="form-control" type="text" id="fTitlePerf"/></td>

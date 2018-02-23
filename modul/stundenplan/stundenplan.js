@@ -87,7 +87,7 @@
 
 		  }).fail(function(jqXHR, textStatus, errorThrown) {
 
-			alert(translate['Fehler beim laden des Stundenplanes'] + ": " + textStatus);
+			alert(translate[157] + ": " + textStatus);
 
 		  });
 		}

@@ -158,7 +158,7 @@ $(document).ready(function(){
         } else {
 
             $("#warnEntry").slideDown("fast");
-            $("#addNewEntryButton").html(translate["Bestätigen"]);
+            $("#addNewEntryButton").html(translate[99]);
 
             $("#addNewEntryButton").click(function(event){
                 event.preventDefault();
