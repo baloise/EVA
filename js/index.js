@@ -1,5 +1,5 @@
 function makeDynamic(objectThis){
-    var href = ($(objectThis).attr('href'));
+    var href = $(objectThis).attr('href');
 
     $(objectThis).click(function(event){
         event.preventDefault();

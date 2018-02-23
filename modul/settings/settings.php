@@ -112,6 +112,14 @@
                 $row = $session_appinfo;
             }
 
+            $explora = false;
+
+            if (preg_match("/(Trident\/(\d{2,}|7|8|9)(.*)rv:(\d{2,}))|(MSIE\ (\d{2,}|8|9)(.*)Tablet\ PC)|(Trident\/(\d{2,}|7|8|9))/", $_SERVER["HTTP_USER_AGENT"], $match) != 0) {
+
+                $explora = true;
+                echo "<script type='text/javascript'>var explora = 1;</script>";
+
+            }
         ?>
 
         <div class="col-lg-12">
@@ -119,38 +127,51 @@
             <h2><?php echo $translate[180];?> (ALPHA)</h2>
             <div class="alert alert-danger" id="errorLang" style="display: none;"></div>
 
-            <div class="col-12">
+            <?php
+
+                if($explora){
+                    echo '
+                    <div class="col-12 text-center" id="exploraBlock" style="display:none; font-size: larger; margin-top:100px; position:absolute;">
+                        <p class="alert-danger">'.$translate[244].'</p><br/>
+                        '.$translate[245].' <a href="https://www.google.de/chrome/index.html">Google Chrome</a>/<a href="https://www.mozilla.org/de/firefox/new/">Mozilla Firefox</a> '.$translate[246].'
+                    </div>
+                    ';
+                }
+
+            ?>
+
+            <div class="col-12" id="colorChange">
                 <div class="row">
                     <div class="col-12">
                         <label><?php echo $translate[181];?></label>
-                        <input type="text"  id="color1" class="form-control colorer" value="<?php echo $row['hintergrund']; ?>">
+                        <input type="text"  id="color1" class="form-control colorer" value="<?php echo $row['hintergrund']; ?>" <?php if($explora){echo "disabled";}?> >
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
                         <label><?php echo $translate[181];?> 2</label>
-                        <input type="text" id="color2" class="form-control colorer" value="<?php echo $row['akzentfarbe']; ?>">
+                        <input type="text" id="color2" class="form-control colorer" value="<?php echo $row['akzentfarbe']; ?>" <?php if($explora){echo "disabled";}?> >
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
                         <label><?php echo $translate[182];?></label>
-                        <input type="text" id="color3" class="form-control colorer" value="<?php echo $row['schrift']; ?>">
+                        <input type="text" id="color3" class="form-control colorer" value="<?php echo $row['schrift']; ?>" <?php if($explora){echo "disabled";}?> >
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
                         <label><?php echo $translate[183];?></label>
-                        <input type="text" id="color4" class="form-control colorer" value="<?php echo $row['link']; ?>">
+                        <input type="text" id="color4" class="form-control colorer" value="<?php echo $row['link']; ?>" <?php if($explora){echo "disabled";}?> >
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="saveColor" style="display:none;" class="btn btn-block btn-success"><?php echo $translate['143']; ?></button>
+                        <button type="button" id="saveColor" style="display:none;" class="btn btn-block btn-success" <?php if($explora){echo "disabled";}?> > <?php echo $translate['143']; ?></button>
                     </div>
                 </div>
                 <br/>

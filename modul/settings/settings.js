@@ -1,6 +1,14 @@
-
-
 $(document).ready(function(){
+
+    if(typeof explora !== 'undefined'){
+
+        $("#colorChange").fadeTo(2000, 0.1, function(){
+
+            $("#exploraBlock").fadeIn("slow");
+
+        });
+
+    }
 
     $('#newSelLang').change(function(){
 

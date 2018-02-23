@@ -239,3 +239,6 @@
 241;Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
 242;STAO - Neuer Eintrag;;
 243;Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>;;
+244;Diese Funktion ist nicht mit deinem Browser kompatibel;;
+245;Lade dir jetzt;;
+246;herunter, um die Funktionen dieser Webseite vollständig zu nutzen.;;

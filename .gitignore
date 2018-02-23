@@ -3,3 +3,4 @@
 callParsys.php
 
 /vendor/
+database/connect.php
