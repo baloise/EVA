@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Feb 2018 um 19:13
+-- Erstellungszeit: 24. Feb 2018 um 15:11
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -156,6 +156,13 @@ CREATE TABLE `tb_deadline` (
   `tb_semester_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `tb_deadline`
+--
+
+INSERT INTO `tb_deadline` (`ID`, `title_de`, `title_fr`, `title_it`, `description_de`, `description_fr`, `description_it`, `date`, `tb_semester_ID`) VALUES
+(2, '', '', '', '', '', '', '0000-00-00', 39);
+
 -- --------------------------------------------------------
 
 --
@@ -293,7 +300,6 @@ INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_
 (67, 'Tescht', 213, '2018-02-23 06:24:37', 9, 33),
 (69, 'Tescht', 12, '2018-02-23 07:07:23', 8, 25),
 (70, 'Tescht', 12, '2018-02-23 07:08:21', 8, 25),
-(71, 'sdfasafdfdsaasfdadsf', 1, '2018-02-23 07:14:50', 9, 33),
 (72, 'Test', 123, '2018-02-23 07:17:51', 8, 25);
 
 -- --------------------------------------------------------
@@ -791,7 +797,10 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (240, 'STAO - Eintrag beanstandet', '', ''),
 (241, 'Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason}', '', ''),
 (242, 'STAO - Neuer Eintrag', '', ''),
-(243, 'Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>', '', '');
+(243, 'Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>', '', ''),
+(244, 'Diese Funktion ist nicht mit deinem Browser kompatibel', '', ''),
+(245, 'Lade dir jetzt', '', ''),
+(246, 'herunter, um die Funktionen dieser Webseite vollständig zu nutzen.', '', '');
 
 -- --------------------------------------------------------
 
@@ -1075,7 +1084,7 @@ ALTER TABLE `tb_behaviorgrade`
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
 --
 ALTER TABLE `tb_deadline`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_group`
@@ -1147,7 +1156,7 @@ ALTER TABLE `tb_subject_grade`
 -- AUTO_INCREMENT für Tabelle `tb_translation`
 --
 ALTER TABLE `tb_translation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_uek`
