@@ -1,7 +1,7 @@
 1;Willkommen;Benvenuto;Bienvenue
 2;Noten;Valutazioni;Notes
 3;ALS;SAL;STA
-4;Benutzerverwaltung;Accessi utilizzatori;Service accès utilisateurs
+4;Benutzer;Accessi utilizzatori;Service accès utilisateurs
 5;Dashboard;Dashboard;Tableau de bord
 6;Fachvortrag;Presentazione tecnica del ramo;Exposé de branche
 7;Leistungslohn;Salario alla performance;Salaire à la performance
@@ -9,7 +9,7 @@
 9;PE;UP;UF
 10;STAO;Punto della situazione;Point de situation
 11;Stundenplan;Tabella orario;Plan horaire
-12;Terminmanagement;Gestione dei colloqui;Gestion des rendez-vous
+12;Termine;Gestione dei colloqui;Gestion des rendez-vous
 13;Verhaltensziele;Obiettivi di comportamento;Objectif de comportement
 14;ÜK-KN CYP;;
 15;Navigation bearbeiten;Modifica di navigazione;Modification de navigazion

@@ -2,7 +2,7 @@
 
 
 
-	if(null !== (getenv('APP_DB_NAME'))){
+	if(null !== (getenv('APP_DB_USER'))){
 		$_db_database = getenv('APP_DB_NAME');
 		$_db_host = getenv('APP_DB_HOST');
 		$_db_username = getenv('APP_DB_USER');

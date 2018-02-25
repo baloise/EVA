@@ -10,6 +10,7 @@
         function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
 
             $malusEntry = "";
+            $deadlineEntry = "0";
 
             if($malus > 0){
                 $malusEntry = $malusEntry . '
@@ -17,6 +18,10 @@
                     <h2><b>'.$translate[8].': '.$malus.' %</b></h2>
                 </div>
                 ';
+            }
+
+            if(is_numeric(calculateDeadline($semesterID, $userID, $mysqli))){
+              $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2);
             }
 
             $semester = '
@@ -91,7 +96,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>'.$translate[12].'</td>
-                                                    <td class="calcTableResult">'. round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) .' %</td>
+                                                    <td class="calcTableResult">'. $deadlineEntry .' %</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -186,28 +191,32 @@
 
         function cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate){
 
-            //Einen drittel berechnen
-
-            $result = $mysqli->query($sql1);
-
+            //Gemeinsame Variabeln
             $semesterList = "";
-
-            $cycleTotalPercent = 0;
-            $cycleTotalItY3 = 0;
-            $cycleTotalSchoolY3 = 0;
-            $cycleTotalBetriebY3 = 0;
             $actualSalary = 0;
             $totalMalus = 0;
 
+            //-------------------------------------------- Einen drittel berechnen --------------------------------------------
+
+            //Prozent-Zwischenspeicher-Variabeln initialisieren
+            $cycleTotalPercentY3 = 0;
+            $cycleTotalItY3 = 0;
+            $cycleTotalSchoolY3 = 0;
+            $cycleTotalBetriebY3 = 0;
+
+            //Prozentzähler initialisieren
+            $cycleTotalPercent = 0;
+            $cycleTotalItPercent = 0;
+            $cycleTotalSchoolPercent = 0;
+            $cycleTotalBetriebPercent = 0;
+
+            //Semesterzähler initialisieren
             $semesterCountSemester = 0;
             $semesterCountSchool = 0;
             $semesterCountBetrieb = 0;
             $semesterCountInformatik = 0;
 
-            $cycleTotalPercent = 0;
-            $cycleTotalItPercent = 0;
-            $cycleTotalSchoolPercent = 0;
-            $cycleTotalBetriebPercent = 0;
+            $result = $mysqli->query($sql1);
 
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -249,42 +258,44 @@
             }
 
             if($semesterCountInformatik != 0){
-                $cycleTotalItY3 = ($cycleTotalItPercent / $semesterCountInformatik)/3;
+                $cycleTotalItY3 = ($cycleTotalItPercent / $semesterCountInformatik);
             } else {
                 $cycleTotalItY3 = 0;
             }
 
             if($semesterCountSchool != 0){
-                $cycleTotalSchoolY3 = ($cycleTotalSchoolPercent / $semesterCountSchool)/3;
+                $cycleTotalSchoolY3 = ($cycleTotalSchoolPercent / $semesterCountSchool);
             } else {
                 $cycleTotalSchoolY3 = 0;
             }
 
             if($semesterCountBetrieb != 0){
-                $cycleTotalBetriebY3 = ($cycleTotalBetriebPercent / $semesterCountBetrieb)/3;
+                $cycleTotalBetriebY3 = ($cycleTotalBetriebPercent / $semesterCountBetrieb);
             } else {
                 $cycleTotalBetriebY3 = 0;
             }
 
             if($semesterCountSemester != 0){
-                $cycleTotalPercentY3 = ($cycleTotalPercent / $semesterCountSemester)/3;
+                $cycleTotalPercentY3 = ($cycleTotalPercent / $semesterCountSemester);
             } else {
                 $cycleTotalPercentY3 = 0;
             }
 
-            //Zwei drittel berechnen
+            //-------------------------------------------- Zwei drittel berechnen --------------------------------------------
 
-            $result = $mysqli->query($sql2);
-
+            //Semesterzähler zurücksetzen
             $semesterCountSemester = 0;
             $semesterCountSchool = 0;
             $semesterCountBetrieb = 0;
             $semesterCountInformatik = 0;
 
+            //Prozentzähler zurücksetzen
             $cycleTotalPercent = 0;
             $cycleTotalItPercent = 0;
             $cycleTotalSchoolPercent = 0;
             $cycleTotalBetriebPercent = 0;
+
+            $result = $mysqli->query($sql2);
 
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -325,28 +336,64 @@
                 }
             }
 
-            if($semesterCountInformatik != 0){
-                $cycleTotalItPercentAverage = (($cycleTotalItY3)) + ((($cycleTotalItPercent/$semesterCountInformatik)/3)*2);
+            //Informatik Durschnitt berechnen
+            if($cycleTotalItY3 != 0){
+                if($semesterCountInformatik != 0){
+                    $cycleTotalItPercentAverage = (($cycleTotalItY3)) + ((($cycleTotalItPercent/$semesterCountInformatik)/3)*2);
+                } else {
+                    $cycleTotalItPercentAverage = $cycleTotalItY3;
+                }
             } else {
-                $cycleTotalItPercentAverage = $cycleTotalItY3;
+                if($semesterCountInformatik != 0){
+                    $cycleTotalItPercentAverage = (($cycleTotalItPercent/$semesterCountInformatik));
+                } else {
+                    $cycleTotalItPercentAverage = 0;
+                }
             }
 
-            if($semesterCountSchool != 0){
-                $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolY3)) + ((($cycleTotalSchoolPercent/$semesterCountSchool)/3)*2);
+            //Schulnoten Durchschnitt berechnen
+            if($cycleTotalSchoolY3 != 0){
+                if($semesterCountSchool != 0){
+                    $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolY3)/3) + ((($cycleTotalSchoolPercent/$semesterCountSchool)/3)*2);
+                } else {
+                    $cycleTotalSchoolPercentAverage = $cycleTotalSchoolY3;
+                }
             } else {
-                $cycleTotalSchoolPercentAverage = $cycleTotalSchoolY3;
+                if($semesterCountSchool != 0){
+                    $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolPercent/$semesterCountSchool));
+                } else {
+                    $cycleTotalSchoolPercentAverage = 0;
+                }
             }
 
-            if($semesterCountBetrieb != 0){
-                $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebY3)) + ((($cycleTotalBetriebPercent/$semesterCountBetrieb)/3)*2);
+            //Betrieb Durchschnitt berechnen
+            if($cycleTotalBetriebY3 != 0){
+                if($semesterCountBetrieb != 0){
+                    $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebY3)/3) + ((($cycleTotalBetriebPercent/$semesterCountBetrieb)/3)*2);
+                } else {
+                    $cycleTotalBetriebPercentAverage = $cycleTotalBetriebY3;
+                }
             } else {
-                $cycleTotalBetriebPercentAverage = $cycleTotalBetriebY3;
+                if($semesterCountBetrieb != 0){
+                    $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebPercent/$semesterCountBetrieb));
+                } else {
+                    $cycleTotalBetriebPercentAverage = 0;
+                }
             }
 
-            if($semesterCountSemester != 0){
-                $cycleTotalPercentAverage = (($cycleTotalPercentY3)) + ((($cycleTotalPercent/$semesterCountSemester)/3)*2);
+            //Gesamtdurchschnitt berechnen
+            if($cycleTotalPercentY3 != 0){
+                if($semesterCountSemester != 0){
+                    $cycleTotalPercentAverage = (($cycleTotalPercentY3)/3) + ((($cycleTotalPercent/$semesterCountSemester)/3)*2);
+                } else {
+                    $cycleTotalPercentAverage = $cycleTotalPercentY3;
+                }
             } else {
-                $cycleTotalPercentAverage = $cycleTotalPercentY3;
+                if($semesterCountSemester != 0){
+                    $cycleTotalPercentAverage = (($cycleTotalPercent/$semesterCountSemester));
+                } else {
+                    $cycleTotalPercentAverage = 0;
+                }
             }
 
             $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
@@ -367,6 +414,11 @@
                     <h2><b>'.$translate[8].': '.$malus.' %</b></h2>
                 </div>
                 ';
+            }
+
+            $deadlineEntry = "0";
+            if(is_numeric(calculateDeadline($semesterID, $userID, $mysqli))){
+                $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2);
             }
 
             $performBetrieb = "";
@@ -454,7 +506,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>'.$translate[12].'</td>
-                                                    <td class="calcTableResult">'. round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) .' %</td>
+                                                    <td class="calcTableResult">'. $deadlineEntry .' %</td>
                                                 </tr>
                                             </table>
                                         </div>

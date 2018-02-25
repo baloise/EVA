@@ -308,7 +308,7 @@
         function LITcalculateModule($semesterID, $userID, $mysqli){
 
             $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 0 AND tb_semester_ID = $semesterID;";
-			$result = $mysqli->query($sql);
+			      $result = $mysqli->query($sql);
 
             $countPercentage = 0;
             $countSubjects = 0;
@@ -376,7 +376,7 @@
         function calcSchool($semesterID, $userID, $mysqli){
 
             $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 1 AND tb_semester_ID = $semesterID;";
-			$result = $mysqli->query($sql);
+			      $result = $mysqli->query($sql);
 
             $countPercentage = 0;
             $countSubjects = 0;

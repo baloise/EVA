@@ -160,8 +160,7 @@
             <!-- Page Content -->
             <div class="container">
     		    <div class="row">
-    			    <div class="col-lg-1"></div>
-    			    <div class="col-lg-10">
+    			    <div class="col-lg-10 offset-md-1">
         				<div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard/dashboard.php";} ?>" id="pageContent">
 
         				</div>

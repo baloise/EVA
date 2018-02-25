@@ -12,13 +12,20 @@
          url('font/roboto-regular.ttf') format('truetype'),
          url('font/roboto-regular.svg') format('svg');
 }
+@font-face {
+    font-family: 'Geometria';
+    src: url('font/Geometria-Light.otf');
+}
 body {
 	padding-top: 54px;
-	font-family: 'RobotoRegular';
+	font-family: 'RobotoRegular', sans-serif;;
 	background-color: var(--hintergrund);
 	color: var(--schrift);
 	margin-bottom: 60px; /* Margin bottom by footer height */
 	font-size: 0.8rem;
+}
+.navbar-brand {
+    font-family: 'Geometria';
 }
 .svg path {
 	fill: var(--link);
@@ -30,7 +37,6 @@ body {
 }
 .nav-link {
 	color: var(--link) !important;
-	font-size: medium;
 	font-weight: 500;
 	transition: font-weight .4s ease-in-out;
 }
@@ -78,16 +84,19 @@ html {
 	background-color: var(--hintergrund);
 	color: var(--schrift);
 	padding: 20px;
-	font-family: 'RobotoThin';
-	font-size: 2rem;
+	font-family: 'Geometria', 'RobotoThin', sans-serif;
+	font-size: 1.5rem;
     font-weight: 500;
 }
 .dashModul {
 	color: var(--link);
-	min-height: 150px;
-	max-height: 150px;
+	min-height: 100px;
+	max-height: 100px;
 	padding: 20px;
 	margin-bottom: 60px;
+}
+.dashModul h3 {
+    font-size: 0.7rem;
 }
 .dashModuleTitle {
 	margin-left: auto;
@@ -102,7 +111,7 @@ html {
 	transition: max-width 0.2s;
 }
 .dashIco:hover {
-	max-width: 65%;
+	max-width: 80%;
 }
 #navListItem {
 	background-color: var(--akzentfarbe);
@@ -156,11 +165,8 @@ html {
 .btn {
 	cursor: pointer;
 }
-h3 {
-	font-size: 1rem;
-}
 h2, h1 {
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 100;
 }
 select.form-control:not([size]):not([multiple]){
@@ -177,6 +183,7 @@ select.form-control:not([size]):not([multiple]){
 }
 .mt-5, .my-5 {
 	margin-top: 2rem !important;
+    text-align: center;
 }
 .userContentBox {
 	padding-top: 5px;
@@ -222,6 +229,32 @@ hr {
 }
 .alert-danger {
     background-color: #f2dede !important;
+}
+@media (max-width: 575px) {
+    .navbar-brand span {
+        display: none;
+    }
+    .dashModul {
+    	color: var(--link);
+    	min-height: 50px;
+    	max-height: 50px;
+    	margin-bottom: 80px;
+    }
+    .dashModul h3 {
+        font-size: 0.7rem;
+    }
+    .dashModuleTitle {
+    	margin-left: auto;
+    	margin-right: auto;
+    	text-align: center;
+    }
+    .dashIco {
+    	max-width: 20%;
+    	margin-bottom: 10px;
+    	-webkit-transition: max-width 0.2s;
+    	-moz-transition: max-width 0.2s;
+    	transition: max-width 0.2s;
+    }
 }
 @media (min-width: 992px) {
 	body {

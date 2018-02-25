@@ -168,8 +168,7 @@
                     }
                 });
                 $('#users_filter label').attr('placeholder', 'Suchen');
-                $('#users_filter input').attr('placeholder', 'Suchen');
-                $('#users_filter input').addClass('form-control');
+                $('#users_filter input').attr('placeholder', 'Suchen').addClass('form-control');
                 $('#loadingTable').slideUp("fast", function(){
                     $("#userTable").slideDown( "slow" );
                 });
