@@ -3,6 +3,43 @@
     <input type="submit"/>
 </form>
 
+<br/>
+<hr/>
+<h2>Momentan verfügbare B-Keys:</h2>
+<ul>
+    <li>
+        b000001 - Nachwuchsentwicklung
+    </li>
+    <li>
+        b000002 - Nachwuchsentwicklung
+    </li>
+    <li>
+        b000003 - PA
+    </li>
+    <li>
+        b000004 - PA
+    </li>
+    <li>
+        b000005 - Lernender IT
+    </li>
+    <li>
+        b000006 - Lernender IT
+    </li>
+    <li>
+        b000007 - Lernender KV Versicherung
+    </li>
+    <li>
+        b000008 - Lernender KV Versicherung
+    </li>
+    <li>
+        b000009 - Lernender KV Bank
+    </li>
+    <li>
+        b000010 - Lernender KV Bank
+    </li>
+</ul>
+
+
 <?php
 
     if(isset($_GET['error'])){

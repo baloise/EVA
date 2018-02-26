@@ -25,7 +25,7 @@
     $result = $mysqli->query($sql);
 
     if ($result->num_rows > 0) {
-        echo"<div class='row' style='margin-bottom:100px;'>";
+        echo"<div class='row' style='margin-bottom:50px;'>";
         while($row = $result->fetch_assoc()) {
             $generateDiv = '
 			<div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
@@ -59,6 +59,31 @@
 		?>;
 	</script>
 	<script type="text/javascript" src="modul/dashboard/dashboard.js"></script>
+
+	<?php
+		if($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
+
+			if($session_semesterid){
+				$sql = "SELECT * FROM `tb_semester` WHERE ID = $session_semesterid;";
+				$result = $mysqli->query($sql);
+			    if ($result->num_rows == 1) {
+					$row = $result->fetch_assoc();
+					$sql2 = "SELECT count(ID) FROM `tb_semester` WHERE tb_group_ID = 3";
+					$result2 = $mysqli->query($sql2);
+					echo "<h2>Du befindest dich im Semester ". $row['semester'];
+					if ($result2->num_rows == 1) {
+						$row2 = $result2->fetch_assoc();
+						echo " von " . $row2['count(ID)'] . "</h2>";
+					} else {
+						echo "</h2>";
+					}
+				}
+			} else {
+
+			}
+
+		}
+	?>
 
 <?php else : ?>
 

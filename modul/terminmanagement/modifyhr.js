@@ -1,3 +1,48 @@
+function search() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("searchList");
+    li = ul.getElementsByClassName("searchRow");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("searchFor")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+
+function unCountSems(semID, user, state, obj){
+
+    if(semID && user){
+
+        $.ajax({
+            method: "POST",
+            url: "./modul/terminmanagement/modify.php",
+            data: {todo: 'unCount', semID:semID, user:user, state:$(obj).hasClass("alert-success")},
+            success: function(data){
+                if(data){
+                    alert(data);
+                } else {
+                    if($(obj).hasClass("alert-success")){
+                        $(obj).removeClass("alert-success");
+                    } else {
+                        $(obj).addClass("alert-success");
+                    }
+                }
+
+            }
+        });
+
+    } else {
+        alert ("Error: No changes made");
+    }
+
+}
+
 $(document).ready(function(){
 
     $('.header').each(function(){

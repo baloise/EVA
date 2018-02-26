@@ -30,9 +30,21 @@
 
     }
 
-    function designSemesterEntry($usrid, $semid, $semtitle, $deadEntries, $translate){
+    function designSemesterEntry($usrid, $semid, $semtitle, $deadEntries, $translate, $mysqli){
 
         if($deadEntries){
+
+            $stmt = $mysqli->prepare("SELECT * FROM `tb_dontcountsem` WHERE tb_semester_ID = ?");
+            $stmt->bind_param("i", $semid);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $row = $result->fetch_array(MYSQLI_NUM);
+
+            $hasSuccess = "";
+            if ($row){
+                $hasSuccess = "alert-success";
+            }
 
             $entry = '
             <div class="card col-12 inCard">
@@ -46,7 +58,7 @@
                 </div>
 
                 <div class="deadlineContent" deadlineSemesterID="'.$semid.'" userId="'.$usrid.'" style="display: none;">
-                    <button type="button" did="'.$semid.'" userId="'.$usrid.'" onclick="unCountSem('.$semid.', '.$usrid.', 1);" class="btn SemUncounter">Semester in Lohnrechnung nicht zählen</button>
+                    <button type="button" did="'.$semid.'" userId="'.$usrid.'" onclick="unCountSems('.$semid.', '.$usrid.', 0, this)" class="btn '.$hasSuccess.' semChanger">Semester in Lohnrechnung nicht zählen</button>
                     <div class="row">
                         <div class="col-lg-12">
                             <hr/>
@@ -118,7 +130,7 @@
 
                         $deadlineID = $row2[0];
                         $deadlineTitle = $row2[1];
-                        $deadlineDate = $row2[3];
+                        $deadlineDate = $row2[7];
 
                         $stmt3 = $mysqli->prepare("SELECT * FROM `tb_deadline_check` WHERE tb_deadline_ID = ? && tb_user_ID = ?;");
                         $stmt3->bind_param("ii", $deadlineID, $userid);
@@ -143,7 +155,9 @@
                     $deadlineEntries = "";
                 }
 
-                $semesterEntries = $semesterEntries . designSemesterEntry($userid, $semesterid, $semesterTitle, $deadlineEntries, $translate);
+                if(isset($deadlineID)){
+                    $semesterEntries = $semesterEntries . designSemesterEntry($userid, $semesterid, $semesterTitle, $deadlineEntries, $translate, $mysqli);
+                }
 
             }
 

@@ -13,7 +13,7 @@
 
         include("database/connect.php");
 
-        $sql = "SELECT tb_group_id, deleted, id, language FROM tb_user WHERE bKey = '$username'";
+        $sql = "SELECT tb_group_id, deleted, id, language, tb_semester_ID FROM tb_user WHERE bKey = '$username'";
         $result = $mysqli->query($sql);
 
         if ($result->num_rows == 1) {
@@ -28,6 +28,7 @@
                 $_SESSION['user']['usergroup'] = $row['tb_group_id'];
                 $_SESSION['user']['id'] = $row['id'];
                 $_SESSION['user']['username'] = $username;
+                $_SESSION['user']['semester'] = $row['tb_semester_ID'];
 
                 if(isset($row['language'])){
                     $_SESSION['user']['language'] = $row['language'];

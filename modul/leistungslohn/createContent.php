@@ -20,8 +20,11 @@
                 ';
             }
 
-            if(is_numeric(calculateDeadline($semesterID, $userID, $mysqli))){
-              $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2);
+            $deadlineEntry = "0";
+            if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
+                $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) . " %";
+            } else {
+                $deadlineEntry = "Keine Einträge";
             }
 
             $semester = '
@@ -96,7 +99,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>'.$translate[12].'</td>
-                                                    <td class="calcTableResult">'. $deadlineEntry .' %</td>
+                                                    <td class="calcTableResult">'. $deadlineEntry .'</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -417,8 +420,10 @@
             }
 
             $deadlineEntry = "0";
-            if(is_numeric(calculateDeadline($semesterID, $userID, $mysqli))){
-                $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2);
+            if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
+                $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) . " %";
+            } else {
+                $deadlineEntry = "Keine Einträge";
             }
 
             $performBetrieb = "";
@@ -506,7 +511,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>'.$translate[12].'</td>
-                                                    <td class="calcTableResult">'. $deadlineEntry .' %</td>
+                                                    <td class="calcTableResult">'. $deadlineEntry .' </td>
                                                 </tr>
                                             </table>
                                         </div>

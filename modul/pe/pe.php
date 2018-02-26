@@ -225,6 +225,9 @@
 
     <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p><?php echo $translate[35];?>.</p>
+    <p>
+        <b><?php echo $translate[247];?></b>
+    </p>
     <table class="table">
         <thead>
             <tr>

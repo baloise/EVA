@@ -220,65 +220,87 @@ $(document).ready(function(){
     $("#addNewEntryButtonPerf").click(function(event){
 
         event.preventDefault();
-
         $("#errorPerf").slideUp("fast");
 
-        $("#warnEntryPerf").slideDown("fast");
-        $("#addNewEntryButtonPerf").html(translate[99]);
+        var error = "";
+        var fTitle = $("#fTitlePerf").val();
+        var fpoints = $("#fPointsPerf").val();
+        var fsem = $("#fSemPerf").val();
 
-        $("#addNewEntryButtonPerf").click(function(event){
-            event.preventDefault();
+        if(!fsem){
+            error = error + "<br/>" + translate[150]+".";
+        }
 
-            var error = "";
-            var fTitle = $("#fTitlePerf").val();
-            var fpoints = $("#fPointsPerf").val();
-            var fsem = $("#fSemPerf").val();
+        if(!fTitle){
+            error = error + "<br/>" + translate[151]+".";
+        }
 
-            if(!fsem){
-                error = error + "<br/>" + translate[150]+".";
-            }
+        if(!fpoints){
+            error = error + "<br/>" + translate[152]+".";
+        }
 
-            if(!fTitle){
-                error = error + "<br/>" + translate[151]+".";
-            }
+        if(error){
+            $("#errorPerf").html(error).slideDown("fast");
+        } else {
 
-            if(!fpoints){
-                error = error + "<br/>" + translate[152]+".";
-            }
+            $("#warnEntryPerf").slideDown("fast");
+            $("#addNewEntryButtonPerf").html(translate[99]);
 
-            if(error){
-                $("#errorPerf").html(error).slideDown("fast");
-            } else {
-                $("#warnEntryPerf").slideUp("fast");
-                $.ajax({
-                    method: "POST",
-                    url: "./modul/als/modify.php",
-                    data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem, perf:1},
-                    success: function(data){
+            $("#addNewEntryButtonPerf").click(function(event){
+                event.preventDefault();
 
-                        if(data){
-                            $("#errorPerf").html(data).slideDown("fast");
-                        } else {
+                var error = "";
+                var fTitle = $("#fTitlePerf").val();
+                var fpoints = $("#fPointsPerf").val();
+                var fsem = $("#fSemPerf").val();
 
-                            $("#fTitlePerf").val("");
-                            $("#fPointsPerf").val("");
+                if(!fsem){
+                    error = error + "<br/>" + translate[150]+".";
+                }
 
-                            $("#addedNotifPerf").slideDown("fast").delay(1300).slideUp("fast",function(){
-                                $("#pageContent").load("modul/als/als.php", function(){
-                                    $('.loadScreen').fadeTo("fast", 0, function(){
-                                        $('#pageContents').fadeTo("fast", 1);
+                if(!fTitle){
+                    error = error + "<br/>" + translate[151]+".";
+                }
+
+                if(!fpoints){
+                    error = error + "<br/>" + translate[152]+".";
+                }
+
+                if(error){
+                    $("#errorPerf").html(error).slideDown("fast");
+                } else {
+                    $("#warnEntryPerf").slideUp("fast");
+                    $.ajax({
+                        method: "POST",
+                        url: "./modul/als/modify.php",
+                        data: {todo:"addEntry", fTitle:fTitle, fpoints:fpoints, fsem:fsem, perf:1},
+                        success: function(data){
+
+                            if(data){
+                                $("#errorPerf").html(data).slideDown("fast");
+                            } else {
+
+                                $("#fTitlePerf").val("");
+                                $("#fPointsPerf").val("");
+
+                                $("#addedNotifPerf").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                    $("#pageContent").load("modul/als/als.php", function(){
+                                        $('.loadScreen').fadeTo("fast", 0, function(){
+                                            $('#pageContents').fadeTo("fast", 1);
+                                        });
                                     });
                                 });
-                            });
+
+                            }
 
                         }
+                    });
 
-                    }
-                });
+                }
 
-            }
+            });
 
-        });
+        }
 
     });
 

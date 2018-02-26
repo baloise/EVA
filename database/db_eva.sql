@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Feb 2018 um 15:11
+-- Erstellungszeit: 26. Feb 2018 um 14:37
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -45,37 +45,22 @@ CREATE TABLE `tb_als` (
 --
 
 INSERT INTO `tb_als` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`, `performance`) VALUES
-(35, 'Test', 44, '2018-02-19 10:58:36', 9, 35, 1),
-(36, 'Hallo', 50, '2018-02-19 10:59:07', 9, 34, NULL),
-(37, 'Leistung test', 50, '2018-02-19 11:05:58', 107, 43, NULL),
-(38, 'test', 45, '2018-02-19 13:46:56', 107, 43, NULL),
-(66, 'Ohje', 33, '2018-02-21 07:10:33', 9, 33, 1),
-(67, 'Ohje', 33, '2018-02-21 07:10:33', 9, 33, 1),
-(68, 'Ohje', 33, '2018-02-21 07:10:33', 9, 33, 1),
-(69, 'asd', 12, '2018-02-21 08:36:35', 9, 35, 1),
-(71, 'test', 34, '2018-02-21 08:38:13', 9, 33, NULL),
-(72, 'okcool', 123, '2018-02-22 17:05:08', 9, 36, 1),
-(73, 'okcool', 123, '2018-02-22 17:05:44', 9, 36, 1),
-(74, 'okcool', 123, '2018-02-22 17:05:44', 9, 36, 1),
-(75, 'asd', 123, '2018-02-22 17:05:54', 9, 35, 1),
-(76, 'asdf', 21, '2018-02-22 17:07:32', 9, 36, NULL),
-(77, 'adsf', 123, '2018-02-22 17:08:41', 9, 36, NULL),
-(78, 'asdf', 121, '2018-02-22 17:10:12', 9, 36, NULL),
-(79, 'asdf', 121, '2018-02-22 17:11:58', 9, 36, NULL),
-(80, 'asdf', 121, '2018-02-22 17:11:58', 9, 36, NULL),
-(84, 'Schaisse', 12, '2018-02-23 06:12:47', 9, 34, 1),
-(85, 'Fucl', 33, '2018-02-23 06:13:11', 9, 37, NULL),
-(86, 'asdf', 123, '2018-02-23 06:40:07', 9, 36, NULL),
-(87, 'Achman', 111, '2018-02-23 08:45:18', 9, 35, 1),
-(88, 'ALS Verhalten MANN', 333, '2018-02-23 08:45:34', 9, 36, NULL),
-(89, 'ALS 1', 44, '2018-02-23 13:31:05', 112, 33, 1),
-(90, 'ALS 2', 42, '2018-02-23 13:31:17', 112, 34, 1),
-(91, 'ALS 3', 49, '2018-02-23 13:31:30', 112, 35, 1),
-(92, 'ALS 4', 44, '2018-02-23 13:31:41', 112, 36, 1),
-(93, 'ALS 1', 51, '2018-02-23 13:32:04', 112, 33, NULL),
-(94, 'ALS 2', 47, '2018-02-23 13:32:14', 112, 34, NULL),
-(95, 'ALS 3', 48, '2018-02-23 13:32:27', 112, 35, NULL),
-(96, 'ALS 4', 48, '2018-02-23 13:32:40', 112, 36, NULL);
+(97, 'ALS 1', 44, '2018-02-26 08:41:12', 120, 33, 1),
+(98, 'ALS 2', 42, '2018-02-26 08:41:22', 120, 34, 1),
+(99, 'ALS 3', 49, '2018-02-26 08:41:35', 120, 35, 1),
+(100, 'ALS 4', 44, '2018-02-26 08:41:53', 120, 36, 1),
+(102, 'ALS 1', 51, '2018-02-26 08:44:29', 120, 33, NULL),
+(103, 'ALS 2', 47, '2018-02-26 08:44:44', 120, 34, NULL),
+(104, 'ALS 3', 48, '2018-02-26 08:44:57', 120, 35, NULL),
+(105, 'ALS 4', 48, '2018-02-26 08:45:15', 120, 36, NULL),
+(116, 'ALS 1', 40, '2018-02-26 12:18:27', 121, 33, NULL),
+(117, 'ALS 2', 36, '2018-02-26 12:18:38', 121, 34, NULL),
+(118, 'ALS 3', 27, '2018-02-26 12:18:49', 121, 35, NULL),
+(119, 'ALS 4', 30, '2018-02-26 12:18:59', 121, 36, NULL),
+(120, 'ALS 1', 27, '2018-02-26 12:19:15', 121, 33, 1),
+(121, 'ALS 2', 35, '2018-02-26 12:19:24', 121, 34, 1),
+(122, 'ALS 3', 35, '2018-02-26 12:19:33', 121, 35, 1),
+(123, 'ALS 4', 41, '2018-02-26 12:19:43', 121, 36, 1);
 
 -- --------------------------------------------------------
 
@@ -126,17 +111,8 @@ CREATE TABLE `tb_behaviorgrade` (
 --
 
 INSERT INTO `tb_behaviorgrade` (`ID`, `tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `creationDate`, `tb_semester_ID`) VALUES
-(1, 108, 7, 'ITIL', 65, '2018-02-15 10:18:01', 27),
-(2, 108, 7, 'HR Applications', 63, '2018-02-15 10:18:23', 28),
-(9, 8, 7, 'IST', 123, '2018-02-19 08:51:08', 25),
-(10, 8, 7, 'asdf', 111, '2018-02-19 08:54:42', 28),
-(11, 8, 7, 'Test', 60, '2018-02-20 13:50:50', 26),
-(47, 8, 7, 'TestTest', 99, '2018-02-22 12:23:36', 29),
-(51, 108, 7, 'Helpdesk', 59, '2018-02-22 14:16:55', 29),
-(52, 108, 7, 'Software-Engineering 1 (Zwischen-Feedback)', 60, '2018-02-22 14:17:25', 29),
-(54, 8, 7, 'Okgeil', 123, '2018-02-23 06:08:36', 28),
-(56, 8, 7, 'Achnei', 50, '2018-02-23 08:44:22', 25),
-(57, 8, 7, 'sadf', 12, '2018-02-23 12:39:12', 27);
+(63, 118, 117, '4. Semester', 63, '2018-02-26 10:13:17', 28),
+(64, 118, 116, '3. Semester', 65, '2018-02-26 10:13:31', 27);
 
 -- --------------------------------------------------------
 
@@ -161,7 +137,9 @@ CREATE TABLE `tb_deadline` (
 --
 
 INSERT INTO `tb_deadline` (`ID`, `title_de`, `title_fr`, `title_it`, `description_de`, `description_fr`, `description_it`, `date`, `tb_semester_ID`) VALUES
-(2, '', '', '', '', '', '', '0000-00-00', 39);
+(3, 'Testtermin 1', '', '', 'Testtermin 1', '', '', '2018-02-19', 33),
+(4, 'Testtermin 2', '', '', 'Testtermin 2', '', '', '2018-02-28', 33),
+(5, 'Testtermin 3', '', '', 'Testtermin 3', '', '', '2018-02-21', 33);
 
 -- --------------------------------------------------------
 
@@ -184,6 +162,25 @@ CREATE TABLE `tb_deadline_group` (
   `tb_deadline_ID` int(11) NOT NULL,
   `tb_group_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tb_dontcountsem`
+--
+
+CREATE TABLE `tb_dontcountsem` (
+  `ID` int(11) NOT NULL,
+  `tb_user_ID` int(11) NOT NULL,
+  `tb_semester_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tb_dontcountsem`
+--
+
+INSERT INTO `tb_dontcountsem` (`ID`, `tb_user_ID`, `tb_semester_ID`) VALUES
+(2, 121, 33);
 
 -- --------------------------------------------------------
 
@@ -224,13 +221,6 @@ CREATE TABLE `tb_ind_design` (
   `tb_user_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `tb_ind_design`
---
-
-INSERT INTO `tb_ind_design` (`ID`, `akzentfarbe`, `hintergrund`, `link`, `schrift`, `tb_user_ID`) VALUES
-(21, '#ffffff', '#ffffff', '#00ff14', '#000000', 112);
-
 -- --------------------------------------------------------
 
 --
@@ -249,20 +239,16 @@ CREATE TABLE `tb_ind_nav` (
 --
 
 INSERT INTO `tb_ind_nav` (`ID`, `position`, `tb_user_ID`, `tb_modul_ID`) VALUES
-(8, 1, 9, 9),
-(89, NULL, 8, 3),
-(90, NULL, 103, 14),
-(139, NULL, 6, 4),
-(151, NULL, 108, 7),
-(152, NULL, 9, 9),
-(153, NULL, 9, 8),
-(158, NULL, 6, 11),
-(159, NULL, 6, 7),
-(160, NULL, 8, 12),
-(162, NULL, 6, 1),
-(163, NULL, 8, 7),
-(164, NULL, 8, 5),
-(165, NULL, 8, 7);
+(166, NULL, 120, 1),
+(167, NULL, 120, 5),
+(168, NULL, 6, 7),
+(169, NULL, 6, 5),
+(170, NULL, 6, 8),
+(171, NULL, 115, 11),
+(172, NULL, 115, 5),
+(173, NULL, 118, 5),
+(174, NULL, 118, 12),
+(175, NULL, 6, 11);
 
 -- --------------------------------------------------------
 
@@ -284,23 +270,11 @@ CREATE TABLE `tb_malus` (
 --
 
 INSERT INTO `tb_malus` (`ID`, `description`, `weight`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(13, 'Test 2', 50, '2018-02-14 06:56:31', 9, 34),
-(15, 'Test', 34, '2018-02-21 08:51:00', 9, 36),
-(16, 'asd', 12, '2018-02-21 08:51:50', 8, 25),
-(17, 'Sali', 50, '2018-02-22 09:03:34', 8, 25),
-(18, 'Sali', 50, '2018-02-22 09:04:10', 8, 25),
-(19, 'Sali', 50, '2018-02-22 09:04:18', 8, 25),
-(20, 'Sali', 50, '2018-02-22 09:04:31', 8, 25),
-(21, 'asdasdf', 12, '2018-02-22 09:04:52', 8, 25),
-(22, 'test', 123, '2018-02-22 09:05:13', 8, 25),
-(23, 'test', 123, '2018-02-22 09:05:21', 8, 25),
-(24, 'test', 123, '2018-02-22 09:06:12', 8, 25),
-(25, 'test', 123, '2018-02-22 09:06:23', 8, 25),
-(26, 'ysdfafds', 12, '2018-02-22 09:07:05', 8, 25),
-(67, 'Tescht', 213, '2018-02-23 06:24:37', 9, 33),
-(69, 'Tescht', 12, '2018-02-23 07:07:23', 8, 25),
-(70, 'Tescht', 12, '2018-02-23 07:08:21', 8, 25),
-(72, 'Test', 123, '2018-02-23 07:17:51', 8, 25);
+(73, 'Unentschuldigte Absenzen Schule/ÜK', 20, '2018-02-26 12:29:00', 121, 33),
+(74, 'Unentschuldigte Absenzen Schule/ÜK', 20, '2018-02-26 12:29:29', 121, 34),
+(75, 'Aktennotiz Betrieb', 10, '2018-02-26 12:31:40', 121, 35),
+(76, 'schriftliche Verwarnung Betrieb', 20, '2018-02-26 12:32:04', 121, 36),
+(77, 'unentschuldigte Absenzen Schule/ÜK', 20, '2018-02-26 12:32:29', 121, 36);
 
 -- --------------------------------------------------------
 
@@ -403,12 +377,10 @@ CREATE TABLE `tb_pe` (
 --
 
 INSERT INTO `tb_pe` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(25, 'Test 2', 65, '2018-02-19 11:59:31', 8, 36),
-(28, 'HEINEIMANN ääüüöö', 100, '2018-02-23 08:46:18', 9, 36),
-(29, 'Lehrbetrieb Jahr 1', 26, '2018-02-23 13:33:54', 112, 33),
-(30, 'Lehrbetrieb Jahr 2', 35, '2018-02-23 13:34:12', 112, 35),
-(31, 'Prüfungsex. Jahr 1', 32, '2018-02-23 13:34:31', 112, 33),
-(32, 'Prüfungsex. Jahr 2', 34, '2018-02-23 13:34:47', 112, 35);
+(39, 'PE 1.Jahr', 58, '2018-02-26 09:15:22', 120, 34),
+(40, 'PE 2.Jahr', 69, '2018-02-26 09:15:56', 120, 36),
+(43, 'PE 1.Jahr', 39, '2018-02-26 12:20:13', 121, 34),
+(44, 'PE 2.Jahr', 29, '2018-02-26 12:20:25', 121, 36);
 
 -- --------------------------------------------------------
 
@@ -430,15 +402,7 @@ CREATE TABLE `tb_presentation` (
 --
 
 INSERT INTO `tb_presentation` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(7, 'Test2', 524, '2018-02-13 11:02:31', 8, 28),
-(8, 'Kanban - Nutzen, Verwendung und Vorteile', 66, '2018-02-15 10:28:44', 108, 28),
-(15, '1234', 1234, '2018-02-19 08:48:11', 8, 25),
-(16, 'dsaf', 123, '2018-02-19 08:49:15', 8, 27),
-(17, '123', 213, '2018-02-19 08:49:22', 8, 26),
-(18, 'asd', 123, '2018-02-19 08:50:11', 8, 27),
-(20, 'hallio', 231, '2018-02-19 08:50:48', 8, 26),
-(21, 'hallio', 231, '2018-02-19 08:50:48', 8, 26),
-(25, 'Ohjeohnei', 50, '2018-02-23 08:44:44', 8, 27);
+(27, 'Testvortrag 1', 66, '2018-02-26 10:19:01', 118, 28);
 
 -- --------------------------------------------------------
 
@@ -488,7 +452,7 @@ INSERT INTO `tb_semester` (`ID`, `semester`, `info`, `tb_group_ID`) VALUES
 CREATE TABLE `tb_stao` (
   `ID` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `points` int(11) DEFAULT NULL,
+  `points` double NOT NULL,
   `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tb_user_ID` int(11) NOT NULL,
   `tb_semester_ID` int(11) NOT NULL
@@ -499,10 +463,10 @@ CREATE TABLE `tb_stao` (
 --
 
 INSERT INTO `tb_stao` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(45, 'Tschau', 88, '2018-02-19 11:22:59', 9, 35),
-(53, 'ächt jetzt alte', 99, '2018-02-23 08:46:41', 9, 37),
-(54, 'Stao 1', 78, '2018-02-23 13:45:20', 112, 34),
-(55, 'Stao 2', 57, '2018-02-23 13:45:32', 112, 36);
+(61, 'STAO 1', 78.8, '2018-02-26 09:21:50', 120, 33),
+(62, 'STAO 2', 57.8, '2018-02-26 09:22:05', 120, 34),
+(64, 'STAO 1', 67.2, '2018-02-26 12:14:40', 121, 33),
+(65, 'STAO 2', 53.3, '2018-02-26 12:15:05', 121, 34);
 
 -- --------------------------------------------------------
 
@@ -526,18 +490,20 @@ CREATE TABLE `tb_subject_grade` (
 --
 
 INSERT INTO `tb_subject_grade` (`ID`, `title`, `grade`, `creationDate`, `weighting`, `notes`, `tb_user_subject_ID`, `reasoning`) VALUES
-(5, 'Tescht', 3, '2018-02-23 06:11:59', 120, NULL, 3, 'Aldeeee'),
-(6, 'OK', 5, '2018-02-23 06:33:52', 100, NULL, 2, ''),
-(7, 'Ohjeohnei', 4, '2018-02-23 08:43:37', 100, NULL, 2, 'Isch halt scheisse gloffe odr\n\nShizzlin dizzle tellivizzle for sure sure augue shut the shizzle up accumsan. You son of a bizzle izzle est. Vivamus mauris funky fresh, viverra vitae, dang izzle, ultrices izzle, brizzle. Vestibulizzle bow wow wow things get down get down izzle check out this orci luctus nizzle ultricizzle posuere black We gonna chung; Donec dolor. Bling bling faucibizzle. Fo shizzle pharetra boofron bow wow wow. Vivamizzle my shizz go to hizzle orci. Sed for sure. Maurizzle sizzle fizzle, get down get down shiznit, things yippiyo, blandizzle ass, magna.'),
-(8, 'Fuuuuuu', 3, '2018-02-23 08:43:49', 100, NULL, 1, 'Shizzlin dizzle tellivizzle for sure sure augue shut the shizzle up accumsan. You son of a bizzle izzle est. Vivamus mauris funky fresh, viverra vitae, dang izzle, ultrices izzle, brizzle. Vestibulizzle bow wow wow things get down get down izzle check out this orci luctus nizzle ultricizzle posuere black We gonna chung; Donec dolor. Bling bling faucibizzle. Fo shizzle pharetra boofron bow wow wow. Vivamizzle my shizz go to hizzle orci. Sed for sure. Maurizzle sizzle fizzle, get down get down shiznit, things yippiyo, blandizzle ass, magna.'),
-(11, 'TESCHTNOTE', 2, '2018-02-23 09:02:50', 25, NULL, 4, 'Shizzlin dizzle tellivizzle for sure sure augue shut the shizzle up accumsan. You son of a bizzle izzle est. Vivamus mauris funky fresh, viverra vitae, dang izzle, ultrices izzle, brizzle. Vestibulizzle bow wow wow things get down get down izzle check out this orci luctus nizzle ultricizzle posuere black We gonna chung; Donec dolor. Bling bling faucibizzle. Fo shizzle pharetra boofron bow wow wow. Vivamizzle my shizz go to hizzle orci. Sed for sure. Maurizzle sizzle fizzle, get down get down shiznit, things yippiyo, blandizzle ass, magna.'),
-(12, 'Zeugnis', 5.1, '2018-02-23 13:27:14', 100, NULL, 5, ''),
-(13, 'Zeugnis', 5.2, '2018-02-23 13:28:02', 100, NULL, 6, ''),
-(14, '5.2', 5.3, '2018-02-23 13:28:40', 100, NULL, 7, ''),
-(15, 'Test 1', 5.2, '2018-02-23 13:29:34', 100, NULL, 9, ''),
-(16, 'Test 2', 5.2, '2018-02-23 13:29:47', 100, NULL, 9, ''),
-(17, 'Test 1', 5.4, '2018-02-23 13:30:00', 100, NULL, 8, ''),
-(18, 'Test 2', 5.4, '2018-02-23 13:30:10', 100, NULL, 8, '');
+(33, 'Testnote', 5.1, '2018-02-26 09:03:48', 100, NULL, 12, ''),
+(34, 'Testnote', 5.2, '2018-02-26 09:04:14', 100, NULL, 13, ''),
+(35, 'Testnote', 5.2, '2018-02-26 09:04:42', 100, NULL, 14, ''),
+(36, 'Testnote', 5.3, '2018-02-26 09:05:06', 100, NULL, 15, ''),
+(37, 'Testnote', 5.5, '2018-02-26 10:17:25', 100, NULL, 16, ''),
+(38, 'Testnote', 5.6, '2018-02-26 10:17:49', 100, NULL, 17, ''),
+(39, 'Testnote', 5.6, '2018-02-26 10:20:50', 100, NULL, 21, ''),
+(40, 'Testnote', 5, '2018-02-26 10:21:08', 100, NULL, 20, ''),
+(41, 'Testnote', 5.4, '2018-02-26 10:21:22', 100, NULL, 19, ''),
+(42, 'Testnote', 5.4, '2018-02-26 10:21:35', 100, NULL, 18, ''),
+(44, 'Test', 4.1, '2018-02-26 12:15:40', 100, NULL, 23, ''),
+(45, 'Test', 3.8, '2018-02-26 12:16:23', 100, NULL, 24, 'Lorizzle yo mamma dolizzle sit nizzle, consectetuer adipiscing stuff. Yo mamma own yo\' velizzle, aliquet volutpat, sure pizzle, brizzle vizzle, fo shizzle. Pellentesque stuff tortor. Sizzle mofo. Hizzle pizzle rizzle dapibizzle sheezy tempus doggy. Crunk my shizz nibh away turpizzle. Ass izzle yo. Break it down eleifend sure nisi. In hac that\'s the shizzle platea i saw beyonces tizzles and my pizzle went crizzle. Donec dapibizzle. Yo tellizzle yo, bling bling eu, mattizzle dizzle, eleifend vitae, pot. Da bomb suscipizzle. Integizzle sempizzle velit sed ass.'),
+(46, 'Test', 4.4, '2018-02-26 12:16:41', 100, NULL, 25, ''),
+(47, 'Test', 4.1, '2018-02-26 12:16:59', 100, NULL, 26, '');
 
 -- --------------------------------------------------------
 
@@ -560,7 +526,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (1, 'Willkommen', 'Benvenuto', 'Bienvenue'),
 (2, 'Noten', 'Valutazioni', 'Notes'),
 (3, 'ALS', 'SAL', 'STA'),
-(4, 'Benutzerverwaltung', 'Accessi utilizzatori', 'Service accès utilisateurs'),
+(4, 'Benutzer', 'Accessi utilizzatori', 'Service accès utilisateurs'),
 (5, 'Dashboard', 'Dashboard', 'Tableau de bord'),
 (6, 'Fachvortrag', 'Presentazione tecnica del ramo', 'Exposé de branche'),
 (7, 'Leistungslohn', 'Salario alla performance', 'Salaire à la performance'),
@@ -568,7 +534,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (9, 'PE', 'UP', 'UF'),
 (10, 'STAO', 'Punto della situazione', 'Point de situation'),
 (11, 'Stundenplan', 'Tabella orario', 'Plan horaire'),
-(12, 'Terminmanagement', 'Gestione dei colloqui', 'Gestion des rendez-vous'),
+(12, 'Termine', 'Gestione dei colloqui', 'Gestion des rendez-vous'),
 (13, 'Verhaltensziele', 'Obiettivi di comportamento', 'Objectif de comportement'),
 (14, 'ÜK-KN CYP', '', ''),
 (15, 'Navigation bearbeiten', 'Modifica di navigazione', 'Modification de navigazion'),
@@ -580,7 +546,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (21, 'Typ', 'Tipo', 'Type'),
 (22, 'Erstellungsdatum', 'Data di elaborazione', 'Date d\'établissement'),
 (23, 'bis', 'Fino', 'jusqu\'au'),
-(24, 'von', 'Dal', 'du'),
+(24, 'von', 'dal', 'du'),
 (25, 'Einträgen', 'Iscrizioni', 'Inscriptions'),
 (26, 'Zurück', 'Indietro', 'Retour'),
 (27, 'Nächste', 'Prossimo', 'Prochain'),
@@ -598,9 +564,9 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (39, 'Eintrag hinzufügen', 'Inserire un\'iscrizione', 'Insérer une inscription'),
 (40, 'Gruppe', 'Gruppo', 'Groupe'),
 (41, 'Vorname', 'Nome', 'Prénom'),
-(42, 'Nachname', 'Cognome', 'Nom '),
+(42, 'Nachname', 'Cognome', 'Nom'),
 (43, 'Benutzer hinzufügen', 'Aggiungere un utente', 'Ajouter un utilisateur'),
-(44, 'Hinzufügen', 'Aggiungere', 'Ajouter  '),
+(44, 'Hinzufügen', 'Aggiungere', 'Ajouter'),
 (45, 'Fachvortrag-Titel', 'Titolo della presentazione', 'Titre de l\'exposé'),
 (46, 'Lernende', 'Apprendista', 'Apprenti/e'),
 (47, 'Lohnzyklus', 'Ciclo del salario', 'Cycle de salaire'),
@@ -611,9 +577,9 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (52, 'Notenschnitt', 'Media dei voti scolastici', 'Moyenne des notes'),
 (53, 'Ungenügende Noten', 'Voti insufficienti', 'Notes insuffisantes'),
 (54, 'Fächer/Module', 'Ramo/Modulo', 'Branche/Module'),
-(55, 'Titel', 'Titolo', 'Titre  '),
+(55, 'Titel', 'Titolo', 'Titre'),
 (56, 'Note', 'Voto scolastico', 'Note'),
-(57, 'Datum', 'Data', 'Date   '),
+(57, 'Datum', 'Data', 'Date'),
 (58, 'Fach löschen', 'Cancellare ramo', 'Effacer branche'),
 (59, 'Schulfach', 'Materia', 'Branche scolaire'),
 (60, 'Informatik-Modul', 'Modulo informatico', 'Module informatique'),
@@ -627,7 +593,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (68, 'Prozentrechner', 'Calcolatore della percentuale', 'Calculateur de pourcents'),
 (69, 'Erreichte Punktzahl', 'Punteggio raggiunto', 'Nombre de points atteint'),
 (70, 'Maximale Punktzahl', 'Punteggio massimo', 'Nombre de points maximal'),
-(71, 'Berechnen', 'Calcolare', 'Calculer '),
+(71, 'Berechnen', 'Calcolare', 'Calculer'),
 (72, 'Stundenpläne', 'Orari', 'Plan horaire'),
 (73, 'Vorherige Woche', 'Settimana precedente', 'Semaine précédente'),
 (74, 'Nächste Woche', 'Settimana seguente', 'Semaine suivante'),
@@ -656,7 +622,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (97, 'Benutzer löschen', 'Cancellare utente', 'Effacer utilisateur'),
 (98, 'Bitte bestätigen Sie ihre auswahl', 'Pregasi confermare scelta', 'Veuillez confirmer votre choix'),
 (99, 'Bestätigen', 'Confermare', 'Confirmer'),
-(100, 'Keine Daten gefunden', 'Nessun dato disponibile', 'Aucune donnée disponible  '),
+(100, 'Keine Daten gefunden', 'Nessun dato disponibile', 'Aucune donnée disponible'),
 (101, 'Änderungen wurden gespeichert', 'Le modifiche sono state registrate', 'Les modifications ont été sauvegardées'),
 (102, 'Benutzer wurde hinzugefügt', 'Un utente è stato aggiunto', 'Un utilisateur a été ajouté'),
 (103, 'Eintrag wurde hinzugefügt', 'Un\'iscrizione è stata aggiunta', 'Une inscription a été ajoutée'),
@@ -678,7 +644,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (120, 'Raum', 'Sala', 'Salle'),
 (121, 'Lehrer', 'Insegnante', 'Enseignant-e'),
 (122, 'Termin löschen', 'Cancellare colloquio', 'Effacer rendez-vous'),
-(123, 'Keine Einträge', 'Nessuna iscrizione', 'Aucune inscription  '),
+(123, 'Keine Einträge', 'Nessuna iscrizione', 'Aucune inscription'),
 (124, 'Überbetriebliche-Kurse', 'Corsi interaziendali', 'Cours interentreprises'),
 (125, 'ÜK-Titel', 'Titolo dei corsi interaziendali', 'Titre des cours interentreprises'),
 (126, 'Leistung Informatik', 'Prestazioni informatiche', 'Prestations informatique'),
@@ -697,7 +663,7 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (140, 'Deutsch', 'Tedesco', 'Allemand'),
 (141, 'Italienisch', 'Italiano', 'Italien'),
 (142, 'Französisch', 'Francese', 'Français'),
-(143, 'Ändern', 'Modificare', 'Modifier  '),
+(143, 'Ändern', 'Modificare', 'Modifier'),
 (144, 'Neuer Termin', 'Nuovo colloquio', 'Nouveau rendez-vous'),
 (145, 'Sie haben keine Berechtigungen zu diesem Modul', 'Nessuna autorizzazione per questo modulo', 'Aucune autorisation pour ce module'),
 (146, 'Bitte eine Begründung angeben', 'Pregasi aggiungere giustificazione', 'Veuillez ajouter une justification'),
@@ -798,9 +764,11 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (241, 'Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason}', '', ''),
 (242, 'STAO - Neuer Eintrag', '', ''),
 (243, 'Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>', '', ''),
-(244, 'Diese Funktion ist nicht mit deinem Browser kompatibel', '', ''),
+(244, 'Diese Funktion ist nicht mit deinem Browser kompatiebel', '', ''),
 (245, 'Lade dir jetzt', '', ''),
-(246, 'herunter, um die Funktionen dieser Webseite vollständig zu nutzen.', '', '');
+(246, 'herunter, um die Funktionen dieser Webseite vollständig zu nutzen.', '', ''),
+(247, 'Achtung: Addiere die Punktzahlen von Betrieb und Prüfungsexperte zusammen, um daraus einen Eintrag zu erstellen.', '', ''),
+(248, 'Kein Malus vorhanden', '', '');
 
 -- --------------------------------------------------------
 
@@ -816,16 +784,6 @@ CREATE TABLE `tb_uek` (
   `tb_user_ID` int(11) NOT NULL,
   `tb_semester_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `tb_uek`
---
-
-INSERT INTO `tb_uek` (`ID`, `title`, `grade`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(126, 'Test', 5, '2018-02-19 14:05:57', 107, 39),
-(129, 'Ok', 5, '2018-02-23 06:18:11', 107, 41),
-(130, 'asd', 21, '2018-02-23 06:46:08', 107, 42),
-(131, 'HeiNeiHei', 4, '2018-02-23 08:47:21', 107, 40);
 
 -- --------------------------------------------------------
 
@@ -843,28 +801,26 @@ CREATE TABLE `tb_user` (
   `lastname` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT NULL,
-  `language` varchar(2) DEFAULT NULL
+  `language` varchar(2) DEFAULT NULL,
+  `tb_semester_ID` int(11) DEFAULT NULL,
+  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tb_user`
 --
 
-INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `firstname`, `lastname`, `mail`, `deleted`, `language`) VALUES
-(6, 'b000001', NULL, NULL, 1, 'Bill', 'Gates', 'mail@eliareutlinger.ch', NULL, 'de'),
-(7, 'b000002', NULL, NULL, 2, 'Mark', 'Zuckerberg', 'mail@eliareutlinger.ch', NULL, NULL),
-(8, 'b000003', '2679040', NULL, 3, 'Leonardo', 'Di Caprio', 'mail@eliareutlinger.ch', NULL, 'de'),
-(9, 'b000004', NULL, NULL, 4, 'Elon', 'Musk', 'mail@eliareutlinger.ch', NULL, 'de'),
-(103, 'b123123', NULL, NULL, 3, '', '', NULL, 1, NULL),
-(105, 'b111111', '2679040', NULL, 3, 'Muster', 'Lehrling', NULL, 1, NULL),
-(107, 'b000005', NULL, NULL, 5, 'Steve', 'Jobs', 'mail@eliareutlinger.ch', NULL, 'de'),
-(108, 'b037160', '2679040', NULL, 3, 'Elia', 'Reutlinger', 'mail@eliareutlinger.ch', 1, 'de'),
-(109, 'b928312', NULL, NULL, 3, 'Test', 'User', NULL, 1, NULL),
-(110, 'b829131', NULL, NULL, 4, 'Test', 'User', NULL, 1, NULL),
-(111, 'b293812', NULL, NULL, 4, '', '', NULL, 1, NULL),
-(112, 'b121212', NULL, NULL, 4, 'Giovanni', 'Mozarella', NULL, NULL, NULL),
-(113, 'b556677', NULL, NULL, 4, 'Sandra', 'Schneider', NULL, NULL, NULL),
-(114, 'b998877', NULL, NULL, 5, 'Axel', 'Schweiss', NULL, NULL, NULL);
+INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `firstname`, `lastname`, `mail`, `deleted`, `language`, `tb_semester_ID`, `creationDate`) VALUES
+(6, 'b000001', NULL, NULL, 1, 'Bill', 'Gates', 'mail@eliareutlinger.ch', NULL, 'de', NULL, '2018-02-26 08:09:37'),
+(115, 'b000002', NULL, NULL, 1, 'Elon', 'Musk', NULL, NULL, NULL, NULL, '2018-02-26 08:37:01'),
+(116, 'b000003', NULL, NULL, 2, 'Matthias', 'Schneider', NULL, NULL, NULL, NULL, '2018-02-26 08:37:30'),
+(117, 'b000004', NULL, NULL, 2, 'Chantal', 'Müller', NULL, NULL, NULL, NULL, '2018-02-26 08:37:44'),
+(118, 'b000005', NULL, NULL, 3, 'Moritz', 'Keller', NULL, NULL, NULL, 31, '2018-02-26 08:39:02'),
+(119, 'b000006', NULL, NULL, 3, 'Fabio', 'Caprio', NULL, NULL, NULL, NULL, '2018-02-26 08:39:24'),
+(120, 'b000007', NULL, NULL, 4, 'Giovanni', 'Mozarella', NULL, NULL, NULL, 36, '2018-02-26 08:40:01'),
+(121, 'b000008', NULL, NULL, 4, 'Sandra', 'Schneider', NULL, NULL, NULL, 36, '2018-02-26 08:40:17'),
+(122, 'b000009', NULL, NULL, 5, 'Hans', 'Zimmer', NULL, NULL, NULL, 41, '2018-02-26 12:09:23'),
+(123, 'b000010', NULL, NULL, 5, 'Dinah', 'Washington', NULL, NULL, NULL, NULL, '2018-02-26 12:10:49');
 
 -- --------------------------------------------------------
 
@@ -887,15 +843,20 @@ CREATE TABLE `tb_user_subject` (
 --
 
 INSERT INTO `tb_user_subject` (`ID`, `subjectName`, `creationDate`, `tb_user_ID`, `tb_semester_ID`, `correctedGrade`, `school`) VALUES
-(1, 'Test', '2018-02-23 06:03:47', 8, 25, 5, 1),
-(2, 'Test 2', '2018-02-23 06:03:57', 8, 25, 3, 0),
-(3, 'Tescht', '2018-02-23 06:11:09', 9, 35, 4, 1),
-(4, 'Testfach', '2018-02-23 08:59:38', 107, 40, NULL, 1),
-(5, 'Fach Semester 1', '2018-02-23 13:23:59', 112, 33, NULL, 1),
-(6, 'Fach Semester 2', '2018-02-23 13:27:50', 112, 34, NULL, 1),
-(7, 'Fach Semester 3', '2018-02-23 13:28:12', 112, 35, NULL, 1),
-(8, 'Fach 1 Semester 4', '2018-02-23 13:29:02', 112, 36, NULL, 1),
-(9, 'Fach 2 Semester 4', '2018-02-23 13:29:11', 112, 36, NULL, 1);
+(12, 'Testfach 1', '2018-02-26 09:03:27', 120, 33, NULL, 1),
+(13, 'Testfach 2', '2018-02-26 09:03:59', 120, 34, NULL, 1),
+(14, 'Testfach 3', '2018-02-26 09:04:31', 120, 35, NULL, 1),
+(15, 'Testfach 4', '2018-02-26 09:04:54', 120, 36, NULL, 1),
+(16, 'Testfach 1', '2018-02-26 10:17:15', 118, 27, NULL, 1),
+(17, 'Testfach 2', '2018-02-26 10:17:38', 118, 28, NULL, 1),
+(18, 'Testmodul 1', '2018-02-26 10:20:12', 118, 25, NULL, 0),
+(19, 'Testmodul 2', '2018-02-26 10:20:22', 118, 26, NULL, 0),
+(20, 'Testmodul 3', '2018-02-26 10:20:32', 118, 27, NULL, 0),
+(21, 'Testmodul 4', '2018-02-26 10:20:40', 118, 28, NULL, 0),
+(23, 'Fach 1', '2018-02-26 12:15:26', 121, 33, NULL, 1),
+(24, 'Fach 2', '2018-02-26 12:15:48', 121, 34, NULL, 1),
+(25, 'Fach 3', '2018-02-26 12:16:31', 121, 35, NULL, 1),
+(26, 'Fach 4', '2018-02-26 12:16:50', 121, 36, NULL, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -946,6 +907,14 @@ ALTER TABLE `tb_deadline_group`
   ADD PRIMARY KEY (`tb_deadline_ID`,`tb_group_ID`),
   ADD KEY `fk_tb_deadline_has_tb_group_tb_group1_idx` (`tb_group_ID`),
   ADD KEY `fk_tb_deadline_has_tb_group_tb_deadline1_idx` (`tb_deadline_ID`);
+
+--
+-- Indizes für die Tabelle `tb_dontcountsem`
+--
+ALTER TABLE `tb_dontcountsem`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `tb_user_ID` (`tb_user_ID`),
+  ADD KEY `tb_semester_ID` (`tb_semester_ID`);
 
 --
 -- Indizes für die Tabelle `tb_group`
@@ -1048,7 +1017,8 @@ ALTER TABLE `tb_uek`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`ID`,`tb_group_ID`),
-  ADD KEY `fk_tb_user_tb_group_idx` (`tb_group_ID`);
+  ADD KEY `fk_tb_user_tb_group_idx` (`tb_group_ID`),
+  ADD KEY `tb_semester_ID` (`tb_semester_ID`);
 
 --
 -- Indizes für die Tabelle `tb_user_subject`
@@ -1066,7 +1036,7 @@ ALTER TABLE `tb_user_subject`
 -- AUTO_INCREMENT für Tabelle `tb_als`
 --
 ALTER TABLE `tb_als`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_appinfo`
@@ -1078,12 +1048,18 @@ ALTER TABLE `tb_appinfo`
 -- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
 --
 ALTER TABLE `tb_deadline`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_dontcountsem`
+--
+ALTER TABLE `tb_dontcountsem`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -1102,13 +1078,13 @@ ALTER TABLE `tb_ind_design`
 -- AUTO_INCREMENT für Tabelle `tb_ind_nav`
 --
 ALTER TABLE `tb_ind_nav`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_malus`
 --
 ALTER TABLE `tb_malus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul`
@@ -1126,13 +1102,13 @@ ALTER TABLE `tb_modul_group`
 -- AUTO_INCREMENT für Tabelle `tb_pe`
 --
 ALTER TABLE `tb_pe`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_presentation`
 --
 ALTER TABLE `tb_presentation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_semester`
@@ -1144,37 +1120,37 @@ ALTER TABLE `tb_semester`
 -- AUTO_INCREMENT für Tabelle `tb_stao`
 --
 ALTER TABLE `tb_stao`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_subject_grade`
 --
 ALTER TABLE `tb_subject_grade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_translation`
 --
 ALTER TABLE `tb_translation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_uek`
 --
 ALTER TABLE `tb_uek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user_subject`
 --
 ALTER TABLE `tb_user_subject`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints der exportierten Tabellen
@@ -1214,6 +1190,13 @@ ALTER TABLE `tb_deadline_check`
 ALTER TABLE `tb_deadline_group`
   ADD CONSTRAINT `fk_tb_deadline_has_tb_group_tb_deadline1` FOREIGN KEY (`tb_deadline_ID`) REFERENCES `tb_deadline` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tb_deadline_has_tb_group_tb_group1` FOREIGN KEY (`tb_group_ID`) REFERENCES `tb_group` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints der Tabelle `tb_dontcountsem`
+--
+ALTER TABLE `tb_dontcountsem`
+  ADD CONSTRAINT `tb_dontcountsem_ibfk_1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`),
+  ADD CONSTRAINT `tb_dontcountsem_ibfk_2` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_ind_design`
@@ -1286,7 +1269,8 @@ ALTER TABLE `tb_uek`
 -- Constraints der Tabelle `tb_user`
 --
 ALTER TABLE `tb_user`
-  ADD CONSTRAINT `fk_tb_user_tb_group` FOREIGN KEY (`tb_group_ID`) REFERENCES `tb_group` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tb_user_tb_group` FOREIGN KEY (`tb_group_ID`) REFERENCES `tb_group` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tb_user_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_user_subject`

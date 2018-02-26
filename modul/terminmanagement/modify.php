@@ -147,6 +147,22 @@
                 echo "Keine Termin-ID übergeben.";
             }
 
+        } else if($_POST['todo'] == "unCount"){
+
+            if($_POST['state'] == "false"){
+
+                $stmt = $mysqli->prepare("INSERT INTO `tb_dontcountsem` (`tb_user_ID`, `tb_semester_ID`) VALUES (?, ?);");
+                $stmt->bind_param("ii", $_POST['user'], $_POST['semID']);
+                $stmt->execute();
+
+            } else {
+
+                $stmt = $mysqli->prepare("DELETE FROM `tb_dontcountsem` WHERE tb_user_ID = ? AND tb_semester_ID = ?");
+                $stmt->bind_param("ii", $_POST['user'], $_POST['semID']);
+                $stmt->execute();
+
+            }
+
         } else {
             echo "Ungültige Anweisung übergeben.";
         }

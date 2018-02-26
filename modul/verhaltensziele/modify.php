@@ -189,6 +189,14 @@
                     $stmt->bind_param("iisii", $userid, $pa, $stage, $points, $semester);
                     $stmt->execute();
 
+                    if($semester > $session_semesterid){
+                        $stmt = $mysqli->prepare("UPDATE `tb_user` SET `tb_semester_ID` = ? WHERE `tb_user`.`ID` = ?");
+                        $stmt->bind_param("ii", $semester, $session_userid);
+                        $stmt->execute();
+                        $_SESSION['user']['semester'] = $semester;
+                        $session_semesterid = $semester;
+                    }
+
                     //GET SENDMAIL PARAMETERS
                     $stmt = $mysqli->prepare("SELECT firstname, lastname FROM `tb_user` WHERE ID = ?");
                     $stmt->bind_param("i", $userid);

@@ -13,6 +13,7 @@
         $session_usergroup = $_SESSION['user']['usergroup'];
         $session_language =$_SESSION['user']['language'];
         $translate = $_SESSION['translations'];
+        $session_semesterid = $_SESSION['user']['semester'];
 
         $session_appinfo = $_SESSION['appinfo'];
 

@@ -21,7 +21,7 @@
 21;Typ;Tipo;Type
 22;Erstellungsdatum;Data di elaborazione;Date d'établissement
 23;bis;Fino;jusqu'au
-24;von;Dal;du
+24;von;dal;du
 25;Einträgen;Iscrizioni;Inscriptions
 26;Zurück;Indietro;Retour
 27;Nächste;Prossimo;Prochain
@@ -39,9 +39,9 @@
 39;Eintrag hinzufügen;Inserire un'iscrizione;Insérer une inscription
 40;Gruppe;Gruppo;Groupe
 41;Vorname;Nome;Prénom
-42;Nachname;Cognome;Nom 
+42;Nachname;Cognome;Nom
 43;Benutzer hinzufügen;Aggiungere un utente;Ajouter un utilisateur
-44;Hinzufügen;Aggiungere;Ajouter  
+44;Hinzufügen;Aggiungere;Ajouter
 45;Fachvortrag-Titel;Titolo della presentazione;Titre de l'exposé
 46;Lernende;Apprendista;Apprenti/e
 47;Lohnzyklus;Ciclo del salario;Cycle de salaire
@@ -52,9 +52,9 @@
 52;Notenschnitt;Media dei voti scolastici;Moyenne des notes
 53;Ungenügende Noten;Voti insufficienti;Notes insuffisantes
 54;Fächer/Module;Ramo/Modulo;Branche/Module
-55;Titel;Titolo;Titre  
+55;Titel;Titolo;Titre
 56;Note;Voto scolastico;Note
-57;Datum;Data;Date   
+57;Datum;Data;Date
 58;Fach löschen;Cancellare ramo;Effacer branche
 59;Schulfach;Materia;Branche scolaire
 60;Informatik-Modul;Modulo informatico;Module informatique
@@ -68,7 +68,7 @@
 68;Prozentrechner;Calcolatore della percentuale;Calculateur de pourcents
 69;Erreichte Punktzahl;Punteggio raggiunto;Nombre de points atteint
 70;Maximale Punktzahl;Punteggio massimo;Nombre de points maximal
-71;Berechnen;Calcolare;Calculer 
+71;Berechnen;Calcolare;Calculer
 72;Stundenpläne;Orari;Plan horaire
 73;Vorherige Woche;Settimana precedente;Semaine précédente
 74;Nächste Woche;Settimana seguente;Semaine suivante
@@ -97,7 +97,7 @@
 97;Benutzer löschen;Cancellare utente;Effacer utilisateur
 98;Bitte bestätigen Sie ihre auswahl;Pregasi confermare scelta;Veuillez confirmer votre choix
 99;Bestätigen;Confermare;Confirmer
-100;Keine Daten gefunden;Nessun dato disponibile;Aucune donnée disponible  
+100;Keine Daten gefunden;Nessun dato disponibile;Aucune donnée disponible
 101;Änderungen wurden gespeichert;Le modifiche sono state registrate;Les modifications ont été sauvegardées
 102;Benutzer wurde hinzugefügt;Un utente è stato aggiunto;Un utilisateur a été ajouté
 103;Eintrag wurde hinzugefügt;Un'iscrizione è stata aggiunta;Une inscription a été ajoutée
@@ -119,7 +119,7 @@
 120;Raum;Sala;Salle
 121;Lehrer;Insegnante;Enseignant-e
 122;Termin löschen;Cancellare colloquio;Effacer rendez-vous
-123;Keine Einträge;Nessuna iscrizione;Aucune inscription  
+123;Keine Einträge;Nessuna iscrizione;Aucune inscription
 124;Überbetriebliche-Kurse;Corsi interaziendali;Cours interentreprises
 125;ÜK-Titel;Titolo dei corsi interaziendali;Titre des cours interentreprises
 126;Leistung Informatik;Prestazioni informatiche;Prestations informatique
@@ -138,7 +138,7 @@
 140;Deutsch;Tedesco;Allemand
 141;Italienisch;Italiano;Italien
 142;Französisch;Francese;Français
-143;Ändern;Modificare;Modifier  
+143;Ändern;Modificare;Modifier
 144;Neuer Termin;Nuovo colloquio;Nouveau rendez-vous
 145;Sie haben keine Berechtigungen zu diesem Modul;Nessuna autorizzazione per questo modulo;Aucune autorisation pour ce module
 146;Bitte eine Begründung angeben;Pregasi aggiungere giustificazione;Veuillez ajouter une justification
@@ -239,6 +239,8 @@
 241;Der Eintrag zur STAO {title} wurde gerade beanstandet.<br/><br/>Begründung:<br/> {reason};;
 242;STAO - Neuer Eintrag;;
 243;Es wurde soeben ein neuer STAO Eintrag von {firstname} {lastname} erfasst:<br/><br/>STAO-Titel: {title}<br/>Punktzahl (in Prozent): {points} %<br/>;;
-244;Diese Funktion ist nicht mit deinem Browser kompatibel;;
+244;Diese Funktion ist nicht mit deinem Browser kompatiebel;;
 245;Lade dir jetzt;;
 246;herunter, um die Funktionen dieser Webseite vollständig zu nutzen.;;
+247;Achtung: Addiere die Punktzahlen von Betrieb und Prüfungsexperte zusammen, um daraus einen Eintrag zu erstellen.;;
+248;Kein Malus vorhanden;;

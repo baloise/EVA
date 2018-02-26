@@ -193,49 +193,55 @@
         //Terminmanagement
         function calculateDeadline($semesterID, $userID, $mysqli){
 
-            //TODO: Alle Deadlines des Users des Users Suchen und Testen ob diese erfüllt wurden oder nicht.
-            $sql = "SELECT ID, date FROM tb_deadline WHERE tb_semester_ID = $semesterID";
-
+            $sql = "SELECT ID FROM tb_dontcountsem WHERE tb_semester_ID = $semesterID";
             $result = $mysqli->query($sql);
+            if ($result->num_rows == 0) {
 
-            $passes = 0;
-            $countDeadlines = 0;
-            $countUserChecks = 0;
-            $today = date("Y-m-d");
+                $sql = "SELECT ID, date FROM tb_deadline WHERE tb_semester_ID = $semesterID";
 
-            if (isset($result) && $result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
+                $result = $mysqli->query($sql);
 
-                    if($row['date'] < $today){
+                $passes = 0;
+                $countDeadlines = 0;
+                $countUserChecks = 0;
+                $today = date("Y-m-d");
 
-                        $countDeadlines = $countDeadlines + 1;
+                if (isset($result) && $result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
 
-                        $sql2 = "SELECT * FROM tb_deadline_check WHERE tb_deadline_ID = ".$row['ID']." AND tb_user_ID = " .$userID;
-                        $result2 = $mysqli->query($sql2);
-                        if (isset($result2) && $result2->num_rows > 0) {
-                            $countUserChecks = $countUserChecks + 1;
+                        if($row['date'] < $today){
+
+                            $countDeadlines = $countDeadlines + 1;
+
+                            $sql2 = "SELECT * FROM tb_deadline_check WHERE tb_deadline_ID = ".$row['ID']." AND tb_user_ID = " .$userID;
+                            $result2 = $mysqli->query($sql2);
+                            if (isset($result2) && $result2->num_rows > 0) {
+                                $countUserChecks = $countUserChecks + 1;
+                            }
+
                         }
 
                     }
 
                 }
 
-            }
+                $passes = $countDeadlines - $countUserChecks;
 
-            $passes = $countDeadlines - $countUserChecks;
-
-            if($countDeadlines > 0){
-                if($passes == 0){
-                    return 1;
-                } else if($passes == 1){
-                    return 0.5;
-                } else if($passes > 1){
-                    return 0;
+                if($countDeadlines > 0){
+                    if($passes == 0){
+                        return 1;
+                    } else if($passes == 1){
+                        return 0.5;
+                    } else if($passes > 1){
+                        return 0;
+                    }
+                } else {
+                    return -1;
                 }
-            } else {
-                return "false";
-            }
 
+            } else {
+                return -1;
+            }
 
         }
 
@@ -245,16 +251,15 @@
             $LKVBbehavior = LKVBcalcBehavior($semesterID, $userID, $mysqli);
             $LKVBdeadline = calculateDeadline($semesterID, $userID, $mysqli);
 
-            if($LKVBbehavior != 0 && $LKVBdeadline != "false"){
+            if($LKVBbehavior != 0 && $LKVBdeadline >=0){
                 return ((($LKVBdeadline) + ($LKVBbehavior*2))/3);
-            } else if ($LKVBdeadline != "false") {
+            } else if ($LKVBdeadline >=0) {
                 return ($LKVBdeadline);
             } else if ($LKVBbehavior != 0) {
                 return ($LKVBbehavior);
             }
 
         }
-
 
         //Leistung Betrieb KV
         function LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli){
@@ -362,9 +367,9 @@
             $LITbehavior = LITcalculateBehavior($semesterID, $userID, $mysqli);
             $LITdeadline = calculateDeadline($semesterID, $userID, $mysqli);
 
-            if($LITbehavior > 0 && $LITdeadline > 0){
+            if($LITbehavior > 0 && $LITdeadline >= 0){
                 return ((($LITdeadline)) + (($LITbehavior)*2))/3;
-            } else if ($LITdeadline != 0) {
+            } else if ($LITdeadline >= 0) {
                 return ($LITdeadline);
             } else if ($LITbehavior != 0) {
                 return ($LITbehavior);

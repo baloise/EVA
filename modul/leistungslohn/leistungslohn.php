@@ -439,7 +439,7 @@
 
                     }
                 } else {
-                    $malusList = "";
+                    $malusList = $translate[248];
                 }
 
                 $usersEntry = '

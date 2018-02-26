@@ -12,11 +12,11 @@
             while($row = $result->fetch_assoc()) {
 
                 $entry = '
-                <div class="row">
+                <div class="row searchRow">
                     <div class="card col-lg-12 userContentBox">
                         <div class="row header" userId="'.$row['ID'].'">
                             <div class="col-10">
-                                <b>'.$row['firstname'].' '.$row['lastname'].' ('.$row['bKey'].')</b>
+                                <b class="searchFor">'.$row['firstname'].' '.$row['lastname'].' ('.$row['bKey'].')</b>
                             </div>
                             <div class="col-2 text-right">
                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -52,7 +52,13 @@
     <h1 class="mt-5"><?php echo $translate[12];?></h1>
     <p></p>
 
-    <?php echo $listEntries; ?>
+    <div class="form-group">
+        <i class="fa fa-search" style="position: absolute; padding: 10px; right: 15px;" aria-hidden="true"></i>
+        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="">
+    </div>
+    <div id="searchList" class="col-lg-12" style="max-height: 550px; overflow-y: auto; overflow-x: hidden;">
+        <?php echo $listEntries; ?>
+    </div>
 
     <div class="row">
         <div class="col-12">
@@ -144,7 +150,7 @@
                         }
 
                         $generateDiv = $generateDiv .'
-                        <div class="row" style="max-width: 98%; margin-left: auto; margin-right: auto;">
+                        <div class="row rowID'. $row['did'] .'" style="max-width: 98%; margin-left: auto; margin-right: auto;">
                             <div class="col-12 card" style="padding-top:10px; padding-bottom:10px; margin-bottom:20px;">
                                 <div class="deadlineHead row" style="cursor:pointer;" did="'. $row['did'] .'">
                                     <div class="col-10">
@@ -249,6 +255,9 @@
             <hr/>
             <h1 class="mt-5"><?php echo $translate[144];?></h1>
             <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
+            <div class="alert alert-success col-lg-10" id="addedNotif" style="display: none; margin-bottom: 0px;">
+                <strong></strong> <?php echo $translate[103];?>.
+            </div>
             <div class="row">
                 <div class="col-12 text-center">
                     <h3><?php echo $translate[55];?></h3>

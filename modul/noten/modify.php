@@ -51,13 +51,23 @@
                 }
             }
 
-            $stmt = $mysqli->prepare("SELECT * FROM `tb_user_subject` WHERE ID = ? AND tb_user_ID = ?;");
+            $stmt = $mysqli->prepare("SELECT tb_semester_ID FROM `tb_user_subject` WHERE ID = ? AND tb_user_ID = ?;");
             $stmt->bind_param("ss", $subject, $session_userid);
             $stmt->execute();
             $result = $stmt->get_result();
-            if(!$result->fetch_array(MYSQLI_NUM)){
+            $row = $result->fetch_array(MYSQLI_NUM);
+            if(!$row[0]){
                 $error = $error . "Berechtigungsfehler";
+            } else {
+                if($row[0] > $session_semesterid){
+                    $stmt = $mysqli->prepare("UPDATE `tb_user` SET `tb_semester_ID` = ? WHERE `tb_user`.`ID` = ?");
+                    $stmt->bind_param("ii", $row[0], $session_userid);
+                    $stmt->execute();
+                    $_SESSION['user']['semester'] = $row[0];
+                    $session_semesterid = $row[0];
+                }
             }
+
             $stmt->close();
 
             if($error){

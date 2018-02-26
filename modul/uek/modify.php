@@ -161,6 +161,14 @@
             echo $error;
         } else {
 
+            if($semester > $session_semesterid){
+                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `tb_semester_ID` = ? WHERE `tb_user`.`ID` = ?");
+                $stmt->bind_param("ii", $semester, $session_userid);
+                $stmt->execute();
+                $_SESSION['user']['semester'] = $semester;
+                $session_semesterid = $semester;
+            }
+
             $stmt = $mysqli->prepare("INSERT INTO `tb_uek` (`tb_user_ID`, `title`, `grade`, `tb_semester_ID`) VALUES (?, ?, ?,?);");
             $stmt->bind_param("isii", $userid, $title, $points, $semester);
             $stmt->execute();

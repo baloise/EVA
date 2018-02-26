@@ -83,28 +83,30 @@
                             while($row4 = $result4->fetch_assoc()) {
 
                                 $gradesunderEntry = '
-                                        <div class="row gradeBelow">
-                                            <div class="col-lg-12">
-                                                <div class="card" style="padding-top: 10px;margin-bottom:10px;">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <b>'. $llsubname .'</b>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <b>'.$translate[55].':</b> '. $row4['title'] .'
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <b>'.$translate[56].':</b> '. $row4['grade'] .'
-                                                            </div>
+                                <div class="row gradeBelow">
+                                    <div class="col-lg-12">
+                                        <div class="card" style="padding-top: 10px;margin-bottom:10px;">
+                                            <div class="row" style="padding:10px;">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <b>'. $llsubname .'</b>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <b>'.$translate[55].':</b> '. $row4['title'] .'
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <b>'.$translate[56].':</b> '. $row4['grade'] .'
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <b>'.$translate[30].':</b> '. $row4['reasoning'] .'<br/><br/>
-                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <b>'.$translate[30].':</b> '. $row4['reasoning'] .'<br/><br/>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
                                 ';
 
                                 $countgradesunder = $countgradesunder + 1;
@@ -127,7 +129,7 @@
                                     <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
                                     <td>
                                         <div class="row">
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-10 ie11fix">
                                                 <input placeholder="'.$translate[52].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
                                             </div>
                                             <div class="col-lg-2" style="padding-left: 0;">
@@ -173,7 +175,7 @@
                                             <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-10 ie11fix">
                                                         <input placeholder="'.$translate[52].'" subjid="'. $llsubid .'" type="number" class="form-control corrSubAvgNum"/>
                                                     </div>
                                                     <div class="col-lg-2" style="padding-left: 0;">
