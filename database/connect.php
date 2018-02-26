@@ -2,7 +2,7 @@
 
 
 
-	if(null !== (getenv('APP_DB_USER'))){
+	if(getenv('APP_DB_USER')){
 		$_db_database = getenv('APP_DB_NAME');
 		$_db_host = getenv('APP_DB_HOST');
 		$_db_username = getenv('APP_DB_USER');
@@ -17,6 +17,7 @@
     $mysqli = mysqli_connect($_db_host, $_db_username, $_db_passwort, $_db_database);
 
     if (!$mysqli) {
+        echo "Could not connect to $_db_username@$_db_host/$_db_database\n<br/>";
         die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
     }
 
