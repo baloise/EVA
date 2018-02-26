@@ -98,6 +98,9 @@ html {
 .dashModul h3 {
     font-size: 0.7rem;
 }
+h3{
+    font-size: 1.4rem;
+}
 .dashModuleTitle {
 	margin-left: auto;
 	margin-right: auto;
@@ -193,7 +196,7 @@ select.form-control:not([size]):not([multiple]){
 }
 .userContentBox .header {
 	padding-top: 10px;
-	font-size: 1.1rem;
+	font-size: 0.9rem;
 	cursor: pointer;
 }
 .deadlineHeader {

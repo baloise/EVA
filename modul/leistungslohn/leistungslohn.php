@@ -8,6 +8,11 @@
 
     <h1 class="mt-5"><?php echo $translate[7];?></h1>
 
+    <div class="form-group">
+        <i class="fa fa-search" style="position: absolute; padding: 10px; right: 15px;" aria-hidden="true"></i>
+        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="">
+    </div>
+    <div id="searchList">
     <?php
 
         $groups = "";
@@ -47,7 +52,7 @@
                                     <div class="col-lg-12 card">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                             <div class="col-10">
-                                                <h2>'.$translate[47].' ' . $translate[47] .' 3</h2>
+                                                <h2>'.$translate[47].' ' . $translate[48] .' 3</h2>
                                             </div>
                                             <div class="col-2 text-right">
                                                 <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -167,11 +172,11 @@
                         }
 
                         $usersEntry = '
-                            <div class="row">
+                            <div class="row searchRow">
                                 <div class="col-lg-12 card bg-color">
                                     <div class="row userHeader" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
                                         <div class="col-10">
-                                            <h2>'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
+                                            <h2 class="searchFor">'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
                                         </div>
                                         <div class="col-2 text-right">
                                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -248,7 +253,7 @@
         //GRUPPEN ENDE
     ?>
 
-
+    </div>
     <br/>
     <hr/>
     <h2><?php echo $translate[106];?></h2>
