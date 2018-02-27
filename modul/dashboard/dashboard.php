@@ -60,31 +60,57 @@
 	</script>
 	<script type="text/javascript" src="modul/dashboard/dashboard.js"></script>
 
-	<?php
-		if($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
+<?php if($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
 
-			if($session_semesterid){
-				$sql = "SELECT * FROM `tb_semester` WHERE ID = $session_semesterid;";
-				$result = $mysqli->query($sql);
-			    if ($result->num_rows == 1) {
-					$row = $result->fetch_assoc();
-					$sql2 = "SELECT count(ID) FROM `tb_semester` WHERE tb_group_ID = 3";
-					$result2 = $mysqli->query($sql2);
-					echo "<h2>Du befindest dich im Semester ". $row['semester'];
-					if ($result2->num_rows == 1) {
-						$row2 = $result2->fetch_assoc();
-						echo " von " . $row2['count(ID)'] . "</h2>";
-					} else {
-						echo "</h2>";
+	<div class="col-lg-12 text-center">
+		<h1 class='mt-5'><?php echo $translate[249]; ?></h1>
+		<?php
+			if($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
+
+				$semPercent = 10;
+
+				if($session_semesterid){
+					$sql = "SELECT * FROM `tb_semester` WHERE ID = $session_semesterid;";
+					$result = $mysqli->query($sql);
+				    if ($result->num_rows == 1) {
+						$row = $result->fetch_assoc();
+						$sql2 = "SELECT count(ID) FROM `tb_semester` WHERE tb_group_ID = 3";
+						$result2 = $mysqli->query($sql2);
+						echo "<h2>".$translate[38].": ". $row['semester'];
+						if ($result2->num_rows == 1) {
+							$row2 = $result2->fetch_assoc();
+							echo " ".$translate[24]." " . $row2['count(ID)'] . "</h2>";
+							$semPercent = $row['semester'] / $row2['count(ID)'] *100;
+						} else {
+							echo "</h2>";
+						}
 					}
+				} else {
+					echo "<h2>".$translate[38].": 1 ";
 				}
-			} else {
 
 			}
+		?>
 
-		}
-	?>
+		<div class="myProgress">
+	  		<div class="myBar" id="semesterBar"></div>
+		</div>
+		<br/>
 
+		<h2>Lohn: 1400.- von 1500.-</h2>
+		<div class="myProgress">
+	  		<div class="myBar" id="salaryBar"></div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			move('semesterBar', 20, <?php echo $semPercent; ?>);
+			move('salaryBar', 15, 93.3);
+		});
+	</script>
+<?php endif; ?>
 <?php else : ?>
 
     <br/><br/>

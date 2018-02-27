@@ -1,4 +1,17 @@
-
+function move(elemID, speed, fully) {
+	var elem = document.getElementById(elemID);
+	var width = 1;
+	var id = setInterval(frame, speed, );
+	function frame() {
+		if (width >= fully) {
+			clearInterval(id);
+		} else {
+			width++;
+			elem.style.width = width + '%';
+			elem.innerHTML = "<b style='color:white;'>" + width * 1 + '% </b>';
+		}
+	}
+}
 
 $(document).ready(function(){
 
@@ -13,7 +26,7 @@ $(document).ready(function(){
         makeDynamic(this);
 
     });
-
+	
     jQuery('img.svg').each(function(){
 
         var $img = jQuery(this);

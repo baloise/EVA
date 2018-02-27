@@ -3,8 +3,7 @@ function makeDynamic(objectThis){
 
     $(objectThis).click(function(event){
         event.preventDefault();
-        $("#pageContent").fadeOut("fast", function(){
-            $('.loadScreen').fadeTo("fast", 1);
+        $("#pageContent").fadeOut(50, function(){
             goBack(href);
         });
     });
@@ -12,15 +11,24 @@ function makeDynamic(objectThis){
 
 function goBack(href){
     if (href){
+
+        var loader = setTimeout(function(){
+
+            $('.loadScreen').fadeTo("slow", 1);
+
+
+        },1000);
+
         $("#pageContent").load(href, function(response, status, xhr){
 
             if ( status == "error" ) {
+                $('.loadScreen').fadeTo("fast", 0);
                 var msg = "makeDynamic Error";
                 alert( msg + xhr.status + " " + xhr.statusText );
             } else {
-
-                $('.loadScreen').fadeTo("fast", 0, function(){
-                    $('#pageContent').fadeTo("fast", 1);
+                clearTimeout(loader);
+                $('.loadScreen').fadeTo(50, 0, function(){
+                    $('#pageContent').fadeTo(50, 1);
                 });
                 $.ajax({
                     method: "GET",

@@ -20,6 +20,8 @@
                     $linkList = $linkList . $link;
                 }
             }
+        } else {
+            $linkList = $translate[87];
         }
 
     ?>

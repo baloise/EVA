@@ -270,3 +270,12 @@ hr {
 		height: 200px;
 	}
 }
+.myProgress {
+    width: 100%;
+    background-color: var(--akzentfarbe);
+}
+.myBar {
+    width: 1%;
+    height: 30px;
+    background-color: var(--link);
+}

@@ -51,7 +51,7 @@
 
     ?>
 
-    <div id="loadingTable">
+    <div id="loadingTable" style="display: none; text-align:center; width: 100%">
         <img class="img-responsive" src="img/loading2_big.svg"/>
     </div>
 
@@ -119,6 +119,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+            var loader = setTimeout(function(){
+
+                $('#loadingTable').fadeIn(100);
+
+            },1000);
+
             $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
                 $("#dtmake").dataTable({
                     "columnDefs": [{
@@ -158,8 +165,9 @@
                 });
                 $('#users_filter input').attr('placeholder', '<?php echo $translate[28];?>');
                 $('#users_filter input').addClass('form-control');
-                $('#loadingTable').slideUp("fast", function(){
-                    $("#dtmake").slideDown( "slow" );
+                clearTimeout(loader);
+                $('#loadingTable').slideUp(10, function(){
+                    $("#dtmake").slideDown("fast");
                 });
             });
         });
