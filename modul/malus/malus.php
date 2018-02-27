@@ -120,7 +120,7 @@
         <br/>
     </div>
 
-    <div id="loadingTable">
+    <div id="loadingTable" style="display: none; text-align:center; width: 100%">
         <img class="img-responsive" src="img/loading2_big.svg"/>
     </div>
 
@@ -148,54 +148,6 @@
     </table>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $.getScript( "//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js", function() {
-                $("#dtmake").dataTable({
-                    "columnDefs": [{
-                        "targets": 0,
-                        "orderable": false
-                    }],
-                    "language": {
-                        "sEmptyTable":      "<?php echo $translate[86];?>",
-                        "sInfo":            "_START_ <?php echo $translate[23];?> _END_ <?php echo $translate[24];?> _TOTAL_ <?php echo $translate[25];?>",
-                        "sInfoEmpty":       "0 <?php echo $translate[23];?> 0 <?php echo $translate[24];?> 0 <?php echo $translate[25];?>",
-                        "sInfoFiltered":    "(gefiltert von _MAX_ Einträgen)",
-                        "sInfoPostFix":     "",
-                        "sInfoThousands":   ".",
-                        "sLengthMenu":      "_MENU_ <?php echo $translate[17];?>",
-                        "sLoadingRecords":  "Wird geladen...",
-                        "sProcessing":      "Bitte warten...",
-                        "sSearch":          "",
-                        "sZeroRecords":     "<?php echo $translate[87];?>.",
-                        "oPaginate": {
-                            "sFirst":       "<?php echo $translate[88];?>",
-                            "sPrevious":    "<?php echo $translate[26];?>",
-                            "sNext":        "<?php echo $translate[27];?>",
-                            "sLast":        "<?php echo $translate[89];?>"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
-                            "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-                        },
-                        select: {
-                                rows: {
-                                _: '%d Zeilen ausgewählt',
-                                0: 'Zum Auswählen auf eine Zeile klicken',
-                                1: '1 Zeile ausgewählt'
-                                }
-                        }
-                    }
-                });
-                $('#users_filter input').attr('placeholder', '<?php echo $translate[28];?>');
-                $('#users_filter input').addClass('form-control');
-                $('#loadingTable').slideUp("fast", function(){
-                    $("#dtmake").slideDown( "slow" );
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
         var translate = {};
         <?php
             foreach ($translate as $key => $value) {
@@ -204,6 +156,7 @@
         ?>;
     </script>
     <script type="text/javascript" src="modul/malus/malus.js"></script>
+    <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php else : ?>
 

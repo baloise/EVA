@@ -51,6 +51,7 @@
                 if(isset($row)){
 
                     echo '
+                    <meta name="theme-color" content="'.$row["akzentfarbe"].'"/>
                     <style>
                         :root {
                             --hintergrund: '.$row["hintergrund"].';
