@@ -52,6 +52,7 @@
 
                     echo '
                     <meta name="theme-color" content="'.$row["akzentfarbe"].'"/>
+
                     <style>
                         :root {
                             --hintergrund: '.$row["hintergrund"].';
@@ -72,6 +73,7 @@
                 } else {
 
                     echo '
+                    <meta name="theme-color" content="'.$appinfo["akzentfarbe"].'"/>
                     <style>
                         :root {
                             --hintergrund: '.$appinfo["hintergrund"].';
