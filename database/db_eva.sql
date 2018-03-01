@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 26. Feb 2018 um 14:37
+-- Erstellungszeit: 01. Mrz 2018 um 21:34
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -152,6 +152,15 @@ CREATE TABLE `tb_deadline_check` (
   `tb_user_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `tb_deadline_check`
+--
+
+INSERT INTO `tb_deadline_check` (`tb_deadline_ID`, `tb_user_ID`) VALUES
+(3, 120),
+(4, 120),
+(5, 120);
+
 -- --------------------------------------------------------
 
 --
@@ -180,7 +189,8 @@ CREATE TABLE `tb_dontcountsem` (
 --
 
 INSERT INTO `tb_dontcountsem` (`ID`, `tb_user_ID`, `tb_semester_ID`) VALUES
-(2, 121, 33);
+(2, 121, 33),
+(3, 120, 33);
 
 -- --------------------------------------------------------
 
@@ -248,7 +258,9 @@ INSERT INTO `tb_ind_nav` (`ID`, `position`, `tb_user_ID`, `tb_modul_ID`) VALUES
 (172, NULL, 115, 5),
 (173, NULL, 118, 5),
 (174, NULL, 118, 12),
-(175, NULL, 6, 11);
+(175, NULL, 6, 11),
+(176, NULL, 6, 15),
+(177, NULL, 6, 16);
 
 -- --------------------------------------------------------
 
@@ -308,7 +320,9 @@ INSERT INTO `tb_modul` (`ID`, `name`, `description`, `file_path`, `title`, `icon
 (10, 'Stundenplan', 'Modul zur speicherung eines GIBM Stundenplans.', 'modul/stundenplan/stundenplan.php', '11', 'img/dashico/002-people.svg'),
 (11, 'Terminmanagement', 'Modul zur betreuung von Terminen', 'modul/terminmanagement/terminmanagement.php', '12', 'img/dashico/001-clock.svg'),
 (12, 'Verhaltensziele', 'Modul zur Sammlung der Bewertung der Verhaltensziele', 'modul/verhaltensziele/verhaltensziele.php', '13', 'img/dashico/002-man.svg'),
-(14, 'ÜK-KN CYP', 'Überbetriebliche Kurse LKB', 'modul/uek/uek.php', '14', 'img/dashico/school.svg');
+(14, 'ÜK-KN CYP', 'Überbetriebliche Kurse LKB', 'modul/uek/uek.php', '14', 'img/dashico/school.svg'),
+(15, 'Übersetzungen', 'Zur bearbeitung der Übersetzungen', 'modul/uebersetzung/uebersetzung.php', '250', 'img/dashico/user.svg'),
+(16, 'Reglement', 'Seite mit Reglement der Baloise', 'modul/reglement/reglement.php', '253', 'img/dashico/open-magazine.svg');
 
 -- --------------------------------------------------------
 
@@ -355,7 +369,13 @@ INSERT INTO `tb_modul_group` (`ID`, `tb_group_ID`, `tb_modul_ID`) VALUES
 (98, 1, 14),
 (99, 1, 9),
 (100, 1, 6),
-(101, 1, 2);
+(101, 1, 2),
+(102, 1, 15),
+(103, 1, 16),
+(104, 2, 16),
+(105, 3, 16),
+(106, 4, 16),
+(107, 5, 16);
 
 -- --------------------------------------------------------
 
@@ -403,6 +423,28 @@ CREATE TABLE `tb_presentation` (
 
 INSERT INTO `tb_presentation` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`) VALUES
 (27, 'Testvortrag 1', 66, '2018-02-26 10:19:01', 118, 28);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tb_reglement`
+--
+
+CREATE TABLE `tb_reglement` (
+  `ID` int(11) NOT NULL,
+  `tb_group_ID` int(11) NOT NULL,
+  `de` text,
+  `it` text,
+  `fr` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tb_reglement`
+--
+
+INSERT INTO `tb_reglement` (`ID`, `tb_group_ID`, `de`, `it`, `fr`) VALUES
+(1, 3, '<h2 style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:14pt\"><span style=\"font-family:Arial,sans-serif\"><span style=\"font-weight:normal\"><a name=\"_Toc154234232\">Allgemeine Erl&auml;uterungen</a></span></span></span></h2>\r\n\r\n<h3 style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial,sans-serif\"><a name=\"_Toc154234233\">Zweck</a></span></span></h3>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Das Lehrlingsbeurteilungstool dient den Basler Versicherungen und der Baloise Bank SoBa in mehrfacher Hinsicht:</span></span></span></span></p>\r\n\r\n<ul>\r\n	<li style=\"text-align:justify\"><span style=\"font-size:12pt\"><span style=\"tab-stops:list 36.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Gesamtsicht &uuml;ber die Leistungen aller Lernenden der B&acirc;loise f&uuml;r die Personalverantwortlichen Lernende der Regionen sowie die Leitung Nachwuchsentwicklung Schweiz</span></span></span></span></span></li>\r\n	<li style=\"text-align:justify\"><span style=\"font-size:12pt\"><span style=\"tab-stops:list 36.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Gradmesser und transparente &Uuml;bersicht f&uuml;r die Lernenden selbst</span></span></span></span></span></li>\r\n	<li style=\"text-align:justify\"><span style=\"font-size:12pt\"><span style=\"tab-stops:list 36.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Grundlage zur Berechnung des variablen Lohns im letzten Lehrjahr</span></span></span></span></span></li>\r\n	<li style=\"text-align:justify\"><span style=\"font-size:12pt\"><span style=\"tab-stops:list 36.0pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Eine zentrale Grundlage f&uuml;r den Entscheid &uuml;ber die Weiterbesch&auml;ftigung</span></span></span></span></span></li>\r\n</ul>\r\n\r\n<h3 style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial,sans-serif\"><a name=\"_Toc154234234\">Philosophie</a></span></span></h3>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Das Lehrlingsbeurteilungstool orientiert sich an bereits vorhandenen Daten, so dass seitens der Lernenden und der Praxisausbilder kein zus&auml;tzlicher Aufwand entsteht. </span></span></span></span></p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\">&nbsp;</p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial,sans-serif\"><a name=\"_Toc154234235\">Bewertungskriterien</a></span></span></p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Es werden drei Bewertungskategorien unterschieden: Leistung Informatik, Leistung Schule und Verhalten Betrieb. Die Resultate dieser drei Kategorien werden je zu einem Drittel gewichtet. Innerhalb dieser Kategorien gibt es weitere Unterteilungen gem&auml;ss dem nachfolgenden Bewertungsschema.</span></span><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\"> Das massgebende Resultat ist allerdings erst dasjenige, das sich nach Abzug eines allf&auml;lligen Malus ergibt. </span></span></span></span></p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm; text-align:justify\">&nbsp;</p>\r\n\r\n<table border=\"1\" cellspacing=\"0\" class=\"Table\" style=\"border-collapse:collapse; border:solid windowtext 1.0pt\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"background-color:#99ccff; width:108.3pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Kategorie</span></span></strong></span></span></p>\r\n			</td>\r\n			<td colspan=\"2\" style=\"background-color:#99ccff; width:94.7pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">in %</span></span></strong></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#99ccff; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Bewertungskriterium</span></span></strong></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#99ccff; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Anzahl Bewertungen pro Jahr</span></span></strong></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"2\" style=\"background-color:#ffff99; height:28.8pt; width:108.3pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Leistung Informatik</span></span></span></span></p>\r\n			</td>\r\n			<td rowspan=\"2\" style=\"background-color:#ffff99; height:28.8pt; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">33%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffff99; height:28.8pt; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">22%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffff99; height:28.8pt; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Notendurchschnitt der Informatik-Module in &uuml;berbetrieblichen Kursen (&uuml;K) und in der Schule</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffff99; height:28.8pt; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">2 </span></span></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color:#ffff99; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">11%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffff99; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Fachvortr&auml;ge im Betrieb</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffff99; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">1*</span></span></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color:#ffcc99; width:108.3pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Leistung Schule</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffcc99; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">33%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffcc99; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">33%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffcc99; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Notendurchschnitt</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ffcc99; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">2</span></span></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"2\" style=\"background-color:#ff99cc; height:26.0pt; width:108.3pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Verhalten Betrieb</span></span></span></span></p>\r\n			</td>\r\n			<td rowspan=\"2\" style=\"background-color:#ff99cc; height:26.0pt; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">33%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ff99cc; height:26.0pt; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">22%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ff99cc; height:26.0pt; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Verhaltensziele </span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ff99cc; height:26.0pt; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">2 </span></span></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color:#ff99cc; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">11%</span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ff99cc; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Terminmanagement </span></span></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ff99cc; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">2</span></span></span></span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"background-color:#ccffcc; width:108.3pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Resultat (vor Malus)</span></span></strong></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ccffcc; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">100%</span></span></strong></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ccffcc; width:47.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><strong><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">100%</span></span></strong></span></span></p>\r\n			</td>\r\n			<td style=\"background-color:#ccffcc; width:222.95pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm\">&nbsp;</p>\r\n			</td>\r\n			<td style=\"background-color:#ccffcc; width:70.35pt\">\r\n			<p style=\"margin-left:0cm; margin-right:0cm; text-align:center\">&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">*im 4. Lehrjahr findet kein Fachvortrag statt</span></span></span></span></p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Die Einzelheiten der Bewertung sind im Teil &quot;Detailerl&auml;uterungen zum Lehrlingsbeurteilungstool&quot; geregelt.</span></span></span></span></p>\r\n\r\n<p style=\"margin-left:0cm; margin-right:0cm\">&nbsp;</p>\r\n', 'OK', 'OHJE'),
+(2, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -768,7 +810,13 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (245, 'Lade dir jetzt', '', ''),
 (246, 'herunter, um die Funktionen dieser Webseite vollständig zu nutzen.', '', ''),
 (247, 'Achtung: Addiere die Punktzahlen von Betrieb und Prüfungsexperte zusammen, um daraus einen Eintrag zu erstellen.', '', ''),
-(248, 'Kein Malus vorhanden', '', '');
+(248, 'Kein Malus vorhanden', '', ''),
+(249, 'Deine Statistiken', '', ''),
+(250, 'Übersetzungen', '', ''),
+(251, 'Inhalt', '', ''),
+(252, 'Die Änderungen werden erst beim nächsten Login angewendet!', '', ''),
+(253, 'Reglement', '', ''),
+(254, 'Speichern', '', '');
 
 -- --------------------------------------------------------
 
@@ -815,7 +863,7 @@ INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `f
 (115, 'b000002', NULL, NULL, 1, 'Elon', 'Musk', NULL, NULL, NULL, NULL, '2018-02-26 08:37:01'),
 (116, 'b000003', NULL, NULL, 2, 'Matthias', 'Schneider', NULL, NULL, NULL, NULL, '2018-02-26 08:37:30'),
 (117, 'b000004', NULL, NULL, 2, 'Chantal', 'Müller', NULL, NULL, NULL, NULL, '2018-02-26 08:37:44'),
-(118, 'b000005', NULL, NULL, 3, 'Moritz', 'Keller', NULL, NULL, NULL, 31, '2018-02-26 08:39:02'),
+(118, 'b000005', '2679040', NULL, 3, 'Moritz', 'Keller', NULL, NULL, NULL, NULL, '2018-02-26 08:39:02'),
 (119, 'b000006', NULL, NULL, 3, 'Fabio', 'Caprio', NULL, NULL, NULL, NULL, '2018-02-26 08:39:24'),
 (120, 'b000007', NULL, NULL, 4, 'Giovanni', 'Mozarella', NULL, NULL, NULL, 36, '2018-02-26 08:40:01'),
 (121, 'b000008', NULL, NULL, 4, 'Sandra', 'Schneider', NULL, NULL, NULL, 36, '2018-02-26 08:40:17'),
@@ -976,6 +1024,13 @@ ALTER TABLE `tb_presentation`
   ADD KEY `fk_tb_presentation_tb_user1_idx` (`tb_user_ID`);
 
 --
+-- Indizes für die Tabelle `tb_reglement`
+--
+ALTER TABLE `tb_reglement`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `tb_group_ID` (`tb_group_ID`);
+
+--
 -- Indizes für die Tabelle `tb_semester`
 --
 ALTER TABLE `tb_semester`
@@ -1048,7 +1103,7 @@ ALTER TABLE `tb_appinfo`
 -- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
 --
 ALTER TABLE `tb_behaviorgrade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_deadline`
@@ -1060,7 +1115,7 @@ ALTER TABLE `tb_deadline`
 -- AUTO_INCREMENT für Tabelle `tb_dontcountsem`
 --
 ALTER TABLE `tb_dontcountsem`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_group`
@@ -1072,13 +1127,13 @@ ALTER TABLE `tb_group`
 -- AUTO_INCREMENT für Tabelle `tb_ind_design`
 --
 ALTER TABLE `tb_ind_design`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_ind_nav`
 --
 ALTER TABLE `tb_ind_nav`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_malus`
@@ -1090,13 +1145,13 @@ ALTER TABLE `tb_malus`
 -- AUTO_INCREMENT für Tabelle `tb_modul`
 --
 ALTER TABLE `tb_modul`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_modul_group`
 --
 ALTER TABLE `tb_modul_group`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_pe`
@@ -1108,7 +1163,13 @@ ALTER TABLE `tb_pe`
 -- AUTO_INCREMENT für Tabelle `tb_presentation`
 --
 ALTER TABLE `tb_presentation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_reglement`
+--
+ALTER TABLE `tb_reglement`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_semester`
@@ -1132,13 +1193,13 @@ ALTER TABLE `tb_subject_grade`
 -- AUTO_INCREMENT für Tabelle `tb_translation`
 --
 ALTER TABLE `tb_translation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_uek`
 --
 ALTER TABLE `tb_uek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `tb_user`
@@ -1238,6 +1299,12 @@ ALTER TABLE `tb_pe`
 ALTER TABLE `tb_presentation`
   ADD CONSTRAINT `fk_tb_presentation_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tb_presentation_ibfk_1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`);
+
+--
+-- Constraints der Tabelle `tb_reglement`
+--
+ALTER TABLE `tb_reglement`
+  ADD CONSTRAINT `tb_reglement_ibfk_1` FOREIGN KEY (`tb_group_ID`) REFERENCES `tb_group` (`ID`);
 
 --
 -- Constraints der Tabelle `tb_semester`

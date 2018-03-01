@@ -1,7 +1,5 @@
 <?php
 
-
-
 	if(getenv('APP_DB_USER')){
 		$_db_database = getenv('APP_DB_NAME');
 		$_db_host = getenv('APP_DB_HOST');

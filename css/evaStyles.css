@@ -16,6 +16,35 @@
     font-family: 'Geometria';
     src: url('font/Geometria-Light.otf');
 }
+.searchRow {
+    cursor: pointer;
+}
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: var(--hintergrund);
+    font-size: 13px;
+}
+::-webkit-scrollbar {
+      width: 10px;
+      position: relative;
+}
+::-webkit-scrollbar-track {
+      background-color: var(--akzentfarbe);
+      position: relative;
+}
+::-webkit-scrollbar-thumb {
+      background-color: var(--link);
+      position: relative;
+}
+::-webkit-scrollbar-button {
+      background-color: var(--akzentfarbe);
+      position: relative;
+}
+::-webkit-scrollbar-corner {
+      background-color: var(--akzentfarbe);
+      position: relative;
+}
+
 body {
 	padding-top: 54px;
 	font-family: 'RobotoRegular', sans-serif;;
@@ -93,7 +122,7 @@ html {
 	min-height: 100px;
 	max-height: 100px;
 	padding: 20px;
-	margin-bottom: 60px;
+	margin-bottom: 10px;
 }
 .dashModul h3 {
     font-size: 0.7rem;
@@ -233,6 +262,17 @@ hr {
 .alert-danger {
     background-color: #f2dede !important;
 }
+@media (max-width: 767px) {
+    .dashModul {
+    	color: var(--link);
+    	min-height: 80px;
+    	max-height: 80px;
+    	margin-bottom: 80px;
+    }
+    .dashIco:hover {
+    	max-width: 60%;
+    }
+}
 @media (max-width: 575px) {
     .navbar-brand span {
         display: none;
@@ -242,6 +282,9 @@ hr {
     	min-height: 50px;
     	max-height: 50px;
     	margin-bottom: 80px;
+    }
+    .dashIco:hover {
+    	max-width: 25%;
     }
     .dashModul h3 {
         font-size: 0.7rem;

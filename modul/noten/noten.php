@@ -418,10 +418,10 @@
                         <div class='divtoggler' subSemid='".$subSemId."' style='cursor:pointer;'>
                             <hr/>
                             <div class='row'>
-                                <div class='col-lg-10'>
+                                <div class='col-10'>
                                     <h2> " . $subjectSemester . " </h2>
                                 </div>
-                                <div class='col-lg-2 text-right'>
+                                <div class='col-2 text-right'>
                                     <i class='fa fa-chevron-down toggleDetails' style='margin-top: 5px;' aria-hidden='true'></i>
                                 </div>
                             </div>
@@ -435,10 +435,10 @@
                     <div class='divtoggler' subSemid='".$subSemId."' style='cursor:pointer;'>
                         <hr/>
                         <div class='row'>
-                            <div class='col-lg-10'>
+                            <div class='col-10'>
                                 <h2> " . $subjectSemester . " </h2>
                             </div>
-                            <div class='col-lg-2 text-right'>
+                            <div class='col-2 text-right'>
                                 <i class='fa fa-chevron-down toggleDetails' style='margin-top: 5px;' aria-hidden='true'></i>
                             </div>
                         </div>
@@ -531,7 +531,7 @@
             </div>
             <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
                         <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate[114];?>">
                     </div>
 
@@ -541,11 +541,11 @@
                             echo '
                             <div class="col-lg-4" id="LIT">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <button type="button" selected="" value="1" class="btn btnSelect">'.$translate[59].'</button>
+                                    <div class="col-lg-6" style="margin-top: 10px;">
+                                        <button type="button" selected="" value="1" class="btn btnSelect btn-block">'.$translate[59].'</button>
                                     </div>
-                                    <div class="col-6">
-                                        <button type="button" selected="" value="0" class="btn btnSelect">'.$translate[117].'</button>
+                                    <div class="col-lg-6" style="margin-top: 10px;">
+                                        <button type="button" selected="" value="0" class="btn btnSelect btn-block">'.$translate[117].'</button>
                                     </div>
                                 </div>
                             </div>';
@@ -553,7 +553,7 @@
 
                     ?>
 
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4">';} else {echo '<div class="col-lg-6">';} ?>
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
                         <select class="form-control" id="newSubSem" placeholder="<?php echo $translate[113];?>">
                             <option><?php echo $translate[38];?>:</option>
                             <?php echo $semesterList; ?>

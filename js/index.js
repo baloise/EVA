@@ -19,6 +19,7 @@ function goBack(href){
 
         },1000);
 
+
         $("#pageContent").load(href, function(response, status, xhr){
 
             if ( status == "error" ) {

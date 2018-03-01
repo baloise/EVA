@@ -10,7 +10,13 @@
     src: url('font/roboto-regular.eot?#iefix') format('eot'),
          url('font/roboto-regular.svg') format('svg');
 }
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #F1F4FB;
+    font-size: 13px;
+}
 body {
+    scrollbar-face-color: #1C4E9C;
 	padding-top: 54px;
 	font-family: 'RobotoRegular', sans-serif;;
 	background-color: white;
