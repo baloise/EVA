@@ -1,3 +1,7 @@
+background-color: ##1C4E9C;
+background-color: #F1F4FB
+color: #333333;
+
 @font-face {
     font-family: 'RobotoThin';
     src: url('font/roboto-thin.eot');
@@ -10,19 +14,49 @@
     src: url('font/roboto-regular.eot?#iefix') format('eot'),
          url('font/roboto-regular.svg') format('svg');
 }
+.searchRow {
+    cursor: pointer;
+}
 .hiddenRow {
     padding: 0 4px !important;
-    background-color: #F1F4FB;
+    background-color: #ffffff;
     font-size: 13px;
 }
+::-webkit-scrollbar {
+      width: 10px;
+      position: relative;
+}
+::-webkit-scrollbar-track {
+      background-color: #F1F4FB;
+      position: relative;
+}
+::-webkit-scrollbar-thumb {
+      background-color: #1C4E9C;
+      position: relative;
+}
+::-webkit-scrollbar-button {
+      background-color: #F1F4FB;
+      position: relative;
+}
+::-webkit-scrollbar-corner {
+      background-color: #F1F4FB;
+      position: relative;
+}
+/*------------------- IE11 FIX  */
+.ie11fix {
+    max-width: 50%;
+}
 body {
-    scrollbar-face-color: #1C4E9C;
+  scrollbar-face-color: ##1C4E9C;
 	padding-top: 54px;
-	font-family: 'RobotoRegular', sans-serif;;
-	background-color: white;
+	font-family: 'RobotoRegular', sans-serif;
+	background-color: #ffffff;
 	color: #333333;
 	margin-bottom: 60px;
 	font-size: 0.8rem;
+}
+.navbar-brand {
+    font-family: 'Geometria', 'RobotoRegular', sans-serif;
 }
 .svg path {
 	fill: #1C4E9C;
@@ -78,25 +112,26 @@ html {
 	font-family: 'RobotoThin', sans-serif;
 }
 .mt-5 {
-	background-color: white;
+	background-color: #ffffff;
 	color: #333333;
 	padding: 20px;
-	font-family: 'RobotoThin', sans-serif;
+	font-family: 'Geometria', 'RobotoThin', sans-serif;
 	font-size: 1.5rem;
     font-weight: 500;
-}
-/* ------------------- IE11 FIX  */
-.ie11fix {
-    max-width: 50%;
 }
 .dashModul {
 	color: #1C4E9C;
 	min-height: 100px;
 	max-height: 100px;
-	margin-bottom: 100px;
+	padding: 20px;
+	margin-bottom: 10px;
+    cursor: pointer;
 }
 .dashModul h3 {
     font-size: 0.7rem;
+}
+h3{
+    font-size: 1.4rem;
 }
 .dashModuleTitle {
 	margin-left: auto;
@@ -105,9 +140,9 @@ html {
 }
 .dashIco {
 	max-width: 50%;
-	margin-bottom: 10px;
 	-webkit-transition: max-width 0.2s;
 	-moz-transition: max-width 0.2s;
+    max-height: 70px;
 	transition: max-width 0.2s;
 }
 .dashIco:hover {
@@ -193,7 +228,7 @@ select.form-control:not([size]):not([multiple]){
 }
 .userContentBox .header {
 	padding-top: 10px;
-	font-size: 1.1rem;
+	font-size: 0.9rem;
 	cursor: pointer;
 }
 .deadlineHeader {
@@ -208,7 +243,6 @@ select.form-control:not([size]):not([multiple]){
 }
 .card {
     background-color: #F1F4FB ;
-
 }
 hr {
     background-color: #333333 ;
@@ -231,6 +265,17 @@ hr {
 .alert-danger {
     background-color: #f2dede !important;
 }
+@media (max-width: 767px) {
+    .dashModul {
+    	color: #1C4E9C;
+    	min-height: 80px;
+    	max-height: 80px;
+    	margin-bottom: 80px;
+    }
+    .dashIco:hover {
+    	max-width: 60%;
+    }
+}
 @media (max-width: 575px) {
     .navbar-brand span {
         display: none;
@@ -240,6 +285,9 @@ hr {
     	min-height: 50px;
     	max-height: 50px;
     	margin-bottom: 80px;
+    }
+    .dashIco:hover {
+    	max-width: 25%;
     }
     .dashModul h3 {
         font-size: 0.7rem;
@@ -267,4 +315,13 @@ hr {
 		max-height: 200px;
 		height: 200px;
 	}
+}
+.myProgress {
+    width: 100%;
+    background-color: #F1F4FB;
+}
+.myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #1C4E9C;
 }

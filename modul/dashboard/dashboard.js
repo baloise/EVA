@@ -1,7 +1,7 @@
 function move(elemID, speed, fully) {
 	var elem = document.getElementById(elemID);
 	var width = 1;
-	var id = setInterval(frame, speed, );
+	var id = setInterval(frame, speed, fully);
 	function frame() {
 		if (width >= fully) {
 			clearInterval(id);
@@ -19,14 +19,10 @@ $(document).ready(function(){
 
     $(".dashModul").each(function(){
 
-        $(this).hover(function() {
-            $(this).css( 'cursor', 'pointer' );
-        });
-
         makeDynamic(this);
 
     });
-	
+
     jQuery('img.svg').each(function(){
 
         var $img = jQuery(this);

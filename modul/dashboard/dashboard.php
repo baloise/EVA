@@ -20,33 +20,33 @@
 
     <?php
 
-	echo $welcome;
+		echo $welcome;
 
-    $result = $mysqli->query($sql);
+	    $result = $mysqli->query($sql);
 
-    if ($result->num_rows > 0) {
-        echo"<div class='row' style='margin-bottom:50px;'>";
-        while($row = $result->fetch_assoc()) {
-            $generateDiv = '
-			<div class="col-lg-2 col-md-3 col-6">
-				<div class="dashModul" href="'. $row["file_path"] .'">
-					<div class="dashModuleIcon">
-						<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block"/>
-					</div>
-					<div class="dashModuleTitle">
-					   <h3>'. $translate[$row["title"]] .'</h3>
+	    if ($result->num_rows > 0) {
+	        echo"<div class='row' style='margin-bottom:50px;'>";
+	        while($row = $result->fetch_assoc()) {
+	            $generateDiv = '
+				<div class="col-lg-2 col-md-3 col-6">
+					<div class="dashModul" href="'. $row["file_path"] .'">
+						<div class="dashModuleIcon">
+							<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block"/>
+						</div>
+						<div class="dashModuleTitle">
+						   <h3>'. $translate[$row["title"]] .'</h3>
+						</div>
 					</div>
 				</div>
-			</div>
-            ';
-            if($row["title"] != "Dashboard"){
-                echo $generateDiv;
-            }
-        }
-        echo"</div>";
-    } else {
-        echo "Keine Daten gefunden.";
-    }
+	            ';
+	            if($row["title"] != "Dashboard"){
+	                echo $generateDiv;
+	            }
+	        }
+	        echo"</div>";
+	    } else {
+	        echo "Keine Daten gefunden.";
+	    }
 
     ?>
 
@@ -78,12 +78,12 @@
 
 	</div>
 
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		$(document).ready(function(){
-			move('semesterBar', 20, <?php echo $semPercent; ?>);
-			move('salaryBar', 15, <?php echo $salaryBar/1500*100; ?>);
+			move('semesterBar', 20, );
+			move('salaryBar', 15, );
 		});
-	</script>
+	</script>-->
 <?php endif; ?>
 
 <?php else : ?>

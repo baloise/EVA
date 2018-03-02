@@ -47,14 +47,14 @@
 
 body {
 	padding-top: 54px;
-	font-family: 'RobotoRegular', sans-serif;;
+	font-family: 'RobotoRegular', sans-serif;
 	background-color: var(--hintergrund);
 	color: var(--schrift);
 	margin-bottom: 60px;
 	font-size: 0.8rem;
 }
 .navbar-brand {
-    font-family: 'Geometria';
+    font-family: 'Geometria', 'RobotoRegular', sans-serif;
 }
 .svg path {
 	fill: var(--link);
@@ -107,7 +107,7 @@ html {
 	color: inherit;
 }
 .text-muted {
-	font-family: 'RobotoThin';
+	font-family: 'RobotoThin', sans-serif;
 }
 .mt-5 {
 	background-color: var(--hintergrund);
@@ -115,7 +115,7 @@ html {
 	padding: 20px;
 	font-family: 'Geometria', 'RobotoThin', sans-serif;
 	font-size: 1.5rem;
-    font-weight: 500;
+  font-weight: 500;
 }
 .dashModul {
 	color: var(--link);
@@ -123,6 +123,7 @@ html {
 	max-height: 100px;
 	padding: 20px;
 	margin-bottom: 10px;
+    cursor: pointer;
 }
 .dashModul h3 {
     font-size: 0.7rem;

@@ -63,7 +63,8 @@ $(document).ready(function(){
 
     });
 
-    $('.navbar-collapse a').click(function(){
+    $('.navbar-collapse a').click(function(event){
+        event.preventDefault;
         $(".navbar-collapse").collapse('hide');
     });
 
