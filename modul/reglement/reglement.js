@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+    var group;
+    var lang;
+
     $('.openReg').each(function(){
 
         $(this).click(function(){
@@ -11,8 +14,8 @@ $(document).ready(function(){
 
             event.preventDefault();
 
-            var group = $(this).attr('group');
-            var lang = $(this).attr('lang');
+            group = $(this).attr('group');
+            lang = $(this).attr('lang');
 
             $.ajax({
                 method: "POST",
@@ -43,7 +46,28 @@ $(document).ready(function(){
     });
 
     $('#safeRegChange').click(function(){
-        //TODO
+
+        var contents = $('#RegContent').val();
+
+        $.ajax({
+            method: "POST",
+            url: "./modul/reglement/change.php",
+            data: {group:group, lang:lang, contents:contents},
+            success: function(data){
+                if(data){
+
+                    $('#safeRegChange').addClass('alert-danger').html(translate['95']).delay(2000).removeClass('alert-danger').html(translate[254]);
+
+                } else {
+
+                    $('#textareaContent').html('<textarea name="RegContent" id="RegContent">Noch kein Inhalt...</textarea><br/>');
+
+                }
+
+
+            }
+        });
+
     });
 
 });
