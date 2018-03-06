@@ -17,9 +17,9 @@
         return $entries;
     }
 
-    $_db_host = "localhost";
-    $_db_username = "root";
-    $_db_passwort = "";
+    $_db_host = "DB_HOST";
+    $_db_username = "DB_USER";
+    $_db_passwort = "DB_PASS";
     $evaIsHere = false;
 
     if(!$setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort)) {
