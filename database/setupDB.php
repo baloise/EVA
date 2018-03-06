@@ -4,8 +4,10 @@
     $_db_username = "DB_USER";
     $_db_passwort = "DB_PASS";
 
+    $setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort);
+
     $sql = 'show databases';
-    $results = $mysqli->query($sql);
+    $results = $setupConn->query($sql);
 
 ?>
 <h4>Available Databases:</h4>
