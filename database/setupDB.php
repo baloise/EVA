@@ -1,8 +1,8 @@
 <?php
 
-    $_db_host = "localhost";
-    $_db_username = "root";
-    $_db_passwort = "";
+    $_db_host = "DB_HOST";
+    $_db_username = "DB_USER";
+    $_db_passwort = "DB_PASS";
 
     $sql = 'show databases';
     $results = $mysqli->query($sql);
