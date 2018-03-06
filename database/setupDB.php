@@ -17,12 +17,12 @@
         return $entries;
     }
 
-    $_db_host = "DB_HOST";
-    $_db_username = "DB_USER";
-    $_db_passwort = "DB_PASS";
+    $_db_host = "localhost";
+    $_db_username = "root";
+    $_db_passwort = "";
     $evaIsHere = false;
 
-    if( ! $setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort) ) {
+    if(!$setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort)) {
         die('No connection: ' . mysqli_connect_error());
     }
 
@@ -41,8 +41,35 @@
     echo "</ul>";
 
     if($evaIsHere){
-        echo "<p>db_eva has been found. Checking for updates...</p>";
-        //TODO
+
+        echo "<p>db_eva has been found. Listing Tables...</p>";
+
+        if(!$setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort, 'db_eva')) {
+            die('No connection: ' . mysqli_connect_error());
+        }
+
+        $entries = array();
+        $sql = 'show tables;';
+        $result = $setupConn->query($sql);
+
+        if ($result->num_rows > 0) {
+
+            echo "<h4>Available Tables:</h4>";
+
+            while($row = $result->fetch_assoc()) {
+                array_push($entries,$row['Tables_in_db_eva']);
+            }
+
+        } else {
+            $entries = "No Entries";
+        }
+
+        echo "<ul>";
+        foreach ($entries as $value) {
+            echo "<li>$value</li>";
+        }
+        echo "</ul>";
+
     } else {
         echo "<p>no db_eva found. Starting Table creation...</p>";
 
