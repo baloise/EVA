@@ -37,8 +37,7 @@
     }
 
     echo("<br/><pre>");
-    echo('usr : '.$_SESSION["usr"]."\nroles: ");
-    print_r($_SESSION["roles"]);
+    echo('usr : '.$_SESSION["usr"]."\n");
     echo("\n</pre>");
 
     /*
@@ -66,7 +65,11 @@
 
     */
 
-    if(isset($test)){
+    
+
+    if(isset($usersbkey)){
+
+        $_POST['username'] = $usersbkey;
 
     } else {
         echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
@@ -119,11 +122,13 @@
 <?php
 
     if(isset($_GET['error'])){
-        if ($_GET['error'] = "user"){
+        if ($_GET['error'] == "user"){
             echo "<br/><br/><strong>Dieser B-Key existiert nicht in der Datenbank.</strong>";
+            die();
         }
-        if ($_GET['error'] = "userdeleted"){
+        if ($_GET['error'] == "userdeleted"){
             echo "<br/><br/><strong>Dieser B-Key wurde gelöscht/deaktiviert.</strong>";
+            die();
         }
     }
 
