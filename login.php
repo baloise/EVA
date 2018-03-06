@@ -1,8 +1,26 @@
-<form method="POST" action="login.php">
-    <input type="text" name="username" placeholder="B-Key" required autofocus/>
-    <input type="submit"/>
-</form>
 
+-----------------------------------------------------------------------------------<br />
+
+<b>HEADERS:</b><br /><br />
+<?php
+
+foreach (getallheaders() as $name => $value) {
+    echo "$name: $value\n";
+}
+
+if(isset($test)){
+
+} else {
+    echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
+    <form method="POST" action="login.php">
+        <input type="text" name="username" placeholder="B-Key" required autofocus/>
+        <input type="submit"/>
+    </form>
+    ';
+}
+
+?>
+-----------------------------------------------------------------------------------
 <br/>
 <hr/>
 <h2>Momentan verfügbare B-Keys:</h2>
