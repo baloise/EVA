@@ -18,6 +18,11 @@
         return $entries;
     }
 
+    ob_start();
+    include('db_eva.sql');
+    $dbCreateSql = ob_get_contents();
+    ob_end_clean();
+
     $_db_host = "DB_HOST";
     $_db_username = "DB_USER";
     $_db_passwort = "DB_PASS";
@@ -45,10 +50,20 @@
 
         ob_start();
         include('db_eva.sql');
-        $dbCreateSql = ob_get_contents();
+        $dbCreateSql = "'" . ob_get_contents() . "'";
         ob_end_clean();
 
-        $response = $setupConn->query($dbCreateSql);
+        $stmt = $setupConn->prepare($dbCreateSql);
+
+        if ( false===$stmt ) {
+            die('prepare() failed: ' . htmlspecialchars($setupConn->error));
+        }
+
+        $rc = $stmt->execute();
+
+        if ( false===$rc ) {
+            die('execute() failed: ' . htmlspecialchars($stmt->error));
+        }
 
         if($query) {
             echo "<p>db creation successful. Listing new tables:</p>";
