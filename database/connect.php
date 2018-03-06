@@ -12,9 +12,7 @@
 		$_db_passwort = "";
 	}
 
-
 	$mysqli = mysqli_connect($_db_host, $_db_username, $_db_passwort, $_db_database);
-
 
     if (!$mysqli) {
         echo "Could not connect to $_db_username@$_db_host/$_db_database\n<br/>";
