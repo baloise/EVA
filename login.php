@@ -1,35 +1,39 @@
 
 -----------------------------------------------------------------------------------<br />
-
-<b>HEADERS:</b><br /><br />
 <?php
 
-if (!function_exists('getallheaders')) {
-    function getallheaders() {
-           $headers = [];
-       foreach ($_SERVER as $name => $value) {
-           if (substr($name, 0, 5) == 'HTTP_') {
-               $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+    if (!function_exists('getallheaders')) {
+        function getallheaders() {
+               $headers = [];
+           foreach ($_SERVER as $name => $value) {
+               if (substr($name, 0, 5) == 'HTTP_') {
+                   $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+               }
            }
-       }
-       return $headers;
+           return $headers;
+        }
     }
-}
 
-foreach (getallheaders() as $name => $value) {
-    echo "($name => $value);\n";
-}
+    echo "<b>COOKIES:</b><br /><br />";
+    echo("<br/><pre>");
+    print_r($_COOKIE);
+    echo("\n</pre>");
 
-if(isset($test)){
+    echo '<b>HEADERS:</b><br /><br />';
+    foreach (getallheaders() as $name => $value) {
+        echo "($name => $value);\n";
+    }
 
-} else {
-    echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
-    <form method="POST" action="login.php">
-        <input type="text" name="username" placeholder="B-Key" required autofocus/>
-        <input type="submit"/>
-    </form>
-    ';
-}
+    if(isset($test)){
+
+    } else {
+        echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
+        <form method="POST" action="login.php">
+            <input type="text" name="username" placeholder="B-Key" required autofocus/>
+            <input type="submit"/>
+        </form>
+        ';
+    }
 
 ?>
 -----------------------------------------------------------------------------------
