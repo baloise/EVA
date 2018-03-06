@@ -33,7 +33,7 @@
 
     echo "<ul>";
     foreach ($entries as $value) {
-        echo "<li>$value</li>"
+        echo "<li>$value</li>";
     }
     echo "</ul>";
 
@@ -51,12 +51,12 @@
         $response = $setupConn->query($dbCreateSql);
 
         if($query) {
-            echo "<p>db creation successful. Listing new tables:</p>"
+            echo "<p>db creation successful. Listing new tables:</p>";
             $enrtries = getDBList($setupConn);
 
             echo "<ul>";
             foreach ($entries as $value) {
-                echo "<li>$value</li>"
+                echo "<li>$value</li>";
             }
             echo "</ul>";
 
