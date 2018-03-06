@@ -1,11 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `db_eva` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `db_eva`;
 USE `db_eva`;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tb_als`
---
 
 CREATE TABLE `tb_als` (
   `ID` int(11) NOT NULL,
@@ -16,10 +10,6 @@ CREATE TABLE `tb_als` (
   `tb_semester_ID` int(11) NOT NULL,
   `performance` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `tb_als`
---
 
 INSERT INTO `tb_als` (`ID`, `title`, `points`, `creationDate`, `tb_user_ID`, `tb_semester_ID`, `performance`) VALUES
 (97, 'ALS 1', 44, '2018-02-26 08:41:12', 120, 33, 1),
