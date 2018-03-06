@@ -1,6 +1,9 @@
 <?php
 
-    include('connect.php');
+    $_db_host = "localhost";
+    $_db_username = "root";
+    $_db_passwort = "";
+
     $sql = 'show databases';
     $results = $mysqli->query($sql);
 
