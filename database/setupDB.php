@@ -18,11 +18,6 @@
         return $entries;
     }
 
-    ob_start();
-    include('db_eva.sql');
-    $dbCreateSql = ob_get_contents();
-    ob_end_clean();
-
     $_db_host = "DB_HOST";
     $_db_username = "DB_USER";
     $_db_passwort = "DB_PASS";
