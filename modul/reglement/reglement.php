@@ -5,8 +5,6 @@
 
     <h1 class="mt-5"><?php echo $translate[253];?></h1>
 
-    <h1 class="mt-5" style="color: red;">Work in Progress...</h1>
-
     <script src="js/ckeditor/ckeditor.js"></script>
 
     <div class="row">
