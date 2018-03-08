@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     var group;
     var lang;
+    var textID;
 
     $('.openReg').each(function(){
 
@@ -24,11 +25,14 @@ $(document).ready(function(){
                 success: function(data){
                     if(data){
 
-                        $('#textareaContent').html('<textarea name="RegContent" id="RegContent">' + data + '</textarea><br/>');
+                        var arrayContent = JSON.parse(data);
+                        textID = arrayContent[0];
+
+                        $('#textareaContent').html('<textarea style="height: 1500px;" name="RegContent" id="RegContent">' + arrayContent[1] + '</textarea><br/>');
 
                     } else {
 
-                        $('#textareaContent').html('<textarea name="RegContent" id="RegContent">Noch kein Inhalt...</textarea><br/>');
+                        $('#textareaContent').html('<textarea style="height: 1500px;" name="RegContent" id="RegContent">Noch kein Inhalt...</textarea><br/>');
 
                     }
 
@@ -47,20 +51,20 @@ $(document).ready(function(){
 
     $('#safeRegChange').click(function(){
 
-        var contents = $('#RegContent').val();
+        contents = CKEDITOR.instances.RegContent.getData();
 
         $.ajax({
             method: "POST",
             url: "./modul/reglement/change.php",
-            data: {group:group, lang:lang, contents:contents},
+            data: {lang:lang, contents:contents, textID:textID},
             success: function(data){
                 if(data){
 
-                    $('#safeRegChange').addClass('alert-danger').html(translate['95']).delay(2000).removeClass('alert-danger').html(translate[254]);
+                    alert(data);
 
                 } else {
 
-                    $('#textareaContent').html('<textarea name="RegContent" id="RegContent">Noch kein Inhalt...</textarea><br/>');
+                    $('#success').slideDown('fast').delay(1000).slideUp('fast');
 
                 }
 

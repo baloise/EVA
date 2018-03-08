@@ -50,9 +50,39 @@
             <button id="safeRegChange" class="btn btn-block" style="display:none;"><?php echo $translate[254]; ?></button>
         </div>
     </div>
+    <br/>
+    <div class='alert alert-success' style="display:none;" id="success">
+        <strong><?php echo $translate[101];?> </strong>
+    </div>
 
     <script type="text/javascript" src="modul/reglement/reglement.js"></script>
 
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 2) : ?>
+
+    <h1 class="mt-5"><?php echo $translate[253];?></h1>
+
+    <?php
+
+        if($session_usergroup == 3){
+            $sql = "SELECT $session_language FROM `tb_text` WHERE tb_group_ID = $session_usergroup AND type = 'reglement'";
+        } else if ($session_usergroup == 4 || $session_usergroup == 5){
+            $sql = "SELECT $session_language FROM `tb_text` WHERE tb_group_ID IN(4, 5) AND type = 'reglement'";
+        } else if ($session_usergroup == 2){
+            $sql = "SELECT $session_language FROM `tb_text` WHERE tb_group_ID = 3 AND type = 'reglement'";
+        } else {
+            $sql = "Error";
+        }
+
+        $result = $mysqli->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo $row[$session_language];
+            }
+        }
+
+
+    ?>
 
 <?php else : ?>
 

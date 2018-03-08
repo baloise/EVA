@@ -1,9 +1,9 @@
 <?php
 
-    function getDBList($setupConn){
+    function getDBList($mysqli){
         $entries = array();
         $sql = 'show databases';
-        $result = $setupConn->query($sql);
+        $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 array_push($entries,$row['Database']);
@@ -17,19 +17,13 @@
         return $entries;
     }
 
-    $_db_host = "DB_HOST";
-    $_db_username = "DB_USER";
-    $_db_passwort = "DB_PASS";
+    include('connect.php');
+
     $evaIsHere = false;
-
-    if(!$setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort)) {
-        die('No connection: ' . mysqli_connect_error());
-    }
-
     $sql = "DROP DATABASE db_eva";
-    $setupConn->query($sql);
+    $mysqli->query($sql);
 
-    $entries = getDBList($setupConn);
+    $entries = getDBList($mysqli);
 
     echo "<h1>Database Setuppr</h4>";
     echo "<h4>Available Databases:</h4>";
@@ -47,13 +41,13 @@
 
         echo "<p>db_eva has been found. Listing Tables...</p>";
 
-        if(!$setupConn = mysqli_connect($_db_host, $_db_username, $_db_passwort, 'db_eva')) {
+        if(!$mysqli = mysqli_connect($_db_host, $_db_username, $_db_passwort, 'db_eva')) {
             die('No connection: ' . mysqli_connect_error());
         }
 
         $entries = array();
         $sql = 'show tables;';
-        $result = $setupConn->query($sql);
+        $result = $mysqli->query($sql);
 
         if ($result->num_rows > 0) {
 
@@ -78,7 +72,7 @@
 
         $sql = "CREATE DATABASE db_eva";
 
-        if ($setupConn->query($sql) === TRUE) {
+        if ($mysqli->query($sql) === TRUE) {
 
             echo "<p>Database creation successful. Starting Table creation from .sql File...</p>";
 
@@ -95,14 +89,14 @@
 
             	$sql = $sql . $line;
             	if ($endWith == ';') {
-            		mysqli_query($setupConn,$sql) or die('<p>Problem in executing the SQL query:<br/><br/> <b>' . $sql. '</b></p>');
+            		mysqli_query($mysqli,$sql) or die('<p>Problem in executing the SQL query:<br/><br/> <b>' . $sql. '</b></p>');
             		$sql= '';
             	}
             }
             echo '<p>SQL file imported successfully...</p>';
 
             echo "<p>Table creation successful. Listing new Databases:</p>";
-            $entries = getDBList($setupConn);
+            $entries = getDBList($mysqli);
             echo "<ul>";
             foreach ($entries as $value) {
                 echo "<li>$value</li>";
@@ -113,7 +107,7 @@
 
             $entries = array();
             $sql = 'show tables;';
-            $result = $setupConn->query($sql);
+            $result = $mysqli->query($sql);
 
             if ($result->num_rows > 0) {
 
@@ -136,7 +130,7 @@
 
 
         } else {
-            echo "Error creating database: " . $setupConn->error;
+            echo "Error creating database: " . $mysqli->error;
         }
 
     }

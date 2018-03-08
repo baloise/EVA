@@ -32,19 +32,16 @@
 
         <div id="stundenplan">
 
-			<div class="weekchanger weekchangerBefore">
-                <button type="button" class="btn btn-default btn-block">
-                    <span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate[73];?>
-                </button>
-            </div>
-
-			<div style="text-align: center;" class="weekchanger weekchangerDate">
-                <b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b>
-            </div>
-			<div class="weekchanger weekchangerNext">
-                <button type="button" class="btn btn-default btn-block">
-                    <?php echo $translate[74];?> <span class="glyphicon glyphicon-arrow-right"></span>
-                </button>
+            <dvi class="row">
+                <div class="col-lg-4">
+                    <div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-left" aria-hidden="true"></i> <?php echo $translate[73];?></button></div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="weekchanger weekchangerDate" style="text-align:center;"><b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b></div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block"><?php echo $translate[74];?> <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+                </div>
             </div>
 
             <br/>
@@ -106,16 +103,23 @@
 						<select <?php if(isset($classSel)){echo "value='".$classSel."'";} ?> class="form-control" id="k_auswahl">
 						</select>
                         <div class="saveClass">
-                            <button id="saveClassButton" type="button" class="btn btn-primary" style="border-top-left-radius: 0; border-top-right-radius: 0; display: none;">
+                            <button id="saveClassButton" type="button" class="btn btn-default" style="border-top-left-radius: 0; border-top-right-radius: 0; display: none;">
                                 <?php echo $translate[77];?>
                             </button>
                         </div>
 					</div>
 				<div id="stundenplan" style="opacity: 0;">
-
-					<div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $translate[73];?></button></div>
-					<div class="weekchanger weekchangerDate"><b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b></div>
-					<div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block"><?php echo $translate[74];?> <span class="glyphicon glyphicon-arrow-right"></span></button></div>
+                    <dvi class="row">
+                        <div class="col-lg-4">
+                            <div class="weekchanger weekchangerBefore"><button type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-left" aria-hidden="true"></i> <?php echo $translate[73];?></button></div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="weekchanger weekchangerDate"><b><?php echo $translate[75];?>: <div id="weekchangerDateNum">43-2016</div></b></div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="weekchanger weekchangerNext"><button type="button" class="btn btn-default btn-block"><?php echo $translate[74];?> <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+                        </div>
+                    </div>
 					<br/>
 					<div id="kalender_tafel">
 						 <div class="agenda">

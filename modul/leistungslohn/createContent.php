@@ -433,6 +433,7 @@
             }
 
             if (LKBcalcUek($semesterID, $userID, $mysqli)*100 > 0){
+
                 $performBetrieb = $performBetrieb . "<tr><td>".$translate[124]."</td><td class='calcTableResult'>" . round((LKBcalcUek($semesterID, $userID, $mysqli)*100), 2) . " %</td></tr>";
             }
 
@@ -617,7 +618,7 @@
         // --------------------------------- CYCLE 1 ------------------------------------------
         if($_POST['cycleID'] == 1){
 
-            $sql = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 4";
+            $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
             $result = $mysqli->query($sql);
 
             $semesterList = "";
@@ -705,16 +706,16 @@
 
         if($_POST['cycleID'] == 2){
 
-            $sql1 = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 4";
-            $sql2 = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 4, 2";
+            $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
+            $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
             cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
 
         }
 
         if($_POST['cycleID'] == 3){
 
-            $sql1 = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 4, 2";
-            $sql2 = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 3 LIMIT 6, 1";
+            $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
+            $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 6, 1";
             cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
 
         }
@@ -722,10 +723,12 @@
         // --------------------------------- CYCLE 4 AND 5 ------------------------------------------
         if($_POST['cycleID'] == 4 || $_POST['cycleID'] == 5){
 
+
+
             if($_POST['cycleID'] == 4){
-                $sql = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 4 LIMIT 4";
+                $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
             } else if ($_POST['cycleID'] == 5){
-                $sql = "SELECT * FROM `tb_semester` WHERE tb_group_ID = 4 LIMIT 5";
+                $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 5";
             }
 
             $result = $mysqli->query($sql);

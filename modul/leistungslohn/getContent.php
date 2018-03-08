@@ -33,6 +33,33 @@
             }
         }
 
+        //ÜK
+        function LKBcalcUek($semesterID, $userID, $mysqli){
+
+            $sql = "SELECT * FROM `tb_uek` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID";
+
+            $result = $mysqli->query($sql);
+
+            $countPoints = 0;
+            $countForms = 0;
+
+            if (isset($result) && $result->num_rows > 0) {
+
+                while($row = $result->fetch_assoc()) {
+
+                    $countPoints = $countPoints + ($row['grade']-1)/5;
+                    $countForms = $countForms + 1;
+
+                }
+
+                if($countPoints > 0){
+                    return (($countPoints/$countForms));
+                }
+
+            }
+
+        }
+
         //ALS-Leistungsziele
         function LKVBcalcPerform($semesterID, $userID, $mysqli){
 
@@ -54,33 +81,6 @@
 
                 if($countPoints > 0){
                     return (($countPoints/$countForms)/54);
-                }
-
-            }
-
-        }
-
-        //ÜK
-        function LKBcalcUek($semesterID, $userID, $mysqli){
-
-            $sql = "SELECT * FROM `tb_uek` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['grade']/6;
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms));
                 }
 
             }
@@ -324,12 +324,12 @@
                     if($row['correctedGrade']){
 
                         $grade = $row['correctedGrade'];
-                        $percentage = $grade / 6;
+                        $percentage = ($grade-1) / 5;
 
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
-                        $percentage = $grade / 6;
+                        $percentage = ($grade-1) / 5;
 
                     }
 
@@ -392,12 +392,12 @@
                     if($row['correctedGrade']){
 
                         $grade = $row['correctedGrade'];
-                        $percentage = $grade / 6;
+                        $percentage = ($grade-1) / 5;
 
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
-                        $percentage = $grade / 6;
+                        $percentage = ($grade-1) / 5;
 
                     }
 

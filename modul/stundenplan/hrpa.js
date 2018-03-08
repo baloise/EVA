@@ -62,13 +62,13 @@ $(document).ready(function(){
                         }else{
                             //Falls keine Daten zurückgegeben werden, wird davon ausgegangen, dass Ferien sind.
                             $('#kalender_tafel').fadeTo("fast", 0);
-                            $('#kalender_tafel').after('<p id="meldung">' + $translate[167] + '?</p>');
+                            $('#kalender_tafel').after('<p id="meldung">' + translate[167] + '?</p>');
 
                         }
 
                     }).fail(function(jqXHR, textStatus, errorThrown) {
 
-                        alert($translate[157] + ": " + textStatus);
+                        alert(translate[157] + ": " + textStatus);
 
                     });
                 }

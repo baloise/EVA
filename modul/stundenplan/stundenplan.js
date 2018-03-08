@@ -207,8 +207,8 @@ $(document).ready(function(){
                         $("#error").html(data).slideDown("fast");
                     } else {
 
-                        $("#saveClassButton").css("background-color", "green").delay(1000).slideUp("slow", function(){
-                             $("#saveClassButton").css("background-color", "#007bff");
+                        $("#saveClassButton").addClass("btn-success").removeClass("btn-default").delay(1000).slideUp("slow", function(){
+                             $("#saveClassButton").addClass("btn-default").removeClass("btn-success");
                              $("#saveClassButton").html((translate[164]));
                         });
                         $("#saveClassButton").html(translate[165] + "!");
