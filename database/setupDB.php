@@ -7,7 +7,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 array_push($entries,$row['Database']);
-                if($row['Database'] == 'db_eva'){
+                if($row['Database'] == $_db_database){
                     $evaIsHere = true;
                 }
             }
@@ -20,7 +20,7 @@
     include('connect.php');
 
     $evaIsHere = false;
-    $sql = "DROP DATABASE db_eva";
+    $sql = "DROP DATABASE $_db_database";
     $mysqli->query($sql);
 
     $entries = getDBList($mysqli);
