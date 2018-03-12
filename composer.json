@@ -1,19 +1,21 @@
 {
     "name": "eliareutlinger/eva",
-    "description": "Evaluation-Tool for trainees",
+    "description": "Salary Calculation tool for trainees",
     "type": "project",
     "require": {
         "php": "^7.2",
-        "krowinski/bcmath-extended": "^2.0"
+        "ext-bcmath": "^7.2",
+        "mrclay/minify": "^3.0"
     },
     "require-dev": {
         "php": "^7.2",
-        "krowinski/bcmath-extended": "^2.0"
+        "ext-bcmath": "^7.2",
+        "mrclay/minify": "^3.0"
     },
     "authors": [
         {
             "name": "Elia Reutlinger",
-            "email": "mail@eliareutlinger.ch"
+            "email": "elia.reutlinger@gibmit.ch"
         }
     ]
 }
