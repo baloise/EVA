@@ -1,5 +1,7 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
+
 <?php if($session_usergroup == 1) : ?>
 
 
