@@ -86,7 +86,7 @@
 
     <body>
         <div class="loadScreen">
-            <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.svg"/>
+            <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.svg" alt="loadingImg"/>
         </div>
 
         <div id="pageContents" style="opacity: 0;">
