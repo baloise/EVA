@@ -1,5 +1,7 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
+
 <?php if($session_usergroup == 1) : ?>
 
     <?php
@@ -66,7 +68,7 @@
 	</head>
 
     <h1 class="mt-5"><?php echo $translate[8];?></h1>
-    <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
+
     <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
         <strong></strong> <?php echo $translate[103];?>.
     </div><br/>

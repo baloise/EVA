@@ -73,11 +73,13 @@ $(document).ready(function(){
             success: function(data){
                 if(data){
 
-                    $("#errorLang").html(data).slideDown("fast");
+                    $('#errorText').html(data);
+                    $('#errorAlert').slideDown("fast");
 
                 } else {
 
-                    $("#AddedNotifLang").slideDown("fast").delay(1000).slideUp("fast", function(){
+                    $('#successText').html(translate[138]);
+                    $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
                         window.location.replace("./logout.php");
                     });
 
@@ -100,7 +102,8 @@ $(document).ready(function(){
                     url: "modul/settings/modifyEntry.php",
                     success: function(data){
                         if(data){
-                            $("#error").html(data).slideDown("fast");
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
                         } else {
                             if(entryEntity.attr('navItemID') == navItemID){
                                 entryEntity.slideUp("slow");
@@ -136,7 +139,8 @@ $(document).ready(function(){
                     if($("#editNavLink")){
                         $("#editNavLink").slideUp("slow");
                     }
-                    $("#AddedNotif").slideDown("fast").delay(1000).slideUp("fast", function(){
+                    $('#successText').html(translate[118]);
+                    $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
 
                         $("#pageContent").load("modul/settings/settings.php", function(){
                             $('.loadScreen').fadeTo("fast", 0, function(){
@@ -152,7 +156,8 @@ $(document).ready(function(){
 
                 } else {
 
-                    $("#error").html(translate[95]).slideDown("fast");
+                    $('#errorText').html(translate[95]);
+                    $('#errorAlert').slideDown("fast");
 
                 }
             }

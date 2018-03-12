@@ -133,8 +133,9 @@ $(document).ready(function(){
 
     $("#addNewEntryButton").click(function(event){
 
+        $("#addNewEntryButton").prop("disabled", true);
         event.preventDefault();
-        $("#error").slideUp("fast");
+        $("#errorAlert").slideUp("fast");
 
         var error = "";
         var fTitle = $("#fTitle").val();
@@ -142,25 +143,27 @@ $(document).ready(function(){
         var fsem = $("#fSem").val();
 
         if(!fsem){
-            error = error + "<br/>" + translate[150] + ".";
+            error = error + "<li>" + translate[150] + "</li>";
         }
 
         if(!fTitle){
-            error = error + "<br/>" + translate[176] +".";
+            error = error + "<li>" + translate[176] + "</li>";
         }
 
         if(!fpoints){
-            error = error + "<br/>" + translate[152] +".";
+            error = error + "<li>" + translate[152]+"</li>";
         }
 
         if(error){
-            $("#error").html(error).slideDown("fast");
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
+            $("#addNewEntryButton").prop("disabled", false);
         } else {
 
-            $("#warnEntry").slideDown("fast");
-            $("#addNewEntryButton").html("Bestätigen");
-
-            $("#addNewEntryButton").click(function(event){
+            $('#warningText').html(translate[93]);
+            $('#warningAlert').slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
                 event.preventDefault();
 
                 var error = "";
@@ -169,21 +172,23 @@ $(document).ready(function(){
                 var fsem = $("#fSem").val();
 
                 if(!fsem){
-                    error = error + "<br/>" + translate[150] + ".";
+                    error = error + "<li>" + translate[150] + "</li>";
                 }
 
                 if(!fTitle){
-                    error = error + "<br/>" + translate[176] + ".";
+                    error = error + "<li>" + translate[176] + "</li>";
                 }
 
                 if(!fpoints){
-                    error = error + "<br/>" + translate[152]+".";
+                    error = error + "<li>" + translate[152]+"</li>";
                 }
 
                 if(error){
-                    $("#error").html(error).slideDown("fast");
+                    $('#errorText').html(error);
+                    $('#errorAlert').slideDown("fast");
+                    $("#addNewEntryButton").prop("disabled", true);
                 } else {
-                    $("#warnEntry").slideUp("fast");
+                    $("#warningAlert").slideUp("fast");
                     $.ajax({
                         method: "POST",
                         url: "./modul/fachvortrag/modify.php",
@@ -191,13 +196,15 @@ $(document).ready(function(){
                         success: function(data){
 
                             if(data){
-                                $("#error").html(data).slideDown("fast");
+                                $('#errorText').html(error);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $("#fTitle").val("");
                                 $("#fPoints").val("");
 
-                                $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $('#successText').html(translate[103]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
                                     $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);

@@ -1,5 +1,6 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
 
     <head>
         <link href="modul/settings/color-picker.min.css" rel="stylesheet">
@@ -9,10 +10,6 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="alert alert-danger" id="error" style="display: none;"></div>
-        <div class="alert alert-success" id="AddedNotif" style="display: none;">
-            <strong></strong> <?php echo $translate[118];?>.
-        </div>
         <div id="usersNavItems">
             <h2><?php echo $translate[15];?></h2>
         <?php
@@ -78,10 +75,6 @@
         <div class="col-lg-12">
 
             <h2><?php echo $translate[139];?></h2>
-            <div class="alert alert-danger" id="errorLang" style="display: none;"></div>
-            <div class="alert alert-success" id="AddedNotifLang" style="display: none;">
-                <strong></strong> <?php echo $translate[138];?>.
-            </div>
 
             <div class="col-12">
                 <select class="form-control" id="newSelLang">
@@ -125,7 +118,6 @@
         <div class="col-lg-12">
 
             <h2><?php echo $translate[180];?> (ALPHA)</h2>
-            <div class="alert alert-danger" id="errorLang" style="display: none;"></div>
 
             <?php
 

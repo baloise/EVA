@@ -38,26 +38,27 @@ $(document).ready(function(){
         var freasoning = $("#freasoning").val();
 
         if(!fselsem){
-            error = error + "<br/>" + translate[150]+".";
+            error = error + "<li>" + translate[150]+"</li>";
         }
 
         if(!fselUser){
-            error = error + "<br/>" + translate[159]+".";
+            error = error + "<li>" + translate[159]+"</li>";
         }
 
         if(!fweigth){
-            error = error + "<br/>" + translate[159]+".";
+            error = error + "<li>" + translate[159]+"</li>";
         }
 
         if(!freasoning){
-            error = error + "<br/>" + translate[146]+".";
+            error = error + "<li>" + translate[146]+"</li>";
         }
 
         if(error){
             $(this).prop("disabled",false);
-            $("#error").html(error).slideDown("fast");
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
         } else {
-            $("#error").html("").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
             $.ajax({
                 method: "POST",
@@ -66,11 +67,13 @@ $(document).ready(function(){
                 success: function(data){
 
                     if(data){
-                        $("#error").html(data).slideDown("fast");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
                         $("#fsenMal").prop("disabled",false);
                     } else {
 
-                        $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                        $('#successText').html(translate[103]);
+                        $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                             $("#pageContent").load("modul/malus/malus.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
@@ -98,11 +101,12 @@ $(document).ready(function(){
             var $fselUser = $(this).attr("userID");
 
             if(!fentryId){
-                error = error + "<br/>" + translate[161]+".";
+                error = error + "<li>" + translate[161]+"</li>";
             }
 
             if(error){
-                $("#error").html(error).slideDown("fast");
+                $('#errorText').html(error);
+                $('#errorAlert').slideDown("fast");
             } else {
                 $("#error").html("").slideUp("fast");
 
@@ -113,7 +117,8 @@ $(document).ready(function(){
                     success: function(data){
 
                         if(data){
-                            $("#error").html(data).slideDown("fast");
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
                         } else {
 
                             $(".lEntry").each(function(){

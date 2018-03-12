@@ -85,10 +85,6 @@
         <br/>
         <h2><?php echo $translate[43];?>:</h2>
         <form>
-            <div class="alert alert-danger" id="error" style="display: none;"></div>
-            <div class="alert alert-success" id="userAddedNotif" style="display: none;">
-                <strong></strong> <?php echo $translate[102];?>.
-            </div>
             <div class="row" id="addUserForm">
                 <div class="col-lg-2">
                     <label for="usrFormBkey">B-Key:</label>

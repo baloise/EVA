@@ -1,5 +1,6 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
 
 <?php if($session_usergroup == 1) : //HR ?>
 
@@ -334,7 +335,6 @@
                     $allWeight = 0;
 
                     $grades = $grades . '
-                        <div class="alert alert-danger" fSubject="'. $row['ID'] .'" id="error" style="display: none;" role="alert"></div>
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -390,7 +390,6 @@
                 } else {
                     $grades = '
                     <p>'.$translate[61].'.</p>
-                    <div class="alert alert-danger" fSubject="'. $row['ID'] .'" id="error" style="display: none;" role="alert"></div>
                     <table>
                         <tbody>
                             <tr>
@@ -509,26 +508,12 @@
     <h1 class="mt-5"><?php echo $translate[2];?></h1>
     <p></p>
     <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="alert alert-success col-lg-10" id="addedNotif" style="display: none; margin-bottom: 0px;">
-            <strong></strong> <?php echo $translate[103];?>.
-        </div>
-    </div>
-    <div class="row">
             <?php echo $subjects; ?>
     </div>
 
         <!-- Neues Fach hinzufügen -->
 
             <hr/>
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="alert alert-success col-lg-10" id="addedNotif2" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> <?php echo $translate[175];?>.
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
                     <?php if($session_usergroup == 3){echo '<div class="col-lg-4" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
@@ -567,7 +552,6 @@
                             <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> <?php echo $translate[63];?></b>
                         </button>
                         <br/><br/>
-                        <div class="alert alert-danger" id="errorForm" style="display: none;" role="alert"></div>
                     </div>
                 </div>
             </div>

@@ -73,6 +73,7 @@ CREATE TABLE `tb_appinfo` (
   `title` varchar(30) NOT NULL,
   `title_short` varchar(20) NOT NULL,
   `description` varchar(30) NOT NULL,
+  `db_version` int(11) NOT NULL,
   `logo_path` varchar(50) DEFAULT NULL,
   `logo_width` double NOT NULL,
   `hintergrund` varchar(7) NOT NULL,
@@ -87,8 +88,8 @@ CREATE TABLE `tb_appinfo` (
 -- Daten für Tabelle `tb_appinfo`
 --
 
-INSERT INTO `tb_appinfo` (`id`, `title`, `title_short`, `description`, `logo_path`, `logo_width`, `hintergrund`, `akzentfarbe`, `schrift`, `link`, `mail_support`, `mail_hr`) VALUES
-(2, 'Cash Calculator', 'cashcalculator', 'Evaluation-Tool for trainees', 'img/basler_logo.svg', 150, '#ffffff', '#F1F4FB', '#333333', '#1C4E9C', 'mail@eliareutlinger.ch', 'mail@eliareutlinger.ch');
+INSERT INTO `tb_appinfo` (`id`, `title`, `title_short`, `description`, `db_version`, `logo_path`, `logo_width`, `hintergrund`, `akzentfarbe`, `schrift`, `link`, `mail_support`, `mail_hr`) VALUES
+(2, 'Cash Calculator', 'cashcalculator', 'Evaluation-Tool for trainees', 1, 'img/basler_logo.svg', 150, '#ffffff', '#F1F4FB', '#333333', '#1C4E9C', 'mail@eliareutlinger.ch', 'mail@eliareutlinger.ch');
 
 -- --------------------------------------------------------
 

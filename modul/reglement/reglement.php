@@ -1,5 +1,6 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
 
 <?php if($session_usergroup == 1) : //HR ?>
 
@@ -49,9 +50,6 @@
         </div>
     </div>
     <br/>
-    <div class='alert alert-success' style="display:none;" id="success">
-        <strong><?php echo $translate[101];?> </strong>
-    </div>
 
     <script type="text/javascript" src="modul/reglement/reglement.js"></script>
 

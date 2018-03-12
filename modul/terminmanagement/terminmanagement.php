@@ -1,5 +1,7 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
+
 <?php if($session_usergroup == 1) : ?>
 
     <?php
@@ -63,11 +65,6 @@
     <div class="row">
         <div class="col-12">
             <h1 class="mt-5"><?php echo $translate[81];?></h1>
-
-            <div class="alert alert-warning" role="alert" id="warning" style="display: none;">
-                <strong><?php echo $translate[122];?></strong> <?php echo $translate[98];?>:
-                <button type="button" id="warnButton" style="background-color: inherit; color: #856404;" class="btn btn-warning"><?php echo $translate[99];?></button>
-            </div>
 
             </br>
 
@@ -223,10 +220,6 @@
                                             <div class="col-12 text-center">
                                                 <span style="cursor: pointer; margin-top:10px; font-size:1.5rem;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span>
 
-                                                <div class="alert alert-success" id="changesSaveNotif'. $row['did'] .'" style="display: none; margin-top: 5px;">
-                                                    <strong></strong>'.$translate[101].'!
-                                                </div>
-
                                                 <div id="loadingTable'. $row['did'] .'" style="display:none;">
                                                     <img class="img-responsive" src="img/loading2_big.svg"/>
                                                 </div>
@@ -254,10 +247,6 @@
         <div class="col-12" style="margin-bottom:20px;">
             <hr/>
             <h1 class="mt-5"><?php echo $translate[144];?></h1>
-            <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
-            <div class="alert alert-success col-lg-10" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                <strong></strong> <?php echo $translate[103];?>.
-            </div>
             <div class="row">
                 <div class="col-12 text-center">
                     <h3><?php echo $translate[55];?></h3>

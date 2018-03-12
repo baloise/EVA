@@ -10,19 +10,20 @@ $(document).ready(function(){
         var lastname = $("#usrFormLastname").val();
 
         if(bkey.length != 7){
-            error = error + "<br/>" + translate[153]+".";
+            error = error + "<li>" + translate[153]+"</li>";
         }
 
         if(!group){
-            error = error + "<br/>" + translate[154]+".";
+            error = error + "<li>" + translate[154]+"</li>";
         }
 
         if(error){
-            $("#error").html(error).slideDown("fast");
+            $("#errorText").html(error);
+            $("#errorAlert").slideDown("fast");
         } else {
 
 			$(this).prop("disabled",true);
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
             $.ajax({
                 method: "POST",
@@ -31,11 +32,14 @@ $(document).ready(function(){
                 success: function(data){
 
                     if(data){
-                        $("#error").html(data).slideDown("fast");
+                        $("#errorText").html(data);
+                        $("#errorAlert").slideDown("fast");
                     } else {
 
                         $(".addUserInput").val("");
-                        $("#userAddedNotif").slideDown("fast").delay(1000).slideUp("fast",function(){
+                        $("#successText").html(translate[101]);
+                        $("#successAlert").slideDown("fast").delay(1000).slideUp("fast",function(){
+
                             $("#pageContent").load("modul/benutzerverwaltung/benutzerverwaltung.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
@@ -83,7 +87,7 @@ $(document).ready(function(){
                     data: {action:"change", userid:usrID, fType:fType, content:content},
                     success: function(data){
                         if(data){
-                            $("#error").html(data).slideDown("fast");
+                            $("#errorAlert").html(data).slideDown("fast");
                         } else {
                             $('#check'+ usrID).fadeTo("fast", 1);
                         }
@@ -103,7 +107,8 @@ $(document).ready(function(){
         if ($.active == 0){
 
             $('#loadingTable').slideUp("fast");
-            $("#changesSaveNotif").slideDown("fast").delay( 1400 ).slideUp("slow");
+            $("#successText").html(translate[101]);
+            $("#successAlert").slideDown("fast").delay(1400).slideUp("fast");
 
         } else {
             notdone = 1;
@@ -113,7 +118,8 @@ $(document).ready(function(){
     $(document).ajaxStop(function(){
         if(notdone == 1){
             $('#loadingTable').slideUp("fast");
-            $("#changesSaveNotif").slideDown("fast").delay( 1400 ).slideUp("slow");
+            $("#successText").html(translate[101]);
+            $("#successAlert").slideDown("fast").delay(1400).slideUp("fast");
         }
     });
 
@@ -130,9 +136,10 @@ $(document).ready(function(){
             var usrid = $(this). attr('id');
             var bkey = $(this). attr('bkey');
 
-            $("#useridWarn").html(bkey);
-            $("#warning").slideDown("fast");
-            $("#warnButton").click(function(event){
+            $("#warningText").html("<strong>" + translate[97] + "</strong> " + translate[98] + ": " + bkey);
+            $("#warningAlert").slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
                 if(usrid){
 
 					$(this).prop("disabled",true);
@@ -147,8 +154,8 @@ $(document).ready(function(){
 
                             } else {
                                 $("#rowID" + usrid).slideUp("slow");
-                                $("#warning").slideUp("fast");
-								$("#warnButton").prop("disabled",false);
+                                $("#warningAlert").slideUp("fast");
+								$("#warningButton").prop("disabled",false);
                             }
                         }
                     });

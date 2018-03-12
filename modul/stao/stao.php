@@ -1,5 +1,6 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
 
 <?php if($session_usergroup == 1) : ?>
 
@@ -80,7 +81,6 @@
 	<div class="alert alert-success" id="checkedNotif" style="display: none; margin-bottom: 0px;"></div><br/>
     <div id="checkEntryForm" style="display: none;">
         <hr/>
-        <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
         <h3><?php echo $translate[29];?></h3>
         <div class="row">
             <div class="col-lg-6">
@@ -202,7 +202,6 @@
 
     ?>
 
-    <div class="alert alert-danger" id="error" style="display: none;" role="alert"></div>
     <p><?php echo $translate[35];?>.</p>
     <table class="table">
         <thead>
@@ -230,13 +229,6 @@
             </tr>
             <tr>
                 <td colspan="6" align="center">
-                    <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> <?php echo $translate[103];?>.
-                    </div><br/>
-                    <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
-                        <?php echo $translate[93];?> <strong>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $translate[92];?>.</strong>
-                    </div><br/>
                     <button id="addNewEntryButton" type="button" class="btn btn-primary"><?php echo $translate[39];?></button>
                 </td>
             </tr>

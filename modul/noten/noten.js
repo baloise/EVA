@@ -23,12 +23,16 @@ $(document).ready(function(){
 
                             if(data){
 
-                                alert(data);
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                                 button.prop("disabled",false);
 
                             } else {
 
                                 button.prop("disabled",false);
+
+                                $('#successText').html(translate[101]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("slow");
 
                                 $('.subAvg').each(function(){
 
@@ -91,9 +95,7 @@ $(document).ready(function(){
 
         $(this).click(function(){
 
-            $('.alert-danger').each(function(){
-                $(this).slideUp("fast");
-            });
+            $("#errorAlert").slideUp("fast");
 
             $('.addGrade').each(function(){
                 $(this).prop("disabled",true);
@@ -128,37 +130,33 @@ $(document).ready(function(){
             });
 
             if(!weight){
-                error = error + "<br/>" + translate[173]+".";
+                error = error + "<li>" + translate[173]+"</li>";
             }
 
             if(!title){
-                error = error + "<br/>" + translate[172]+".";
+                error = error + "<li>" + translate[172]+"</li>";
             }
 
             if(!grade){
-                error = error + "<br/>" + translate[171]+".";
+                error = error + "<li>" + translate[171]+"</li>";
             }
 
             if(grade < 4 && !reason){
-                error = error + "<br/>" + translate[174]+".";
+                error = error + "<li>" + translate[174]+"</li>";
             }
 
             if(error){
 
-                $('.alert-danger').each(function(){
-                    if($(this).attr('fSubject') == subjectId){
-                        $(this).html(error).slideDown("slow");
-                    }
-                });
+                $('#errorText').html(error);
+                $('#errorAlert').slideDown("fast");
+
                 $('.addGrade').each(function(){
                     $(this).prop("disabled",false);
                 });
 
             } else {
 
-                $('.alert-danger').each(function(){
-                    $(this).slideUp("fast");
-                });
+                $("#errorAlert").slideUp("fast");
 
                 $.ajax({
                     method: "POST",
@@ -167,21 +165,18 @@ $(document).ready(function(){
                     success: function(data){
 
                         if(data){
-                            if(data == "Berechtigungsfehler"){
-                                alert(data);
-                            }
-                            $('.alert-danger').each(function(){
-                                if($(this).attr('fSubject') == subjectId){
-                                    $(this).html(data).slideDown("slow");
-                                }
-                            });
+
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
+
                             $('.addGrade').each(function(){
                                 $(this).prop("disabled",false);
                             });
 
                         } else {
 
-                            $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                            $('#successText').html(translate[103]);
+                            $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                                 $("#pageContent").load("modul/noten/noten.php", function(){
                                     $('.loadScreen').fadeTo("fast", 0, function(){
                                         $('#pageContents').fadeTo("fast", 1);
@@ -226,7 +221,8 @@ $(document).ready(function(){
             var gradeId = $(this).attr('gradeId');
 
             if(!gradeId){
-                alert("Fehler");
+                $('#errorText').html(translate[95]);
+                $('#errorAlert').slideDown("fast");
             } else {
 
                 $.ajax({
@@ -237,7 +233,8 @@ $(document).ready(function(){
 
                         if(data){
 
-                            alert(data);
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
 
                         } else {
 
@@ -285,26 +282,30 @@ $(document).ready(function(){
             if(i == 1){
                 subType = $('.selectedType').attr("value");
             } else {
-                error = error + "<br/>" + translate[195]+".";
+                error = error + "<li>" + translate[195]+"</li>";
             }
 
         }
 
         if(!subName){
-            error = error + "<br/>" + translate[196]+".";
+            error = error + "<li>" + translate[196]+"</li>";
         }
 
         if(!subSem || subSem == "Semester:"){
-            error = error + "<br/>" + translate[197]+".";
+            error = error + "<li>" + translate[197]+"</li>";
         }
 
         if(error){
 
-            $('#errorForm').html(error).slideDown("slow");
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
 
             $('#addSubject').prop("disabled",false);
 
         } else {
+
+            $('#errorAlert').slideUp("fast");
+
             $.ajax({
                 method: "POST",
                 url: "./modul/noten/modify.php",
@@ -313,12 +314,15 @@ $(document).ready(function(){
 
                     if(data){
 
-                        $('#errorForm').html(data).slideDown("slow");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
+
                         $('#addSubject').prop("disabled",false);
 
                     } else {
 
-                        $("#addedNotif2").slideDown("fast").delay(1300).slideUp("fast",function(){
+                        $('#successText').html(translate[175]);
+                        $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                             $("#pageContent").load("modul/noten/noten.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
@@ -337,16 +341,23 @@ $(document).ready(function(){
 
     $('.deleteSubject').each(function(){
 
-        $(this).click(function(){
+        $(this).click(function(event){
 
-            $(this).html("<b style='color: orange; text-decoration: underline'>"+"<br/>" + translate[162] + "...</b>");
+            object = $(this);
+            event.preventDefault();
 
-            $(this).click(function(){
+            $('#warningText').html(translate[162]);
+            $('#warningAlert').slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
 
-               var subId = $(this).attr('subjectId');
+                event.preventDefault();
+
+                var subId = object.attr('subjectId');
 
                 if(!subId){
-                    alert(translate[163]);
+                    $('#errorText').html(translate[163]);
+                    $('#errorAlert').slideDown("fast");
                 } else {
                     $.ajax({
                         method: "POST",
@@ -356,9 +367,12 @@ $(document).ready(function(){
 
                             if(data){
 
-                               alert(data);
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
 
                             } else {
+
+                                $('#warningAlert').slideUp("fast");
 
                                 $('.delSubTag').each(function(){
 

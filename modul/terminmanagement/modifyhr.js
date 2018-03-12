@@ -24,7 +24,8 @@ function unCountSems(semID, user, state, obj){
             data: {todo: 'unCount', semID:semID, user:user, state:$(obj).hasClass("alert-success")},
             success: function(data){
                 if(data){
-                    alert(data);
+                    $('#errorText').html(data);
+                    $('#errorAlert').slideDown("fast");
                 } else {
                     if($(obj).hasClass("alert-success")){
                         $(obj).removeClass("alert-success");
@@ -37,7 +38,8 @@ function unCountSems(semID, user, state, obj){
         });
 
     } else {
-        alert ("Error: No changes made");
+        $('#errorText').html(translate[157]);
+        $('#errorAlert').slideDown("fast");
     }
 
 }
@@ -142,7 +144,8 @@ $(document).ready(function(){
         if ($.active == 0){
 
             $('#loadingTable' + did).slideUp("fast");
-            $("#changesSaveNotif" + did).slideDown("fast").delay( 1400 ).slideUp("slow");
+            $('#successText').html(translate[101]);
+            $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
 
         } else {
             notdone = 1;
@@ -152,7 +155,8 @@ $(document).ready(function(){
     $(document).ajaxStop(function(){
         if(notdone == 1){
             $('#loadingTable').slideUp("fast");
-            $("#changesSaveNotif").slideDown("fast").delay( 1400 ).slideUp("slow");
+            $('#successText').html(translate[101]);
+            $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
         }
     });
 
@@ -179,7 +183,8 @@ $(document).ready(function(){
                     data: {todo:"editList", did:did, fType:fType, lang:lang, content:content},
                     success: function(data){
                         if(data){
-                            $("#error"+did).html(data).slideDown("fast");
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
                         } else {
 
 
@@ -220,7 +225,8 @@ $(document).ready(function(){
                             });
 
                         } else {
-                            alert(translate[158]);
+                            $('#errorText').html(translate[158]);
+                            $('#errorAlert').slideDown("fast");
                         }
                     }
                 });
@@ -235,7 +241,7 @@ $(document).ready(function(){
     $('#addNewdid').click(function(){
 
         $(this).prop("disabled",true);
-        $('#error').slideUp("fast");
+        $('#errorAlert').slideUp("fast");
 
         var title_de = $('#fTitle_de').val();
         var title_fr = $('#fTitle_fr').val();
@@ -250,15 +256,16 @@ $(document).ready(function(){
         var error = "";
 
         if(!deadline){
-            error = error + "<br/>" + translate[179]+".";
+            error = error + "<li>" + translate[179]+"</li>";
         }
 
         if(!semester){
-            error = error + "<br/>" + translate[150]+".";
+            error = error + "<li>" + translate[150]+"</li>";
         }
 
         if(error){
-            $('#error').html(error).slideDown("fast");
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
             $(this).prop("disabled",false);
         } else {
             $.ajax({
@@ -268,10 +275,12 @@ $(document).ready(function(){
                 success: function(data){
                     if(data){
                         $('#addNewdid').prop("disabled",false);
-                        $('#error').html(data).slideDown("fast");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
                     } else {
 
-                        $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                        $('#successText').html(translate[103]);
+                        $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
                             $("#pageContent").load("modul/terminmanagement/terminmanagement.php", function(){
                                 $('.loadScreen').fadeTo("fast", 0, function(){
                                     $('#pageContents').fadeTo("fast", 1);
@@ -293,8 +302,10 @@ $(document).ready(function(){
 
             did = $(this).attr("did");
 
-            $("#warning").slideDown("fast");
-            $("#warnButton").click(function(event){
+            $('#warningText').html("<strong>" + translate[122] + "</strong> " + translate[98]);
+            $('#warningAlert').slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
                 if(did){
 
 					$(this).prop("disabled",true);
@@ -312,8 +323,8 @@ $(document).ready(function(){
                                 $(".rowID" + did).each(function(){
                                     $(this).slideUp("slow");
                                 });
-                                $("#warning").slideUp("fast");
-								$("#warnButton").prop("disabled",false);
+                                $("#warningAlert").slideUp("fast");
+								$("#warningButton").prop("disabled",false);
                             }
                         }
                     });
@@ -340,7 +351,8 @@ function modifyEntry(deadlineid, userid, state) {
                         data: {todo:"addEntry", userid:userid, deadlineid:deadlineid},
                         success: function(data){
                             if(data){
-                                alert(data);
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $('.deadline').each(function(){
@@ -365,7 +377,8 @@ function modifyEntry(deadlineid, userid, state) {
                         data: {todo:"deleteEntry", userid:userid, deadlineid:deadlineid},
                         success: function(data){
                             if(data){
-                                alert(data);
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $('.deadline').each(function(){
@@ -383,11 +396,13 @@ function modifyEntry(deadlineid, userid, state) {
                     });
 
                 } else {
-                    alert("Error");
+                    $('#errorText').html(translate[95]);
+                    $('#errorAlert').slideDown("fast");
                 }
 
             } else {
-                alert("Error");
+                $('#errorText').html(translate[95]);
+                $('#errorAlert').slideDown("fast");
             }
 
 

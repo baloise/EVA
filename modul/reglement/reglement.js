@@ -60,11 +60,13 @@ $(document).ready(function(){
             success: function(data){
                 if(data){
 
-                    alert(data);
+                    $('#errorText').html(data);
+                    $('#errorAlert').slideDown("fast");
 
                 } else {
 
-                    $('#success').slideDown('fast').delay(1000).slideUp('fast');
+                    $('#successText').html(translate[101]);
+                    $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
 
                 }
 

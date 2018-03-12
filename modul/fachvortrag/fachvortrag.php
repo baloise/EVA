@@ -1,5 +1,6 @@
 <?php include("../session/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../alerts/alerts.php"); ?>
 
 <?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
 
@@ -203,13 +204,6 @@
             </tr>
             <tr>
                 <td colspan="6" align="center">
-                    <div class="alert alert-success" id="addedNotif" style="display: none; margin-bottom: 0px;">
-                        <strong></strong> <?php echo $translate[103];?>.
-                    </div><br/>
-                    <div class="alert alert-warning" id="warnEntry" style="display: none; margin-bottom: 0px;">
-                        <?php echo $translate[93];?> <strong>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $translate[92];?>.</strong>
-                    </div><br/>
                     <button id="addNewEntryButton" type="button" class="btn btn-primary"><?php echo $translate[39];?></button>
                 </td>
             </tr>
