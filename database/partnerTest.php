@@ -1,5 +1,7 @@
 <?php
 
+    ini_set('display_errors', 1);
+
     include("../includes/session.php");
 
     include('partner.php');
