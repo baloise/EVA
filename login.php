@@ -4,7 +4,23 @@
 
 ini_set('display_errors', 1);
 
-print_r(apache_response_headers());
+function getRequestHeaders() {
+    $headers = array();
+    foreach($_SERVER as $key => $value) {
+        if (substr($key, 0, 5) <> 'HTTP_') {
+            continue;
+        }
+        $header = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+        $headers[$header] = $value;
+    }
+    return $headers;
+}
+
+$headers = getRequestHeaders();
+
+foreach ($headers as $header => $value) {
+    echo "$header: $value <br />\n";
+}
 
 
     echo "<h2>Airlock Medusa Auth</h2>";
