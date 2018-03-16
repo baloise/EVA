@@ -23,7 +23,10 @@ foreach ($headers as $header => $value) {
 }
 
 
+
+
     echo "<h2>Airlock Medusa Auth</h2>";
+    print_r($_COOKIE);
     echo "<p>(ToDo)</p>";
     function loginMedusaToken($token) {
         $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. urldecode($token)));
