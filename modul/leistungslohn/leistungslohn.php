@@ -1,4 +1,4 @@
-<?php include("../session/session.php"); ?>
+<?php include("../../includes/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 <?php if($session_usergroup == 1) : ?>
 

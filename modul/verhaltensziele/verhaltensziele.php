@@ -1,5 +1,6 @@
-<?php include("../session/session.php"); ?>
+<?php include("../../includes/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
+<?php include("../../includes/alerts.php"); ?>
 
 <?php if($session_usergroup == 1 || $session_usergroup == 2) : //HR & PA ?>
 

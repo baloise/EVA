@@ -33,7 +33,7 @@ function goBack(href){
                 });
                 $.ajax({
                     method: "GET",
-                    url: "modul/session/setCurrentPath.php",
+                    url: "includes/setCurrentPath.php",
                     data: {path:href},
                     success: function(){
 

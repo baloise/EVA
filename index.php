@@ -1,7 +1,7 @@
 <?php
 
     include("database/connect.php");
-    include("modul/session/session.php");
+    include("includes/session.php");
 
     $sql = "SELECT * FROM `tb_appinfo`;";
     $result = $mysqli->query($sql);

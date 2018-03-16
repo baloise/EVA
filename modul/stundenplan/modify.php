@@ -1,6 +1,6 @@
 <?php
 
-    include("../session/session.php");
+    include("../../includes/session.php");
     include("./../../database/connect.php");
     
     if($session_usergroup != 3){

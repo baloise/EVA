@@ -1,6 +1,6 @@
 <?php
 
-    include("../session/session.php");
+    include("../../includes/session.php");
     include("./../../database/connect.php");
 
     //Werte trimmen und auf richtigkeit prüfen
@@ -56,7 +56,7 @@
                 $userInfo = $result->fetch_array(MYSQLI_NUM);
 
                 //SENDMAIL
-                include("../../modul/mail/generateMail.php");
+                include("../../includes/generateMail.php");
                 $msgcontent = array('{title}' => $userInfo[1], '{reason}' => $reason);
                 $subject = strtr($translate[226], $msgcontent);
                 $message = strtr($translate[227], $msgcontent);
@@ -113,7 +113,7 @@
                 $userInfo = $result->fetch_array(MYSQLI_NUM);
 
                 //SENDMAIL
-                include("../../modul/mail/generateMail.php");
+                include("../../includes/generateMail.php");
                 $msgcontent = array('{title}' => $userInfo[1], '{reason}' => $reason);
                 $subject = strtr($translate[228], $msgcontent);
                 $message = strtr($translate[229], $msgcontent);
@@ -181,7 +181,7 @@
             $userInfo = $result->fetch_array(MYSQLI_NUM);
 
             //SENDMAIL
-            include("../../modul/mail/generateMail.php");
+            include("../../includes/generateMail.php");
             $msgcontent = array('{firstname}' => $userInfo[0], '{lastname}' => $userInfo[1], '{title}' => $title, '{points}' => $points);
             $subject = strtr($translate[230], $msgcontent);
             $message = strtr($translate[231], $msgcontent);

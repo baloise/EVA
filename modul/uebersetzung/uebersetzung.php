@@ -1,4 +1,4 @@
-<?php include("../session/session.php"); ?>
+<?php include("../../includes/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 
 <?php if($session_usergroup == 1) : //HR ?>
@@ -34,9 +34,15 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
 
+                        $trClass = 'class="accordion-toggle searchRow"';
+
+                        if($row['it'] == "" || $row['fr'] == ""){
+                            $trClass = 'class="alert-warning accordion-toggle searchRow"';
+                        }
+
                         echo '
                         <div class="">
-                            <tr data-toggle="collapse" data-target="#'.$row['ID'].'" class="accordion-toggle searchRow">
+                            <tr data-toggle="collapse" data-target="#'.$row['ID'].'" '.$trClass.'>
                                 <td>'.$row['ID'].'</td>
                                 <td class="searchFor">'.$translate[$row['ID']].'</td>
                             </tr>

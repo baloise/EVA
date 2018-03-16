@@ -32,12 +32,13 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate[146]).slideDown("fast");
+            $('#errorText').html(translate[146]);
+            $('#errorAlert').slideDown("fast");
         } else {
 
 			$("#fsendAndDelete").prop("disabled",true);
 			$(this).prop("disabled",true);
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
             $.ajax({
                 method: "POST",
@@ -46,7 +47,8 @@ $(document).ready(function(){
                 success: function(data){
 
                     if(data){
-                        $("#error").html(data).slideDown("fast");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
                     } else {
 
                         $("#checkEntryForm").slideUp("slow",function(){
@@ -56,7 +58,9 @@ $(document).ready(function(){
                             $("#fcheckEntryPoints").val("");
                             $("#fsend").prop("disabled",false);
 							$("#fsendAndDelete").prop("disabled",false);
-                            $("#checkedNotif").html(translate[147]).slideDown("fast").delay(2000).slideUp("slow");
+
+                            $('#successText').html(translate[147]);
+                            $("#successAlert").slideDown("fast").delay(1300).slideUp("slow");
 
                         });
 
@@ -73,16 +77,22 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        $("#error").slideUp("fast");
-        $(this).html(translate[148]).removeClass("btn-danger").addClass("btn-warning");
+        $(this).prop("disabled", true);
 
-        $(this).click(function(){
+        $("#errorAlert").slideUp("fast");
+
+        $('#warningText').html(translate[148]);
+        $('#warningAlert').slideDown("fast");
+        $("#warningButton").slideDown("fast");
+        $("#warningButton").click(function(event){
 
             var reason = $("#fcheckEntryReason").val();
             var entryID = $(this).attr("entryID");
 
             if(!reason){
-                $("#error").html(translate[146]).slideDown("fast");
+                $('#errorText').html(translate[146]);
+                $('#errorAlert').slideDown("fast");
+                $(this).prop("disabled", false);
             } else {
 
                 $("#fsend").prop("disabled",true);
@@ -95,7 +105,8 @@ $(document).ready(function(){
                     success: function(data){
 
                         if(data){
-                            $("#error").html(data).slideDown("fast");
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
                         } else {
 
                             $("#checkEntryForm").slideUp("slow",function(){
@@ -104,7 +115,8 @@ $(document).ready(function(){
                                 $("#fcheckEntryReason").val("");
                                 $("#fcheckEntryPoints").val("");
 
-                                $("#checkedNotif").html(translate[149]).slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $('#successText').html(translate[149]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                                     $("#pageContent").load("modul/uek/uek.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);
@@ -134,7 +146,7 @@ $(document).ready(function(){
     $("#addNewEntryButton").click(function(event){
 
         event.preventDefault();
-        $("#error").slideUp("fast");
+        $("#errorAlert").slideUp("fast");
 
         var error = "";
         var fTitle = $("#fTitle").val();
@@ -142,25 +154,31 @@ $(document).ready(function(){
         var fsem = $("#fSem").val();
 
         if(!fsem){
-            error = error + "<br/>" + translate[150]+".";
+            error = error + "<li>" + translate[150]+"</li>";
         }
 
         if(!fTitle){
-            error = error + "<br/>" + translate[168]+".";
+            error = error + "<li>" + translate[168]+"</li>";
         }
 
         if(!fpoints){
-            error = error + "<br/>" + translate[152]+".";
+            error = error + "<li>" + translate[152]+"</li>";
         }
 
         if(error){
-            $("#error").html(error).slideDown("fast");
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
+            $("#addNewEntryButton").prop("disabled", false);
         } else {
 
-            $("#warnEntry").slideDown("fast");
-            $("#addNewEntryButton").html("Bestätigen");
+            $(this).prop("disabled", true);
 
-            $("#addNewEntryButton").click(function(event){
+            $('#warningText').html(translate[93]);
+            $('#warningAlert').slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
+
+                $(this).prop("disabled", true);
                 event.preventDefault();
 
                 var error = "";
@@ -169,21 +187,25 @@ $(document).ready(function(){
                 var fsem = $("#fSem").val();
 
                 if(!fsem){
-                    error = error + "<br/>" + translate[150]+".";
+                    error = error + "<li>" + translate[150]+"</li>";
                 }
 
                 if(!fTitle){
-                    error = error + "<br/>" + translate[168]+".";
+                    error = error + "<li>" + translate[168]+"</li>";
                 }
 
                 if(!fpoints){
-                    error = error + "<br/>" + translate[152]+".";
+                    error = error + "<li>" + translate[152]+"</li>";
                 }
 
                 if(error){
-                    $("#error").html(error).slideDown("fast");
+                    $('#errorText').html(error);
+                    $('#errorAlert').slideDown("fast");
+                    $('#warningAlert').slideUp("fast");
+                    $(this).prop("disabled", false);
+                    $("#addNewEntryButton").prop("disabled", false);
                 } else {
-                    $("#warnEntry").slideUp("fast");
+                    $("#warningAlert").slideUp("fast");
                     $.ajax({
                         method: "POST",
                         url: "./modul/uek/modify.php",
@@ -191,13 +213,15 @@ $(document).ready(function(){
                         success: function(data){
 
                             if(data){
-                                $("#error").html(data).slideDown("fast");
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $("#fTitle").val("");
                                 $("#fPoints").val("");
 
-                                $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $('#successText').html(translate[103]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                                     $("#pageContent").load("modul/uek/uek.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);

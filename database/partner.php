@@ -7,7 +7,7 @@
     function formatAddress($person){
         return  trim ("{$person['firstname']} {$person['lastname']}\n{$person['street']}\n{$person['city']}");
     }
-    
+
     function loadPerson($bkey) {
         return array(
             "firstname" => 'Maxli',
@@ -16,5 +16,7 @@
             "city" =>  'CH-4002 Basel'
         );
     }
+
+    
 
 ?>

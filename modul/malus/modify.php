@@ -1,6 +1,6 @@
 <?php
 
-    include("../session/session.php");
+    include("../../includes/session.php");
     include("./../../database/connect.php");
 
     //Werte trimmen und auf richtigkeit prüfen
@@ -67,7 +67,7 @@
                 $stmt->execute();
 
                 //SENDMAIL
-                include("../../modul/mail/generateMail.php");
+                include("../../includes/generateMail.php");
                 $msgcontent = array('{weigth}' => $fweigth, '{reason}' => $freasoning);
                 $subject = strtr($translate[198], $msgcontent);
                 $message = strtr($translate[199], $msgcontent);
@@ -94,7 +94,7 @@
                 $stmt->execute();
 
                 //SENDMAIL
-                include("../../modul/mail/generateMail.php");
+                include("../../includes/generateMail.php");
                 $subject = ($translate[200]);
                 $message = ($translate[201]);
                 sendMail($subject, $message, $session_userid, $fselUser, $session_appinfo, $mysqli, $translate);

@@ -33,12 +33,13 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate[146]).slideDown("fast");
+            $('#errorText').html(translate[146]);
+            $('#errorAlert').slideDown("fast");
         } else {
 
 			$("#fsendAndDelete").prop("disabled",true);
 			$(this).prop("disabled",true);
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
             $.ajax({
                 method: "POST",
@@ -47,7 +48,8 @@ $(document).ready(function(){
                 success: function(data){
 
                     if(data){
-                        $("#error").html(data).slideDown("fast");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
                     } else {
 
                         $("#checkEntryForm").slideUp("slow",function(){
@@ -58,7 +60,8 @@ $(document).ready(function(){
                             $("#fcheckEntryPoints").val("");
                             $("#fsend").prop("disabled",false);
 							$("#fsendAndDelete").prop("disabled",false);
-                            $("#checkedNotif").html(translate[147]).slideDown("fast").delay(2000).slideUp("slow");
+
+
 
                         });
 
@@ -78,16 +81,18 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate[146]).slideDown("fast");
+            $('#errorText').html(translate[146]);
+            $('#errorAlert').slideDown("fast");
         } else {
 
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
             $(this).html(translate[148]).removeClass("btn-danger").addClass("btn-warning");
 
             $(this).click(function(){
 
                 if(!reason){
-                    $("#error").html(translate[146]).slideDown("fast");
+                    $('#errorText').html(translate[146]);
+                    $('#errorAlert').slideDown("fast");
                 } else {
 
 					$("#fsend").prop("disabled",true);
@@ -100,7 +105,8 @@ $(document).ready(function(){
                         success: function(data){
 
                             if(data){
-                                $("#error").html(data).slideDown("fast");
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $("#checkEntryForm").slideUp("slow",function(){
@@ -110,7 +116,8 @@ $(document).ready(function(){
                                     $("#fcheckEntryPA").val("");
                                     $("#fcheckEntryPoints").val("");
 
-                                    $("#checkedNotif").html(translate[149]).slideDown("fast").delay(1300).slideUp("fast",function(){
+                                    $('#successText').html(translate[149]);
+                                    $("#successAlert").slideDown("fast").delay(1300).slideUp("slow", function(){
                                         $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
                                             $('.loadScreen').fadeTo("fast", 0, function(){
                                                 $('#pageContents').fadeTo("fast", 1);
@@ -141,6 +148,8 @@ $(document).ready(function(){
 
     $("#addNewEntryButton").click(function(event){
 
+        $(this).prop("disabled", true);
+
         event.preventDefault();
 
         var error = "";
@@ -150,30 +159,34 @@ $(document).ready(function(){
         var fsem = $("#fSem").val();
 
         if(!fsem){
-            error = error + "<br/>" + translate[150]+".";
+            error = error + "<li>" + translate[150]+"</li>";
         }
 
         if(!fstage){
-            error = error + "<br/>" + translate[169]+".";
+            error = error + "<li>" + translate[169]+"</li>";
         }
 
         if(!fpoints){
-            error = error + "<br/>" + translate[152]+".";
+            error = error + "<li>" + translate[152]+"</li>";
         }
 
         if(!fpa){
-            error = error + "<br/>" + translate[170]+".";
+            error = error + "<li>" + translate[170]+"</li>";
         }
 
         if(error){
-            $("#error").html(error).slideDown("fast");
+            $(this).prop("disabled", false);
+            $('#errorText').html(error);
+            $('#errorAlert').slideDown("fast");
         } else {
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
-            $("#warnEntry").slideDown("fast");
-            $("#addNewEntryButton").html("Bestätigen");
+            $('#warningText').html(translate[99]);
+            $('#warningAlert').slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
 
-            $("#addNewEntryButton").click(function(event){
+                $(this).prop("disabled", true);
                 event.preventDefault();
 
                 var error = "";
@@ -183,27 +196,31 @@ $(document).ready(function(){
                 var fsem = $("#fSem").val();
 
                 if(!fsem){
-                    error = error + "<br/>" + translate[150]+".";
+                    error = error + "<li>" + translate[150]+"</li>";
                 }
 
                 if(!fstage){
-                    error = error + "<br/>" + translate[169]+".";
+                    error = error + "<li>" + translate[169]+"</li>";
                 }
 
                 if(!fpoints){
-                    error = error + "<br/>" + translate[152]+".";
+                    error = error + "<li>" + translate[152]+"</li>";
                 }
 
                 if(!fpa){
-                    error = error + "<br/>" + translate[170]+".";
+                    error = error + "<li>" + translate[170]+"</li>";
                 }
 
                 if(error){
-                    $("#error").html(error).slideDown("fast");
+                    $('#errorText').html(error);
+                    $('#errorAlert').slideDown("fast");
+                    $(this).prop("disabled", false);
+                    $("#addNewEntryButton").prop("disabled", false);
+                    $('#warningAlert').slideUp("fast");
                 } else {
 
 
-                    $("#warnEntry").slideUp("fast");
+                    $("#warningAlert").slideUp("fast");
                     $.ajax({
                         method: "POST",
                         url: "./modul/verhaltensziele/modify.php",
@@ -211,14 +228,16 @@ $(document).ready(function(){
                         success: function(data){
 
                             if(data){
-                                $("#error").html(data).slideDown("fast");
+                                $('#errorText').html(data);
+                                $('#errorAlert').slideDown("fast");
                             } else {
 
                                 $("#fStage").val("");
                                 $("#fPoints").val("");
                                 $("#fPa").val("");
 
-                                $("#addedNotif").slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $('#successText').html(translate[103]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
                                     $("#pageContent").load("modul/verhaltensziele/verhaltensziele.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);

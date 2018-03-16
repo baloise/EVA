@@ -1,6 +1,6 @@
 <?php
 
-    include("../session/session.php");
+    include("../../includes/session.php");
     include("./../../database/connect.php");
 
     //Werte trimmen und auf richtigkeit prüfen
@@ -86,7 +86,7 @@
                         $userData = $result->fetch_assoc();
 
                         //SENDMAIL
-                        include("../../modul/mail/generateMail.php");
+                        include("../../includes/generateMail.php");
                         $msgcontent = array('{firstname}' => $userData['firstname'], '{lastname}' => $userData['lastname'], '{bkey}' => $userData['bKey'], '{gradeTitle}' => $title, '{grade}' => $grade, '{gradeWeight}' => $weight, '{gradeReason}' => $reason);
                         $subject = strtr($translate[202], $msgcontent);
                         $message = strtr($translate[203], $msgcontent);
@@ -141,7 +141,7 @@
                 $userInfo = $result->fetch_array(MYSQLI_NUM);
 
                 //SENDMAIL
-                include("../../modul/mail/generateMail.php");
+                include("../../includes/generateMail.php");
                 $msgcontent = array('{subjectName}' => $userInfo[1], '{newGrade}' => $corrgrade);
                 $subject = strtr($translate[204], $msgcontent);
                 $message = strtr($translate[205], $msgcontent);
@@ -185,7 +185,7 @@
                         $userData = $result->fetch_assoc();
 
                         //SENDMAIL
-                        include("../../modul/mail/generateMail.php");
+                        include("../../includes/generateMail.php");
                         $msgcontent = array('{firstname}' => $userData['firstname'], '{lastname}' => $userData['lastname'], '{bkey}' => $userData['bKey'], '{gradeTitle}' => $row[1], '{grade}'  => $row[0], '{gradeWeight}'  => $row[3], '{gradeReason}' => $row[2]);
                         $subject = strtr($translate[206], $msgcontent);
                         $message = strtr($translate[207], $msgcontent);

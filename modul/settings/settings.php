@@ -1,6 +1,6 @@
-<?php include("../session/session.php"); ?>
+<?php include("../../includes/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
-<?php include("../alerts/alerts.php"); ?>
+<?php include("../../includes/alerts.php"); ?>
 
     <head>
         <link href="modul/settings/color-picker.min.css" rel="stylesheet">
