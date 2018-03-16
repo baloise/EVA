@@ -2,6 +2,13 @@
 -----------------------------------------------------------------------------------<br />
 <?php
 
+    //error handler function
+     function customError($errno, $errstr) {
+      echo "<b>Error:</b> [$errno] $errstr";
+     }
+
+    //set error handler
+     set_error_handler("customError");
 
     echo "<h2>Kerberos Auth</h2>";
     echo "Auth type: " . $_SERVER['AUTH_TYPE'] . "<br/>";
@@ -65,13 +72,14 @@
 
     */
 
+
+
     if(isset($usersbkey)){
 
         $_POST['username'] = $usersbkey;
 
     } else {
-        echo '
-        <br/><br/><br/>Kein B-Key gefunden:<br/>
+        echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
         <form method="POST" action="login.php">
             <input type="text" name="username" placeholder="B-Key" required autofocus/>
             <input type="submit"/>
@@ -155,7 +163,5 @@
     if (isset($message['error'])){
         echo $message['error'];
     }
-
-    phpinfo();
 
 ?>
