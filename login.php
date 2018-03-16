@@ -4,9 +4,8 @@
 
 ini_set('display_errors', 1);
 
-foreach (getallheaders() as $name => $value) {
 print_r(apache_response_headers());
-}
+
 
     echo "<h2>Airlock Medusa Auth</h2>";
     echo "<p>(ToDo)</p>";
