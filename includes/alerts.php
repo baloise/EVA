@@ -23,7 +23,6 @@
                 $(this).parent().slideUp('fast');
             });
         })
-
     });
 
 </script>

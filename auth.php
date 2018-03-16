@@ -17,12 +17,11 @@
         $result = $mysqli->query($sql);
 
         if ($result->num_rows == 1) {
+            
             $row = $result->fetch_assoc();
 
             if($row['deleted'] == 1){
-
                  header("Location: login.php?error=userdeleted");
-
             } else {
 
                 $_SESSION['user']['usergroup'] = $row['tb_group_id'];
@@ -35,8 +34,6 @@
                 } else {
                     $_SESSION['user']['language'] = "de";
                 }
-
-
 
                 $translations = array();
 
@@ -52,8 +49,6 @@
                         } else {
                             $translations += [$row2['id'] => $row2['de']];
                         }
-
-
 
                     }
                 }
