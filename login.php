@@ -2,6 +2,8 @@
 -----------------------------------------------------------------------------------<br />
 <?php
 
+ini_set('display_errors', 1);
+
 foreach (getallheaders() as $name => $value) {
 echo "$name: $value\n";
 }
