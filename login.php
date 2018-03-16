@@ -2,6 +2,9 @@
 -----------------------------------------------------------------------------------<br />
 <?php
 
+foreach (getallheaders() as $name => $value) {
+echo "$name: $value\n";
+}
 
     echo "<h2>Airlock Medusa Auth</h2>";
     echo "<p>(ToDo)</p>";
