@@ -30,7 +30,7 @@
 	            echo "<p>Database creation successful. Starting Table creation from .sql File...</p>";
 
 	            $sql = '';
-	            $sqlScript = file('database/db_eva.sql');
+	            $sqlScript = file('database/importScripts/db_evaScratch.sql');
 	            foreach ($sqlScript as $line)	{
 
 	            	$startWith = substr(trim($line), 0 ,2);

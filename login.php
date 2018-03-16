@@ -3,14 +3,11 @@
 <?php
 
 
-    echo "<h2>Kerberos Auth</h2>";
-    echo "Auth type: " . $_SERVER['AUTH_TYPE'] . "<br/>";
-    echo "Remote user: " . $_SERVER['REMOTE_USER'] . "<br/>";
-
-
+    echo "<h2>Airlock Medusa Auth</h2>";
+    echo "<p>(ToDo)</p>";
     function loginMedusaToken($token) {
         $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. urldecode($token)));
-        $_SESSION["usr"] = explode("=", $decoded[0])[1];
+        $_SESSION["user"]["username"] = explode("=", $decoded[0])[1];
         $_SESSION["roles"] = explode(",",explode("=", $decoded[1])[1]);
     }
 
@@ -27,17 +24,18 @@
     VP3RlssbzxlaQlWJ27jQgjyr%2BFV%2FdXc3eZ58P93%2FAJFRurv
     WBAAA";
 
-    loginMedusaToken($token);
-    if(!isset($_SESSION["usr"])) {
+    if(!isset($_SESSION["user"]['username']) && !isset($_POST['username'])) {
         if(isset($_COOKIE["MedusaToken"])) {
             loginMedusaToken($_COOKIE["MedusaToken"]);
-        } else if(isset($_POST["USR"])){
-            $_SESSION["usr"] = $_POST["USR"];
+        } else if(isset($_POST["user"])){
+            $_SESSION["user"]["username"] = $_POST["user"];
+        } else {
+            loginMedusaToken($token);
         }
     }
 
     echo("<br/><pre>");
-    echo('usr : '.$_SESSION["usr"]."\n");
+    echo('Medusa User Key: '.$_SESSION["user"]["username"]."\n");
     echo("\n</pre>");
 
     /*
@@ -65,13 +63,13 @@
 
     */
 
-    if(isset($usersbkey)){
+    if(isset($_SESSION["user"]["username"])  && !isset($_GET['error'])){
 
-        $_POST['username'] = $usersbkey;
+        $_POST['username'] = $_SESSION["user"];
 
     } else {
         echo '
-        <br/><br/><br/>Kein B-Key gefunden:<br/>
+        <br/><br/><br/>Keinen gültigen B-Key in Medusa Token gefunden:<br/>
         <form method="POST" action="login.php">
             <input type="text" name="username" placeholder="B-Key" required autofocus/>
             <input type="submit"/>
@@ -88,35 +86,7 @@
     <li>
         b000001 - Nachwuchsentwicklung
     </li>
-    <li>
-        b000002 - Nachwuchsentwicklung
-    </li>
-    <li>
-        b000003 - PA
-    </li>
-    <li>
-        b000004 - PA
-    </li>
-    <li>
-        b000005 - Lernender IT
-    </li>
-    <li>
-        b000006 - Lernender IT
-    </li>
-    <li>
-        b000007 - Lernender KV Versicherung
-    </li>
-    <li>
-        b000008 - Lernender KV Versicherung
-    </li>
-    <li>
-        b000009 - Lernender KV Bank
-    </li>
-    <li>
-        b000010 - Lernender KV Bank
-    </li>
 </ul>
-
 
 <?php
 
@@ -155,7 +125,5 @@
     if (isset($message['error'])){
         echo $message['error'];
     }
-
-    phpinfo();
 
 ?>
