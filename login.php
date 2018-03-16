@@ -65,14 +65,13 @@
 
     */
 
-    
-
     if(isset($usersbkey)){
 
         $_POST['username'] = $usersbkey;
 
     } else {
-        echo '<br/><br/><br/>Kein B-Key gefunden:<br/>
+        echo '
+        <br/><br/><br/>Kein B-Key gefunden:<br/>
         <form method="POST" action="login.php">
             <input type="text" name="username" placeholder="B-Key" required autofocus/>
             <input type="submit"/>
@@ -156,5 +155,7 @@
     if (isset($message['error'])){
         echo $message['error'];
     }
+
+    phpinfo();
 
 ?>
