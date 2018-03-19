@@ -14,15 +14,14 @@
             <h2><?php echo $translate[15];?></h2>
         <?php
 
-            $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$session_username'")->fetch_assoc());
+            $userID = $session_userid;
 
-            $sql1 = "SELECT mg.ID, mg.position, mm.title FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID['ID'] ." ORDER BY mg.position";
+            $sql1 = "SELECT mg.ID, mm.title FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = ". $userID;
 
             $result = $mysqli->query($sql1);
 
 
             if (isset($result) && $result->num_rows > 0) {
-                // output data of each row
                 while($row = $result->fetch_assoc()) {
                     $link = '
                     <div class="navListPosition" id="navListPosition" navItemID="' . $row["ID"] . '">
@@ -43,7 +42,7 @@
         </div>
         <div id="navListPosition" pos="">
             <div id="navListItem">
-                <select class="form-control" id="selectModule" userID="<?php echo $userID['ID']; ?>">
+                <select class="form-control" id="selectModule" userID="<?php echo $userID;?>">
                     <?php
 
                         $sql2 = "SELECT mm.ID, mm.title FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";

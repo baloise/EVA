@@ -127,6 +127,7 @@ $(document).ready(function(){
     $("#itemAdd").click(function(event){
         var addItemID = $('#selectModule').val();
         var userID = $('#selectModule').attr('userid');
+        
         $.ajax({
             type: "POST",
             data: {doEntry: 'add', navItemID: addItemID, userID:userID},

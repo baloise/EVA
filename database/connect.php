@@ -23,14 +23,19 @@
 
 			echo "Database " . $_db_database . " not found. Starting creation from scratch Template.";
 
-			$sql = "CREATE DATABASE $_db_database";
+			$sql = "CREATE DATABASE $_db_database;";
 
 	        if ($mysqli->query($sql) === TRUE) {
 
 	            echo "<p>Database creation successful. Starting Table creation from .sql File...</p>";
 
+				$mysqli = mysqli_connect($_db_host, $_db_username, $_db_passwort, $_db_database);
+				if (!$mysqli) {
+					echo "<p>Couldn't connect to DB.</p>";
+				}
+
 	            $sql = '';
-	            $sqlScript = file('database/importScripts/db_evaScratch.sql');
+	            $sqlScript = file('database/importScripts/db.eva.0.sql');
 	            foreach ($sqlScript as $line)	{
 
 	            	$startWith = substr(trim($line), 0 ,2);
@@ -111,7 +116,7 @@
 			echo "No Tables found in Database " . $_db_database . ". Start creating Tables from scratch import.";
 
 			$sql = '';
-			$sqlScript = file('database/importScripts/db_eva_scratch.sql');
+			$sqlScript = file('database/importScripts/db.eva.0.sql');
 			foreach ($sqlScript as $line)	{
 
 				$startWith = substr(trim($line), 0 ,2);

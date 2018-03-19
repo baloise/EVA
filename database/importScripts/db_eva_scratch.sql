@@ -41,7 +41,7 @@ CREATE TABLE `tb_als` (
 --
 
 CREATE TABLE `tb_appinfo` (
-  `id` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `title` varchar(30) NOT NULL,
   `title_short` varchar(20) NOT NULL,
   `description` varchar(30) NOT NULL,
@@ -740,6 +740,136 @@ CREATE TABLE `tb_user_subject` (
   `correctedGrade` double DEFAULT NULL,
   `school` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_als`
+--
+ALTER TABLE `tb_als`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_appinfo`
+--
+ALTER TABLE `tb_appinfo`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_behaviorgrade`
+--
+ALTER TABLE `tb_behaviorgrade`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_deadline`
+--
+ALTER TABLE `tb_deadline`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_dontcountsem`
+--
+ALTER TABLE `tb_dontcountsem`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_group`
+--
+ALTER TABLE `tb_group`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_ind_design`
+--
+ALTER TABLE `tb_ind_design`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_ind_nav`
+--
+ALTER TABLE `tb_ind_nav`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_malus`
+--
+ALTER TABLE `tb_malus`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_modul`
+--
+ALTER TABLE `tb_modul`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_modul_group`
+--
+ALTER TABLE `tb_modul_group`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=108;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_pe`
+--
+ALTER TABLE `tb_pe`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_presentation`
+--
+ALTER TABLE `tb_presentation`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_semester`
+--
+ALTER TABLE `tb_semester`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_stao`
+--
+ALTER TABLE `tb_stao`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_subject_grade`
+--
+ALTER TABLE `tb_subject_grade`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_text`
+--
+ALTER TABLE `tb_text`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_translation`
+--
+ALTER TABLE `tb_translation`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=255;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_uek`
+--
+ALTER TABLE `tb_uek`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_user`
+--
+ALTER TABLE `tb_user`
+  MODIFY `ID` int(11) NOT NULL, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT für Tabelle `tb_user_subject`
+--
+ALTER TABLE `tb_user_subject`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Indizes der exportierten Tabellen
