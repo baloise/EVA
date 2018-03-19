@@ -217,21 +217,21 @@ CREATE TABLE `tb_modul` (
 --
 
 INSERT INTO `tb_modul` (`ID`, `name`, `description`, `file_path`, `title`, `icon`) VALUES
-(1, 'ALS', 'ALS-Modul', 'modul/als/als.php', '3', 'img/dashico/telephone-operator.svg'),
-(2, 'Benutzerverwaltung', 'Benutzerverwaltung für Nachwuchsentwicklung', 'modul/benutzerverwaltung/benutzerverwaltung.php', '4', 'img/dashico/002-person.svg'),
-(3, 'Dashboard', 'Dashboard mit allen Modulen', 'modul/dashboard/dashboard.php', '5', NULL),
-(4, 'Fachvortrag', 'Modul zur Sammlung der Fachvortrag Bewertungen.', 'modul/fachvortrag/fachvortrag.php', '6', 'img/dashico/001-pie-chart.svg'),
-(5, 'Leistungslohn', 'Modul zur berechnung des Leistungslohnes und der generierung eines CSV', 'modul/leistungslohn/leistungslohn.php', '7', 'img/dashico/003-coins.svg'),
-(6, 'Malus', 'Modul zur Sammlung von Malus-Werten', 'modul/malus/malus.php', '8', 'img/dashico/001-exclamation.svg'),
-(7, 'Noten', 'Modul zur Sammlung von FÃ¤chern und Noten', 'modul/noten/noten.php', '2', 'img/dashico/003-file.svg'),
-(8, 'PE', 'Modul zur Sammlung von PE bewertungen.', 'modul/pe/pe.php', '9', 'img/dashico/workflow.svg'),
-(9, 'STAO', 'Modul zur Sammlung von STAO Bewertungen', 'modul/stao/stao.php', '10', 'img/dashico/test.svg'),
-(10, 'Stundenplan', 'Modul zur speicherung eines GIBM Stundenplans.', 'modul/stundenplan/stundenplan.php', '11', 'img/dashico/002-people.svg'),
-(11, 'Terminmanagement', 'Modul zur betreuung von Terminen', 'modul/terminmanagement/terminmanagement.php', '12', 'img/dashico/001-clock.svg'),
-(12, 'Verhaltensziele', 'Modul zur Sammlung der Bewertung der Verhaltensziele', 'modul/verhaltensziele/verhaltensziele.php', '13', 'img/dashico/002-man.svg'),
-(14, 'ÜK-KN CYP', 'Ãœberbetriebliche Kurse LKB', 'modul/uek/uek.php', '14', 'img/dashico/school.svg'),
-(15, 'Übersetzungen', 'Zur bearbeitung der Übersetzungen', 'modul/uebersetzung/uebersetzung.php', '250', 'img/dashico/user.svg'),
-(16, 'Reglement', 'Seite mit Reglement der Baloise', 'modul/reglement/reglement.php', '253', 'img/dashico/open-magazine.svg');
+(1, 'Terminmanagement', 'Modul zur betreuung von Terminen', 'modul/terminmanagement/terminmanagement.php', '12', 'img/dashico/001-clock.svg'),
+(2, 'Noten', 'Modul zur Sammlung von FÃ¤chern und Noten', 'modul/noten/noten.php', '2', 'img/dashico/003-file.svg'),
+(3, 'ALS', 'ALS-Modul', 'modul/als/als.php', '3', 'img/dashico/telephone-operator.svg'),
+(4, 'Verhaltensziele', 'Modul zur Sammlung der Bewertung der Verhaltensziele', 'modul/verhaltensziele/verhaltensziele.php', '13', 'img/dashico/002-man.svg'),
+(5, 'PE', 'Modul zur Sammlung von PE bewertungen.', 'modul/pe/pe.php', '9', 'img/dashico/workflow.svg'),
+(6, 'Fachvortrag', 'Modul zur Sammlung der Fachvortrag Bewertungen.', 'modul/fachvortrag/fachvortrag.php', '6', 'img/dashico/001-pie-chart.svg'),
+(7, 'ÜK-KN CYP', 'Ãœberbetriebliche Kurse LKB', 'modul/uek/uek.php', '14', 'img/dashico/school.svg'),
+(8, 'STAO', 'Modul zur Sammlung von STAO Bewertungen', 'modul/stao/stao.php', '10', 'img/dashico/test.svg'),
+(9, 'Malus', 'Modul zur Sammlung von Malus-Werten', 'modul/malus/malus.php', '8', 'img/dashico/001-exclamation.svg'),
+(10, 'Leistungslohn', 'Modul zur berechnung des Leistungslohnes und der generierung eines CSV', 'modul/leistungslohn/leistungslohn.php', '7', 'img/dashico/003-coins.svg'),
+(11, 'Stundenplan', 'Modul zur speicherung eines GIBM Stundenplans.', 'modul/stundenplan/stundenplan.php', '11', 'img/dashico/002-people.svg'),
+(12, 'Reglement', 'Seite mit Reglement der Baloise', 'modul/reglement/reglement.php', '253', 'img/dashico/open-magazine.svg'),
+(13, 'Benutzerverwaltung', 'Benutzerverwaltung für Nachwuchsentwicklung', 'modul/benutzerverwaltung/benutzerverwaltung.php', '4', 'img/dashico/002-person.svg'),
+(14, 'Übersetzungen', 'Zur bearbeitung der Übersetzungen', 'modul/uebersetzung/uebersetzung.php', '250', 'img/dashico/user.svg'),
+(15, 'Dashboard', 'Dashboard mit allen Modulen', 'modul/dashboard/dashboard.php', '5', NULL);
 
 -- --------------------------------------------------------
 
@@ -250,41 +250,21 @@ CREATE TABLE `tb_modul_group` (
 --
 
 INSERT INTO `tb_modul_group` (`ID`, `tb_group_ID`, `tb_modul_ID`) VALUES
-(66, 5, 7),
-(67, 5, 5),
-(68, 5, 11),
-(69, 5, 1),
-(70, 5, 14),
-(78, 4, 7),
-(79, 4, 5),
-(80, 4, 11),
-(81, 4, 1),
-(82, 4, 8),
-(83, 4, 9),
-(84, 3, 7),
-(85, 3, 10),
-(86, 3, 5),
-(87, 3, 12),
-(88, 3, 11),
-(89, 3, 4),
-(90, 1, 7),
-(91, 1, 10),
-(92, 1, 5),
-(93, 1, 12),
-(94, 1, 11),
-(95, 1, 4),
-(96, 1, 1),
+(90, 1, 1),
+(91, 1, 2),
+(92, 1, 3),
+(93, 1, 4),
+(94, 1, 5),
+(95, 1, 6),
+(96, 1, 7),
 (97, 1, 8),
-(98, 1, 14),
-(99, 1, 9),
-(100, 1, 6),
-(101, 1, 2),
-(102, 1, 15),
-(103, 1, 16),
-(104, 2, 16),
-(105, 3, 16),
-(106, 4, 16),
-(107, 5, 16);
+(98, 1, 9),
+(99, 1, 10),
+(100, 1, 11),
+(101, 1, 12),
+(102, 1, 13),
+(103, 1, 14),
+(104, 2, 15);
 
 -- --------------------------------------------------------
 

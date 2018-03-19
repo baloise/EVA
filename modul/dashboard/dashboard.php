@@ -5,7 +5,7 @@
 
 	$welcome = "<h3>".$translate[1]."!</h3>";
 
-    $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup";
+    $sql = "SELECT * FROM tb_modul AS mm INNER JOIN tb_modul_group AS mg ON mm.ID = mg.tb_modul_ID WHERE mg.tb_group_ID = $session_usergroup ORDER BY mm.ID";
 	$sql2 = "SELECT firstname, lastname FROM tb_user WHERE id = $session_userid";
 	$result = $mysqli->query($sql2);
 
