@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 19. Mrz 2018 um 08:07
+-- Erstellungszeit: 19. Mrz 2018 um 08:06
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.2
 
@@ -11,12 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Datenbank: `db_eva`
@@ -57,7 +51,8 @@ CREATE TABLE `tb_appinfo` (
   `schrift` varchar(7) NOT NULL,
   `link` varchar(7) NOT NULL,
   `mail_support` varchar(255) DEFAULT NULL,
-  `mail_hr` varchar(255) NOT NULL
+  `mail_hr` varchar(255) NOT NULL,
+  `db_vers` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -424,7 +419,7 @@ INSERT INTO `tb_text` (`ID`, `type`, `tb_group_ID`, `de`, `it`, `fr`) VALUES
 
 CREATE TABLE `tb_translation` (
   `ID` int(11) NOT NULL,
-  `de` text CHARACTER SET utf8 COLLATE utf8_german2_ci,
+  `de` text,
   `it` text,
   `fr` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1186,7 +1181,3 @@ ALTER TABLE `tb_user_subject`
   ADD CONSTRAINT `fk_tb_user_subject_tb_llit_semester1` FOREIGN KEY (`tb_semester_ID`) REFERENCES `tb_semester` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tb_user_subject_tb_user1` FOREIGN KEY (`tb_user_ID`) REFERENCES `tb_user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

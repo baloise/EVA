@@ -23,7 +23,7 @@
 
 			echo "Database " . $_db_database . " not found. Starting creation from scratch Template.";
 
-			$sql = "CREATE DATABASE $_db_database;";
+			$sql = "CREATE DATABASE $_db_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 
 	        if ($mysqli->query($sql) === TRUE) {
 

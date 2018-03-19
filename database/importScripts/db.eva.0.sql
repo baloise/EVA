@@ -51,7 +51,8 @@ CREATE TABLE `tb_appinfo` (
   `schrift` varchar(7) NOT NULL,
   `link` varchar(7) NOT NULL,
   `mail_support` varchar(255) DEFAULT NULL,
-  `mail_hr` varchar(255) NOT NULL
+  `mail_hr` varchar(255) NOT NULL,
+  `db_vers` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
