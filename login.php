@@ -149,4 +149,6 @@ foreach ($headers as $header => $value) {
         echo $message['error'];
     }
 
+    phpinfo();
+
 ?>
