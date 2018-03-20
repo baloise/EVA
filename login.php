@@ -30,22 +30,12 @@ foreach ($headers as $header => $value) {
     echo "<p>(ToDo)</p>";
     function loginMedusaToken($token) {
         $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. urldecode($token)));
+        echo "<pre>";
+        print_r($decoded);
+        echo "</pre>";
         $_SESSION["user"]["username"] = explode("=", $decoded[0])[1];
         $_SESSION["roles"] = explode(",",explode("=", $decoded[1])[1]);
     }
-
-    $token =
-    "H4sIAAAAAAAAAGVTy27CMBAsX9Ev6I2DnYQAQhxsJylWXlachIp
-    Tq5K2SBVIEKSqX9%2BkPdQ7HHe0j9md2ethv5bMn%2FOQrc6nz%2B
-    6yroRKzLl7O3zZMmfh9D%2BOjCeFpQBrYxcZSoIZZNjMzdjaxKMFo
-    RtHNWfKKBeRHpcNpzXzGfTgZCjXRQIslHXH5LJshBPvbKxElkFNbj
-    ggUiGSNm7f4T7a6oiSW7hHTEWbN7WZXvrz6fgOzSqVTB8CtmTMh4V
-    nbix3pWHsFgkcpEltngvaxPdgnihqF9EevdvAVRSJBn0ZLQFL1De3
-    55AhAHiUu6qkFYlQG9oUEJVZu4kIEUyRjR3IGxB5A9p4YHBKfkjg
-    IATz0RLEm39TNc0BZqOcC1Si5XTh8Ubi2n90x%2F7w%2BtJ3%2B2r
-    4Tnp5aDuuF8kaGltNF0D2Gt43ZJCxTaUrlmDwvsR1ad5kZQqGCahO
-    VP3RlssbzxlaQlWJ27jQgjyr%2BFV%2FdXc3eZ58P93%2FAJFRurv
-    WBAAA";
 
     if(!isset($_SESSION["user"]['username']) && !isset($_POST['username'])) {
         if(isset($_COOKIE["MedusaToken"])) {
