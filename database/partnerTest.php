@@ -10,7 +10,7 @@
 
     try {
         print_r(formatAddress(loadPerson($bkey)));
-    } catch(Exeption $e) {
+    } catch(Exception $e) {
         print_r($e);
     }
 
