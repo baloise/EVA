@@ -37,7 +37,7 @@ foreach ($headers as $header => $value) {
         print_r( urldecode($token));
         echo "\n";
         
-        $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. urldecode($token)));
+        $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $token));
         print_r($decoded);
         echo "</pre>";
         $_SESSION["user"]["username"] = explode("=", $decoded[0])[1];
