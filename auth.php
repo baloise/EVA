@@ -5,7 +5,7 @@
 
 	if (empty($_SESSION['user'])) {
 
-		header('Location: login.php');
+		header('Location: login.php?error=user');
 
 	} else {
 
@@ -17,7 +17,7 @@
         $result = $mysqli->query($sql);
 
         if ($result->num_rows == 1) {
-            
+
             $row = $result->fetch_assoc();
 
             if($row['deleted'] == 1){
