@@ -3,13 +3,24 @@
     session_start();
     session_regenerate_id();
 
-	if (empty($_GET['tryUser'])) {
+	if (empty($_GET['loginType'])) {
 
-		header('Location: login.php?error=noUser');
+		header('Location: login.php?error=noType');
 
 	} else {
 
-        $username = $_GET['tryUser'];
+        if($_GET['loginType']) == "medusa"){
+
+            $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $_COOKIE["MedusaToken"]));
+            $tokenInfo(explode("=", $decoded[0])[1]);
+            $username = $tokenInfo;
+
+        } else {
+
+            $username = $_GET['postUser'];
+            $pass = "TODO";
+
+        }
 
         include("database/connect.php");
 
