@@ -703,7 +703,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `firstname`, `lastname`, `mail`, `deleted`, `language`, `tb_semester_ID`, `creationDate`) VALUES
-(1, 'b000001', NULL, NULL, 1, 'Bill', 'Gates', 'mail@eliareutlinger.ch', NULL, NULL, NULL, '2018-03-19 07:04:14');
+(1, 'b000001', NULL, NULL, 1, 'Bill', 'Gates', 'mail@eliareutlinger.ch', NULL, NULL, NULL, '2018-03-19 07:04:14'),
+(2, 'b037160', NULL, NULL, 1, 'Elia', 'Reutlinger', 'elia.reutlinger@baloise.ch', NULL, NULL, NULL, '2018-03-19 07:04:14');
 
 -- --------------------------------------------------------
 
