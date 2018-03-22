@@ -3,13 +3,13 @@
     session_start();
     session_regenerate_id();
 
-	if (empty($_SESSION['user'])) {
+	if (empty($_GET['tryUser'])) {
 
-		header('Location: login.php?error=user');
+		header('Location: login.php?error=noUser');
 
 	} else {
 
-        $username = $_SESSION['user']['username'];
+        $username = $_GET['tryUser'];
 
         include("database/connect.php");
 
@@ -21,7 +21,7 @@
             $row = $result->fetch_assoc();
 
             if($row['deleted'] == 1){
-                 header("Location: login.php?error=userdeleted");
+                 header("Location: login.php?error=userDeleted");
             } else {
 
                 $_SESSION['user']['usergroup'] = $row['tb_group_id'];
@@ -65,10 +65,13 @@
                 $_SESSION['appinfo'] = $appinfo;
 
                 header("Location: index.php");
+
             }
 
         } else {
-            header("Location: login.php?error=user");
+
+            header("Location: login.php?error=userNotFound");
+
         }
     }
 
