@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------------<br />
 <?php
 
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 
 function getRequestHeaders() {
     $headers = array();
@@ -23,7 +23,7 @@ foreach ($headers as $header => $value) {
 }
 
 
-
+*/
 
     echo "<h2>Airlock Medusa Auth</h2>";
     print_r($_COOKIE);
@@ -36,7 +36,7 @@ foreach ($headers as $header => $value) {
         echo " urldecode($token)\n";
         print_r( urldecode($token));
         echo "\n";
-        
+
         $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $token));
         print_r($decoded);
         echo "</pre>";
