@@ -2,6 +2,7 @@
 
     session_start();
     session_regenerate_id();
+
     ini_set('display_errors', 1);
 
 	if (empty($_GET['loginType'])) {
@@ -12,9 +13,9 @@
 
         $username = "";
 
-        if($_GET['loginType']) == "medusa"){
+        if($_GET['loginType'] == "medusa"){
 
-            $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $_COOKIE["MedusaToken"]));
+            $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $_COOKIE["MedusaToken"] ));
             $username = (explode("=", $decoded[0])[1]);
 
         } else {
