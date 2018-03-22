@@ -18,6 +18,7 @@
             $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $_COOKIE["MedusaToken"]));
             $tokenInfo(explode("=", $decoded[0])[1]);
             $username = $tokenInfo;
+            echo $username;
 
         } else {
 
