@@ -25,11 +25,11 @@
             $group = test_input($_POST['group']);
 
             if(strlen($bkey) != 7){
-                $error = $error . "Der B-Key muss aus 7 Zeichen bestehen.<br/>";
+                $error = $error . "<li>".$translate[257]."</li>";
             }
 
             if(!$group){
-                $error = $error . "Bitte Gruppe auswählen.<br/>";
+                $error = $error . "<li>".$translate[258]."</li>";
             }
 
             $stmt = $mysqli->prepare("SELECT id, deleted FROM `tb_user` WHERE bKey = ?");
@@ -45,7 +45,7 @@
 
                 if($result->num_rows > 1){
 
-                    $error = $error . "User wurde bereits mehrmal in Datenbank eingetragen. <br/>";
+                    $error = $error . "<li>".$translate[259]."</li>";
                     echo $error;
 
                 }  else if ($result->num_rows == 1) {
@@ -62,7 +62,7 @@
 
                     } else {
 
-                        $error = $error . "User existiert bereits.<br/>";
+                        $error = $error . "<li>".$translate['259']."</li>";
                         echo $error;
 
                     }
@@ -71,8 +71,18 @@
 
                         $userInfoArray = loadPerson($bkey);
 
-                        $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`, `mail`) VALUES (?, ?, ?, ?, ?);");
-                        $stmt->bind_param("sssss", $bkey, $group, $userInfoArray['firstname'], $userInfoArray['lastname'], $userInfoArray['email']);
+                        if(isset($userInfoArray)){
+
+                            $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`, `mail`) VALUES (?, ?, ?, ?, ?);");
+                            $stmt->bind_param("sssss", $bkey, $group, $userInfoArray['firstname'], $userInfoArray['lastname'], $userInfoArray['email']);
+
+                        } else {
+
+                            $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`) VALUES (?, ?);");
+                            $stmt->bind_param("ss", $bkey, $group);
+
+                        }
+
                         $stmt->execute();
 
                 }
@@ -125,7 +135,7 @@
             $mysqli->close();
 
         } else {
-            echo "Unbekannter Befehl übergeben";
+            echo "<li>".$translate[260]."</li>";
         }
     }
 ?>
