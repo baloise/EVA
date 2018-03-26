@@ -2,6 +2,7 @@
 
     include("../../includes/session.php");
     include("./../../database/connect.php");
+    include("./../../database/partner.php");
 
     function test_input($data) {
         $data = trim($data);
@@ -22,8 +23,6 @@
 
             $bkey = test_input($_POST['bkey']);
             $group = test_input($_POST['group']);
-            $firstname = test_input($_POST['firstname']);
-            $lastname = test_input($_POST['lastname']);
 
             if(strlen($bkey) != 7){
                 $error = $error . "Der B-Key muss aus 7 Zeichen bestehen.<br/>";
@@ -70,8 +69,10 @@
 
                 } else {
 
-                        $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`) VALUES (?, ?, ?, ?);");
-                        $stmt->bind_param("ssss", $bkey, $group, $firstname, $lastname);
+                        $userInfoArray = loadPerson($bkey);
+
+                        $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`, `mail`) VALUES (?, ?, ?, ?, ?);");
+                        $stmt->bind_param("sssss", $bkey, $group, $userInfoArray['firstname'], $userInfoArray['lastname'], $userInfoArray['email']);
                         $stmt->execute();
 
                 }
@@ -112,6 +113,13 @@
 
             }
 
+            if ($_POST['fType'] == 4){
+
+                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `mail` = ? WHERE `tb_user`.`ID` = ?");
+                $stmt->bind_param("ss", $content, $userid);
+
+            }
+
             $stmt->execute();
             $stmt->close();
             $mysqli->close();
@@ -119,5 +127,5 @@
         } else {
             echo "Unbekannter Befehl übergeben";
         }
-    } 
+    }
 ?>

@@ -63,9 +63,6 @@
 
     function sendMail($subject, $message, $sender, $receiver, $appinfo, $mysqli, $translate){
 
-        ini_set('SMTP', 'smtp.baloisenet.com');
-        ini_set('smtp_port', 25);
-
         $receiverInfo;
         $senderInfo;
 

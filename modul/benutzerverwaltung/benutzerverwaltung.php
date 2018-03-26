@@ -27,13 +27,14 @@
                 <th><?php echo $translate[40];?></th>
                 <th><?php echo $translate[41];?></th>
                 <th><?php echo $translate[42];?></th>
+                <th><?php echo $translate[255];?></th>
                 <th></th>
             </tr>
         </thead>
         <tbody id="userTableBody">
             <?php
 
-                $sql ="SELECT us.ID, us.bKey, gr.name, us.firstname, us.lastname, us.deleted FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
+                $sql ="SELECT us.ID, us.mail, us.bKey, gr.name, us.firstname, us.lastname, us.deleted FROM `tb_user` AS us JOIN tb_group AS gr ON gr.ID = us.tb_group_ID";
                 $sql2 ="SELECT ID, name FROM tb_group";
 
                 $groups = "";
@@ -59,6 +60,7 @@
                                 <td><select fType="1" usrid="'. $row['ID'] .'" class="form-control" disabled><option>'. $translate[$row['name']] .'</option>'.$groups.'</select></td>
                                 <td><input fType="2" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['firstname'] .'"></input></td>
                                 <td><input fType="3" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['lastname'] .'"></input></td>
+                                <td><input fType="4" usrid="'. $row['ID'] .'" class="form-control changeInTable" type="text" value="'. $row['mail'] .'"></input></td>
                                 <td><span class="fa fa-trash-o" bkey="'. $row['bKey'] .'" id="'. $row['ID'] .'" aria-hidden="true"></span></td>
                             </tr>
                             ';
@@ -78,8 +80,8 @@
         <strong></strong> <?php echo $translate[101];?>!
     </div>
 
-    <div id="loadingTable" style="display: none; text-align:center; width: 100%">
-        <img class="img-responsive" src="img/loading2_big.svg"/>
+    <div id="loadingTable" style="display: none; text-align:center; width: 100%;">
+        <img class="img-responsive" src="img/loading2_big.svg" height="50px;"/>
     </div>
 
     <div id="editForm">
@@ -88,21 +90,13 @@
         <h2><?php echo $translate[43];?>:</h2>
         <form>
             <div class="row" id="addUserForm">
-                <div class="col-lg-2">
+                <div class="col-lg-6">
                     <label for="usrFormBkey">B-Key:</label>
                     <input type="text" class="form-control addUserInput" id="usrFormBkey" maxlength="7" required>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-6">
                     <label for="usrFormGroup"><?php echo $translate[40];?>:</label>
                     <select class="form-control addUserInput" id="usrFormGroup" required><option value=""></option><?php echo $groups; ?></select>
-                </div>
-                <div class="col-lg-3">
-                    <label for="usrFormFirstname"><?php echo $translate[41];?>:</label>
-                    <input type="text" class="form-control addUserInput" id="usrFormFirstname">
-                </div>
-                <div class="col-lg-3">
-                    <label for="usrFormLastname"><?php echo $translate[42];?>:</label>
-                    <input type="text" class="form-control addUserInput" id="usrFormLastname">
                 </div>
             </div>
             <div class="row">

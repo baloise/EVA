@@ -181,7 +181,7 @@ $(document).ready(function(){
         } else {
             $("#errorAlert").slideUp("fast");
 
-            $('#warningText').html(translate[99]);
+            $('#warningText').html(translate[93]);
             $('#warningAlert').slideDown("fast");
             $("#warningButton").slideDown("fast");
             $("#warningButton").click(function(event){

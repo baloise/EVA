@@ -162,7 +162,7 @@ $(document).ready(function(){
 
     $('.changeInTable').each(function(){
 
-        $(this).on("keyup", function(){
+        $(this).on("keyup change", function(){
 
             clearTimeout(typingTimer);
 

@@ -1,9 +1,5 @@
 <?php
 
-    if($session_usergroup != 1){
-        die("Sie haben keine Berechtigungen zu diesem Modul");
-    }
-
     function formatAddress($person){
         return  trim ("{$person['firstname']} {$person['lastname']}\n{$person['street']}\n{$person['city']}");
     }
@@ -13,7 +9,9 @@
             "firstname" => 'Maxli',
             "lastname" => 'Mustermann',
             "street" => 'Lange Strasse 354',
-            "city" =>  'CH-4002 Basel'
+            "city" =>  'CH-4002 Basel',
+            "email" => 'mail@test.com',
+            "gender" => '1'
         );
     }
 

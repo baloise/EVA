@@ -6,8 +6,6 @@ $(document).ready(function(){
         var error = "";
         var bkey = $("#usrFormBkey").val();
         var group = $("#usrFormGroup").val();
-        var firstname = $("#usrFormFirstname").val();
-        var lastname = $("#usrFormLastname").val();
 
         if(bkey.length != 7){
             error = error + "<li>" + translate[153]+"</li>";
@@ -28,7 +26,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "./modul/benutzerverwaltung/modifyUser.php",
-                data: {action:"add", bkey:bkey, group:group, firstname:firstname, lastname:lastname},
+                data: {action:"add", bkey:bkey, group:group},
                 success: function(data){
 
                     if(data){

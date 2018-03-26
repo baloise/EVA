@@ -32,7 +32,7 @@
                                 <div class="row loadContent" userId="'.$row['ID'].'" loaded="0">
 
                                     <div class="col-12 text-center">
-                                        <img class="img-responsive" src="img/loading2_big.svg"/>
+                                        <img class="img-responsive" src="img/loading2_big.svg" height="50px"/>
                                     </div>
 
                                 </div>
@@ -221,7 +221,7 @@
                                                 <span style="cursor: pointer; margin-top:10px; font-size:1.5rem;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span>
 
                                                 <div id="loadingTable'. $row['did'] .'" style="display:none;">
-                                                    <img class="img-responsive" src="img/loading2_big.svg"/>
+                                                    <img class="img-responsive" src="img/loading2_big.svg" height="50px"/>
                                                 </div>
                                             </div>
                                         </div>
