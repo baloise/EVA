@@ -20,7 +20,7 @@
 
         } else {
 
-            $username = $_GET['postUser'];
+            $username = $_POST['username'];
             $pass = "TODO";
 
         }

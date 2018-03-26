@@ -1,23 +1,38 @@
-<form method="POST" action="login.php">
-    <input type="text" name="username" placeholder="B-Key" required autofocus/>
-    <input type="submit"/>
-</form>
-<br/>
-<hr/>
-<h2>Momentan verfügbare B-Keys:</h2>
-<ul>
-    <li>
-        b000001 - Nachwuchsentwicklung
-    </li>
-</ul>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Login</h1>
+                <form method="POST" action="auth.php?loginType=normal">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <input class="form-control" type="text" name="username" placeholder="Key" required autofocus/><br/>
+                        </div>
+                        <div class="col-lg-2">
+                            <input class="form-control" type="submit"/>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <hr/>
+                <h2>Currently available Keys:</h2>
+                <ul>
+                    <li>
+                        b000001 - Nachwuchsentwicklung
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
 
 <?php
-
-    ini_set('display_errors', 1);
-
-    if (isset($_POST['username'])){
-        include("auth.php?loginType=normal");
-    }
 
     //Error ausgeben, falls einer übergeben wurde
     function error($reason){
@@ -56,7 +71,7 @@
             }
         }
     } else {
-        error("Your request didn't deliver any useable Login-Tokens");
+
     }
 
     //Error aus Überprüfung ausgeben
