@@ -266,7 +266,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.min.js"></script>
 
 <?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
 
@@ -508,7 +508,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.min.js"></script>
 
 <?php else : ?>
 

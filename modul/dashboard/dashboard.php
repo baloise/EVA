@@ -58,7 +58,7 @@
 			};
 		?>;
 	</script>
-	<script type="text/javascript" src="modul/dashboard/dashboard.js"></script>
+	<script type="text/javascript" src="modul/dashboard/dashboard.min.js"></script>
 
 <?php if($session_usergroup == 100) : //Not yet implemented -> GIT ISSUE 94?>
 

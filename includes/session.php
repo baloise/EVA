@@ -5,9 +5,7 @@
     }
 
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-        session_unset();
-        session_destroy();
-        header("Location: ./login.php");
+        header("Location: ./logout.php");
         exit();
     } else {
 

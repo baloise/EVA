@@ -275,7 +275,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/noten/noten.js"></script>
+    <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
@@ -565,7 +565,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/noten/noten.js"></script>
+    <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 
 <?php else : ?>
 

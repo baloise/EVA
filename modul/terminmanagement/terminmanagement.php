@@ -319,7 +319,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/terminmanagement/modifyhr.js"></script>
+    <script type="text/javascript" src="modul/terminmanagement/modifyhr.min.js"></script>
 
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
@@ -465,7 +465,7 @@
 
     ?>
 
-    <script type="text/javascript" src="modul/terminmanagement/modifyll.js"></script>
+    <script type="text/javascript" src="modul/terminmanagement/modifyll.min.js"></script>
 
 <?php else : ?>
 

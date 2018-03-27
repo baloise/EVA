@@ -125,7 +125,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/uek/uek.js"></script>
+    <script type="text/javascript" src="modul/uek/uek.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 5) : //KV Bank-Lehrling ?>
@@ -225,7 +225,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/uek/uek.js"></script>
+    <script type="text/javascript" src="modul/uek/uek.min.js"></script>
 
 <?php else : //No Usergroup ?>
 

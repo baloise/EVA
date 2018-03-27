@@ -14,9 +14,9 @@
         return $data;
     }
 
-    if(isset($_POST['do'])) {
+    if(isset($_POST['toDo'])) {
 
-        if($_POST['do'] == "changeTra"){
+        if($_POST['toDo'] == "changeTra"){
 
             $entryID = test_input($_POST['entryID']);
             $entryGer = test_input($_POST['entryGer']);

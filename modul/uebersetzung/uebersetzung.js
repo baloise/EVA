@@ -1,9 +1,6 @@
-$('.accordian-body').on('show.bs.collapse', function () {
-    $(this).closest("table")
-        .find(".collapse.in")
-        .not(this)
-        .collapse('toggle')
-})
+$('.accordian-body').on('show.bs.collapse', function() {
+    $(this).closest("table").find(".collapse.in").not(this).collapse('toggle');
+});
 
 function search() {
     var input, filter, ul, li, a, i;
@@ -19,7 +16,7 @@ function search() {
             li[i].style.display = "none";
         }
     }
-}
+};
 
 $(document).ready(function(){
 
@@ -27,10 +24,11 @@ $(document).ready(function(){
 
         $(this).click(function(){
 
-
             var button = $(this);
             var entryID = $(this).attr('traEntry');
-            var entryGer, entryIta, entryFra;
+            var entryGer;
+            var entryIta;
+            var entryFra;
 
             $('.inGerman').each(function(){
                 if($(this).attr('traEntry') == entryID){
@@ -50,30 +48,37 @@ $(document).ready(function(){
                 }
             });
 
+
+
             $.ajax({
-                type: "POST",
-                data: {do: 'changeTra', entryID:entryID, entryGer:entryGer, entryIta:entryIta, entryFra:entryFra},
-                url: "modul/uebersetzung/modify.php",
+                method: "POST",
+                url: "./modul/uebersetzung/modify.php",
+                data: {toDo: 'changeTra', entryID:entryID, entryGer:entryGer, entryIta:entryIta, entryFra:entryFra},
                 success: function(data){
                     if(data){
                         alert(data);
                     } else {
-
                         $('.collapse').each(function(){
 
                             if($(this).attr('id') == entryID){
+
                                 button.addClass('alert-success');
+
                                 $(this).addClass('alert-success').delay(500).slideToggle('slow', function(){
+
                                     button.removeClass('alert-success');
                                     $(this).removeClass('alert-success').removeClass('show').attr("style", "");
+
                                 });
                             }
 
                         });
-
                     }
+
                 }
             });
+
+
 
         });
 

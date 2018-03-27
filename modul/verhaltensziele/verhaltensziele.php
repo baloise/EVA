@@ -139,7 +139,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.js"></script>
+    <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4) : //IT-Lehrling & KV-Lehrling ?>
@@ -262,7 +262,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.js"></script>
+    <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.min.js"></script>
 
 <?php else : //No Usergroup ?>
 

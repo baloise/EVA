@@ -51,7 +51,7 @@
     </div>
     <br/>
 
-    <script type="text/javascript" src="modul/reglement/reglement.js"></script>
+    <script type="text/javascript" src="modul/reglement/reglement.min.js"></script>
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 2) : ?>
 

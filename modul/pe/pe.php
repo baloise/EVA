@@ -124,7 +124,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/pe/pe.js"></script>
+    <script type="text/javascript" src="modul/pe/pe.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 4) : ?>
@@ -220,7 +220,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/pe/pe.js"></script>
+    <script type="text/javascript" src="modul/pe/pe.min.js"></script>
 
 <?php else : ?>
 

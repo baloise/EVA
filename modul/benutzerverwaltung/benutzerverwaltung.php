@@ -127,7 +127,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/benutzerverwaltung/benutzerverwaltung.js"></script>
+    <script type="text/javascript" src="modul/benutzerverwaltung/benutzerverwaltung.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php else : ?>

@@ -154,7 +154,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/stundenplan/stundenplan.js"></script>
+    <script type="text/javascript" src="modul/stundenplan/stundenplan.min.js"></script>
 
 <?php else : ?>
 

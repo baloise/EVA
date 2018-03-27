@@ -132,7 +132,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/als/als.js"></script>
+    <script type="text/javascript" src="modul/als/als.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 4 || $session_usergroup == 5) : ?>
@@ -271,7 +271,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/als/als.js"></script>
+    <script type="text/javascript" src="modul/als/als.min.js"></script>
 
 <?php else : ?>
 

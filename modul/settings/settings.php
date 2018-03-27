@@ -186,7 +186,7 @@
     ?>;
 </script>
 
-<script src="modul/settings/settings.js"></script>
+<script src="modul/settings/settings.min.js"></script>
 <script src="modul/settings/color-picker.min.js"></script>
 <script id="colorChanges">
 

@@ -125,7 +125,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+    <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
@@ -218,7 +218,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/fachvortrag/fachvortrag.js"></script>
+    <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
 
 <?php else : //No Usergroup ?>
 

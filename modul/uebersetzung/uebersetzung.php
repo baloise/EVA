@@ -89,7 +89,7 @@
     </table>
 
 
-    <script type="text/javascript" src="modul/uebersetzung/uebersetzung.js"></script>
+    <script type="text/javascript" src="modul/uebersetzung/uebersetzung.min.js"></script>
 
 <?php else : ?>
 

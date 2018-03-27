@@ -150,7 +150,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/stao/stao.js"></script>
+    <script type="text/javascript" src="modul/stao/stao.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 4) : ?>
@@ -268,7 +268,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/stao/stao.js"></script>
+    <script type="text/javascript" src="modul/stao/stao.min.js"></script>
 
 <?php else : ?>
 
