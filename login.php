@@ -22,9 +22,28 @@
                 <hr/>
                 <h2>Currently available Keys:</h2>
                 <ul>
-                    <li>
-                        b000001 - Nachwuchsentwicklung
-                    </li>
+                    <?php
+
+                        include("database/connect.php");
+
+                        $sql = "SELECT us.bKey, gr.description FROM `tb_user` AS us
+                                INNER JOIN tb_group AS gr ON us.tb_group_ID = gr.ID";
+
+                        $result = $mysqli->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo '
+                                <li>
+                                    '.$row['bKey'].' - '.$row['description'].'
+                                </li>
+                                ';
+                            }
+                        } else {
+                            echo "None";
+                        }
+
+                    ?>
                 </ul>
             </div>
         </div>

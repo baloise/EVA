@@ -695,7 +695,8 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (257, 'Der B-Key muss aus 7 Zeichen bestehen', '', ''),
 (258, 'Bitte Gruppe auswählen', '', ''),
 (259, 'User wurde bereits mehrmal in Datenbank eingetragen', '', ''),
-(260, 'Unbekannter Befehl übergeben', '', '');
+(260, 'Unbekannter Befehl übergeben', '', ''),
+(261, 'Bearbeiten', '', '');
 
 -- --------------------------------------------------------
 
