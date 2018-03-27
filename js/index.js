@@ -25,7 +25,7 @@ function goBack(href){
             if ( status == "error" ) {
                 $('.loadScreen').fadeTo("fast", 0);
                 var msg = "makeDynamic Error";
-                alert( msg + xhr.status + " " + xhr.statusText );
+                comsole.log( msg + xhr.status + " " + xhr.statusText );
                 window.location.replace("logout.php");
             } else {
                 clearTimeout(loader);
