@@ -27,15 +27,15 @@
             $reason = test_input($_POST['reason']);
 
             if(!$title){
-                $error = $error . "Bitte Titel angeben";
+                $error = $error . "<li>" . $translate[172] . "</li>";
             }
 
             if(!$grade || $grade < 1 || $grade > 6){
-                $error = $error . "Bitte korrekte Note angeben";
+                $error = $error . "<li>" . $translate[171] . "</li>";
             }
 
             if(!$weight || $weight < 1){
-                $error = $error . "Bitte korrekte Gewichtung angeben";
+                $error = $error . "<li>" . $translate[173] . "</li>";
             }
 
             if(!$subject){
@@ -47,8 +47,9 @@
                 $sendmail = 1;
 
                 if(!$reason){
-                    $error = $error . "Bitte Begründung für Note unter 4.0 angeben";
+                    $error = $error . "<li>" . $translate[174] . "</li>";
                 }
+                
             }
 
             $stmt = $mysqli->prepare("SELECT tb_semester_ID FROM `tb_user_subject` WHERE ID = ? AND tb_user_ID = ?;");
@@ -98,6 +99,24 @@
 
             }
 
+
+        } else if($_POST['todo'] == "editGradeInForm"){
+
+            $gradeId = test_input($_POST['gradeId']);
+            $newTitle = test_input($_POST['title']);
+            $newGrade = test_input($_POST['grade']);
+            $newWeight = test_input($_POST['weight']);
+            $error = "";
+
+            if(!isset($newTitle)){
+                $error .= "<li>" . $translate[172] . "</li>";
+            }
+
+            if($error){
+                echo $error;
+            } else {
+                //TODO
+            }
 
         } else if($_POST['todo'] == "correction"){
 

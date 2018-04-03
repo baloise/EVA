@@ -360,7 +360,7 @@
                                 <td class="inFormChange titleChange" gradeId="'. $row2['ID'] .'">' . $row2['title'] . '</td>
                                 <td class="inFormChange gradeChange" gradeId="'. $row2['ID'] .'">' . $row2['grade'] . '</td>
                                 <td class="inFormChange weightChange" gradeId="'. $row2['ID'] .'">' . $row2['weighting'] . ' %</td>
-                                <td><i class="fa fa-pencil editGrade" aria-hidden="true" gradeId="'. $row2['ID'] .'" style="cursor: pointer;"></i> <span class="fa fa-trash-o delGrade" gradeId="'. $row2['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
+                                <td><i class="fa fa-pencil editGrade"  onclick="inFormChanges(this)" aria-hidden="true" gradeId="'. $row2['ID'] .'" style="cursor: pointer;"></i> <span class="fa fa-trash-o delGrade" gradeId="'. $row2['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
                             </tr>
                         ';
 

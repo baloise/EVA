@@ -1,82 +1,97 @@
-$(document).ready(function(){
+function inFormChanges(object){
 
-    $('.editGrade').each(function(){
-        $(this).click(function(){
+    var gradeId = $(object).attr('gradeId');
 
-            var gradeId = $(this).attr('gradeId');
+    if($(object).attr('save') == "true"){
 
-            $('.inFormChange').each(function(){
+        $(object).attr('save', 'false');
 
-                if($(this).attr('gradeId') == gradeId){
+        var title, grade, weight;
 
-                    var content = $(this).html();
+        $('.inFormChange').each(function(){
 
-                    var classList = $(this).attr('class');
+            if($(this).attr('gradeId') == gradeId){
 
-                    if($(this).hasClass('titleChange')){
-                        $(this).html("<input type='text' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+content+"' required/>");
-                    } else {
-                        var number = content.replace(/[^0-9\.]/g, '');
-                        $(this).html("<input type='number' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+number+"' required/>");
-                    }
+                if($(this).hasClass('titleChange')){
+                    title = $(this).val();
+                } else  if ($(this).hasClass('gradeChange')){
+                    grade = $(this).val();
+                } else  if ($(this).hasClass('weightChange')){
+                    weight = $(this).val();
+                }
+
+            }
+
+        });
+
+        alert(title + grade + weight);
+
+        $.ajax({
+            method: "POST",
+            url: "./modul/noten/modify.php",
+            data: {todo:"editGradeInForm", gradeId:gradeId, title:title, weight:weight, grade:grade},
+            success: function(data){
+
+                if(data){
+
+                    $('#errorText').html(data);
+                    $('#errorAlert').slideDown("fast");
+
+                } else {
+
+                    $('#successText').html(translate[101]);
+                    $("#successAlert").slideDown("fast").delay(1300).slideUp("slow");
+
+                    $(object).attr('save', 'false');
+
+                    $('.inFormChange').each(function(){
+
+                        if($(this).attr('gradeId') == gradeId){
+
+                            var content = $(this).find('input').val();
+                            $(this).html(content);
+
+                        }
+
+                    });
+
+                    $(object).removeClass('fa-floppy-o').addClass('fa-pencil');
 
                 }
 
-            });
+            }
+        });
 
-            $(this).removeClass('fa-pencil').addClass('fa-floppy-o');
+    } else {
 
-            $(this).click(function(){
+        $(object).attr('save', 'true');
 
-                var title, grade, weight;
+        $('.inFormChange').each(function(){
 
-                $('.inFormChange').each(function(){
+            if($(this).attr('gradeId') == gradeId){
 
-                    if($(this).attr('gradeId') == gradeId){
+                var content = $(this).html();
 
-                        if($(this).hasClass('titleChange')){
-                            title = $(this).val();
-                        } else  if ($(this).hasClass('gradeChange')){
-                            grade = $(this).val();
-                        } else  if ($(this).hasClass('weightChange')){
-                            weight = $(this).val();
-                        }
+                var classList = $(this).attr('class');
 
-                    }
+                if($(this).hasClass('titleChange')){
+                    $(this).html("<input type='text' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+content+"' required/>");
+                } else {
+                    var number = content.replace(/[^0-9\.]/g, '');
+                    $(this).html("<input type='number' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+number+"' required/>");
+                }
 
-                });
-
-                alert(title + grade + weight);
-
-                $.ajax({
-                    method: "POST",
-                    url: "./modul/noten/modify.php",
-                    data: {todo:"editGradeInForm", gradeId:gradeId, title:title, weight:weight, grade:grade},
-                    success: function(data){
-
-                        if(data){
-
-                            $('#errorText').html(data);
-                            $('#errorAlert').slideDown("fast");
-
-                        } else {
-
-                            $('#successText').html(translate[103]);
-                            $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
-
-
-
-                            });
-
-                        }
-
-                    }
-                });
-
-            });
+            }
 
         });
-    });
+
+        $(object).removeClass('fa-pencil').addClass('fa-floppy-o');
+
+    }
+
+};
+
+$(document).ready(function(){
 
     $('.corrSubAvg').each(function(){
 

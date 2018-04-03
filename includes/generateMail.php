@@ -14,7 +14,6 @@
         }
 
         $htmlMail = '
-
         <html>
             <body>
                 <table align="center" bgcolor="white" border="0" cellpadding="0" cellspacing="0">
@@ -42,7 +41,6 @@
                 </table>
             </body>
         </html>
-
         ';
 
         return $htmlMail;
