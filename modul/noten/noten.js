@@ -1,5 +1,83 @@
 $(document).ready(function(){
 
+    $('.editGrade').each(function(){
+        $(this).click(function(){
+
+            var gradeId = $(this).attr('gradeId');
+
+            $('.inFormChange').each(function(){
+
+                if($(this).attr('gradeId') == gradeId){
+
+                    var content = $(this).html();
+
+                    var classList = $(this).attr('class');
+
+                    if($(this).hasClass('titleChange')){
+                        $(this).html("<input type='text' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+content+"' required/>");
+                    } else {
+                        var number = content.replace(/[^0-9\.]/g, '');
+                        $(this).html("<input type='number' gradeId='"+gradeId+"' class='"+classList+" form-control' value='"+number+"' required/>");
+                    }
+
+                }
+
+            });
+
+            $(this).removeClass('fa-pencil').addClass('fa-floppy-o');
+
+            $(this).click(function(){
+
+                var title, grade, weight;
+
+                $('.inFormChange').each(function(){
+
+                    if($(this).attr('gradeId') == gradeId){
+
+                        if($(this).hasClass('titleChange')){
+                            title = $(this).val();
+                        } else  if ($(this).hasClass('gradeChange')){
+                            grade = $(this).val();
+                        } else  if ($(this).hasClass('weightChange')){
+                            weight = $(this).val();
+                        }
+
+                    }
+
+                });
+
+                alert(title + grade + weight);
+
+                $.ajax({
+                    method: "POST",
+                    url: "./modul/noten/modify.php",
+                    data: {todo:"editGradeInForm", gradeId:gradeId, title:title, weight:weight, grade:grade},
+                    success: function(data){
+
+                        if(data){
+
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
+
+                        } else {
+
+                            $('#successText').html(translate[103]);
+                            $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
+
+
+
+                            });
+
+                        }
+
+                    }
+                });
+
+            });
+
+        });
+    });
+
     $('.corrSubAvg').each(function(){
 
         $(this).click(function(){

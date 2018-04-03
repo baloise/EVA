@@ -335,7 +335,7 @@
                     $allWeight = 0;
 
                     $grades = $grades . '
-                        <table class="table table-responsive">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>'.$translate[57].'</th>
@@ -357,10 +357,10 @@
                         $gradeEntry = '
                             <tr gradeId="'. $row2['ID'] .'" class="gradeEntry">
                                 <td>' . date('d.m.Y', strtotime($row2['creationDate'])) . '</td>
-                                <td>' . $row2['title'] . '</td>
-                                <td>' . $row2['grade'] . '</td>
-                                <td>' . $row2['weighting'] . ' %</td>
-                                <td><span class="fa fa-trash-o delGrade" gradeId="'. $row2['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
+                                <td class="inFormChange titleChange" gradeId="'. $row2['ID'] .'">' . $row2['title'] . '</td>
+                                <td class="inFormChange gradeChange" gradeId="'. $row2['ID'] .'">' . $row2['grade'] . '</td>
+                                <td class="inFormChange weightChange" gradeId="'. $row2['ID'] .'">' . $row2['weighting'] . ' %</td>
+                                <td><i class="fa fa-pencil editGrade" aria-hidden="true" gradeId="'. $row2['ID'] .'" style="cursor: pointer;"></i> <span class="fa fa-trash-o delGrade" gradeId="'. $row2['ID'] .'" aria-hidden="true" style="cursor: pointer;"></span></td>
                             </tr>
                         ';
 
@@ -370,11 +370,11 @@
 
                     $grades = $grades . '
                             <tr>
-                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
+                                <td></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[56].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
-                                <td></td>
+                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
                                 <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
@@ -393,11 +393,11 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
+                                <td></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[56].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
-                                <td></td>
+                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
                                 <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
