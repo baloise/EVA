@@ -144,11 +144,11 @@ html {
     font-weight: 500;
 }
 .dashModul {
-	color: #1C4E9C;
+	color: var(--link);
 	min-height: 100px;
 	max-height: 100px;
 	padding: 20px;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
     cursor: pointer;
 }
 .dashModul h3 {
@@ -164,13 +164,13 @@ h3{
 }
 .dashIco {
 	max-width: 50%;
+	margin-bottom: 10px;
 	-webkit-transition: max-width 0.2s;
 	-moz-transition: max-width 0.2s;
-    max-height: 70px;
 	transition: max-width 0.2s;
 }
 .dashIco:hover {
-	max-width: 80%;
+	max-width: 60%;
 }
 #navListItem {
 	background-color: #F1F4FB;

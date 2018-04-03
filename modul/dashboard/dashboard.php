@@ -28,7 +28,7 @@
 	        echo"<div class='row' style='margin-bottom:50px;'>";
 	        while($row = $result->fetch_assoc()) {
 	            $generateDiv = '
-				<div class="col-lg-2 col-md-3 col-6">
+				<div class="col-lg-3 col-md-3 col-6">
 					<div class="dashModul" href="'. $row["file_path"] .'">
 						<div class="dashModuleIcon">
 							<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block"/>

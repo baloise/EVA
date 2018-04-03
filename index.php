@@ -40,7 +40,7 @@
 
             if (preg_match("/(Trident\/(\d{2,}|7|8|9)(.*)rv:(\d{2,}))|(MSIE\ (\d{2,}|8|9)(.*)Tablet\ PC)|(Trident\/(\d{2,}|7|8|9))/", $_SERVER["HTTP_USER_AGENT"], $match) != 0) {
 
-                echo '<link href="css/evaStyles_ie.css" rel="stylesheet">';
+                echo '<link href="css/evaStyles_ie.min.css" rel="stylesheet">';
 
             } else {
 
@@ -57,7 +57,7 @@
                             --link: '.$row["link"].';
                         }
                     </style>
-                    <link href="css/evaStyles.css" rel="stylesheet">
+                    <link href="css/evaStyles.min.css" rel="stylesheet">
                     ';
 
                 } else {
@@ -72,7 +72,7 @@
                             --link: '.$appinfo["link"].';
                         }
                     </style>
-                    <link href="css/evaStyles.css" rel="stylesheet">
+                    <link href="css/evaStyles.min.css" rel="stylesheet">
                     ';
 
                 }
