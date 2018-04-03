@@ -144,11 +144,11 @@ html {
     font-weight: 500;
 }
 .dashModul {
-	color: var(--link);
+	color: #1C4E9C;
 	min-height: 100px;
 	max-height: 100px;
 	padding: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
     cursor: pointer;
 }
 .dashModul h3 {
@@ -164,7 +164,6 @@ h3{
 }
 .dashIco {
 	max-width: 50%;
-	margin-bottom: 10px;
 	-webkit-transition: max-width 0.2s;
 	-moz-transition: max-width 0.2s;
 	transition: max-width 0.2s;
