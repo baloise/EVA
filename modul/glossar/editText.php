@@ -3,7 +3,7 @@
     include("../../includes/session.php");
     include("../../database/connect.php");
 
-    if($session_usergroup != 1){
+    if($session_usergroup != 1 && $session_usergroup != 2){
         die($translate[145]);
     }
 

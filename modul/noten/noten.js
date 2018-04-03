@@ -24,8 +24,6 @@ function inFormChanges(object){
 
         });
 
-        alert(title + grade + weight);
-
         $.ajax({
             method: "POST",
             url: "./modul/noten/modify.php",

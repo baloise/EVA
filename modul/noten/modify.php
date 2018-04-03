@@ -49,7 +49,7 @@
                 if(!$reason){
                     $error = $error . "<li>" . $translate[174] . "</li>";
                 }
-                
+
             }
 
             $stmt = $mysqli->prepare("SELECT tb_semester_ID FROM `tb_user_subject` WHERE ID = ? AND tb_user_ID = ?;");
@@ -108,6 +108,19 @@
             $newWeight = test_input($_POST['weight']);
             $error = "";
 
+            $control = 'SELECT * FROM `tb_subject_grade` AS sg
+                        INNER JOIN tb_user_subject AS usg ON sg.tb_user_subject_ID = usg.ID
+                        INNER JOIN tb_user AS us ON us.ID = usg.tb_user_ID
+                        WHERE us.ID = ? AND sg.ID = ?';
+            $stmt = $mysqli->prepare($control);
+            $stmt->bind_param("ii", $session_userid, $gradeId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if(!$result->fetch_array(MYSQLI_NUM)){
+                $error = $error . "Berechtigungsfehler";
+            }
+
             if(!isset($newTitle)){
                 $error .= "<li>" . $translate[172] . "</li>";
             }
@@ -115,7 +128,11 @@
             if($error){
                 echo $error;
             } else {
-                //TODO
+
+                $stmt = $mysqli->prepare('UPDATE `tb_subject_grade` SET `title` = ?, `grade` = ?, `weighting` = ? WHERE `tb_subject_grade`.`ID` = ?;');
+                $stmt->bind_param("sdii", $newTitle, $newGrade, $newWeight, $gradeId);
+                $stmt->execute();
+
             }
 
         } else if($_POST['todo'] == "correction"){
