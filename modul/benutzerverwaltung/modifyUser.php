@@ -71,7 +71,7 @@
 
                         $userInfoArray = loadPerson($bkey);
 
-                        if(isset($userInfoArray)){
+                        if(isset($userInfoArray['firstname']) || isset($userInfoArray['lastname'])){
 
                             $stmt = $mysqli->prepare("REPLACE INTO `tb_user` (`bKey`, `tb_group_ID`, `firstname`, `lastname`, `mail`) VALUES (?, ?, ?, ?, ?);");
                             $stmt->bind_param("sssss", $bkey, $group, $userInfoArray['firstname'], $userInfoArray['lastname'], $userInfoArray['email']);
