@@ -827,6 +827,7 @@ ALTER TABLE `tb_group`
 --
 ALTER TABLE `tb_ind_design`
   ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `tb_user_ID_2` (`tb_user_ID`),
   ADD KEY `tb_user_ID` (`tb_user_ID`);
 
 --

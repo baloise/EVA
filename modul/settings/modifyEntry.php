@@ -28,19 +28,7 @@
 
         if($_POST['doEntry'] == "changeColor"){
 
-            $sql = "SELECT * FROM `tb_ind_design` WHERE tb_user_ID = $session_userid;";
-
-            $result = $mysqli->query($sql);
-
-            if (isset($result) && $result->num_rows >= 1) {
-
-                $stmt = $mysqli->prepare("UPDATE `tb_ind_design` SET akzentfarbe = ?, hintergrund = ?, link = ?, schrift = ? WHERE tb_user_ID = ?");
-
-            } else {
-
-                $stmt = $mysqli->prepare("INSERT INTO `tb_ind_design` VALUES ('NULL', ?, ?, ?, ?, ?);");
-
-            }
+            $stmt = $mysqli->prepare("REPLACE INTO `tb_ind_design` VALUES ('NULL', ?, ?, ?, ?, ?);");
 
             $akzentfarbe = test_input($_POST['akzentfarbe']);
             $hintergrund = test_input($_POST['hintergrund']);
