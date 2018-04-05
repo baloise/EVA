@@ -28,7 +28,7 @@
 
         if($_POST['doEntry'] == "changeColor"){
 
-            $stmt = $mysqli->prepare("REPLACE INTO `tb_ind_design` VALUES ('NULL', ?, ?, ?, ?, ?);");
+            $stmt = $mysqli->prepare("REPLACE INTO `tb_ind_design` VALUES (NULL, ?, ?, ?, ?, ?);");
 
             if ( false===$stmt ) {
                 die('prepare() failed: ' . htmlspecialchars($mysqli->error));
