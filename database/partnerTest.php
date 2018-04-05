@@ -9,7 +9,7 @@
     $bkey = $_GET['bkey'];
 
     try {
-        print_r(formatAddress(loadPerson($bkey)));
+        print_r((loadPerson($bkey)));
     } catch(Exception $e) {
         print_r($e);
     }
