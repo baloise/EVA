@@ -1,12 +1,17 @@
 <?php
 
     if(!isset($_SESSION['user'])){
+
         session_start();
+
     }
 
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-        header("Location: ./logout.php");
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
+
+        session_destroy();
+        echo '<script type="text/javascript">parent.window.location.reload();</script>';
         exit();
+
     } else {
 
         session_regenerate_id();
@@ -18,7 +23,7 @@
             $session_username = $_SESSION['user']['username'];
             $session_userid = $_SESSION['user']['id'];
             $session_usergroup = $_SESSION['user']['usergroup'];
-            $session_language =$_SESSION['user']['language'];
+            $session_language = $_SESSION['user']['language'];
             $translate = $_SESSION['translations'];
             $session_semesterid = $_SESSION['user']['semester'];
 
