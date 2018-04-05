@@ -416,8 +416,8 @@ CREATE TABLE `tb_text` (
 --
 
 INSERT INTO `tb_text` (`ID`, `type`, `tb_group_ID`, `de`, `it`, `fr`) VALUES
-(1, 'reglement', 3, '', 'OK', 'OHJE'),
-(2, 'reglement', 4, 'null', NULL, NULL),
+(1, 'reglement', 3, 'modul/reglement/upload/demo.pdf', 'modul/reglement/upload/demo.pdf', 'modul/reglement/upload/demo.pdf'),
+(2, 'reglement', 4, 'modul/reglement/upload/demo.pdf', 'modul/reglement/upload/demo.pdf', 'modul/reglement/upload/demo.pdf'),
 (3, 'glossar', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -696,7 +696,8 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (258, 'Bitte Gruppe auswählen', '', ''),
 (259, 'User wurde bereits mehrmal in Datenbank eingetragen', '', ''),
 (260, 'Unbekannter Befehl übergeben', '', ''),
-(261, 'Bearbeiten', '', '');
+(261, 'Bearbeiten', '', ''),
+(262, 'Neues Dokument hochladen (PDF):', '', '');
 
 -- --------------------------------------------------------
 

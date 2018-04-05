@@ -1,79 +1,24 @@
 $(document).ready(function(){
 
-    var group;
-    var lang;
-    var textID;
-
     $('.openReg').each(function(){
-
-        $(this).click(function(){
-
-            $('#textareaContent').html("");
-
-            $('#textareaContent').slideUp('fast');
-            $('#safeRegChange').slideUp('fast');
+        $(this).click(function(event){
 
             event.preventDefault();
 
-            group = $(this).attr('group');
-            lang = $(this).attr('lang');
+            var group = $(this).attr('group');
+            var lang = $(this).attr('lang');
 
-            $.ajax({
-                method: "POST",
-                url: "./modul/reglement/load.php",
-                data: {group:group, lang:lang},
-                success: function(data){
-                    if(data){
+            $('.toggableReg').each(function(){
 
-                        var arrayContent = JSON.parse(data);
-                        textID = arrayContent[0];
-
-                        $('#textareaContent').html('<textarea style="height: 1500px;" name="RegContent" id="RegContent">' + arrayContent[1] + '</textarea><br/>');
-
-                    } else {
-
-                        $('#textareaContent').html('<textarea style="height: 1500px;" name="RegContent" id="RegContent">Noch kein Inhalt...</textarea><br/>');
-
-                    }
-
-                    CKEDITOR.replace( "RegContent" );
-                    $('#textareaContent').slideDown('fast');
-                    $('#safeRegChange').slideDown('fast');
-                    $('#safeRegChange').attr('groupID', group);
-                    $('#safeRegChange').attr('langID', lang);
-
+                if($(this).attr('lang') == lang && $(this).attr('group') == group){
+                    $(this).slideToggle('fast');
+                } else {
+                    $(this).slideUp('fast');
                 }
+
             });
 
         });
-
-    });
-
-    $('#safeRegChange').click(function(){
-
-        contents = CKEDITOR.instances.RegContent.getData();
-
-        $.ajax({
-            method: "POST",
-            url: "./modul/reglement/change.php",
-            data: {lang:lang, contents:contents, textID:textID},
-            success: function(data){
-                if(data){
-
-                    $('#errorText').html(data);
-                    $('#errorAlert').slideDown("fast");
-
-                } else {
-
-                    $('#successText').html(translate[101]);
-                    $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
-
-                }
-
-
-            }
-        });
-
     });
 
 });
