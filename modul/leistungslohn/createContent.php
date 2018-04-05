@@ -6,6 +6,114 @@
 
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
+        //General Contents
+
+        function calcActualSalary($w1, $cycle){
+
+            //Lohn 1. Cycle -> IT
+            if($cycle == 1){
+
+                if($w1*100 < 70){
+                    return 1200;
+                } else if ($w1*100 < 72.99){
+                    return 1250;
+                } else if ($w1*100 < 75.99){
+                    return 1300;
+                } else if ($w1*100 < 78.99){
+                    return 1350;
+                } else if ($w1*100 < 81.99){
+                    return 1400;
+                } else if ($w1*100 < 84.99){
+                    return 1450;
+                } else if ($w1*100 >= 85){
+                    return 1500;
+                }
+
+            //Lohn 2. Cycle -> IT
+            } else if ($cycle == 2){
+
+                if($w1*100 < 70){
+                    return 1300;
+                } else if ($w1*100 < 72.99){
+                    return 1250;
+                } else if ($w1*100 < 75.99){
+                    return 1300;
+                } else if ($w1*100 < 78.99){
+                    return 1350;
+                } else if ($w1*100 < 81.99){
+                    return 1400;
+                } else if ($w1*100 < 84.99){
+                    return 1450;
+                } else if ($w1*100 >= 85){
+                    return 1500;
+                }
+
+            //Lohn 3. Cycle -> IT
+            } else if ($cycle == 3){
+
+
+                if($w1*100 < 70){
+                    return 1400;
+                } else if ($w1*100 < 72.99){
+                    return 1250;
+                } else if ($w1*100 < 75.99){
+                    return 1300;
+                } else if ($w1*100 < 78.99){
+                    return 1350;
+                } else if ($w1*100 < 81.99){
+                    return 1400;
+                } else if ($w1*100 < 84.99){
+                    return 1450;
+                } else if ($w1*100 >= 85){
+                    return 1500;
+                }
+
+            //Lohn 4. Cycle -> KV
+            } else if ($cycle == 4){
+
+
+                if($w1*100 < 70){
+                    return 1200;
+                } else if ($w1*100 < 72.99){
+                    return 1250;
+                } else if ($w1*100 < 75.99){
+                    return 1300;
+                } else if ($w1*100 < 78.99){
+                    return 1350;
+                } else if ($w1*100 < 81.99){
+                    return 1400;
+                } else if ($w1*100 < 84.99){
+                    return 1450;
+                } else if ($w1*100 >= 85){
+                    return 1600;
+                }
+
+            //Lohn 4. Cycle -> KV
+            } else if ($cycle == 5){
+
+
+                if($w1*100 < 70){
+                    return 1200;
+                } else if ($w1*100 < 72.99){
+                    return 1250;
+                } else if ($w1*100 < 75.99){
+                    return 1300;
+                } else if ($w1*100 < 78.99){
+                    return 1350;
+                } else if ($w1*100 < 81.99){
+                    return 1400;
+                } else if ($w1*100 < 84.99){
+                    return 1450;
+                } else if ($w1*100 >= 85){
+                    return 1600;
+                }
+
+            } else {
+                return 0;
+            }
+
+        }
+
         //Generate IT-Contents
         function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
 
@@ -173,24 +281,6 @@
             return $entry;
 
         };
-
-        function calcActualSalaryIT($w1){
-            if($w1*100 < 70){
-                return 1200;
-            } else if ($w1*100 < 72.99){
-                return 1250;
-            } else if ($w1*100 < 75.99){
-                return 1300;
-            } else if ($w1*100 < 78.99){
-                return 1350;
-            } else if ($w1*100 < 81.99){
-                return 1400;
-            } else if ($w1*100 < 84.99){
-                return 1450;
-            } else if ($w1*100 >= 85){
-                return 1500;
-            }
-        }
 
         function cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate){
 
@@ -399,7 +489,7 @@
                 }
             }
 
-            $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
+            $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
             echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
 
@@ -588,26 +678,7 @@
 
         };
 
-        function calcActualSalaryLKVB($w1){
-
-            if($w1*100 < 70){
-                return 1200;
-            } else if ($w1*100 < 72.99){
-                return 1250;
-            } else if ($w1*100 < 75.99){
-                return 1300;
-            } else if ($w1*100 < 78.99){
-                return 1350;
-            } else if ($w1*100 < 81.99){
-                return 1400;
-            } else if ($w1*100 < 84.99){
-                return 1450;
-            } else if ($w1*100 >= 85){
-                return 1600;
-            }
-
-        }
-
+        //Cycles and Calculations
 
         if($session_usergroup == 1){
             $userID = $_POST['userID'];
@@ -615,7 +686,7 @@
             $userID = $session_userid;
         }
 
-        // --------------------------------- CYCLE 1 ------------------------------------------
+        // --------------------------------- CYCLE IT 1 ------------------------------------------
         if($_POST['cycleID'] == 1){
 
             $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
@@ -696,13 +767,13 @@
                 $cycleTotalPercentAverage = 0;
             }
 
-            $actualSalary = calcActualSalaryIT($cycleTotalPercentAverage);
+            $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
             echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
 
         }
 
-        // --------------------------------- CYCLE 2&3 ------------------------------------------
+        // --------------------------------- CYCLE IT 2&3 ------------------------------------------
 
         if($_POST['cycleID'] == 2){
 
@@ -720,7 +791,7 @@
 
         }
 
-        // --------------------------------- CYCLE 4 AND 5 ------------------------------------------
+        // --------------------------------- CYCLE KV 4 AND 5 ------------------------------------------
         if($_POST['cycleID'] == 4 || $_POST['cycleID'] == 5){
 
 
@@ -808,7 +879,7 @@
                 $cycleTotalPercentAverage = 0;
             }
 
-            $actualSalary = calcActualSalaryLKVB($cycleTotalPercentAverage);
+            $actualSalary = calcActualSalary($cycleTotalPercentAverage);
 
             echo generateEntryLKVB($actualSalary, $cycleTotalPercentAverage, $cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $semesterList, $translate);
 
