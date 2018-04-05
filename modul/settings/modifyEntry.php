@@ -30,13 +30,24 @@
 
             $stmt = $mysqli->prepare("REPLACE INTO `tb_ind_design` VALUES ('NULL', ?, ?, ?, ?, ?);");
 
+            if ( false===$stmt ) {
+                die('prepare() failed: ' . htmlspecialchars($mysqli->error));
+            }
+
             $akzentfarbe = test_input($_POST['akzentfarbe']);
             $hintergrund = test_input($_POST['hintergrund']);
             $link = test_input($_POST['link']);
             $schrift = test_input($_POST['schrift']);
 
-            $stmt->bind_param('ssssi', $akzentfarbe, $hintergrund, $link, $schrift,$session_userid);
-            $stmt->execute();
+            $rc = $stmt->bind_param('ssssi', $akzentfarbe, $hintergrund, $link, $schrift,$session_userid);
+            if ( false===$rc ) {
+                die('bind_param() failed: ' . htmlspecialchars($stmt->error));
+            }
+
+            $rc = $stmt->execute();
+            if ( false===$rc ) {
+                die('execute() failed: ' . htmlspecialchars($stmt->error));
+            }
 
         }
 
