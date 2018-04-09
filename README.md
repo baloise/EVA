@@ -24,3 +24,14 @@ Es besteht die Möglichkeit, das Tool im gegenwärtigen Zustand eigenständig zu
 4. App im Browser aufrufen. Bei korrekter Konfiguration sollte sich die DB von alleine initialisieren. Ansonsten unter `database/connect.php` einstellen.
 
 Es besteht die Möglichkeit einer individuellen, auf die Bedürfnisse und Anforderungen des Betriebs angepassten Version des Tools. [-> Kontaktaufnahme](https://eliareutlinger.ch/#contact)
+
+# Impressionen
+
+Dashboard:
+![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/dashboard.PNG)
+
+Benutzerverwaltung:
+![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/benutzer.PNG)
+
+Lohnberechnung:
+![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/leistungslohn.PNG)
