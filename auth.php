@@ -76,6 +76,9 @@
                     $appinfo = $result->fetch_assoc();
                 }
 
+                $updateLoginStamp = "UPDATE `tb_user` SET lastLogin=now() WHERE ID = ". $row['id'].";";
+                $mysqli->query($updateLoginStamp);
+
                 $_SESSION['appinfo'] = $appinfo;
 
                 header("Location: index.php");
