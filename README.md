@@ -23,4 +23,4 @@ Es besteht die Möglichkeit, das Tool im gegenwärtigen Zustand eigenständig zu
 3. Daten ins XAMPP Web-Verzeichnis kopieren & XAMPP Apache, MySql & Mercury starten
 4. App im Browser aufrufen. Bei korrekter Konfiguration sollte sich die DB von alleine initialisieren. Ansonsten unter `database/connect.php` einstellen.
 
-Es besteht die Möglichkeit einer individuellen, auf die Bedürfnisse und Anforderungen des Betriebs angepasste Version des Tools. [-> Kontaktaufnahme](https://eliareutlinger.ch/#contact)
+Es besteht die Möglichkeit einer individuellen, auf die Bedürfnisse und Anforderungen des Betriebs angepassten Version des Tools. [-> Kontaktaufnahme](https://eliareutlinger.ch/#contact)
