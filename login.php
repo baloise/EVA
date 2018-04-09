@@ -65,21 +65,31 @@
         <body>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
+                    <br/><br/>
+                    <hr/>
                         <div class="error-template">
                             <h1>
                                 Oops!</h1>
-                            <h2>
-                                There was an Error:</h2>
+                            <b>
+                                There was an Error:</b>
                             <div class="error-details">
-                                '.$reason.'
+                                <h2>'.$reason.'</h2><br/>
+                                Be sure to provide this Error-Message in the Contact-Form below, if you\'d like to get support:
                             </div>
                         </div>
                     </div>
                 </div>
+
+        ';
+
+        include("modul/kontakt/kontakt.php");
+
+        echo '
             </div>
         </body>
         ';
+
     }
 
     //Prüfen, ob Token verfügbar ist
@@ -96,7 +106,7 @@
     //Error aus Überprüfung ausgeben
     if(isset($_GET['error'])){
         if ($_GET['error'] == "userNotFound"){
-            error("You Key doesn't exist in our database");
+            error("Your Key isn't registered yet");
             die();
         }
         if ($_GET['error'] == "userDeleted"){
