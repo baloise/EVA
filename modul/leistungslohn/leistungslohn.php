@@ -173,7 +173,7 @@
 
                         $usersEntry = '
                             <div class="row searchRow">
-                                <div class="col-lg-12 card bg-color">
+                                <div class="col-lg-12 card" style="background-color: #f9f9f9">
                                     <div class="row userHeader" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
                                         <div class="col-10">
                                             <h2 class="searchFor">'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
