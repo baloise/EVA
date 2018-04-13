@@ -21,7 +21,7 @@
 
     if(strtolower(pathinfo($uploadfile,PATHINFO_EXTENSION)) != "pdf"){
         echo "The File you uploaded doesn't end on .pdf<br/>";
-        echo "Failed to transmit Data. <a href='". $_SERVER['HTTP_REFERER']."' >Go Back</a>";
+        echo "Failed to transmit Data. <a onclick='window.history.back();'>Go Back</a>";
         die();
     }
 

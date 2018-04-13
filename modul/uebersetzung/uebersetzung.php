@@ -37,7 +37,11 @@
                         $trClass = 'class="accordion-toggle searchRow"';
 
                         if($row['it'] == "" || $row['fr'] == ""){
-                            $trClass = 'class="alert-warning accordion-toggle searchRow"';
+                            if($row['it'] == "" && $row['fr'] == ""){
+                                $trClass = 'class="alert-danger accordion-toggle searchRow"';
+                            } else {
+                                $trClass = 'class="alert-warning accordion-toggle searchRow"';
+                            }
                         }
 
                         echo '

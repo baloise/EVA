@@ -96,7 +96,15 @@
                 <nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top" id="slideMe" style="display: none;">
                     <div class="container">
                         <a class="navbar-brand" href="modul/dashboard/dashboard.php">
-                            <img src="<?php echo $appinfo["logo_path"];?>" width="<?php echo $appinfo["logo_width"];?>" alt="Logo">
+                            <img src="
+                            <?php
+                                if(isset($appinfo["logo_path_".$session_language])){
+                                    echo $appinfo["logo_path_".$session_language];
+                                } else {
+                                    echo $appinfo["logo_path_de"];
+                                }
+                            ?>
+                            " width="<?php echo $appinfo["logo_width"];?>" alt="Logo">
                             <span style="margin-left:20px;"><?php echo $appinfo["title"];?></span>
                         </a>
                         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
