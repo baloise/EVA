@@ -3,192 +3,93 @@
     include("../../includes/session.php");
     include("./../../database/connect.php");
 
-    $error = "";
-
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
-        //ALS-Verhaltensziele
+        function fetchColumn( $result, $column = 0 ) {
+            return array_column(mysqli_fetch_all($result), $column);
+        }
+
+        function averagePoints( $points, $maxPoints, $rowMapper = null) {
+            $rowMapper = $rowMapper == null ?  function($p) { return $p;} : $rowMapper;
+            $points = array_map ($rowMapper, $points);
+            $sum = array_sum($points);
+            return  $sum == 0 ? null : ($sum / count($points)) / $maxPoints;
+        }
+
+        //ALS-Verhaltensziele fuer Lehrling KV
         function LKVBcalcBehavior($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance IS NULL;";
+            $sql = "SELECT points FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance IS NULL;";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 54);
 
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['points'];
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms)/54);
-                }
-
-            }
         }
 
         //ÜK
         function LKBcalcUek($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT * FROM `tb_uek` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + ($row['grade']-1)/5;
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms));
-                }
-
-            }
+            $sql = "SELECT grade FROM `tb_uek` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 1, function($grade){return ($grade-1)/5;});
 
         }
 
         //ALS-Leistungsziele
         function LKVBcalcPerform($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT * FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['points'];
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms)/54);
-                }
-
-            }
+            $sql = "SELECT points FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 54);
 
         }
 
         //PE
         function LKVcalcPe($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT * FROM `tb_pe` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['points'];
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms)/72);
-                }
-
-            }
+            $sql = "SELECT points FROM `tb_pe` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 72);
 
         }
 
         //Stao
         function LKVcalcStao($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT * FROM `tb_stao` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['points'];
-                    $countForms = $countForms + 1;
-
-                }
-
-                if($countPoints > 0){
-                    return (($countPoints/$countForms)/100);
-                }
-
-            }
+            $sql = "SELECT points FROM `tb_stao` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 100);
 
         }
 
-        //
+        //Fach ausrechnen
         function calculateSubject($subjectID, $mysqli){
 
             $sql = "SELECT grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $subjectID";
-            $result = $mysqli->query($sql);
-
-            $grades = 0;
-            $weights = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-
-                    $grades = $grades + $row['grade'];
-                    $weights = $weights + $row['weighting'];
-
-                }
-
-                return (($grades/$weights)*100);
-
-            }
+            $grades = fetchColumn($mysqli->query($sql));
+            $weights = fetchColumn($mysqli->query($sql), 1);
+            return array_sum($grades) / array_sum($weights) * 100;
 
         }
 
         //Verhaltensziele
         function LITcalculateBehavior($semesterID, $userID, $mysqli){
 
-            //TODO Alle Verhaltensziele-Einträge des Users X im Semester Y zusammenzählen & Durchschnitt returnen (in Prozent von 72)
             $sql = "SELECT points FROM `tb_behaviorgrade` WHERE tb_semester_ID = $semesterID AND tb_userLL_ID = $userID;";
-
-            $result = $mysqli->query($sql);
-
-            $countPoints = 0;
-            $countForms = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $countPoints = $countPoints + $row['points'];
-                    $countForms = $countForms + 1;
-
-                }
-
-                return (($countPoints/$countForms)/72);
-
-            }
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 72);
 
         }
+
+        //Fachvortrag
+        function LITcalculatePresentation($semesterID, $userID, $mysqli){
+
+            $sql = "SELECT points FROM `tb_presentation` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
+            $points = fetchColumn($mysqli->query($sql));
+            return averagePoints($points, 1, function($point){return $point/72;});
+
+        }
+
+        //echo LITcalculatePresentation(26, 4, $mysqli);
 
         //Terminmanagement
         function calculateDeadline($semesterID, $userID, $mysqli){
@@ -228,12 +129,13 @@
                 $passes = $countDeadlines - $countUserChecks;
 
                 if($countDeadlines > 0){
-                    if($passes == 0){
-                        return 1;
-                    } else if($passes == 1){
-                        return 0.5;
-                    } else if($passes > 1){
-                        return 0;
+                    switch ($passes) {
+                        case 0:
+                            return 1;
+                        case 1:
+                            return 0.5;
+                        default :
+                            return 0;
                     }
                 } else {
                     return -1;
@@ -252,7 +154,7 @@
             $LKVBdeadline = calculateDeadline($semesterID, $userID, $mysqli);
 
             if($LKVBbehavior != 0 && $LKVBdeadline >=0){
-                return ((($LKVBdeadline) + ($LKVBbehavior*2))/3);
+                return ( $LKVBdeadline + $LKVBbehavior*2 )/3;
             } else if ($LKVBdeadline >=0) {
                 return ($LKVBdeadline);
             } else if ($LKVBbehavior != 0) {
@@ -282,38 +184,11 @@
 
         }
 
-        //Fachvortrag
-        function LITcalculatePresentation($semesterID, $userID, $mysqli){
-
-            $sql = "SELECT points FROM `tb_presentation` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
-            $result = $mysqli->query($sql);
-
-            $countPercentage = 0;
-            $countPresentations = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-
-                while($row = $result->fetch_assoc()) {
-
-                    $points = $row['points'];
-                    $countPercentage = $countPercentage + ($points / 72);
-                    $countPresentations = $countPresentations + 1;
-
-                }
-
-                if($countPercentage != 0){
-                    return ($countPercentage/$countPresentations);
-                };
-
-            }
-
-        }
-
         //Notenschnitt Informatik-Module
         function LITcalculateModule($semesterID, $userID, $mysqli){
 
             $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 0 AND tb_semester_ID = $semesterID;";
-			      $result = $mysqli->query($sql);
+			$result = $mysqli->query($sql);
 
             $countPercentage = 0;
             $countSubjects = 0;

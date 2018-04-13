@@ -7,50 +7,48 @@
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
         //General Contents
-
         function calcActualSalary($w1, $cycle){
 
             //Lohn 1. Cycle -> IT
             if($cycle == 1){
 
                 if($w1*100 < 70){
-                    return 1200;
-                } else if ($w1*100 < 72.99){
-                    return 1250;
-                } else if ($w1*100 < 75.99){
                     return 1300;
-                } else if ($w1*100 < 78.99){
+                } else if ($w1*100 < 72.99){
                     return 1350;
-                } else if ($w1*100 < 81.99){
+                } else if ($w1*100 < 75.99){
                     return 1400;
-                } else if ($w1*100 < 84.99){
+                } else if ($w1*100 < 78.99){
                     return 1450;
-                } else if ($w1*100 >= 85){
+                } else if ($w1*100 < 81.99){
                     return 1500;
+                } else if ($w1*100 < 84.99){
+                    return 1550;
+                } else if ($w1*100 >= 85){
+                    return 1600;
                 }
 
             //Lohn 2. Cycle -> IT
             } else if ($cycle == 2){
 
                 if($w1*100 < 70){
-                    return 1300;
-                } else if ($w1*100 < 72.99){
-                    return 1250;
-                } else if ($w1*100 < 75.99){
-                    return 1300;
-                } else if ($w1*100 < 78.99){
-                    return 1350;
-                } else if ($w1*100 < 81.99){
                     return 1400;
-                } else if ($w1*100 < 84.99){
+                } else if ($w1*100 < 72.99){
                     return 1450;
-                } else if ($w1*100 >= 85){
+                } else if ($w1*100 < 75.99){
                     return 1500;
+                } else if ($w1*100 < 78.99){
+                    return 1550;
+                } else if ($w1*100 < 81.99){
+                    return 1600;
+                } else if ($w1*100 < 84.99){
+                    return 1650;
+                } else if ($w1*100 >= 85){
+                    return 1900;
                 }
 
             //Lohn 3. Cycle -> IT
             } else if ($cycle == 3){
-
 
                 if($w1*100 < 70){
                     return 1400;
@@ -108,6 +106,16 @@
                     return 1600;
                 }
 
+            } else {
+                return 0;
+            }
+
+        }
+
+        function calcNeededAverages($c1, $c2){
+
+            if($c1 != 0){
+                return ($c2 / $c1);
             } else {
                 return 0;
             }
@@ -350,29 +358,10 @@
                 }
             }
 
-            if($semesterCountInformatik != 0){
-                $cycleTotalItY3 = ($cycleTotalItPercent / $semesterCountInformatik);
-            } else {
-                $cycleTotalItY3 = 0;
-            }
-
-            if($semesterCountSchool != 0){
-                $cycleTotalSchoolY3 = ($cycleTotalSchoolPercent / $semesterCountSchool);
-            } else {
-                $cycleTotalSchoolY3 = 0;
-            }
-
-            if($semesterCountBetrieb != 0){
-                $cycleTotalBetriebY3 = ($cycleTotalBetriebPercent / $semesterCountBetrieb);
-            } else {
-                $cycleTotalBetriebY3 = 0;
-            }
-
-            if($semesterCountSemester != 0){
-                $cycleTotalPercentY3 = ($cycleTotalPercent / $semesterCountSemester);
-            } else {
-                $cycleTotalPercentY3 = 0;
-            }
+            $cycleTotalItY3 = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
+            $cycleTotalSchoolY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
+            $cycleTotalBetriebY3 = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
+            $cycleTotalPercentY3 = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
 
             //-------------------------------------------- Zwei drittel berechnen --------------------------------------------
 
@@ -427,7 +416,7 @@
                     }
 
                 }
-            }
+            } 
 
             //Informatik Durschnitt berechnen
             if($cycleTotalItY3 != 0){
@@ -437,11 +426,7 @@
                     $cycleTotalItPercentAverage = $cycleTotalItY3;
                 }
             } else {
-                if($semesterCountInformatik != 0){
-                    $cycleTotalItPercentAverage = (($cycleTotalItPercent/$semesterCountInformatik));
-                } else {
-                    $cycleTotalItPercentAverage = 0;
-                }
+                $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
             }
 
             //Schulnoten Durchschnitt berechnen
@@ -452,11 +437,7 @@
                     $cycleTotalSchoolPercentAverage = $cycleTotalSchoolY3;
                 }
             } else {
-                if($semesterCountSchool != 0){
-                    $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolPercent/$semesterCountSchool));
-                } else {
-                    $cycleTotalSchoolPercentAverage = 0;
-                }
+                $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
             }
 
             //Betrieb Durchschnitt berechnen
@@ -467,11 +448,7 @@
                     $cycleTotalBetriebPercentAverage = $cycleTotalBetriebY3;
                 }
             } else {
-                if($semesterCountBetrieb != 0){
-                    $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebPercent/$semesterCountBetrieb));
-                } else {
-                    $cycleTotalBetriebPercentAverage = 0;
-                }
+                $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
             }
 
             //Gesamtdurchschnitt berechnen
@@ -482,11 +459,7 @@
                     $cycleTotalPercentAverage = $cycleTotalPercentY3;
                 }
             } else {
-                if($semesterCountSemester != 0){
-                    $cycleTotalPercentAverage = (($cycleTotalPercent/$semesterCountSemester));
-                } else {
-                    $cycleTotalPercentAverage = 0;
-                }
+                $cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
             }
 
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
@@ -494,7 +467,6 @@
             echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
 
         }
-
 
         //Generate LKVB-Contents
         function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
@@ -743,29 +715,10 @@
                 }
             }
 
-            if($semesterCountInformatik != 0){
-                $cycleTotalItPercentAverage = ($cycleTotalItPercent / $semesterCountInformatik);
-            } else {
-                $cycleTotalItPercentAverage = 0;
-            }
-
-            if($semesterCountSchool != 0){
-                $cycleTotalSchoolPercentAverage = ($cycleTotalSchoolPercent / $semesterCountSchool);
-            } else {
-                $cycleTotalSchoolPercentAverage = 0;
-            }
-
-            if($semesterCountBetrieb != 0){
-                $cycleTotalBetriebPercentAverage = ($cycleTotalBetriebPercent / $semesterCountBetrieb);
-            } else {
-                $cycleTotalBetriebPercentAverage = 0;
-            }
-
-            if($semesterCountSemester != 0){
-                $cycleTotalPercentAverage = ($cycleTotalPercent / $semesterCountSemester);
-            } else {
-                $cycleTotalPercentAverage = 0;
-            }
+            $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
+            $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
+            $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
+            $cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
 
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
@@ -793,8 +746,6 @@
 
         // --------------------------------- CYCLE KV 4&5 ------------------------------------------
         if($_POST['cycleID'] == 4 || $_POST['cycleID'] == 5){
-
-
 
             if($_POST['cycleID'] == 4){
                 $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
@@ -826,60 +777,41 @@
                     $malusResult = $mysqli->query($malusSql);
                     if (isset($malusResult) && $malusResult->num_rows > 0) {
                         while($malusRow = $malusResult->fetch_assoc()) {
-                            $malus = $malus + $malusRow["weight"];
+                            $malus += $malusRow["weight"];
                         }
                     }
 
-                    $semesterList = $semesterList . generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
+                    $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
 
                     if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPercent = $cycleTotalPercent + (LKVBcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
-                        $semesterCountTotal = $semesterCountTotal + 1;
+                        $cycleTotalPercent += (LKVBcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
+                        $semesterCountTotal += 1;
                     }
 
                     if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalPerformPercent = $cycleTotalPerformPercent + LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli);
-                        $semesterCountPerform = $semesterCountPerform + 1;
+                        $cycleTotalPerformPercent += LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli);
+                        $semesterCountPerform += 1;
                     }
 
                     if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli);
-                        $semesterCountSchool = $semesterCountSchool + 1;
+                        $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli);
+                        $semesterCountSchool += 1;
                     }
 
                     if(LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli) != 0){
-                        $cycleTotalBehavePercent = $cycleTotalBehavePercent + LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli);
-                        $semesterCountBehave = $semesterCountBehave + 1;
+                        $cycleTotalBehavePercent += LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli);
+                        $semesterCountBehave += 1;
                     }
 
                 }
             }
 
-            if($semesterCountPerform != 0){
-                $cycleTotalPerformPercentAverage = $cycleTotalPerformPercent / $semesterCountPerform;
-            } else {
-                $cycleTotalPerformPercentAverage = 0;
-            }
+            $cycleTotalPerformPercentAverage = calcNeededAverages($semesterCountPerform, $cycleTotalPerformPercent);
+            $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
+            $cycleTotalBehavePercentAverage = calcNeededAverages($semesterCountBehave, $cycleTotalBehavePercent);
+            $cycleTotalPercentAverage = calcNeededAverages($semesterCountTotal, $cycleTotalPercent);
 
-            if($semesterCountSchool != 0){
-                $cycleTotalSchoolPercentAverage = $cycleTotalSchoolPercent / $semesterCountSchool;
-            } else {
-                $cycleTotalSchoolPercentAverage = 0;
-            }
-
-            if($semesterCountBehave != 0){
-                $cycleTotalBehavePercentAverage = $cycleTotalBehavePercent / $semesterCountBehave;
-            } else {
-                $cycleTotalBehavePercentAverage = 0;
-            }
-
-            if($semesterCountTotal != 0){
-                $cycleTotalPercentAverage = $cycleTotalPercent / $semesterCountTotal;
-            } else {
-                $cycleTotalPercentAverage = 0;
-            }
-
-            $actualSalary = calcActualSalary($cycleTotalPercentAverage);
+            $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
             echo generateEntryLKVB($actualSalary, $cycleTotalPercentAverage, $cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $semesterList, $translate);
 
