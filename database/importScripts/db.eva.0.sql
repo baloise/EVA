@@ -60,7 +60,7 @@ CREATE TABLE `tb_appinfo` (
 --
 
 INSERT INTO `tb_appinfo` (`id`, `title`, `title_short`, `description`, `db_version`, `logo_path`, `logo_width`, `hintergrund`, `akzentfarbe`, `schrift`, `link`, `mail_support`, `mail_hr`) VALUES
-(2, 'Cash Calculator', 'cashcalculator', 'Evaluation-Tool for trainees', 1, 'img/basler_logo.svg', 150, '#ffffff', '#F1F4FB', '#333333', '#1C4E9C', 'mail@eliareutlinger.ch', 'mail@eliareutlinger.ch');
+(1, 'Eva', 'Eva', 'Evaluation-Tool for trainees', 1, 'img/basler_logo.svg', 150, '#ffffff', '#F1F4FB', '#333333', '#1C4E9C', 'bill.gates@foo.com', 'bill.gates@foo.com');
 
 -- --------------------------------------------------------
 
@@ -697,7 +697,17 @@ INSERT INTO `tb_translation` (`ID`, `de`, `it`, `fr`) VALUES
 (259, 'User wurde bereits mehrmal in Datenbank eingetragen', '', ''),
 (260, 'Unbekannter Befehl übergeben', '', ''),
 (261, 'Bearbeiten', '', ''),
-(262, 'Neues Dokument hochladen (PDF):', '', '');
+(262, 'Neues Dokument hochladen (PDF):', '', ''),
+(263, 'Kontakt', '', ''),
+(264, 'Nachricht', '', ''),
+(265, 'Allgemeine Anfrage (Nachwuchsentwicklung)', '', ''),
+(266, 'Allgemeine Anfrage (Technik)', '', ''),
+(267, 'Verbesserungsvorschläge', '', ''),
+(268, 'Feedback / Kritik', '', ''),
+(269, 'Produkt Support', '', ''),
+(270, 'Problem / Fehler', '', ''),
+(271, 'Thema', '', ''),
+(272, 'Deine Nachricht wurde verschickt!', '', '');
 
 -- --------------------------------------------------------
 

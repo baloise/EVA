@@ -20,6 +20,7 @@
 
         if(isset($_SESSION['user']['username'])  && isset($_SESSION['user']['id']) && isset($_SESSION['user']['usergroup']) && isset($_SESSION['user']['language']) && isset($_SESSION['translations']) && isset($_SESSION['appinfo'])){
 
+            //Muss bei änderungen manuell im Kontakt-Modul angepasst werden
             $session_username = $_SESSION['user']['username'];
             $session_userid = $_SESSION['user']['id'];
             $session_usergroup = $_SESSION['user']['usergroup'];

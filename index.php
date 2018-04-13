@@ -158,7 +158,7 @@
 
             <footer class="footer" id="slideMeFoot" style="display: none;">
                 <div class="container">
-                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate[16] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://eliareutlinger.ch"> Elia Reutlinger</a> | 2018 | <?php echo $appinfo["title"];?> <a href="https://github.com/baloise/eva">v.1.0</a></span>
+                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate[16] ?></a> | <a class="foot-link" href="modul/kontakt/kontakt.php"><?php echo $translate[263] ?></a><i class="text-muted"> | <?php echo $_SESSION["user"]['username']; ?></i><span class="text-muted">©<a href="https://www.baloise.com/de/home.html"> Baloise Group</a> | 2018 | <?php echo $appinfo["title"];?> <a href="https://github.com/baloise/eva">v.1.0</a> by <a href="https:https://eliareutlinger.ch">Elia Reutlinger</a></span>
                 </div>
             </footer>
         </div>
