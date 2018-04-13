@@ -1,7 +1,7 @@
 <div style="text-align:center">
- <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG" />
+ <img src="https://raw.githubusercontent.com/baloise/EVA/test/img/logo/eva/eva_logoPNG.PNG" />
 </div>
-![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG)
+<br/>
 
 # EVA
 Evaluation-Tool for trainees
