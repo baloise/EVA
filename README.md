@@ -1,3 +1,8 @@
+<div style="text-align:center">
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG" />
+</div>
+![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG)
+
 # EVA
 Evaluation-Tool for trainees
 Dieses Tool wird ab Sommer 2018 produktiv in der Baloise zur Berechnung des Leistungslohns der Lehrlinge im KV und der IT verwendet (Unter dem Namen Cash-Calculator). Dazu werden verschiedene Faktoren zur Lohnberechnung berücksichtigt, wie z.B. die Schulische und Betriebliche Leistung. Das Tool rechnet im Anschluss das Gesamtresultat aus und gibt anhand einer Abhängigkeit den entsprechend festgelegten Leistungslohn zurück.
