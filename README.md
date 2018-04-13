@@ -1,5 +1,5 @@
 <div style="text-align:center">
- <img src="https://raw.githubusercontent.com/baloise/EVA/test/img/logo/eva/eva_logoPNG.PNG" />
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG" />
 </div>
 <br/>
 
@@ -31,12 +31,20 @@ Es besteht die Möglichkeit, das Tool im gegenwärtigen Zustand eigenständig zu
 Es besteht die Möglichkeit einer individuellen, auf die Bedürfnisse und Anforderungen des Betriebs angepassten Version des Tools. [-> Kontaktaufnahme](https://eliareutlinger.ch/#contact)
 
 # Impressionen
+<br/>
+<div style="text-align:center">
+ <b>Dashboard</b>
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/dashboard.PNG" />
+</div>
 
-Dashboard:
-![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/dashboard.PNG)
+<br/>
+<div style="text-align:center">
+ <b>Benutzerverwaltung</b>
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/benutzer.PNG" />
+</div>
 
-Benutzerverwaltung:
-![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/benutzer.PNG)
-
-Lohnberechnung:
-![alt dashboard](https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/leistungslohn.PNG)
+<br/>
+<div style="text-align:center">
+ <b>Lohnberechnung</b>
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/impressions/leistungslohn.PNG" />
+</div>
