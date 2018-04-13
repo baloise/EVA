@@ -88,26 +88,24 @@ body {
 .bg-color{
 	background-color: var(--akzentfarbe) !important;
 }
+.bg-light {
+    background-color: var(--akzentfarbe) !important;
+}
 .nav-link {
 	color: var(--link) !important;
 	font-weight: 500;
 	transition: font-weight .4s ease-in-out;
 }
+.navbar-light .navbar-toggler {
+    color: var(--link) !important;
+    border-color: var(--link) !important;
+}
 .nav-link:hover, .navbar-brand{
 	color: var(--link) !important;
 	font-weight: 800;
 }
-table.dataTable tbody tr{
-    background-color: var(--akzentfarbe) !important;
-}
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
     color: var(--schrift) !important;
-}
-.custom-toggler .navbar-toggler-icon {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 51, 153, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-.navbar-toggler {
-	border: 1px solid rgba(0, 51, 153, 1);
 }
 html {
 	position: relative;
@@ -214,7 +212,18 @@ h3{
 }
 .btn-primary {
 	background-color: var(--akzentfarbe);
-	border: solid 2px var(--link);
+	border: solid 1px var(--link);
+	font-weight: 500;
+	border-color: var(--link);
+	color: var(--link);
+}
+.btn-success:hover {
+	background-color: var(--link);
+	border-color: var(--link);
+}
+.btn-success {
+	background-color: var(--akzentfarbe);
+	border: solid 1px var(--link);
 	font-weight: 500;
 	border-color: var(--link);
 	color: var(--link);
@@ -263,9 +272,6 @@ select.form-control:not([size]):not([multiple]){
 	margin: 10px;
 	max-width: 97%;
 }
-.card {
-    background-color: var(--akzentfarbe) ;
-}
 hr {
     background-color: var(--schrift) ;
     border-color: var(--schrift) ;
@@ -286,7 +292,7 @@ hr {
 }
 .alert-danger {
     background-color: #f2dede !important;
-}
+}ä
 @media (max-width: 767px) {
     .dashModul {
     	color: var(--link);

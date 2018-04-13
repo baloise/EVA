@@ -148,7 +148,7 @@
                 <!-- SEMESTER -->
 
                 <div class="row">
-                    <div class="col-lg-12 card bg-color">
+                    <div class="col-lg-12 card">
                         <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
                             <div class="col-10">
                                 <h2>'.$translate[38].' '.$semesterName.'</h2>
@@ -416,7 +416,7 @@
                     }
 
                 }
-            } 
+            }
 
             //Informatik Durschnitt berechnen
             if($cycleTotalItY3 != 0){
