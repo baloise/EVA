@@ -1,4 +1,7 @@
-![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoJPG.jpg)
+<div style="text-align:center">
+ <img src="https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG" />
+</div>
+![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoPNG.PNG)
 
 # EVA
 Evaluation-Tool for trainees
