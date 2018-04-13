@@ -62,7 +62,7 @@ CREATE TABLE `tb_appinfo` (
 --
 
 INSERT INTO `tb_appinfo` (`id`, `title`, `title_short`, `description`, `db_version`, `logo_path_de`, `logo_path_it`, `logo_path_fr`, `logo_width`, `hintergrund`, `akzentfarbe`, `schrift`, `link`, `mail_support`, `mail_hr`) VALUES
-(1, 'Evaluation-Tool', 'Eva', 'Evaluation-Tool for trainees', 1, 'img/logo/eva/eva_logo.svg', 'img/logo/eva/eva_logo.svg', 'img/logo/eva/eva_logo.svg', 80, '#ffffff', '#BBF2A0', '#333333', '#64A943', 'bill.gates@foo.com', 'bill.gates@foo.com');
+(1, 'Evaluation-Tool', 'Eva', 'Evaluation-Tool for trainees', 1, 'img/logo/eva/eva_logo.svg', 'img/logo/eva/eva_logo.svg', 'img/logo/eva/eva_logo.svg', 80, '#ffffff', '#343a40', '#333333', '#64A943', 'bill.gates@foo.com', 'bill.gates@foo.com');
 
 -- --------------------------------------------------------
 

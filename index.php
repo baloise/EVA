@@ -93,7 +93,7 @@
 
             <!-- Navigation -->
             <div id="naviLink">
-                <nav class="navbar navbar-expand-lg navbar-inverse bg-color fixed-top" id="slideMe" style="display: none;">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="slideMe" style="display: none;">
                     <div class="container">
                         <a class="navbar-brand" href="modul/dashboard/dashboard.php">
                             <img src="
