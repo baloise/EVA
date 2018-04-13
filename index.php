@@ -40,7 +40,26 @@
 
             if (preg_match("/(Trident\/(\d{2,}|7|8|9)(.*)rv:(\d{2,}))|(MSIE\ (\d{2,}|8|9)(.*)Tablet\ PC)|(Trident\/(\d{2,}|7|8|9))/", $_SERVER["HTTP_USER_AGENT"], $match) != 0) {
 
-                echo '<link href="css/evaStyles_ie.min.css" rel="stylesheet">';
+                $fixCss=file_get_contents('css/evaStyles.min.css');
+
+                if(isset($row)){
+
+                    $fixCss=str_replace("var(--hintergrund)", $row["hintergrund"],$fixCss);
+                    $fixCss=str_replace("var(--akzentfarbe)", $row["akzentfarbe"],$fixCss);
+                    $fixCss=str_replace("var(--schrift)", $row["schrift"],$fixCss);
+                    $fixCss=str_replace("var(--link)", $row["link"],$fixCss);
+
+                } else {
+
+                    $fixCss=str_replace("var(--hintergrund)", $appinfo["hintergrund"],$fixCss);
+                    $fixCss=str_replace("var(--akzentfarbe)", $appinfo["akzentfarbe"],$fixCss);
+                    $fixCss=str_replace("var(--schrift)", $appinfo["schrift"],$fixCss);
+                    $fixCss=str_replace("var(--link)", $appinfo["link"],$fixCss);
+
+                }
+
+                echo '<style>'.$fixCss.'</style>';
+
 
             } else {
 
