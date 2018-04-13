@@ -1,4 +1,4 @@
-![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logo.svg)
+![alt LOGO](https://raw.githubusercontent.com/baloise/EVA/master/img/logo/eva/eva_logoJPG.jpg)
 
 # EVA
 Evaluation-Tool for trainees
