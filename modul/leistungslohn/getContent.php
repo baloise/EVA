@@ -67,7 +67,8 @@
             $sql = "SELECT grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $subjectID";
             $grades = fetchColumn($mysqli->query($sql));
             $weights = fetchColumn($mysqli->query($sql), 1);
-            return array_sum($grades) / array_sum($weights) * 100;
+            $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $grades, $weights);
+            return array_sum($grades) / array_sum($weights) ;
 
         }
 
@@ -88,8 +89,6 @@
             return averagePoints($points, 1, function($point){return $point/72;});
 
         }
-
-        //echo LITcalculatePresentation(26, 4, $mysqli);
 
         //Terminmanagement
         function calculateDeadline($semesterID, $userID, $mysqli){
