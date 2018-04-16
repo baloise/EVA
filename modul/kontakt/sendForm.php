@@ -31,22 +31,22 @@
 
         if($subj == "generalhr"){
             $receiver = $row['mail_hr'];
-            $subject = "General Request from" . $row['title'];
+            $subject = "General Request from " . $row['title'];
         } else if ($subj == "generalit"){
             $receiver = $row['mail_support'];
-            $subject = "General Request from" . $row['title'];
+            $subject = "General Request from " . $row['title'];
         } else if ($subj == "suggest"){
             $receiver = $row['mail_support'];
-            $subject = "New Suggestion for" . $row['title'];
+            $subject = "New Suggestion for " . $row['title'];
         } else if ($subj == "feedback"){
             $receiver = $row['mail_support'] .", ". $row['mail_hr'];
-            $subject = "New Feedback for" . $row['title'];
+            $subject = "New Feedback for " . $row['title'];
         } else if ($subj == "support"){
             $receiver = $row['mail_support'];
-            $subject = "Product-Support Request from" . $row['title'];
+            $subject = "Product-Support Request from " . $row['title'];
         } else if ($subj == "error"){
             $receiver = $row['mail_support'] .", ". $row['mail_hr'];
-            $subject = "Error Report from" . $row['title'];
+            $subject = "Error Report from " . $row['title'];
         }
 
 
