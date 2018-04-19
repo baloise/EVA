@@ -4,7 +4,7 @@
     include("./../../database/connect.php");
 
     if($session_usergroup != 1){
-        echo $translate[145];
+        die($translate[145]);
     }
 
     function designDeadlineEntry($state, $id, $title, $date, $usrid, $translate){
@@ -22,7 +22,7 @@
         $entry = '
             <b>'.$title.'</b>
             <br/><br/>
-            <i>'.$translate[23].' '.date('d.m.Y', strtotime($date)).'</i>
+            <i>'.$translate[23].' '.$date.'</i>
         </div>
         ';
 
@@ -87,9 +87,6 @@
         return $data;
     }
 
-
-
-
     if($session_usergroup == 1){
 
         //Lists of Entries
@@ -107,6 +104,15 @@
             echo $error;
         } else {
 
+            $semesterEntries = "";
+
+            $stmt2 = $mysqli->prepare("SELECT tb_semester_ID FROM `tb_user` WHERE ID = ?");
+            $stmt2->bind_param("i", $userid);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+            $row2 = $result2->fetch_array(MYSQLI_NUM);
+            $userSemesterid = $row2[0];
+
             $stmt = $mysqli->prepare("SELECT sem.semester, sem.ID FROM `tb_semester` AS sem
                     INNER JOIN tb_user AS us ON us.tb_group_ID = sem.tb_group_ID
                     WHERE us.ID = ?");
@@ -116,6 +122,8 @@
 
             $result = $stmt->get_result();
             while ($row = $result->fetch_array(MYSQLI_NUM)){
+
+                $deadlineEntries = "";
 
                 $semesterid = $row[1];
                 $semesterTitle = $row[0];
@@ -140,8 +148,7 @@
                         if($stmt3->num_rows > 0){
                             $deadlineState = "1";
                         } else {
-                            $today = date("Y-m-d");
-                            if($deadlineDate < $today){
+                            if($userSemesterid > $semesterid){
                                 $deadlineState = "2";
                             } else {
                                 $deadlineState = "0";

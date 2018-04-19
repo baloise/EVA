@@ -58,7 +58,7 @@
         <i class="fa fa-search" style="position: absolute; padding: 10px; right: 15px;" aria-hidden="true"></i>
         <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="">
     </div>
-    <div id="searchList" class="col-lg-12" style="max-height: 550px; overflow-y: auto; overflow-x: hidden;">
+    <div id="searchList" class="col-lg-12" style="max-height: 900px; overflow-y: auto; overflow-x: hidden;">
         <?php echo $listEntries; ?>
     </div>
 
@@ -151,7 +151,7 @@
                             <div class="col-12 card" style="padding-top:10px; padding-bottom:10px; margin-bottom:20px;">
                                 <div class="deadlineHead row" style="cursor:pointer;" did="'. $row['did'] .'">
                                     <div class="col-10">
-                                        <h2>'. $translateTitle .'</h2>
+                                        <h2>'. $translateTitle .' ('.$translate[$row['Gname']].')</h2>
                                     </div>
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -326,8 +326,6 @@
 
     <h1 class="mt-5"><?php echo $translate[12];?></h1>
 
-
-
     <?php
 
         $sql = "SELECT * FROM `tb_semester` AS sem WHERE sem.tb_group_ID = $session_usergroup";
@@ -338,9 +336,7 @@
 
                 $semesterid = $row['ID'];
                 $semesterTitle = $row['semester'];
-                $today = date("Y-m-d");
-                $entriesBefore = "";
-                $entriesPassed = "";
+                $entries = "";
 
                 $sql2 = "SELECT ID, title_".$session_language.", title_de, description_".$session_language.", description_de, date, tb_semester_ID FROM `tb_deadline` WHERE tb_semester_ID = $semesterid;";
                 $result2 = $mysqli->query($sql2);
@@ -372,54 +368,61 @@
                                     <div class="col-lg-12 card alert-success" style="padding-top: 10px; margin-bottom: 10px;">
                                         <h3>'.$deadlineTitle.'</h3>
                                         <p>'.$deadlineDescription.'</p>
-                                        <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                        <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
                                     </div>
                                 </div>
                             ';
-                            if($deadlineDate < $today){
-                                $entriesPassed = $entriesPassed . $entry;
-                            } else {
-                                $entriesBefore = $entriesBefore . $entry;
-                            }
+
+                            $entries = $entries . $entry;
 
                         } else {
-                            if($deadlineDate < $today){
+
+                            if($row2['tb_semester_ID'] < $session_semesterid){
 
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px;">
+                                        <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
                                         </div>
                                     </div>
                                 ';
 
-                                $entriesPassed = $entriesPassed . $entry;
+                                $entries = $entries . $entry;
 
                             } else {
+
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px;">
+                                        <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
-                                            <p>'.$translate[80].': <b>'.date("d.m.Y", strtotime($deadlineDate)).'</b></p>
+                                            <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
                                         </div>
                                     </div>
                                 ';
 
-                                $entriesBefore = $entriesBefore . $entry;
+                                $entries = $entries . $entry;
 
                             }
+
                         }
 
                     }
                 } else {
-                    $entriesBefore = $translate[123];
-                    $entriesPassed = $translate[123];
+                    $entries = $translate[123];
                 }
 
+                $istoggled = "";
 
+                if($session_semesterid != $semesterid){
+                    $istoggled = "style='display:none;'";
+                }
+
+                if(!$entries){
+                    $entries = $translate[123];
+                }
 
                 $entry = '
                     <div class="divtoggler" subSemid="'.$semesterid.'" style="cursor:pointer;">
@@ -433,25 +436,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="divtogglercontent" style="display:none;" subSemid="'.$semesterid.'">
-                        <div class="row">
-                            <div class="col-12">
-                                <hr/>
-                            </div>
-                        </div>
+                    <div class="divtogglercontent" '.$istoggled.' subSemid="'.$semesterid.'">
                         <div class="row">
                             <div class="col-12">
                                 <h2>'.$translate[78].':</h2>
                             </div>
                             <div class="col-12">
-                                '.$entriesBefore.'
-                            </div>
-                            <div class="col-12">
-                                <br/><br/>
-                                <h2>'.$translate[79].':</h2>
-                            </div>
-                            <div class="col-12">
-                                '.$entriesPassed.'
+                                '.$entries.'
                             </div>
                         </div>
                     </div>
