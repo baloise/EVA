@@ -1,3 +1,12 @@
+<?php
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    echo 'Die aktuelle PHP Version ist ' . phpversion();
+
+?>
+
 <?php include("../../includes/session.php"); ?>
 <?php include("../../database/connect.php"); ?>
 <?php include("../../includes/alerts.php"); ?>
