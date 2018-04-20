@@ -421,7 +421,7 @@
             //Informatik Durschnitt berechnen
             if($cycleTotalItY3 != 0){
                 if($semesterCountInformatik != 0){
-                    $cycleTotalItPercentAverage = (($cycleTotalItY3)) + ((($cycleTotalItPercent/$semesterCountInformatik)/3)*2);
+                    $cycleTotalItPercentAverage = ($cycleTotalItY3/3) + (($cycleTotalItPercent/$semesterCountInformatik)/3)*2;
                 } else {
                     $cycleTotalItPercentAverage = $cycleTotalItY3;
                 }
@@ -432,7 +432,7 @@
             //Schulnoten Durchschnitt berechnen
             if($cycleTotalSchoolY3 != 0){
                 if($semesterCountSchool != 0){
-                    $cycleTotalSchoolPercentAverage = (($cycleTotalSchoolY3)/3) + ((($cycleTotalSchoolPercent/$semesterCountSchool)/3)*2);
+                    $cycleTotalSchoolPercentAverage = ($cycleTotalSchoolY3/3) + (($cycleTotalSchoolPercent/$semesterCountSchool)/3)*2;
                 } else {
                     $cycleTotalSchoolPercentAverage = $cycleTotalSchoolY3;
                 }
@@ -443,7 +443,7 @@
             //Betrieb Durchschnitt berechnen
             if($cycleTotalBetriebY3 != 0){
                 if($semesterCountBetrieb != 0){
-                    $cycleTotalBetriebPercentAverage = (($cycleTotalBetriebY3)/3) + ((($cycleTotalBetriebPercent/$semesterCountBetrieb)/3)*2);
+                    $cycleTotalBetriebPercentAverage = ($cycleTotalBetriebY3/3) + (($cycleTotalBetriebPercent/$semesterCountBetrieb)/3)*2;
                 } else {
                     $cycleTotalBetriebPercentAverage = $cycleTotalBetriebY3;
                 }
@@ -454,7 +454,7 @@
             //Gesamtdurchschnitt berechnen
             if($cycleTotalPercentY3 != 0){
                 if($semesterCountSemester != 0){
-                    $cycleTotalPercentAverage = (($cycleTotalPercentY3)/3) + ((($cycleTotalPercent/$semesterCountSemester)/3)*2);
+                    $cycleTotalPercentAverage = ($cycleTotalPercentY3/3) + (($cycleTotalPercent/$semesterCountSemester)/3)*2;
                 } else {
                     $cycleTotalPercentAverage = $cycleTotalPercentY3;
                 }
