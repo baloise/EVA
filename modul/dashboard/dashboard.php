@@ -31,7 +31,7 @@
 				<div class="col-lg-3 col-md-3 col-6">
 					<div class="dashModul" href="'. $row["file_path"] .'">
 						<div class="dashModuleIcon">
-							<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block"/>
+							<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block" alt="modul"/>
 						</div>
 						<div class="dashModuleTitle">
 						   <h3>'. $translate[$row["title"]] .'</h3>

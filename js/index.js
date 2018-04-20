@@ -42,6 +42,7 @@ function goBack(href){
 
                         var state = {info: href};
                         history.pushState(state, "index.php");
+                        console.log(state);
 
                     }
                 });
@@ -49,7 +50,7 @@ function goBack(href){
             }
         });
     } else {
-        $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate[95]+" </strong> "+$translate[156]+ ".</div>");
+        $("#pageContent").html("<br/><br/><div class='alert alert-danger'><strong>"+translate[95]+" </strong> "+translate[156]+ ".</div>");
     }
 }
 

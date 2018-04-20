@@ -21,7 +21,34 @@
 
             $sql = "SELECT points FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance IS NULL;";
             $points = fetchColumn($mysqli->query($sql));
-            return averagePoints($points, 54);
+
+            $chooseMaxPoints = "SELECT gr.ID AS groupID FROM `tb_semester` AS sem INNER JOIN tb_group AS gr ON gr.ID = sem.tb_group_ID WHERE sem.ID = $semesterID";
+            $resultchoose = $mysqli->query($chooseMaxPoints);
+            $rowchoose = $resultchoose->fetch_assoc();
+
+            if($rowchoose['groupID'] == 5){
+                return averagePoints($points, 72);
+            } else {
+                return averagePoints($points, 54);
+            }
+
+        }
+
+        //ALS-Leistungsziele
+        function LKVBcalcPerform($semesterID, $userID, $mysqli){
+
+            $sql = "SELECT points FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
+            $points = fetchColumn($mysqli->query($sql));
+
+            $chooseMaxPoints = "SELECT gr.ID AS groupID FROM `tb_semester` AS sem INNER JOIN tb_group AS gr ON gr.ID = sem.tb_group_ID WHERE sem.ID = $semesterID";
+            $resultchoose = $mysqli->query($chooseMaxPoints);
+            $rowchoose = $resultchoose->fetch_assoc();
+
+            if($rowchoose['groupID'] == 5){
+                return averagePoints($points, 72);
+            } else {
+                return averagePoints($points, 54);
+            }
 
         }
 
@@ -31,15 +58,6 @@
             $sql = "SELECT grade FROM `tb_uek` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID";
             $points = fetchColumn($mysqli->query($sql));
             return averagePoints($points, 1, function($grade){return ($grade-1)/5;});
-
-        }
-
-        //ALS-Leistungsziele
-        function LKVBcalcPerform($semesterID, $userID, $mysqli){
-
-            $sql = "SELECT points FROM `tb_als` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID AND performance = 1;";
-            $points = fetchColumn($mysqli->query($sql));
-            return averagePoints($points, 54);
 
         }
 
@@ -267,7 +285,7 @@
         function calcSchool($semesterID, $userID, $mysqli){
 
             $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 1 AND tb_semester_ID = $semesterID;";
-			      $result = $mysqli->query($sql);
+			$result = $mysqli->query($sql);
 
             $countPercentage = 0;
             $countSubjects = 0;
