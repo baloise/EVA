@@ -69,7 +69,7 @@ $(document).ready(function(){
         $(".navbar-collapse").collapse('hide');
     });
 
-    $("#pageContent").load( $("#pageContent").attr("page"), function(){
+    $("#pageContent").load($("#pageContent").attr("page"), function(){
 
         var state = {info: $("#pageContent").attr("page")};
         history.pushState(state, "index.php");

@@ -171,12 +171,21 @@
                 </nav>
             </div>
 
+            <?php
+                if(isset($_GET['page']) && $_GET['page'] != ""){
+                    $pageLink = "modul/".$_GET['page'].".php";
+                } else if(isset($_SESSION["user"]["currentPath"])){
+                    $pageLink = $_SESSION["user"]["currentPath"];
+                } else {
+                    $pageLink = "modul/dashboard/dashboard.php";
+                }
+            ?>
+
             <!-- Page Content -->
             <div class="container">
     		    <div class="row">
     			    <div class="col-lg-10 offset-md-1">
-        				<div page="<?php if(isset($_SESSION["user"]["currentPath"])){ echo $_SESSION["user"]["currentPath"]; } else { echo "modul/dashboard/dashboard.php";} ?>" id="pageContent">
-
+        				<div page="<?php echo $pageLink; ?>" id="pageContent">
         				</div>
     			    </div>
     		    </div>
