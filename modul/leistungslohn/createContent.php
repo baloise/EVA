@@ -112,6 +112,18 @@
 
         }
 
+        function calcTotalPercentAvg($cTY3, $semC, $cTP){
+            if($cTY3 != 0){
+                if($semC != 0){
+                    return ($cTY3/3) + (($cTP/$semC)/3)*2;
+                } else {
+                    return $cTY3;
+                }
+            } else {
+                return calcNeededAverages($semC, $cTP);
+            }
+        }
+
         function calcNeededAverages($c1, $c2){
 
             if($c1 != 0){
@@ -419,49 +431,18 @@
             }
 
             //Informatik Durschnitt berechnen
-            if($cycleTotalItY3 != 0){
-                if($semesterCountInformatik != 0){
-                    $cycleTotalItPercentAverage = ($cycleTotalItY3/3) + (($cycleTotalItPercent/$semesterCountInformatik)/3)*2;
-                } else {
-                    $cycleTotalItPercentAverage = $cycleTotalItY3;
-                }
-            } else {
-                $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
-            }
+            $cycleTotalItPercentAverage = calcTotalPercentAvg($cycleTotalItY3, $semesterCountInformatik, $cycleTotalItPercent);
 
             //Schulnoten Durchschnitt berechnen
-            if($cycleTotalSchoolY3 != 0){
-                if($semesterCountSchool != 0){
-                    $cycleTotalSchoolPercentAverage = ($cycleTotalSchoolY3/3) + (($cycleTotalSchoolPercent/$semesterCountSchool)/3)*2;
-                } else {
-                    $cycleTotalSchoolPercentAverage = $cycleTotalSchoolY3;
-                }
-            } else {
-                $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
-            }
+            $cycleTotalSchoolPercentAverage = calcTotalPercentAvg($cycleTotalSchoolY3, $semesterCountSchool, $cycleTotalSchoolPercent);
 
             //Betrieb Durchschnitt berechnen
-            if($cycleTotalBetriebY3 != 0){
-                if($semesterCountBetrieb != 0){
-                    $cycleTotalBetriebPercentAverage = ($cycleTotalBetriebY3/3) + (($cycleTotalBetriebPercent/$semesterCountBetrieb)/3)*2;
-                } else {
-                    $cycleTotalBetriebPercentAverage = $cycleTotalBetriebY3;
-                }
-            } else {
-                $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
-            }
+            $cycleTotalBetriebPercentAverage = calcTotalPercentAvg($cycleTotalBetriebY3, $semesterCountBetrieb, $cycleTotalBetriebPercent);
 
             //Gesamtdurchschnitt berechnen
-            if($cycleTotalPercentY3 != 0){
-                if($semesterCountSemester != 0){
-                    $cycleTotalPercentAverage = ($cycleTotalPercentY3/3) + (($cycleTotalPercent/$semesterCountSemester)/3)*2;
-                } else {
-                    $cycleTotalPercentAverage = $cycleTotalPercentY3;
-                }
-            } else {
-                $cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
-            }
+            $cycleTotalPercentAverage = calcTotalPercentAvg($cycleTotalPercentY3, $semesterCountSemester, $cycleTotalPercent);
 
+            //Leistungslohn anhand Berechnung finden
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
             echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
