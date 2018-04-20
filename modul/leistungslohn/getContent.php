@@ -68,8 +68,11 @@
             $grades = fetchColumn($mysqli->query($sql));
             $weights = fetchColumn($mysqli->query($sql), 1);
             $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $grades, $weights);
-            return array_sum($grades) / array_sum($weights) ;
-
+            if($grades){
+                return array_sum($grades) / array_sum($weights);
+            } else {
+                return 0;
+            }
         }
 
         //Verhaltensziele
@@ -210,7 +213,9 @@
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
-                        $percentage = ($grade-1) / 5;
+                        if($grade){
+                            $percentage = ($grade-1) / 5;
+                        }
 
                     }
 
@@ -278,7 +283,10 @@
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
-                        $percentage = ($grade-1) / 5;
+                        $percentage = 0;
+                        if($grade){
+                            $percentage = ($grade-1) / 5;
+                        }
 
                     }
 
