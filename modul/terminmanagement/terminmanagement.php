@@ -205,7 +205,7 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <label for="">'.$translate[83].'</label>
-                                                <input fType="3" did="'. $row['did'] .'" class="form-control changeInTable" type="date" value="'. $row['Ddeadline'] .'"></input>
+                                                <input fType="3" did="'. $row['did'] .'" class="form-control changeInTable" type="text" value="'. $row['Ddeadline'] .'"></input>
                                             </div>
                                             <div class="col-lg-4">
                                                 <label for="">'.$translate[40].'</label>
@@ -290,7 +290,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for=""><?php echo $translate[83];?></label>
-                    <input class="form-control" id="fDeadline" type="date" placeholder="<?php echo $translate[83];?>" required></input>
+                    <input class="form-control" id="fDeadline" type="text" placeholder="<?php echo $translate[83];?>" required></input>
                 </div>
                 <div class="col-lg-4">
                     <label for=""><?php echo $translate[40];?></label>
