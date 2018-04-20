@@ -81,7 +81,11 @@
 
                 $_SESSION['appinfo'] = $appinfo;
 
-                header("Location: index.php");
+                if(isset($_GET['redirect'])){
+                    header("Location: index.php?page=".$_GET['redirect']);
+                } else {
+                    header("Location: index.php");
+                }
 
             }
 

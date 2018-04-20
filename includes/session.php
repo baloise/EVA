@@ -31,7 +31,11 @@
             $session_appinfo = $_SESSION['appinfo'];
 
         } else {
-            header("Location: ./login.php");
+            if(isset($_GET['page'])){
+                header("Location: ./login.php?redirect=".$_GET['page']);
+            } else {
+                header("Location: ./login.php");
+            }
             exit();
         }
 

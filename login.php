@@ -8,7 +8,15 @@
         <div class="row">
             <div class="col-12">
                 <h1>Login</h1>
-                <form method="POST" action="auth.php?loginType=normal">
+
+                        <?php
+                            if(isset($_GET['redirect'])){
+                                echo '<form method="POST" action="auth.php?loginType=normal&&redirect='.$_GET['redirect'].'">';
+                            } else {
+                                echo '<form method="POST" action="auth.php?loginType=normal">';
+                            }
+                        ?>
+                        
                     <div class="row">
                         <div class="col-lg-10">
                             <input class="form-control" type="text" name="username" placeholder="Key" required autofocus/><br/>
@@ -96,7 +104,11 @@
     if(isset($_COOKIE["MedusaToken"])) {
         if(!isset($_GET['error'])){
             if(isset($_COOKIE["MedusaToken"])) {
-                header('Location: auth.php?loginType=medusa');
+                if(isset($_GET['redirect'])){
+                    header('Location: auth.php?loginType=medusa&&redirect='.$_GET['redirect']);
+                } else {
+                    header('Location: auth.php?loginType=medusa');
+                }
             }
         }
     } else {
