@@ -445,7 +445,22 @@
             //Leistungslohn anhand Berechnung finden
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
-            echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+            if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+                $cvsValues = array(
+                    "UserID" => $userID,
+                    "Cycle" => $_POST['cycleID'],
+                    "Salary" => $actualSalary,
+                    "TotalPercent" => round($cycleTotalPercentAverage, 2),
+                    "TotalIT" => round($cycleTotalItPercentAverage, 2),
+                    "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
+                    "TotalBetrieb" => round($cycleTotalBetriebPercentAverage, 2),
+                    "TotalMalus" => $totalMalus
+                );
+                echo json_encode($cvsValues);
+            } else {
+                echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+            }
+
 
         }
 
@@ -656,6 +671,7 @@
             $cycleTotalItPercent = 0;
             $cycleTotalSchoolPercent = 0;
             $cycleTotalBetriebPercent = 0;
+            $cycleTotalMalus = 0;
             $actualSalary = 0;
 
             if (isset($result) && $result->num_rows > 0) {
@@ -669,6 +685,10 @@
                         while($malusRow = $malusResult->fetch_assoc()) {
                             $malus = $malus + $malusRow["weight"];
                         }
+                    }
+
+                    if(isset($malus)){
+                        $cycleTotalMalus += $malus;
                     }
 
                     $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
@@ -703,7 +723,21 @@
 
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
-            echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+            if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+                $cvsValues = array(
+                    "UserID" => $userID,
+                    "Cycle" => $_POST['cycleID'],
+                    "Salary" => $actualSalary,
+                    "TotalPercent" => round($cycleTotalPercentAverage, 2),
+                    "TotalIT" => round($cycleTotalItPercentAverage, 2),
+                    "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
+                    "TotalBetrieb" => round($cycleTotalBetriebPercentAverage, 2),
+                    "TotalMalus" => $cycleTotalMalus
+                );
+                echo json_encode($cvsValues);
+            } else {
+                echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+            }
 
         }
 
@@ -747,6 +781,7 @@
             $cycleTotalPerformPercent = 0;
             $cycleTotalSchoolPercent = 0;
             $cycleTotalBehavePercent = 0;
+            $cycleTotalMalus = 0;
             $actualSalary = 0;
 
             if (isset($result) && $result->num_rows > 0) {
@@ -760,6 +795,10 @@
                         while($malusRow = $malusResult->fetch_assoc()) {
                             $malus += $malusRow["weight"];
                         }
+                    }
+
+                    if(isset($malus)){
+                        $cycleTotalMalus += $malus;
                     }
 
                     $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
@@ -794,7 +833,21 @@
 
             $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
-            echo generateEntryLKVB($actualSalary, $cycleTotalPercentAverage, $cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $semesterList, $translate);
+            if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+                $cvsValues = array(
+                    "UserID" => $userID,
+                    "Cycle" => $_POST['cycleID'],
+                    "Salary" => $actualSalary,
+                    "TotalPercent" => round($cycleTotalPercentAverage, 2),
+                    "TotalPerform" => round($cycleTotalPerformPercentAverage, 2),
+                    "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
+                    "TotalBehave" => round($cycleTotalBehavePercentAverage, 2),
+                    "TotalMalus" => $cycleTotalMalus
+                );
+                echo json_encode($cvsValues);
+            } else {
+                echo generateEntryLKVB($actualSalary, $cycleTotalPercentAverage, $cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $semesterList, $translate);
+            }
 
         }
 

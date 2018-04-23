@@ -112,3 +112,34 @@ function toggleCycleExam(userID, cycleID){
     });
 
 }
+
+$(document).ready(function(){
+
+    $('#getCSV').click(function(){
+
+        var users = [
+            [2, 1],
+            [3, 4],
+            [4, 4]
+        ];
+        var csvValues = new Array();
+
+        users.forEach(function(element, index, array){
+            $.ajax({
+                method: "POST",
+                url: "./modul/leistungslohn/createContent.php",
+                data: {userID:element[0], cycleID:element[1], forCSV:true},
+                success: function(data){
+                    if(data){
+                        console.log(data);
+                    } else {
+                        alert("error");
+                    }
+                }
+            });
+        });
+
+
+    });
+
+});

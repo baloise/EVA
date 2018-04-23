@@ -258,6 +258,8 @@
     <hr/>
     <h2><?php echo $translate[106];?></h2>
 
+    <button id="getCSV" class="btn btn-lg btn-default">Generate CSV!</button>
+
     <script type="text/javascript">
         var translate = {};
         <?php
