@@ -131,6 +131,7 @@ $(document).ready(function(){
                 data: {userID:element[0], cycleID:element[1], forCSV:true},
                 success: function(data){
                     if(data){
+                        csvValues.push(data);
                         console.log(data);
                     } else {
                         alert("error");
@@ -139,6 +140,7 @@ $(document).ready(function(){
             });
         });
 
+        console.log(csvValues);
 
     });
 

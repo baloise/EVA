@@ -14,10 +14,11 @@ function makeDynamic(objectThis){
 function goBack(href){
     if (href){
 
+        var newUrl = href.replace('modul/','').replace('.php','');
+
         var loader = setTimeout(function(){
 
             $('.loadScreen').fadeTo("slow", 1);
-
 
         },1000);
 
@@ -25,26 +26,27 @@ function goBack(href){
         $("#pageContent").load(href, function(response, status, xhr){
 
             if ( status == "error" ) {
+
                 $('.loadScreen').fadeTo("fast", 0);
                 var msg = "makeDynamic Error";
                 console.log( msg + xhr.status + " " + xhr.statusText );
                 window.location.replace("logout.php");
+
             } else {
+
                 clearTimeout(loader);
                 $('.loadScreen').fadeTo(50, 0, function(){
                     $('#pageContent').fadeTo(50, 1);
                 });
                 $.ajax({
+
                     method: "GET",
                     url: "includes/setCurrentPath.php",
                     data: {path:href},
                     success: function(){
 
-                        var state = {info: href};
-                        history.pushState(state, "index.php");
-                        console.log(state);
-
                     }
+
                 });
 
             }
@@ -58,10 +60,10 @@ $(document).ready(function(){
 
     $(window).on('popstate',function(event) {
 
-        var href = history.state["info"];
+        var href = window.history.state["info"];
 
         $("#pageContent").fadeOut("fast", function(){
-            $('.loadScreen').fadeTo("fast", 1);
+            alert(href);
             goBack(href);
         });
 
@@ -75,7 +77,7 @@ $(document).ready(function(){
     $("#pageContent").load($("#pageContent").attr("page"), function(){
 
         var state = {info: $("#pageContent").attr("page")};
-        history.pushState(state, "index.php");
+        window.history.pushState(state, "index.php");
 
         $('.loadScreen').fadeTo("fast", 0, function(){
 			$("#slideMe").slideDown("slow");
