@@ -99,12 +99,12 @@
             $header .= "From: ".$appinfo["title"]." <noreply@".$appinfo["title_short"].".com>\r\n";
         }
 
-        $msg = generateHtmlMail($subject, $message, $receiverInfo[0], $receiverInfo[1], $appinfo["title"], $appinfo["link"], $translate);
+        $msg = generateHtmlMail(base64_encode($subject), $message, $receiverInfo[0], $receiverInfo[1], $appinfo["title"], $appinfo["link"], $translate);
 
         $header .= "X-Mailer: PHP ". phpversion() . "\r\n";
 
         if(isset($receiverInfo[2])){
-            mail($receiverInfo[2], $subject, $msg, $header);
+            mail($receiverInfo[2], base64_encode($subject), $msg, $header);
         }
 
     }

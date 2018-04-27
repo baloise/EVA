@@ -12,98 +12,52 @@
             //Lohn 1. Cycle -> IT
             if($cycle == 1){
 
-                if($w1*100 < 70){
+                if($w1*100 < 61.81){
                     return 1300;
-                } else if ($w1*100 < 72.99){
-                    return 1350;
-                } else if ($w1*100 < 75.99){
-                    return 1400;
-                } else if ($w1*100 < 78.99){
-                    return 1450;
-                } else if ($w1*100 < 81.99){
+                } else if ($w1*100 < 69.54){
+                    return 1325;
+                } else if ($w1*100 < 73.4){
+                    return 1375;
+                } else if ($w1*100 < 77.27){
+                    return 1425;
+                } else if ($w1*100 < 81.13){
                     return 1500;
-                } else if ($w1*100 < 84.99){
-                    return 1550;
                 } else if ($w1*100 >= 85){
                     return 1600;
                 }
 
-            //Lohn 2. Cycle -> IT
-            } else if ($cycle == 2){
+            //Lohn 2. & 3. Cycle -> IT
+            } else if ($cycle == 2 || $cycle == 3){
 
-                if($w1*100 < 70){
+                if($w1*100 < 61.81){
                     return 1400;
-                } else if ($w1*100 < 72.99){
+                } else if ($w1*100 < 69.54){
                     return 1450;
-                } else if ($w1*100 < 75.99){
+                } else if ($w1*100 < 73.4){
                     return 1500;
-                } else if ($w1*100 < 78.99){
-                    return 1550;
-                } else if ($w1*100 < 81.99){
+                } else if ($w1*100 < 77.27){
                     return 1600;
-                } else if ($w1*100 < 84.99){
-                    return 1650;
+                } else if ($w1*100 < 81.13){
+                    return 1750;
                 } else if ($w1*100 >= 85){
                     return 1900;
                 }
 
-            //Lohn 3. Cycle -> IT
-            } else if ($cycle == 3){
+            //Lohn 4. & 5. Cycle -> KV
+            } else if ($cycle == 4 || $cycle == 5){
 
-                if($w1*100 < 70){
-                    return 1400;
-                } else if ($w1*100 < 72.99){
-                    return 1250;
-                } else if ($w1*100 < 75.99){
-                    return 1300;
-                } else if ($w1*100 < 78.99){
-                    return 1350;
-                } else if ($w1*100 < 81.99){
-                    return 1400;
-                } else if ($w1*100 < 84.99){
-                    return 1450;
-                } else if ($w1*100 >= 85){
-                    return 1500;
-                }
-
-            //Lohn 4. Cycle -> KV
-            } else if ($cycle == 4){
-
-
-                if($w1*100 < 70){
+                if($w1*100 < 61.81){
                     return 1200;
-                } else if ($w1*100 < 72.99){
+                } else if ($w1*100 < 69.54){
                     return 1250;
-                } else if ($w1*100 < 75.99){
+                } else if ($w1*100 < 73.4){
                     return 1300;
-                } else if ($w1*100 < 78.99){
-                    return 1350;
-                } else if ($w1*100 < 81.99){
+                } else if ($w1*100 < 77.27){
                     return 1400;
-                } else if ($w1*100 < 84.99){
-                    return 1450;
+                } else if ($w1*100 < 81.13){
+                    return 1550;
                 } else if ($w1*100 >= 85){
-                    return 1600;
-                }
-
-            //Lohn 4. Cycle -> KV
-            } else if ($cycle == 5){
-
-
-                if($w1*100 < 70){
-                    return 1200;
-                } else if ($w1*100 < 72.99){
-                    return 1250;
-                } else if ($w1*100 < 75.99){
-                    return 1300;
-                } else if ($w1*100 < 78.99){
-                    return 1350;
-                } else if ($w1*100 < 81.99){
-                    return 1400;
-                } else if ($w1*100 < 84.99){
-                    return 1450;
-                } else if ($w1*100 >= 85){
-                    return 1600;
+                    return 1700;
                 }
 
             } else {

@@ -63,7 +63,6 @@ $(document).ready(function(){
         var href = window.history.state["info"];
 
         $("#pageContent").fadeOut("fast", function(){
-            alert(href);
             goBack(href);
         });
 
