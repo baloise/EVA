@@ -25,7 +25,7 @@ $(document).ready(function(){
 
     });
 
-    $("#fsenMal").click(function(){
+    $("#fsenMal").click(function(event){
 
         event.preventDefault();
 
