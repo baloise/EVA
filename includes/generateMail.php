@@ -99,7 +99,7 @@
             $header .= "From: ".$appinfo["title"]." <noreply@".$appinfo["title_short"].".com>\r\n";
         }
 
-        $msg = generateHtmlMail('=?UTF-8?B?'.base64_encode($subject). '?=', $message, $receiverInfo[0], $receiverInfo[1], $appinfo["title"], $appinfo["link"], $translate);
+        $msg = generateHtmlMail($subject, $message, $receiverInfo[0], $receiverInfo[1], $appinfo["title"], $appinfo["link"], $translate);
 
         $header .= "X-Mailer: PHP ". phpversion() . "\r\n";
 
