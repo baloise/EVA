@@ -5,7 +5,7 @@ function makeDynamic(objectThis){
         event.preventDefault();
         $("#pageContent").fadeOut(50, function(){
             var newUrl = href.replace('modul/','').replace('.php','');
-            window.history.pushState("", "Title", "?page=" + newUrl);
+            window.history.pushState({info: href}, "Title", "?page=" + newUrl.split('/')[0]);
             goBack(href);
         });
     });
@@ -75,8 +75,7 @@ $(document).ready(function(){
 
     $("#pageContent").load($("#pageContent").attr("page"), function(){
 
-        var state = {info: $("#pageContent").attr("page")};
-        window.history.pushState(state, "index.php");
+        window.history.pushState({info: $("#pageContent").attr("page")}, "index.php");
 
         $('.loadScreen').fadeTo("fast", 0, function(){
 			$("#slideMe").slideDown("slow");

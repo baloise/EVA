@@ -173,7 +173,12 @@
 
             <?php
                 if(isset($_GET['page']) && $_GET['page'] != ""){
-                    $pageLink = "modul/".$_GET['page'].".php";
+                    if(strpos($_GET['page'], '/') !== false){
+                        $pageLink = "modul/".$_GET['page'].".php";
+                    } else {
+                        $pageLink = "modul/".$_GET['page']."/".$_GET['page'].".php";
+                    }
+
                 } else if(isset($_SESSION["user"]["currentPath"])){
                     $pageLink = $_SESSION["user"]["currentPath"];
                 } else {
@@ -213,7 +218,7 @@
                 };
             ?>;
         </script>
-        <script type="text/javascript" src="js/index.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
 
     </body>
 
