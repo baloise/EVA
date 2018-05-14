@@ -244,8 +244,10 @@ $(document).ready(function(){
         var points = $("#calcProzPoints").val();
         var maxpoints = $("#calcProzMaxPoints").val();
 
-        $("#calcProzResult").html("<b>" + (points/maxpoints)*100 + " % </b>");
-        $("#fPoints").val((points/maxpoints)*100);
+        var roundedResult = Math.round((points/maxpoints)*100*100) /100;
+
+        $("#calcProzResult").html("<b>" + roundedResult + " % </b>");
+        $("#fPoints").val(roundedResult);
 
     });
 

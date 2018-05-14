@@ -1,14 +1,16 @@
+--Beschreibung: Dieser Import enthält zahlreiche Termine für die Lernenden im KV der Baloise.
+
 -- TERMINE
 --Neue Termine KV Versicherung einfügen
 INSERT INTO `tb_deadline` (`ID`, `title_de`, `title_fr`, `title_it`, `description_de`, `description_fr`, `description_it`, `date`, `tb_semester_ID`) VALUES
 -- Semester 1
-(NULL, 'PE Vorabausdruck', '', '', '', '', '', '30.??', '33'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.08.', '33'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.09.', '33'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.10.', '33'),
 (NULL, 'ALS Vorabausdruck', '', '', '', '', '', '31.10.', '33'),
 (NULL, 'ALS Mail an PVA', '', '', '', '', '', '31.10.', '33'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.11.', '33'),
+(NULL, 'PE Vorabausdruck', '', '', '', '', '', '30.11.', '33'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.12.', '33'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.01.', '33'),
 (NULL, 'Semesterbericht an PVA', '', '', '', '', '', '31.01.', '33'),
@@ -26,13 +28,13 @@ INSERT INTO `tb_deadline` (`ID`, `title_de`, `title_fr`, `title_it`, `descriptio
 (NULL, '2 Berichte zu Kundenbesuchen', '', '', '', '', '', '30.06.', '34'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.07.', '34'),
 -- Semester 3
-(NULL, 'PE Vorabausdruck', '', '', '', '', '', '30.04.', '35'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.08.', '35'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.09.', '35'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.10.', '35'),
 (NULL, 'ALS Vorabausdruck', '', '', '', '', '', '31. 10.', '35'),
 (NULL, 'ALS Mail an PVA', '', '', '', '', '', '31. 10.', '35'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.11.', '35'),
+(NULL, 'PE Vorabausdruck', '', '', '', '', '', '30.11.', '35'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.12.', '35'),
 (NULL, 'Zeiterfassung & Noten', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch). Aktuelle Noten im Tool nachtragen.', '', '', '10.01.', '35'),
 (NULL, 'Semesterbericht an PVA', '', '', '', '', '', '31. 01.', '35'),
@@ -70,7 +72,6 @@ INSERT INTO `tb_deadline` (`ID`, `title_de`, `title_fr`, `title_it`, `descriptio
 (NULL, 'Semesterbericht an PVA', '', '', '', '', '', '30.06.', '38'),
 (NULL, '1 Bericht zu Kundenbesuch', '', '', '', '', '', '30.06.', '38'),
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.07.', '38'),
-
 --Neue Termine KV Bank einfügen
 -- Semester 1
 (NULL, 'Zeiterfassung', '', '', 'Monatsjournal der Zeiterfassung in Zeus generieren lassen, als PDF speichern und per E-Mail an PVA und PA senden (Gruppenmailbox NWE: ch_hr_lehrlingswesen@baloise.ch).', '', '', '10.08.', '39'),

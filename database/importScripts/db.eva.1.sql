@@ -1,3 +1,6 @@
+
+--Beschreibung: Dieser Import enthält zahlreiche Termine für die Lernenden der Informatik in der Baloise. Zusätzlich wird eine überflüssige Table tb_deadline_group gelöscht und der Datentyp vom Feld date in tb_deadline angepasst. Zusätzlich wird eine überflüssige Spalte in tb_appinfo entfernt und übersetzungen angepasst.
+
 -- Überflüssige Tabelle löschen
 DROP TABLE `tb_deadline_group`;
 
