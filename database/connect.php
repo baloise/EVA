@@ -14,12 +14,14 @@
 
 	$mysqli = mysqli_connect($_db_host, $_db_username, $_db_passwort, $_db_database);
 
-	function execPrepStmt($mysqli, $query, $formatString, ...$params ){
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param($formatString, ...$params);
-        $stmt->execute();
-        return $stmt->get_result();
-    }
+	if(!function_exists('execPrepStmt')){
+		function execPrepStmt($mysqli, $query, $formatString, ...$params){
+	        $stmt = $mysqli->prepare($query);
+	        $stmt->bind_param($formatString, ...$params);
+	        $stmt->execute();
+	        return $stmt->get_result();
+	    }
+	}
 
     if (!$mysqli) {
         echo "Could not connect to $_db_username@$_db_host/$_db_database\n<br/>";
