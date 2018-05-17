@@ -3,16 +3,13 @@
     include("database/connect.php");
     include("includes/session.php");
 
-    $sql = "SELECT * FROM `tb_appinfo`;";
-    $result = $mysqli->query($sql);
+    $result = $mysqli->query("SELECT * FROM `tb_appinfo`;");
 
     if (isset($result) && $result->num_rows == 1) {
         $appinfo = $result->fetch_assoc();
     }
 
-    $sql = "SELECT * FROM `tb_ind_design` WHERE tb_user_ID = $session_userid;";
-
-    $result = $mysqli->query($sql);
+    $result = $mysqli->query("SELECT * FROM `tb_ind_design` WHERE tb_user_ID = $session_userid;");
 
     if (isset($result) && $result->num_rows == 1) {
 
@@ -101,7 +98,6 @@
         ?>
 
     </head>
-
 
     <body>
         <div class="loadScreen">

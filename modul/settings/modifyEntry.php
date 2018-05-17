@@ -2,16 +2,10 @@
 
     include("../../includes/session.php");
     include("../../database/connect.php");
+    include('../../includes/testInput.php');
 
     if($session_usergroup != 1 && $session_usergroup != 2 && $session_usergroup != 3 && $session_usergroup != 4 && $session_usergroup != 5){
         die("Sie haben keine Berechtigungen zu diesem Modul");
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
     }
 
     if(isset($_POST['doEntry'])) {

@@ -2,16 +2,7 @@
 
     include("../../includes/session.php");
     include("./../../database/connect.php");
-
-    //Werte trimmen und auf richtigkeit prüfen
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    //TODO: e-mail functionalities
+    include('../../includes/testInput.php');
 
     if($session_usergroup != 1){
         echo "Ihrem Account fehlen die Berechtigungen für diese Aktion. <br/>";
@@ -21,14 +12,11 @@
 
             $selUser = test_input($_POST['selUser']);
 
-            $stmt = $mysqli->prepare("SELECT se.ID, se.semester FROM `tb_user` AS us
-                                        INNER JOIN tb_group AS gr ON us.tb_group_ID = gr.ID
-                                        INNER JOIN tb_semester AS se ON se.tb_group_ID = gr.ID
-                                        WHERE us.ID = ?;");
-            $stmt->bind_param("i", $selUser);
-            $stmt->execute();
+            $result = execPrepStmt($mysqli, "SELECT se.ID, se.semester FROM `tb_user` AS us
+            INNER JOIN tb_group AS gr ON us.tb_group_ID = gr.ID
+            INNER JOIN tb_semester AS se ON se.tb_group_ID = gr.ID
+            WHERE us.ID = ?;", 'i', $selUser);
 
-            $result = $stmt->get_result();
             while ($row = $result->fetch_array(MYSQLI_NUM)){
                 echo "<option value='". $row[0] ."'>". $row[1] ."</option>";
             }
@@ -62,9 +50,7 @@
                 echo $error;
             } else {
 
-                $stmt = $mysqli->prepare("INSERT INTO `tb_malus` (`description`, `tb_user_ID`, `weight`, `tb_semester_ID`) VALUES (?, ?, ?, ?);");
-                $stmt->bind_param("siii", $freasoning, $fselUser, $fweigth, $semester);
-                $stmt->execute();
+                execPrepStmt($mysqli, "INSERT INTO `tb_malus` (`description`, `tb_user_ID`, `weight`, `tb_semester_ID`) VALUES (?, ?, ?, ?);", 'siii', $freasoning, $fselUser, $fweigth, $semester);
 
                 //SENDMAIL
                 include("../../includes/generateMail.php");
@@ -89,9 +75,7 @@
                 echo $error;
             } else {
 
-                $stmt = $mysqli->prepare("DELETE FROM `tb_malus` WHERE `tb_malus`.`ID` = ?");
-                $stmt->bind_param("i", $fentryId);
-                $stmt->execute();
+                execPrepStmt($mysqli, "DELETE FROM `tb_malus` WHERE `tb_malus`.`ID` = ?", 'i', $fentryId);
 
                 //SENDMAIL
                 include("../../includes/generateMail.php");

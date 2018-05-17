@@ -40,7 +40,7 @@
         }
 
         if($session_usergroup != 5 && $session_usergroup != 1 && $session_usergroup != 2 && $session_usergroup != 3 && $session_usergroup != 4){
-            die("Sie haben keine Berechtigungen zu diesem Modul");
+            die("You are not member of any group");
         }
 
     }

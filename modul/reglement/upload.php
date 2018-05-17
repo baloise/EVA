@@ -1,26 +1,11 @@
 <?php
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    echo 'Die aktuelle PHP Version ist ' . phpversion();
-
-?>
-
-<?php
-
     include("../../includes/session.php");
     include("../../database/connect.php");
+    include('../../includes/testInput.php');
 
     if($session_usergroup != 1){
         die("Sie haben keine Berechtigungen zu diesem Modul");
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
     }
 
     $uploaddir = 'upload/';

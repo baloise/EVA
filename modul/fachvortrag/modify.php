@@ -2,14 +2,7 @@
 
     include("../../includes/session.php");
     include("./../../database/connect.php");
-
-    //Werte trimmen und auf richtigkeit prüfen
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    include('../../includes/testInput.php');
 
     if($session_usergroup != 3 && $session_usergroup != 1 && $session_usergroup != 2){
         die("Sie haben keine Berechtigungen zu diesem Modul");
@@ -38,10 +31,7 @@
 
 		} else {
 
-			$stmt = $mysqli->prepare("SELECT bKey FROM tb_user WHERE id = ? AND tb_group_ID = 1");
-			$stmt->bind_param("i", $userid);
-			$stmt->execute();
-			$result = $stmt->get_result();
+			$result = execPrepStmt($mysqli, "SELECT bKey FROM tb_user WHERE id = ? AND tb_group_ID = 1", 'i', $userid);
 
 			if($result->num_rows != 1){
 
@@ -51,10 +41,7 @@
 			} else {
 
                 //GET SENDMAIL PARAMETERS
-                $stmt = $mysqli->prepare("SELECT tb_user_ID, title FROM `tb_presentation` WHERE ID = ?;");
-                $stmt->bind_param("i", $entryid);
-                $stmt->execute();
-                $result = $stmt->get_result();
+                $result = execPrepStmt($mysqli, "SELECT tb_user_ID, title FROM `tb_presentation` WHERE ID = ?;", 'i', $entryid);
                 $userInfo = $result->fetch_array(MYSQLI_NUM);
 
                 //SENDMAIL
@@ -64,9 +51,7 @@
                 $message = strtr($translate[215], $msgcontent);
                 sendMail($subject, $message, $session_userid, $userInfo[0], $session_appinfo, $mysqli, $translate);
 
-				$stmt = $mysqli->prepare("DELETE FROM `tb_presentation` WHERE `tb_presentation`.`ID` = ?");
-				$stmt->bind_param("i", $entryid);
-				$stmt->execute();
+				execPrepStmt($mysqli, "DELETE FROM `tb_presentation` WHERE `tb_presentation`.`ID` = ?", 'i', $entryid);
 
 			}
 
@@ -95,10 +80,7 @@
 
 		} else {
 
-			$stmt = $mysqli->prepare("SELECT bKey FROM tb_user WHERE id = ? AND tb_group_ID = 1 OR id = ? AND tb_group_ID = 2");
-			$stmt->bind_param("ii", $userid, $userid);
-			$stmt->execute();
-			$result = $stmt->get_result();
+			$result = execPrepStmt($mysqli, "SELECT bKey FROM tb_user WHERE id = ? AND tb_group_ID = 1 OR id = ? AND tb_group_ID = 2", 'ii', $userid, $userid);
 
 			if($result->num_rows != 1){
 
@@ -108,10 +90,7 @@
 			} else {
 
                 //GET SENDMAIL PARAMETERS
-                $stmt = $mysqli->prepare("SELECT tb_user_ID, title FROM `tb_presentation` WHERE ID = ?;");
-                $stmt->bind_param("i", $entryid);
-                $stmt->execute();
-                $result = $stmt->get_result();
+                $result = execPrepStmt($mysqli, "SELECT tb_user_ID, title FROM `tb_presentation` WHERE ID = ?;", 'i', $entryid);
                 $userInfo = $result->fetch_array(MYSQLI_NUM);
 
                 //SENDMAIL

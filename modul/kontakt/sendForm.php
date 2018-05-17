@@ -1,16 +1,11 @@
 <?php
 
+    include('../../includes/testInput.php');
+
     if (file_exists("../../database/connect.php")) {
         include("../../database/connect.php");
     } else if (file_exists("database/connect.php")){
         include("database/connect.php");
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
     }
 
     $fname = test_input($_POST['fname']);

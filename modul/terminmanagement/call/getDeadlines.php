@@ -2,6 +2,7 @@
 
     include("../../../includes/session.php");
     include("./../../../database/connect.php");
+    include('../../../includes/testInput.php');
 
     if($session_usergroup != 1){
         die($translate[145]);
@@ -79,13 +80,6 @@
         }
 
     };
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 
     if($session_usergroup == 1){
 

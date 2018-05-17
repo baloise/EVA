@@ -2,16 +2,10 @@
 
     include("../../includes/session.php");
     include("../../database/connect.php");
+    include('../../includes/testInput.php');
 
     if($session_usergroup != 1 && $session_usergroup != 2){
         die($translate[145]);
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
     }
 
     $newText = test_input($_POST['newText']);
