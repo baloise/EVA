@@ -256,9 +256,11 @@
     </div>
     <br/>
     <hr/>
-    <h2><?php echo $translate[106];?></h2>
 
-    <button id="getCSV" class="btn btn-lg btn-default">Generate CSV!</button>
+    <h2 style="cursor:pointer;" id="openExporter"><i class="fa fa-sign-out" aria-hidden="true"></i> <?php echo $translate[106];?></h2>
+    <div id="exporterContents">
+
+    </div>
 
     <script type="text/javascript">
         var translate = {};
@@ -268,7 +270,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.min.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
 
@@ -510,7 +512,7 @@
             };
         ?>;
     </script>
-    <script type="text/javascript" src="modul/leistungslohn/leistungslohn.min.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php else : ?>
 

@@ -1,7 +1,7 @@
 <?php
 
-    include("../../includes/session.php");
-    include("./../../database/connect.php");
+    include("../../../includes/session.php");
+    include("./../../../database/connect.php");
 
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
