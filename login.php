@@ -11,15 +11,15 @@
 
                         <?php
                             if(isset($_GET['redirect'])){
-                                echo '<form method="POST" action="auth.php?loginType=normal&&redirect='.$_GET['redirect'].'">';
+                                echo '<form id="loginForm" method="POST" action="auth.php?loginType=normal&&redirect='.$_GET['redirect'].'">';
                             } else {
-                                echo '<form method="POST" action="auth.php?loginType=normal">';
+                                echo '<form id="loginForm" method="POST" action="auth.php?loginType=normal">';
                             }
                         ?>
-                        
+
                     <div class="row">
                         <div class="col-lg-10">
-                            <input class="form-control" type="text" name="username" placeholder="Key" required autofocus/><br/>
+                            <input class="form-control" type="text" name="username" placeholder="Key" id="bKeyInForm" required autofocus/><br/>
                         </div>
                         <div class="col-lg-2">
                             <input class="form-control" type="submit"/>
@@ -35,7 +35,8 @@
                         include("database/connect.php");
 
                         $sql = "SELECT us.bKey, gr.description FROM `tb_user` AS us
-                                INNER JOIN tb_group AS gr ON us.tb_group_ID = gr.ID";
+                                INNER JOIN tb_group AS gr ON us.tb_group_ID = gr.ID
+                                WHERE us.`deleted` IS NULL";
 
                         $result = $mysqli->query($sql);
 
@@ -43,7 +44,7 @@
                             while($row = $result->fetch_assoc()) {
                                 echo '
                                 <li>
-                                    '.$row['bKey'].' - '.$row['description'].'
+                                    <b style="cursor: pointer;" class="autofillForm">'.$row['bKey'].'</b> - '.$row['description'].'
                                 </li>
                                 ';
                             }
@@ -56,6 +57,16 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+
+        $('.autofillForm').each(function(){
+            $(this).click(function(){
+                $('#bKeyInForm').val($(this).html());
+                document.getElementById('loginForm').submit();
+            });
+        });
+
+    </script>
 </body>
 
 

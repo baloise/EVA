@@ -33,12 +33,10 @@
                         INNER JOIN tb_semester AS sem ON us.tb_semester_ID = sem.ID
                         WHERE us.tb_user_ID = $llid ORDER BY sem.semester DESC, us.creationDate DESC";
 
-
                 $result2 = $mysqli->query($sql2);
                 if ($result2->num_rows > 0) {
                     while($row2 = $result2->fetch_assoc()) {
 
-                        $llsubjs = $llsubjs + 1;
                         $llsubname = $row2['subjectName'];
                         $llsubid = $row2['ID'];
                         $llsubsem = $row2['semester'];
@@ -48,6 +46,7 @@
                         $result3 = $mysqli->query($sql3);
                         if ($result3->num_rows > 0) {
 
+                            $llsubjs = $llsubjs + 1;
                             $countgrades = 0;
                             $grades = 0;
                             $weights = 0;
@@ -72,6 +71,12 @@
                             }
 
                         } else {
+
+                            if($llsubcorrgrade){
+                                $llsubjs = $llsubjs + 1;
+                                $llallavg = $llallavg + $llsubcorrgrade;
+                            }
+
                             $subgradeavg = $translate[107].".";
                             $countgrades = 0;
                         }
@@ -146,7 +151,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-12 contentToggler" semID="'.$llsubsem.'" style="margin-bottom: 10px; cursor: pointer">
+                            <div class="col-12 contentToggler" semID="'.$llsubsem.'" llID="'.$llid.'" style="margin-bottom: 10px; cursor: pointer">
                                 <hr/>
                                 <div class="row">
                                     <div class="col-10">
@@ -157,7 +162,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card toggleContent" semID="'.$llsubsem.'" style="display:none;">
+                            <div class="card toggleContent" semID="'.$llsubsem.'" llID="'.$llid.'" style="display:none;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -200,6 +205,7 @@
 
                 if($llsubjs > 0){
                     $calcavg = number_format((float)($llallavg/$llsubjs), 2, '.', '');
+                    //$calcavg = "Alle Noten: ".$llallavg." | Anzahl Fächer:" .$llsubjs;
                 } else {
                     $calcavg = $translate[100];
                 }

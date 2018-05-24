@@ -148,7 +148,7 @@
 
         $date = date('d.m.Y');
         $paList = "";
-        $sql = "SELECT firstname, lastname, id FROM tb_user WHERE tb_group_ID = 2;";
+        $sql = "SELECT firstname, lastname, id FROM tb_user WHERE tb_group_ID = 2 AND `deleted` IS NULL;";
 
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {

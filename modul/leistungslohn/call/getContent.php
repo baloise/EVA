@@ -86,7 +86,7 @@
             $grades = fetchColumn($mysqli->query($sql));
             $weights = fetchColumn($mysqli->query($sql), 1);
             $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $grades, $weights);
-            if($grades){
+            if(count($grades) > 0){
                 return array_sum($grades) / array_sum($weights);
             } else {
                 return 0;
@@ -231,14 +231,16 @@
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
-                        if($grade){
+                        if($grade > 0){
                             $percentage = ($grade-1) / 5;
                         }
 
                     }
 
-                    $countPercentage = $countPercentage + $percentage;
-                    $countSubjects = $countSubjects + 1;
+                    if($grade > 0){
+                        $countPercentage = $countPercentage + $percentage;
+                        $countSubjects = $countSubjects + 1;
+                    }
 
                 }
             }
@@ -302,14 +304,16 @@
 
                         $grade = calculateSubject($row['ID'], $mysqli);
                         $percentage = 0;
-                        if($grade){
+                        if($grade > 0){
                             $percentage = ($grade-1) / 5;
                         }
 
                     }
 
-                    $countPercentage = $countPercentage + $percentage;
-                    $countSubjects = $countSubjects + 1;
+                    if($grade > 0){
+                        $countPercentage = $countPercentage + $percentage;
+                        $countSubjects = $countSubjects + 1;
+                    }
 
                 }
             }

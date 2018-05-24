@@ -511,10 +511,11 @@ $(document).ready(function(){
         $(this).click(function(){
 
             var semID = $(this).attr("semID");
+            var llid = $(this).attr("llid");
 
             $(".toggleContent").each(function(){
 
-                if($(this).attr("semID") == semID){
+                if($(this).attr("semID") == semID && $(this).attr("llid") == llid){
                     $(this).slideToggle("fast");
                 }
 
