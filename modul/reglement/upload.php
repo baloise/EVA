@@ -5,7 +5,7 @@
     include('../../includes/testInput.php');
 
     if($session_usergroup != 1){
-        die("Sie haben keine Berechtigungen zu diesem Modul");
+        die("Permission denied.");
     }
 
     $uploaddir = 'upload/';
@@ -28,7 +28,7 @@
         $stmt->bind_param('si', $pathToFile, $group);
         $stmt->execute();
 
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        echo('Changes successfully done<script type="text/javascript">history.go(-1);</script>');
 
     } else {
 
