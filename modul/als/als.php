@@ -269,7 +269,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-8 card" style="padding-top: 15px;">
-            <h2><?php echo "Notenrechner";?></h2>
+            <h2><?php echo $translate[273]. " " .$translate[274];?></h2>
                 <div class="row">
                     <div class="col-6 text-center">
                         <label for="gradeCalc"><?php echo $translate[56]." 1";?></label>
