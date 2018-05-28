@@ -212,6 +212,79 @@
         </tbody>
     </table>
 
+    <div class="row justify-content-center">
+        <div class="col-lg-8 card" style="padding-top: 15px;">
+            <h2><?php echo "Notenrechner";?></h2>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 1";?></label>
+                    </div>
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 2";?></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 3";?></label>
+                    </div>
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 4";?></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 5";?></label>
+                    </div>
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 6";?></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <br />
+                        <div class="row">
+                            <div class="col-3">
+                                <button type="button" class="btn" id="calcGradesBtn"><?php echo $translate[71];?></button>
+                            </div>
+                            <div class="col-9 text-right">
+                                <span style="font-size: 20px;" id="calcResult"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <br/>
+        </div>
+    </div>
+
+
     <script type="text/javascript">
         var translate = {};
         <?php
