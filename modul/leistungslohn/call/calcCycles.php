@@ -6,7 +6,7 @@
         //Lohn 1. Cycle -> IT
         if($cycle == 1){
 
-            if($w1*100 < 61.81){
+            if($w1*100 < 61.54){
                 return 1300;
             } else if ($w1*100 < 69.54){
                 return 1325;
@@ -14,16 +14,18 @@
                 return 1375;
             } else if ($w1*100 < 77.27){
                 return 1425;
-            } else if ($w1*100 < 81.13){
+            } else if ($w1*100 < 84.99){
                 return 1500;
-            } else if ($w1*100 >= 85){
+            } else if ($w1*100 <= 100){
                 return 1600;
+            } else {
+                return false;
             }
 
         //Lohn 2. & 3. Cycle -> IT
         } else if ($cycle == 2 || $cycle == 3){
 
-            if($w1*100 < 61.81){
+            if($w1*100 < 61.54){
                 return 1400;
             } else if ($w1*100 < 69.54){
                 return 1450;
@@ -31,16 +33,18 @@
                 return 1500;
             } else if ($w1*100 < 77.27){
                 return 1600;
-            } else if ($w1*100 < 81.13){
+            } else if ($w1*100 < 84.99){
                 return 1750;
-            } else if ($w1*100 >= 85){
+            } else if ($w1*100 <= 100){
                 return 1900;
+            } else {
+                return false;
             }
 
         //Lohn 4. & 5. Cycle -> KV
         } else if ($cycle == 4 || $cycle == 5){
 
-            if($w1*100 < 61.81){
+            if($w1*100 < 61.54){
                 return 1200;
             } else if ($w1*100 < 69.54){
                 return 1250;
@@ -48,10 +52,12 @@
                 return 1300;
             } else if ($w1*100 < 77.27){
                 return 1400;
-            } else if ($w1*100 < 81.13){
+            } else if ($w1*100 < 84.99){
                 return 1550;
-            } else if ($w1*100 >= 85){
+            } else if ($w1*100 <= 100){
                 return 1700;
+            } else {
+                return false;
             }
 
         } else {
