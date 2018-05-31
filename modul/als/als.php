@@ -305,6 +305,23 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 5";?></label>
+                    </div>
+                    <div class="col-6 text-center">
+                        <label for="gradeCalc"><?php echo $translate[56]." 6";?></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <input class="form-control calcGradesForm" type="number" id="gradeCalc"/>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-12">
                         <br />
                         <div class="row">
