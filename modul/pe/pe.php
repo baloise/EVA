@@ -212,6 +212,27 @@
         </tbody>
     </table>
 
+    <script type="text/javascript">
+        var translate = {};
+        <?php
+            foreach ($translate as $key => $value) {
+                echo ("translate['".$key."'] = '".$value."';");
+            };
+        ?>;
+    </script>
+    <script type="text/javascript" src="modul/pe/pe.min.js"></script>
+
+<?php else : ?>
+
+    <br/><br/>
+
+    <div class='alert alert-danger'>
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
+    </div>
+
+<?php endif; ?>
+<?php if($session_usergroup == 4 || $session_usergroup == 1) : ?>
+
     <div class="row justify-content-center">
         <div class="col-lg-8 card" style="padding-top: 15px;">
             <h2><?php echo $translate[273]. " " .$translate[274];?></h2>
@@ -265,24 +286,6 @@
 
             <br/>
         </div>
-    </div>
-
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
-    <script type="text/javascript" src="modul/pe/pe.min.js"></script>
-
-<?php else : ?>
-
-    <br/><br/>
-
-    <div class='alert alert-danger'>
-        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>

@@ -265,7 +265,26 @@
 
     <hr/>
 
-<?php if($session_usergroup == 4) : ?>
+    <script type="text/javascript">
+        var translate = {};
+        <?php
+            foreach ($translate as $key => $value) {
+                echo ("translate['".$key."'] = '".$value."';");
+            };
+        ?>;
+    </script>
+    <script type="text/javascript" src="modul/als/als.min.js"></script>
+
+<?php else : ?>
+
+    <br/><br/>
+
+    <div class='alert alert-danger'>
+        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
+    </div>
+
+<?php endif; ?>
+<?php if($session_usergroup == 4 || $session_usergroup == 1) : ?>
 
     <div class="row justify-content-center">
         <div class="col-lg-8 card" style="padding-top: 15px;">
@@ -337,26 +356,6 @@
 
             <br/>
         </div>
-    </div>
-
-<?php endif; ?>
-
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
-    <script type="text/javascript" src="modul/als/als.min.js"></script>
-
-<?php else : ?>
-
-    <br/><br/>
-
-    <div class='alert alert-danger'>
-        <strong><?php echo $translate[95];?> </strong> <?php echo $translate[94];?>.
     </div>
 
 <?php endif; ?>
