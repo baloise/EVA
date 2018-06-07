@@ -54,6 +54,9 @@
 
                     ?>
                 </ul>
+                <p>
+                    Your Browser-Language is: <?php echo print_r($_SERVER['HTTP_ACCEPT_LANGUAGE']); ?>
+                </p>
             </div>
         </div>
     </div>

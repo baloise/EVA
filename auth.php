@@ -46,7 +46,20 @@
                 if(isset($row['language'])){
                     $_SESSION['user']['language'] = $row['language'];
                 } else {
-                    $_SESSION['user']['language'] = "de";
+
+                    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+                    switch ($lang){
+                        case "fr":
+                            $_SESSION['user']['language'] = "fr";
+                            break;
+                        case "it":
+                            $_SESSION['user']['language'] = "it";
+                            break;
+                        default:
+                            $_SESSION['user']['language'] = "de";
+                            break;
+                    }
+
                 }
 
                 $translations = array();
