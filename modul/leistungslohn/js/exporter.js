@@ -64,7 +64,7 @@ $(document).ready(function(){
                 clearInterval(loadingText);
                 $('#getCSVnotif').fadeOut('fast');
                 var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+                element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(data));
                 element.setAttribute('download', 'Eva-Generated Salarys.csv');
                 element.style.display = 'none';
                 document.body.appendChild(element);
