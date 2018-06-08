@@ -1,5 +1,9 @@
 <?php
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     header('Content-Type: text/csv; utf-8');
     header("Content-Disposition: attachment; filename=leistungslöhne.csv");
     header("Pragma: no-cache");
