@@ -51,8 +51,6 @@ $(document).ready(function(){
 
         console.log(users);
 
-        //$.redirect('./modul/leistungslohn/call/createCSV.php', {userArray:users});
-
         $.ajax({
             method: "POST",
             url: "./modul/leistungslohn/call/createCSV.php",

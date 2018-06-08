@@ -141,10 +141,9 @@
         </div>
     </div>
 
-    <button id="getCSV" class="btn btn-lg btn-default">CSV Generieren</button>
+    <button id="getCSV" class="btn btn-lg btn-default">Export</button>
 
     <script type="text/javascript" src="modul/leistungslohn/js/exporter.min.js"></script>
-    <script type="text/javascript" src="js/jquery.redirect.js"></script>
 
 <?php else : ?>
 
