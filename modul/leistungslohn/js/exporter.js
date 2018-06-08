@@ -51,7 +51,22 @@ $(document).ready(function(){
 
         console.log(users);
 
-        $.redirect('./modul/leistungslohn/call/createCSV.php', {userArray:users});
+        //$.redirect('./modul/leistungslohn/call/createCSV.php', {userArray:users});
+
+        $.ajax({
+            method: "POST",
+            url: "./modul/leistungslohn/call/createCSV.php",
+            data: {userArray:users},
+            success: function(data){
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+                element.setAttribute('download', 'Eva-Generated Salarys.csv');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+        });
 
     });
 
