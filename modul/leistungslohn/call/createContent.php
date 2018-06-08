@@ -89,9 +89,30 @@
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
                 if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+
+                    $translateCycle = "kommenden Semester";
+
+                    switch ($_POST['cycleID']) {
+                        case 1:
+                            $translateCycle = "5 & 6";
+                            break;
+                        case 2:
+                            $translateCycle = "7";
+                            break;
+                        case 3:
+                            $translateCycle = "8";
+                            break;
+                        case 4:
+                            $translateCycle = "5";
+                            break;
+                        case 5:
+                            $translateCycle = "6";
+                            break;
+                    }
+
                     $cvsValues = array(
                         "UserID" => $userID,
-                        "Cycle" => $_POST['cycleID'],
+                        "Cycle" => $translateCycle,
                         "Salary" => $actualSalary,
                         "TotalPercent" => round($cycleTotalPercentAverage, 2),
                         "TotalIT" => round($cycleTotalItPercentAverage, 2),
@@ -112,7 +133,7 @@
 
                 $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
                 $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
-                cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
+                return cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
 
             }
 
@@ -120,7 +141,7 @@
 
                 $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
                 $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 6, 1";
-                cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
+                return cycleContentIT($mysqli, $sql1, $sql2, $userID, $translate);
 
             }
 
@@ -206,19 +227,19 @@
 
                         switch ($_POST['cycleID']) {
                             case 1:
-                                $translateCycle = "5. & 6.";
+                                $translateCycle = "5 & 6";
                                 break;
                             case 2:
-                                $translateCycle = "7.";
+                                $translateCycle = "7";
                                 break;
                             case 3:
-                                $translateCycle = "8.";
+                                $translateCycle = "8";
                                 break;
                             case 4:
-                                $translateCycle = "5.";
+                                $translateCycle = "5";
                                 break;
                             case 5:
-                                $translateCycle = "6.";
+                                $translateCycle = "6";
                                 break;
                         }
 

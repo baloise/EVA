@@ -1,12 +1,13 @@
 <?php
 
     header('Content-Type: text/csv; utf-8');
-    header("Content-Disposition: attachment; filename=generatedCSV.csv");
+    header("Content-Disposition: attachment; filename=leistungslöhne.csv");
     header("Pragma: no-cache");
     header("Expires: 0");
 
     include("createContent.php");
     include("./../../../database/partner.php");
+    include("./../../../includes/session.php");
 
     $handle = fopen("php://output", "w");
     $csvHeaders = array("Benutzer_ID", "Lohnzyklus", "effektiver_Lohn", "relevantes_Resultat", "Total_Leistung_Betrieb", "Total_Leistung_Schule", "Total_Verhalten_Betrieb","Malus_Verhalten", "B-Key", "Vorname", "Nachname", "Strasse", "Ort", "E-Mail", "Anrede");
@@ -34,7 +35,5 @@
         }
 
     }
-
-    print_r($i);
 
 ?>

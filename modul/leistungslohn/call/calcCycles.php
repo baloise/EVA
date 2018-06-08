@@ -6,13 +6,15 @@
         //Lohn 1. Cycle -> IT
         if($cycle == 1){
 
-            if($w1*100 < 61.54){
+            if($w1*100 < 61.24){
                 return 1300;
-            } else if ($w1*100 < 69.54){
+            } else if ($w1*100 < 62.49){
+                return 1312.5;
+            } else if ($w1*100 < 64.99){
                 return 1325;
-            } else if ($w1*100 < 73.4){
+            } else if ($w1*100 < 69.99){
                 return 1375;
-            } else if ($w1*100 < 77.27){
+            } else if ($w1*100 < 77.49){
                 return 1425;
             } else if ($w1*100 < 84.99){
                 return 1500;
@@ -25,13 +27,15 @@
         //Lohn 2. & 3. Cycle -> IT
         } else if ($cycle == 2 || $cycle == 3){
 
-            if($w1*100 < 61.54){
+            if($w1*100 < 61.24){
                 return 1400;
-            } else if ($w1*100 < 69.54){
+            } else if ($w1*100 < 62.49){
+                return 1425;
+            } else if ($w1*100 < 64.99){
                 return 1450;
-            } else if ($w1*100 < 73.4){
+            } else if ($w1*100 < 69.99){
                 return 1500;
-            } else if ($w1*100 < 77.27){
+            } else if ($w1*100 < 77.49){
                 return 1600;
             } else if ($w1*100 < 84.99){
                 return 1750;
@@ -44,13 +48,15 @@
         //Lohn 4. & 5. Cycle -> KV
         } else if ($cycle == 4 || $cycle == 5){
 
-            if($w1*100 < 61.54){
+            if($w1*100 < 61.24){
                 return 1200;
-            } else if ($w1*100 < 69.54){
+            } else if ($w1*100 < 62.49){
+                return 1225;
+            } else if ($w1*100 < 64.99){
                 return 1250;
-            } else if ($w1*100 < 73.4){
+            } else if ($w1*100 < 69.99){
                 return 1300;
-            } else if ($w1*100 < 77.27){
+            } else if ($w1*100 < 77.49){
                 return 1400;
             } else if ($w1*100 < 84.99){
                 return 1550;
@@ -400,9 +406,30 @@
         $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
         if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+
+            $translateCycle = "kommenden Semester";
+
+            switch ($_POST['cycleID']) {
+                case 1:
+                    $translateCycle = "5 & 6";
+                    break;
+                case 2:
+                    $translateCycle = "7";
+                    break;
+                case 3:
+                    $translateCycle = "8";
+                    break;
+                case 4:
+                    $translateCycle = "5";
+                    break;
+                case 5:
+                    $translateCycle = "6";
+                    break;
+            }
+
             $cvsValues = array(
                 "UserID" => $userID,
-                "Cycle" => $_POST['cycleID'],
+                "Cycle" => $translateCycle,
                 "Salary" => $actualSalary,
                 "TotalPercent" => round($cycleTotalPercentAverage, 2),
                 "TotalIT" => round($cycleTotalItPercentAverage, 2),
@@ -410,7 +437,9 @@
                 "TotalBetrieb" => round($cycleTotalBetriebPercentAverage, 2),
                 "TotalMalus" => $totalMalus
             );
-            echo json_encode($cvsValues);
+
+            return $cvsValues;
+
         } else {
             echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
         }
