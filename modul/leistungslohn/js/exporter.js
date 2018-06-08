@@ -30,8 +30,15 @@ $(document).ready(function(){
 
     $('#getCSV').click(function(){
 
-        //"B-KEY", "USER-ID", "CYCLE-ID"
+        $(this).prop('disabled', true);
+        $('#getCSVnotif').fadeIn('slow');
         var users = [];
+
+        var loadingText = setInterval(function(){
+            $('#getCSVnotif').fadeOut('slow', function(){
+                $('#getCSVnotif').fadeIn('slow');
+            });
+        }, 1000);
 
         $('.userEntry').each(function(){
 
@@ -40,8 +47,8 @@ $(document).ready(function(){
 
             $('.cycleChecker').each(function(){
                 if($(this).attr('userID') == userID && $(this).find('input').prop('checked')){
-                    var cycleID = $(this).find('input').attr('cycleID');
 
+                    var cycleID = $(this).find('input').attr('cycleID');
                     users.push([bKey, userID, cycleID]);
 
                 }
@@ -49,13 +56,13 @@ $(document).ready(function(){
 
         });
 
-        console.log(users);
-
         $.ajax({
             method: "POST",
             url: "./modul/leistungslohn/call/createCSV.php",
             data: {userArray:users},
             success: function(data){
+                clearInterval(loadingText);
+                $('#getCSVnotif').fadeOut('fast');
                 var element = document.createElement('a');
                 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
                 element.setAttribute('download', 'Eva-Generated Salarys.csv');
@@ -63,6 +70,7 @@ $(document).ready(function(){
                 document.body.appendChild(element);
                 element.click();
                 document.body.removeChild(element);
+                $('#getCSV').prop('disabled', false);
             }
         });
 

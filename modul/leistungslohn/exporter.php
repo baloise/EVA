@@ -141,7 +141,17 @@
         </div>
     </div>
 
-    <button id="getCSV" class="btn btn-lg btn-default">Export</button>
+    <div class="row">
+        <div class="col-lg-5">
+            <button id="getCSV" class="btn-block btn btn-lg btn-default">Export CSV</button>
+        </div>
+        <div class="col-lg-7">
+            <p id="getCSVnotif" style="padding-top: 10px; display:none; font-size: larger; color: grey;">
+                <b><i>Please wait, your file is getting prepared...</i></b>
+            </p>
+        </div>
+    </div>
+
 
     <script type="text/javascript" src="modul/leistungslohn/js/exporter.min.js"></script>
 
