@@ -38,7 +38,7 @@ $(document).ready(function(){
             $('#getCSVnotif').fadeOut('slow', function(){
                 $('#getCSVnotif').fadeIn('slow');
             });
-        }, 1000);
+        }, 2000);
 
         $('.userEntry').each(function(){
 
