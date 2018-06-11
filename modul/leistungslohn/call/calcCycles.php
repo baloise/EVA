@@ -431,10 +431,10 @@
                 "UserID" => $userID,
                 "Cycle" => $translateCycle,
                 "Salary" => $actualSalary,
-                "TotalPercent" => round($cycleTotalPercentAverage, 2),
-                "TotalIT" => round($cycleTotalItPercentAverage, 2),
-                "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
-                "TotalBetrieb" => round($cycleTotalBetriebPercentAverage, 2),
+                "TotalPercent" => round($cycleTotalPercentAverage*100, 2),
+                "TotalIT" => round($cycleTotalItPercentAverage*100, 2),
+                "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
+                "TotalBetrieb" => round($cycleTotalBetriebPercentAverage*100, 2),
                 "TotalMalus" => $totalMalus
             );
 

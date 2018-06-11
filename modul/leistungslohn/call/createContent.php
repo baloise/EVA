@@ -114,10 +114,10 @@
                         "UserID" => $userID,
                         "Cycle" => $translateCycle,
                         "Salary" => $actualSalary,
-                        "TotalPercent" => round($cycleTotalPercentAverage, 2),
-                        "TotalIT" => round($cycleTotalItPercentAverage, 2),
-                        "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
-                        "TotalBetrieb" => round($cycleTotalBetriebPercentAverage, 2),
+                        "TotalPercent" => round($cycleTotalPercentAverage*100, 2),
+                        "TotalIT" => round($cycleTotalItPercentAverage*100, 2),
+                        "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
+                        "TotalBetrieb" => round($cycleTotalBetriebPercentAverage*100, 2),
                         "TotalMalus" => $cycleTotalMalus
                     );
                     return $cvsValues;
@@ -247,10 +247,10 @@
                             "UserID" => $userID,
                             "Cycle" => $translateCycle,
                             "Salary" => $actualSalary,
-                            "TotalPercent" => round($cycleTotalPercentAverage, 2),
-                            "TotalPerform" => round($cycleTotalPerformPercentAverage, 2),
-                            "TotalSchool" => round($cycleTotalSchoolPercentAverage, 2),
-                            "TotalBehave" => round($cycleTotalBehavePercentAverage, 2),
+                            "TotalPercent" => round($cycleTotalPercentAverage*100, 2),
+                            "TotalPerform" => round($cycleTotalPerformPercentAverage*100, 2),
+                            "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
+                            "TotalBehave" => round($cycleTotalBehavePercentAverage*100, 2),
                             "TotalMalus" => $cycleTotalMalus
                         );
                         return $cvsValues;
