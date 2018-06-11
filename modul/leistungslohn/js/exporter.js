@@ -61,16 +61,28 @@ $(document).ready(function(){
             url: "./modul/leistungslohn/call/createCSV.php",
             data: {userArray:users},
             success: function(data){
+                
                 clearInterval(loadingText);
                 $('#getCSVnotif').fadeOut('fast');
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(data));
-                element.setAttribute('download', 'Eva-Generated Salarys.csv');
-                element.style.display = 'none';
-                document.body.appendChild(element);
-                element.click();
-                document.body.removeChild(element);
+
+                if (navigator.msSaveBlob) { // IE 10+
+                    var blob = new Blob([data],{type: "text/csv;charset=utf-8;"});
+                    navigator.msSaveBlob(blob, "Eva-Generated Salarys.csv")
+                } else {
+                    var element = document.createElement('a');
+                    if (element.download !== undefined) {
+                        var element = document.createElement('a');
+                        element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(data));
+                        element.setAttribute('download', 'Eva-Generated Salarys.csv');
+                        element.style.display = 'none';
+                        document.body.appendChild(element);
+                        element.click();
+                        document.body.removeChild(element);
+                    }
+                }
+
                 $('#getCSV').prop('disabled', false);
+
             }
         });
 

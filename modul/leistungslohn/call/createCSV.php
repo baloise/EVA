@@ -1,7 +1,7 @@
 <?php
 
     header('Content-Type: text/csv; utf-8');
-    header("Content-Disposition: attachment; filename=leistungslöhne.csv");
+    header("Content-Disposition: attachment; filename=Eva-Generated Salarys.csv");
     header("Pragma: no-cache");
     header("Expires: 0");
 
