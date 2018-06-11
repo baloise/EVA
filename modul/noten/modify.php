@@ -123,7 +123,7 @@
             } else {
 
                 $stmt = $mysqli->prepare('UPDATE `tb_subject_grade` SET `title` = ?, `grade` = ?, `weighting` = ? WHERE `tb_subject_grade`.`ID` = ?;');
-                $stmt->bind_param("sdii", $newTitle, $newGrade, $newWeight, $gradeId);
+                $stmt->bind_param("sddi", $newTitle, $newGrade, $newWeight, $gradeId);
                 $stmt->execute();
 
             }
