@@ -8,7 +8,7 @@
             "street" => "Teststrasse 99",
             "city" => "Alabama",
             "email" => "max.must@er.com",
-            "gender" => "1"
+            "gender" => "2"
         );
         return $personArray;
     }
