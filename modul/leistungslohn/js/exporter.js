@@ -7,12 +7,6 @@ $(document).ready(function(){
             var userID = $(this).attr('userID');
             var cycleID = $(this).find('input').attr('cycleID');
 
-            if($(this).find('input').is(':checked')){
-                $(this).find('input').prop("checked", false);
-            } else {
-                $(this).find('input').prop("checked", true);
-            }
-
             $('.cycleChecker').each(function(){
                 if($(this).attr('userID') == userID){
                     if($(this).find('input').attr('cycleID') != cycleID){
@@ -61,7 +55,7 @@ $(document).ready(function(){
             url: "./modul/leistungslohn/call/createCSV.php",
             data: {userArray:users},
             success: function(data){
-                
+
                 clearInterval(loadingText);
                 $('#getCSVnotif').fadeOut('fast');
 

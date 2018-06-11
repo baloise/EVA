@@ -63,7 +63,7 @@
 
                             }
 
-                            $subgradeavg = floor(($grades / $weights) * 100) / 100;
+                            $subgradeavg = round(($grades / $weights),2);
                             if($llsubcorrgrade){
                                 $llallavg = $llallavg + $llsubcorrgrade;
                             } else {
@@ -390,7 +390,7 @@
                     ';
 
                     if (isset($allGrades)){
-                        $average = '<h2>'.$translate[52].': ' . floor(($allGrades / $allWeight) * 100) / 100 . '</h2>';
+                        $average = '<h2>'.$translate[52].': ' . round(($allGrades / $allWeight),2) . '</h2>';
                     }
 
                 } else {

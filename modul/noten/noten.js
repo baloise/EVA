@@ -232,7 +232,7 @@ $(document).ready(function(){
                 error = error + "<li>" + translate[171]+"</li>";
             }
 
-            if(grade < 4 && !reason){
+            if(grade <= 4 && !reason){
                 error = error + "<li>" + translate[174]+"</li>";
             }
 
