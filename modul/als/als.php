@@ -4,7 +4,7 @@
 
 <?php if($session_usergroup == 1) : ?>
 
-    <h1 class="mt-5">ALS</h1>
+    <h1 class="mt-5"><?php echo $translate[3]; ?></h1>
 
     <head>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
