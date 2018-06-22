@@ -107,7 +107,7 @@
 
             $sql = "SELECT points FROM `tb_presentation` WHERE tb_user_ID = $userID AND tb_semester_ID = $semesterID;";
             $points = fetchColumn($mysqli->query($sql));
-            return averagePoints($points, 1, function($point){return $point/72;});
+            return averagePoints($points, 1, function($point){return $point/84;});
 
         }
 
