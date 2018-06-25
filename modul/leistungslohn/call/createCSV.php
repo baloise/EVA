@@ -16,6 +16,11 @@
 
     $i = 0;
 
+    if($session_usergroup != 1){
+        echo "Ihrem Account fehlen die Berechtigungen für diese Aktion. <br/>";
+        die();
+    }
+
     foreach ($_POST['userArray'] as $user) {
 
         $salaryInfo = "";

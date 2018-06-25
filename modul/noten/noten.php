@@ -390,7 +390,8 @@
                     ';
 
                     if (isset($allGrades)){
-                        $average = '<h2>'.$translate[52].': ' . round(($allGrades / $allWeight),2) . '</h2>';
+                        $unrounded = round(($allGrades / $allWeight),2);
+                        $average = '<h2>'.$translate[52].': ' . round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2 .'</h2>';
                     }
 
                 } else {
