@@ -5,7 +5,7 @@
 
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
-        function fetchColumn( $result, $column = 0 ) {
+        function fetchColumn($result, $column = 0) {
             return array_column(mysqli_fetch_all($result), $column);
         }
 
@@ -83,9 +83,9 @@
         function calculateSubject($subjectID, $mysqli){
 
             $sql = "SELECT grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $subjectID";
-            $grades = fetchColumn($mysqli->query($sql));
+            $gradesList = fetchColumn($mysqli->query($sql));
             $weights = fetchColumn($mysqli->query($sql), 1);
-            $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $grades, $weights);
+            $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $gradesList, $weights);
             if(count($grades) > 0){
                 return array_sum($grades) / array_sum($weights);
             } else {
@@ -226,19 +226,21 @@
                     if($row['correctedGrade']){
 
                         $grade = $row['correctedGrade'];
-                        $percentage = ($grade-1) / 5;
+                        $percentage = $grade / 6;
 
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
                         if($grade > 0){
-                            $percentage = ($grade-1) / 5;
+                            //$percentage = ($grade-1) / 5;
+                            $percentage = $grade / 6;
+                            //echo $percentage."<br />";
                         }
 
                     }
 
                     if($grade > 0){
-                        $countPercentage = $countPercentage + $percentage;
+                        $countPercentage += $percentage;
                         $countSubjects = $countSubjects + 1;
                     }
 
@@ -246,6 +248,7 @@
             }
 
             if($countPercentage != 0){
+                //echo "Total Percent: ". $countPercentage . " and subjects: ". $countSubjects ."<br />";
                 return ($countPercentage / $countSubjects);
             }
 
@@ -354,7 +357,10 @@
             $coSu = 0;
             $i = 0;
 
-            if(LITcalcInformatik($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcInformatik($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(LITcalcInformatik($semesterID, $userID, $mysqli) > 0){
+                $coSu = $coSu + LITcalcInformatik($semesterID, $userID, $mysqli);
+                $i = $i + 1;
+            }
             if(calcSchool($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli); $i = $i + 1; }
             if(LITcalcBetieb($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcBetieb($semesterID, $userID, $mysqli); $i = $i + 1; }
 

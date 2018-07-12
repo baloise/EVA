@@ -32,7 +32,7 @@
             }
 
             if(!$subject){
-                $error = $error . "Fehler: Kein Fach übergeben";
+                $error = $error . "<li>" . $translate[163] . "</li>";
             }
 
             if($grade < 4){

@@ -5,7 +5,7 @@
     include('../../includes/testInput.php');
 
     if($session_usergroup != 1){
-        echo "Ihrem Account fehlen die Berechtigungen für diese Aktion. <br/>";
+        echo $translate[145];
     } else {
 
         if($_POST['todo'] == "getSemester"){
@@ -31,19 +31,19 @@
             $semester = test_input($_POST['fselsem']);
 
             if(!isset($semester)){
-                $error = $error . "Kein Semester Angegeben.<br/>";
+                $error = $error . "<li>" . $translate[197] . "</li>";
             }
 
             if(!isset($fselUser)){
-                $error = $error . "Bitte Lehrling angeben.<br/>";
+                $error = $error . "<li>" . $translate[95] . "</li>"; //Kein Lernender
             }
 
             if(!isset($fweigth)){
-                $error = $error . "Bitte Gewichtung angeben.<br/>";
+                $error = $error . "<li>" . $translate[160] . "</li>";
             }
 
             if(!isset($freasoning)){
-                $error = $error . "Bitte Begründung angeben.<br/>";
+                $error = $error . "<li>" . $translate[146] . "</li>";
             }
 
             if($error){
@@ -68,7 +68,7 @@
             $fselUser = test_input($_POST['$fselUser']);
 
             if(!isset($fentryId)){
-                $error = $error . "Kein Eintrag angegeben.<br/>";
+                $error = $error . $translate[161] . ".<br/>";
             }
 
             if($error){
