@@ -84,7 +84,8 @@
                 $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
-                $cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
+                $cycleTotalPercentAverage = ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3;
+                //$cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent); <- WRONG
 
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 

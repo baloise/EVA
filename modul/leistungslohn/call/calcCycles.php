@@ -75,7 +75,7 @@
     function calcTotalPercentAvg($cTY3, $semC, $cTP){
         if($cTY3 != 0){
             if($semC != 0){
-                return ($cTY3/3) + (($cTP/$semC)/3)*2;
+                return ($cTY3 +  2*($cTP/$semC) )/3;
             } else {
                 return $cTY3;
             }
@@ -333,7 +333,8 @@
         $cycleTotalItY3 = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
         $cycleTotalSchoolY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
         $cycleTotalBetriebY3 = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
-        $cycleTotalPercentY3 = calcNeededAverages($semesterCountSemester, $cycleTotalPercent);
+        $cycleTotalPercentY3 = ($cycleTotalItY3+$cycleTotalSchoolY3+$cycleTotalBetriebY3)/3;
+        //$cycleTotalPercentY3 = calcNeededAverages($semesterCountSemester, $cycleTotalPercent); <- WRONG
 
         //-------------------------------------------- Zwei drittel berechnen --------------------------------------------
 
@@ -400,7 +401,8 @@
         $cycleTotalBetriebPercentAverage = calcTotalPercentAvg($cycleTotalBetriebY3, $semesterCountBetrieb, $cycleTotalBetriebPercent);
 
         //Gesamtdurchschnitt berechnen
-        $cycleTotalPercentAverage = calcTotalPercentAvg($cycleTotalPercentY3, $semesterCountSemester, $cycleTotalPercent);
+        $cycleTotalPercentAverage = (1*$cycleTotalPercentY3 + 2*( ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3) )/3;
+        //$cycleTotalPercentAverage = calcTotalPercentAvg($cycleTotalPercentY3, $semesterCountSemester, $cycleTotalPercent);<- WRONG
 
         //Leistungslohn anhand Berechnung finden
         $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
