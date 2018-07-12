@@ -226,15 +226,13 @@
                     if($row['correctedGrade']){
 
                         $grade = $row['correctedGrade'];
-                        $percentage = $grade / 6;
+                        $percentage = ($grade-1) / 5;
 
                     } else {
 
                         $grade = calculateSubject($row['ID'], $mysqli);
                         if($grade > 0){
-                            //$percentage = ($grade-1) / 5;
-                            $percentage = $grade / 6;
-                            //echo $percentage."<br />";
+                            $percentage = ($grade-1) / 5;
                         }
 
                     }
@@ -248,7 +246,6 @@
             }
 
             if($countPercentage != 0){
-                //echo "Total Percent: ". $countPercentage . " and subjects: ". $countSubjects ."<br />";
                 return ($countPercentage / $countSubjects);
             }
 
