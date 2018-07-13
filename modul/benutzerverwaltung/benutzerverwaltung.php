@@ -63,11 +63,11 @@
                     $generateDiv = '
                     <div id="'. $row['ID'] .'_FUserRow" class="searchRow row card" style="padding-top:10px; padding-left: 10px; padding-right: 15px; margin-bottom: 10px;">
 
-                        <div class="row userHeader searchFor" userID="'. $row['ID'] .'" style="height: 30px; cursor: pointer;">
-                            <div class="col-7">
+                        <div class="row userHeader searchFor" userID="'. $row['ID'] .'" style="height: 30px;">
+                            <div class="col-7" style="cursor: pointer;">
                                 <h2 id="'. $row['ID'] .'_FNameHeader">'.$row['firstname'].' '.$row['lastname'].'</h2>
                             </div>
-                            <div class="col-5 text-right">
+                            <div class="col-5 text-right" style="cursor: pointer;">
                                 '.$row['bKey'].' | <span id="'. $row['ID'] .'_FGroupHeader">'.$translate[$row['name']].'</span>
                             </div>
                         </div>

@@ -43,9 +43,6 @@
     left: 50%;
     transform: translate(-50%, 0);
 }
-.searchRow {
-    cursor: pointer;
-}
 .hiddenRow {
     padding: 0 4px !important;
     background-color: var(--hintergrund);
@@ -263,7 +260,6 @@ select.form-control:not([size]):not([multiple]){
 .userContentBox .header {
 	padding-top: 10px;
 	font-size: 0.9rem;
-	cursor: pointer;
 }
 .deadlineHeader {
 	padding-top: 10px;
