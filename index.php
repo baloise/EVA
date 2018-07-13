@@ -55,7 +55,17 @@
 
                 }
 
-                echo '<style>'.$fixCss.'</style>';
+                echo '
+                    <style>
+                        .navbar-brand {
+                            font-family: monospace;
+                        }
+                        .dashModuleIcon {
+                            margin-bottom: -3vh;
+                        }
+                        '.$fixCss.'
+                    </style>
+                ';
 
 
             } else {
@@ -71,6 +81,12 @@
                             --schrift: '.$row["schrift"].';
                             --link: '.$row["link"].';
                         }
+                        body {
+                            font-family: "RobotoRegular", sans-serif;
+                        }
+                        .navbar-brand, .mt-5 {
+                            font-family: "Geometria", "RobotoRegular", sans-serif;
+                        }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">
                     ';
@@ -85,6 +101,12 @@
                             --akzentfarbe: '.$appinfo["akzentfarbe"].';
                             --schrift: '.$appinfo["schrift"].';
                             --link: '.$appinfo["link"].';
+                        }
+                        body {
+                            font-family: "RobotoRegular", sans-serif;
+                        }
+                        .navbar-brand, .mt-5 {
+                            font-family: "Geometria", "RobotoRegular", sans-serif;
                         }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">

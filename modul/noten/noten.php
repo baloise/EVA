@@ -91,7 +91,7 @@
                                 $gradesunderEntry = '
                                 <div class="row gradeBelow">
                                     <div class="col-lg-12">
-                                        <div class="card" style="padding-top: 10px;margin-bottom:10px;">
+                                        <div class="card highlighter" style="padding-top: 10px;margin-bottom:10px;">
                                             <div class="row" style="padding:10px;">
                                                 <div class="col-lg-12">
                                                     <div class="row">
@@ -216,8 +216,8 @@
 
                 $llEntry = '
                 <div class="row">
-                    <div class="card col-lg-12 userContentBox">
-                        <div class="row userGradesHead header" containerID="'. $llid .'">
+                    <div class="card col-lg-12 userContentBox highlighter">
+                        <div class="row userGradesHead header" containerID="'. $llid .'" style="cursor:pointer;">
                             <div class="col-5"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
                             <div class="col-6 text-right">'.$translate[52].': '. $calcavg .'</div>
                             <div class="col-1 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
@@ -455,7 +455,7 @@
 
                 $subjectEntry = '
                     '. $sorterDiv .'
-                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
+                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h2>'. $row['subjectName'] .'</h2>
@@ -521,9 +521,9 @@
         <!-- Neues Fach hinzufügen -->
 
             <hr/>
-            <div class="col-lg-10 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
+            <div class="col-lg-11 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-3" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
                         <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate[114];?>">
                     </div>
 
@@ -531,13 +531,13 @@
 
                         if($session_usergroup == 3){
                             echo '
-                            <div class="col-lg-4" id="LIT">
+                            <div class="col-lg-6" id="LIT">
                                 <div class="row">
-                                    <div class="col-lg-6" style="margin-top: 10px;">
-                                        <button type="button" selected="" value="1" class="btn btnSelect btn-block">'.$translate[59].'</button>
+                                    <div class="col-lg-6" style="margin-top: 8px;">
+                                        <button type="button" selected="" value="1" class="btn btnSelect btn-block highlighter">'.$translate[59].'</button>
                                     </div>
-                                    <div class="col-lg-6" style="margin-top: 10px;">
-                                        <button type="button" selected="" value="0" class="btn btnSelect btn-block">'.$translate[117].'</button>
+                                    <div class="col-lg-6" style="margin-top: 8px;">
+                                        <button type="button" selected="" value="0" class="btn btnSelect btn-block highlighter">'.$translate[117].'</button>
                                     </div>
                                 </div>
                             </div>';
@@ -545,7 +545,7 @@
 
                     ?>
 
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-4" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
+                    <?php if($session_usergroup == 3){echo '<div class="col-lg-3" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
                         <select class="form-control" id="newSubSem" placeholder="<?php echo $translate[113];?>">
                             <option><?php echo $translate[38];?>:</option>
                             <?php echo $semesterList; ?>
@@ -555,7 +555,7 @@
 
                 <div class="row">
                     <div class="col-lg-12" style="margin-top: 10px;">
-                        <button type="button" class="btn col-lg-12" id="addSubject">
+                        <button type="button" class="btn col-lg-12 highlighter" id="addSubject">
                             <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> <?php echo $translate[63];?></b>
                         </button>
                         <br/><br/>

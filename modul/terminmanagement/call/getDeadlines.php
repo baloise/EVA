@@ -11,11 +11,11 @@
     function designDeadlineEntry($state, $id, $title, $date, $usrid, $translate){
 
         if($state == 0){
-            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 0);" >';
+            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center highlighter" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 0);" >';
         } else if ($state == 1){
-            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center alert-success" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 1);">';
+            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center alert-success highlighter" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 1);">';
         } else if ($state == 2){
-            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center alert-danger" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 2);">';
+            $entryDiv = '<div class="col-lg-3 col-sm-6 card deadline text-center alert-danger highlighter" uid="'.$usrid.'" did="'.$id.'" style="cursor: pointer;" onclick="modifyEntry('.$id.', '.$usrid.', 2);">';
         } else {
 
         }
@@ -48,7 +48,7 @@
             }
 
             $entry = '
-            <div class="card col-12 inCard">
+            <div class="card col-12 inCard highlighter">
                 <div class="row deadlineHeader" deadlineSemesterID="'.$semid.'" userId="'.$usrid.'" onclick="expandDeadlines('.$semid.', '.$usrid.');">
                     <div class="col-10">
                         <b>'.$translate[38].' '.$semtitle.'</b>

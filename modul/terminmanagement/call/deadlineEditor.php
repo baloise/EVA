@@ -121,7 +121,7 @@
 
                         $generateDiv = $generateDiv .'
                         <div class="row rowID'. $row['did'] .'" style="max-width: 98%; margin-left: auto; margin-right: auto;">
-                            <div class="col-12 card" style="padding-top:10px; padding-bottom:10px; margin-bottom:20px;">
+                            <div class="col-12 card highlighter" style="padding-top:10px; padding-bottom:10px; margin-bottom:20px;">
                                 <div class="deadlineHead row" style="cursor:pointer;" did="'. $row['did'] .'">
                                     <div class="col-10">
                                         <h2>'. $translateTitle .' ('.$translate[$row['Gname']].')</h2>
@@ -283,7 +283,7 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <br/>
-                        <button type="button" class="btn btn-block" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-block highlighter" id="addNewdid"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                 </div>
 

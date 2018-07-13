@@ -15,8 +15,8 @@
 
                 $entry = '
                 <div class="row searchRow">
-                    <div class="card col-lg-12 userContentBox">
-                        <div class="row header" userId="'.$row['ID'].'">
+                    <div class="card col-lg-12 userContentBox highlighter">
+                        <div class="row header" userId="'.$row['ID'].'" style="cursor:pointer;">
                             <div class="col-10">
                                 <b class="searchFor">'.$row['firstname'].' '.$row['lastname'].' ('.$row['bKey'].')</b>
                             </div>
@@ -125,7 +125,7 @@
 
                             $entry = '
                                 <div class="row">
-                                    <div class="col-lg-12 card alert-success" style="padding-top: 10px; margin-bottom: 10px;">
+                                    <div class="col-lg-12 card alert-success highlighter" style="padding-top: 10px; margin-bottom: 10px;">
                                         <h3>'.$deadlineTitle.'</h3>
                                         <p>'.$deadlineDescription.'</p>
                                         <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
@@ -141,7 +141,7 @@
 
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card alert-danger" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
+                                        <div class="col-lg-12 card alert-danger highlighter" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
                                             <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
@@ -155,7 +155,7 @@
 
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
+                                        <div class="col-lg-12 card highlighter" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
                                             <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>

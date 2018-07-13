@@ -92,7 +92,7 @@
 				if ($result3->num_rows == 1) {
 					$entry = '
 						<div class="row">
-							<div class="col-lg-12 card alert-success" style="margin-bottom: 10px; background-color: #F1F4FB;">
+							<div class="col-lg-12 card alert-success highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
 										<b>'.$deadlineTitle.'</b>
@@ -107,7 +107,7 @@
 				} else {
 					$entry = '
 						<div class="row">
-							<div class="col-lg-12 card" style="margin-bottom: 10px; background-color: #F1F4FB;">
+							<div class="col-lg-12 card highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
 										<b>'.$deadlineTitle.'</b>

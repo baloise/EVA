@@ -46,7 +46,7 @@
 
                         echo '
                         <div class="">
-                            <tr data-toggle="collapse" data-target="#'.$row['ID'].'" '.$trClass.'>
+                            <tr data-toggle="collapse" data-target="#'.$row['ID'].'" '.$trClass.' style="cursor:pointer;">
                                 <td>'.$row['ID'].'</td>
                                 <td class="searchFor">'.$translate[$row['ID']].'</td>
                             </tr>
