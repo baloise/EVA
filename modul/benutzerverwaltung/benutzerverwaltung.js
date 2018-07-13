@@ -1,5 +1,47 @@
 $(document).ready(function(){
 
+    $('#searchInput').on('keyup', function(){
+
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("searchList");
+        li = ul.getElementsByClassName("searchRow");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByClassName("searchFor")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+
+    });
+
+    $('.userHeader').each(function(){
+        $(this).click(function(){
+
+            var userID = $(this).attr("userID");
+
+            $('.userContent').each(function(){
+
+                if($(this).attr("userID") == userID){
+
+                    $(this).slideToggle('fast');
+
+                } else if($(this).attr("userID") != userID){
+
+                    if($(this).css('display') != 'none'){
+                        $(this).slideUp('fast');
+                    }
+
+                }
+
+            });
+
+        });
+    });
+
     $("#addUser").click(function(event){
 
         event.preventDefault();
@@ -25,7 +67,7 @@ $(document).ready(function(){
 
             $.ajax({
                 method: "POST",
-                url: "./modul/benutzerverwaltung/modifyUser.php",
+                url: "./modul/benutzerverwaltung/call/modifyUser.php",
                 data: {action:"add", bkey:bkey, group:group},
                 success: function(data){
 
@@ -36,6 +78,7 @@ $(document).ready(function(){
 
                         $(".addUserInput").val("");
                         $("#successText").html(translate[101]);
+                        $('#addUserModal').modal('toggle');
                         $("#successAlert").slideDown("fast").delay(1000).slideUp("fast",function(){
 
                             $("#pageContent").load("modul/benutzerverwaltung/benutzerverwaltung.php", function(){
@@ -52,87 +95,96 @@ $(document).ready(function(){
 
         }
 
-
     });
 
-    var typingTimer;
-    var doneTypingInterval = 2000;
+    $(".fSave").each(function(){
+        $(this).click(function(event){
+            var button = $(this);
+            event.preventDefault();
+            button.prop("disabled",true);
 
-    $('.changeInTable').each(function(){
+            var error = "";
+            var userID = $(this).attr('userID');
+            var fFirstname = $("#"+userID+"_fFirstname").val();
+            var fLastname = $("#"+userID+"_fLastname").val();
+            var fGroup = $("#"+userID+"_fGroup").val();
+            var fMail = $("#"+userID+"_fMail").val();
+            var fLanguage = $("#"+userID+"_fLanguage").val();
+            var fSemester = $("#"+userID+"_fSemester").val();
 
+            if(fGroup.length <= 0){
+                error = error + "<li>" + translate[154]+"</li>";
+            }
 
-        $(this).on('keydown', function () {
-            clearTimeout(typingTimer);
-        });
+            if(fMail.length <= 0){
+                error = error + "<li>" + translate[255] + " " + translate[95] +"</li>";
+            }
 
-        $(this).on("keyup", function(){
+            if(error){
+                $("#errorText").html(error);
+                $("#errorAlert").slideDown("fast");
+                button.prop("disabled",false);
+            } else {
+                $("#errorAlert").slideUp("fast");
 
-            $('#loadingTable').slideDown("fast");
-
-            clearTimeout(typingTimer);
-            typingTimer = setTimeout(doneTyping, doneTypingInterval);
-
-            var usrID = $(this).attr("usrid");
-            var fType = $(this).attr("fType");
-            var content = $(this).val();
-
-            if(usrID && fType){
-                event.preventDefault();
                 $.ajax({
-                    async: true,
                     method: "POST",
-                    url: "./modul/benutzerverwaltung/modifyUser.php",
-                    data: {action:"change", userid:usrID, fType:fType, content:content},
+                    url: "./modul/benutzerverwaltung/call/modifyUser.php",
+                    data: {action:"change", userID:userID, fFirstname:fFirstname, fLastname:fLastname, fGroup:fGroup, fMail:fMail, fLanguage:fLanguage, fSemester:fSemester},
                     success: function(data){
                         if(data){
-                            $("#errorAlert").html(data).slideDown("fast");
+                            $("#errorText").html(data);
+                            $("#errorAlert").slideDown("fast");
+                            button.prop("disabled",false);
                         } else {
-                            $('#check'+ usrID).fadeTo("fast", 1);
+                            $(".addUserInput").val("");
+                            $("#successText").html(translate[101]);
+                            $("#successAlert").slideDown("fast").delay(1000).slideUp("fast");
+                            button.prop("disabled",false);
                         }
                     }
                 });
+
             }
 
+
+
         });
-
-
     });
 
-    var notdone = 0;
+    $('.fFirstname').each(function(){
+        $(this).on('keyup', function(){
 
-    function doneTyping() {
+            var userID = $(this).attr('userID');
+            $("#"+userID+"_FNameHeader").html($(this).val() + " " + $("#"+userID+"_fLastname").val());
 
-        if ($.active == 0){
-
-            $('#loadingTable').slideUp("fast");
-            $("#successText").html(translate[101]);
-            $("#successAlert").slideDown("fast").delay(1400).slideUp("fast");
-
-        } else {
-            notdone = 1;
-        }
-    }
-
-    $(document).ajaxStop(function(){
-        if(notdone == 1){
-            $('#loadingTable').slideUp("fast");
-            $("#successText").html(translate[101]);
-            $("#successAlert").slideDown("fast").delay(1400).slideUp("fast");
-        }
+        });
     });
 
+    $('.fLastname').each(function(){
+        $(this).on('keyup', function(){
 
+            var userID = $(this).attr('userID');
+            $("#"+userID+"_FNameHeader").html($("#"+userID+"_fFirstname").val() + " " + $(this).val());
 
-    $(".fa-trash-o").each(function(){
-
-        $(this).hover(function() {
-            $(this).css( 'cursor', 'pointer' );
         });
+    });
 
-        $(this).click(function(){
+    $('.fGroup').each(function(){
+        $(this).on('change', function(){
 
-            var usrid = $(this). attr('id');
-            var bkey = $(this). attr('bkey');
+            var userID = $(this).attr('userID');
+            $("#"+userID+"_FGroupHeader").html($(this).find('option:selected').text());
+
+        });
+    });
+
+    $(".fDelete").each(function(){
+        $(this).click(function(event){
+            event.preventDefault();
+
+            var usrid = $(this).attr('userID');
+            var bkey = $(this).attr('bkey');
 
             $("#warningText").html("<strong>" + translate[97] + "</strong> " + translate[98] + ": " + bkey);
             $("#warningAlert").slideDown("fast");
@@ -145,15 +197,17 @@ $(document).ready(function(){
 
                     $.ajax({
                         method: "POST",
-                        url: "./modul/benutzerverwaltung/modifyUser.php",
+                        url: "./modul/benutzerverwaltung/call/modifyUser.php",
                         data: {action:"delete", userid:usrid},
                         success: function(data){
                             if(data){
-
+                                alert(data);
                             } else {
-                                $("#rowID" + usrid).slideUp("slow");
                                 $("#warningAlert").slideUp("fast");
 								$("#warningButton").prop("disabled",false);
+                                $("#"+usrid+"_FUserRow").slideUp('slow', function(){
+                                    $("#"+usrid+"_FUserRow").remove();
+                                });
                             }
                         }
                     });
@@ -164,8 +218,6 @@ $(document).ready(function(){
 
 
         });
-
     });
-
 
 });

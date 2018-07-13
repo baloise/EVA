@@ -401,7 +401,7 @@
         $cycleTotalBetriebPercentAverage = calcTotalPercentAvg($cycleTotalBetriebY3, $semesterCountBetrieb, $cycleTotalBetriebPercent);
 
         //Gesamtdurchschnitt berechnen
-        $cycleTotalPercentAverage = (1*$cycleTotalPercentY3 + 2*( ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3) )/3;
+        $cycleTotalPercentAverage = ($cycleTotalPercentY3 + 2*( ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3 ) )/3;
         //$cycleTotalPercentAverage = calcTotalPercentAvg($cycleTotalPercentY3, $semesterCountSemester, $cycleTotalPercent);<- WRONG
 
         //Leistungslohn anhand Berechnung finden

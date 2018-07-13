@@ -1,9 +1,9 @@
 <?php
 
-    include("../../includes/session.php");
-    include("./../../database/connect.php");
-    include("./../../database/partner.php");
-    include('../../includes/testInput.php');
+    include("../../../includes/session.php");
+    include("./../../../database/connect.php");
+    include("./../../../database/partner.php");
+    include('../../../includes/testInput.php');
 
     if($session_usergroup != 1){
         die("Sie haben keine Berechtigungen zu diesem Modul");
@@ -93,40 +93,37 @@
 
         } else if($_POST['action'] == "change"){
 
-            $userid = test_input($_POST['userid']);
-            $content = test_input($_POST['content']);
+            $userid = test_input($_POST['userID']);
+            $fFirstname = test_input($_POST['fFirstname']);
+            $fLastname = test_input($_POST['fLastname']);
+            $fGroup = test_input($_POST['fGroup']);
+            $fMail = test_input($_POST['fMail']);
+            $fLanguage = test_input($_POST['fLanguage']);
+            $fSemester = test_input($_POST['fSemester']);
 
-            if($_POST['fType'] == 1){
-
-                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `tb_group_ID` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $content, $userid);
-
+            if($fSemester != ""){
+                $stmt = $mysqli->prepare("UPDATE tb_user SET firstname = ?, lastname = ?, mail = ?, tb_group_ID = ?, language = ?, tb_semester_ID = ? WHERE ID = ?");
+                $rc = $stmt->bind_param("sssisii", $fFirstname, $fLastname, $fMail, $fGroup, $fLanguage, $fSemester, $userid);
+            } else {
+                $stmt = $mysqli->prepare("UPDATE tb_user SET firstname = ?, lastname = ?, mail = ?, tb_group_ID = ?, language = ? WHERE ID = ?");
+                $rc = $stmt->bind_param("sssisi", $fFirstname, $fLastname, $fMail, $fGroup, $fLanguage, $userid);
             }
 
-            if ($_POST['fType'] == 2){
 
-                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `firstname` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $content, $userid);
-
+            if ( false===$stmt ) {
+                die('prepare() failed: ' . htmlspecialchars($mysqli->error));
             }
 
-            if ($_POST['fType'] == 3){
-
-                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `lastname` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $content, $userid);
-
+            if ( false===$rc ) {
+                die('bind_param() failed: ' . htmlspecialchars($stmt->error));
             }
 
-            if ($_POST['fType'] == 4){
-
-                $stmt = $mysqli->prepare("UPDATE `tb_user` SET `mail` = ? WHERE `tb_user`.`ID` = ?");
-                $stmt->bind_param("ss", $content, $userid);
-
+            $rc = $stmt->execute();
+            if ( false===$rc ) {
+                die('execute() failed: ' . htmlspecialchars($stmt->error));
             }
 
-            $stmt->execute();
             $stmt->close();
-            $mysqli->close();
 
         } else {
             echo "<li>".$translate[260]."</li>";
