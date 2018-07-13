@@ -75,7 +75,7 @@
                         <div class="row userContent" userID="'. $row['ID'] .'" style="padding: 15px; display:none;">
 
                             <div class="col-12">
-                                Zuletzt angemeldet: '.$lastlogin.'
+                                <i class="fa fa-eye" aria-hidden="true"></i> '.$lastlogin.'
                             </div>
 
                             <div class="col-12">
