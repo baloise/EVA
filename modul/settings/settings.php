@@ -7,6 +7,7 @@
     </head>
 
 <h1 class="mt-5"><?php echo $translate[16];?></h1>
+<a href="logout.php" style="font-size:small;">Destroy Session</a>
 
 <div class="row">
     <div class="col-lg-6">

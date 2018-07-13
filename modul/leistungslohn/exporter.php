@@ -143,10 +143,10 @@
 
     <div class="row">
         <div class="col-lg-3">
-            <button id="getCSV" class="btn-block btn btn-lg btn-default"><i class="fa fa-cogs" aria-hidden="true"></i> Export CSV</button>
+            <button id="getCSV" class="btn-block btn btn-lg btn-default highlighter"><i class="fa fa-cogs" aria-hidden="true"></i> Export CSV</button>
         </div>
         <div class="col-lg-3">
-            <button onclick="window.location.href='modul/leistungslohn/Serienbrief.docx'" class="btn-block btn btn-lg btn-default"><i class="fa fa-download" aria-hidden="true"></i> Download Template</button>
+            <button onclick="window.location.href='modul/leistungslohn/Serienbrief.docx'" class="btn-block btn btn-lg btn-default highlighter"><i class="fa fa-download" aria-hidden="true"></i> Download Template</button>
         </div>
         <div class="col-lg-6">
             <p id="getCSVnotif" style="padding-top: 10px; display:none; font-size: larger; color: grey;">

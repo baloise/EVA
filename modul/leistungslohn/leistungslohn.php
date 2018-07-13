@@ -49,7 +49,7 @@
                                 <!-- BERECHNUNGSZYKLEN INFORMATIKER -->
 
                                 <div class="row">
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                             <div class="col-10">
                                                 <h2>'.$translate[47].' ' . $translate[48] .' 3</h2>
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
                                             <div class="col-10">
                                                 <h2>'.$translate[47].' '.$translate[38].' 7</h2>
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
                                             <div class="col-10">
                                                 <h2>'.$translate[47].' '.$translate[38].' 8</h2>
@@ -123,7 +123,7 @@
                                 <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG -->
 
                                 <div class="row">
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
                                             <div class="col-10">
                                                 <h2>'.$translate[47].' '.$translate[38].' 5</h2>
@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
                                             <div class="col-10">
                                                 <h2>'.$translate[47].' '.$translate[38].' 6</h2>
@@ -173,7 +173,7 @@
 
                         $usersEntry = '
                             <div class="row searchRow">
-                                <div class="col-lg-12 card" style="background-color: #f9f9f9">
+                                <div class="col-lg-12 card highlighter" style="background-color: #f9f9f9">
                                     <div class="row userHeader" userID="'.$userID.'" onclick="toggleUser('.$userID.');">
                                         <div class="col-10">
                                             <h2 class="searchFor">'.$userFirstname.' '.$userLastname.' ('.$userBkey.')</h2>
@@ -215,7 +215,7 @@
 
                 $groupsEntry = '
                     <div class="row">
-                        <div class="col-lg-12 card">
+                        <div class="col-lg-12 card highlighter">
                             <div class="row groupHeader" groupID="'.$groupID.'" onclick="toggleGroup('.$groupID.');">
                                 <div class="col-10">
                                     <h2>'.$translate[$groupName].'</h2>
@@ -301,7 +301,7 @@
                         <!-- BERECHNUNGSZYKLEN INFORMATIKER -->
 
                         <div class="row">
-                            <div class="col-lg-12 card">
+                            <div class="col-lg-12 card highlighter">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
                                     <div class="col-10">
                                         <h2>'.$translate[47].' '.$translate[47].' 3</h2>
@@ -323,7 +323,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12 card">
+                            <div class="col-lg-12 card highlighter">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
                                     <div class="col-10">
                                         <h2>'.$translate[47].' '.$translate[38].' 7</h2>
@@ -345,7 +345,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12 card">
+                            <div class="col-lg-12 card highlighter">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
                                     <div class="col-10">
                                         <h2>'.$translate[47].' '.$translate[38].' 8</h2>
@@ -375,7 +375,7 @@
                         <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG -->
 
                         <div class="row">
-                            <div class="col-lg-12 card">
+                            <div class="col-lg-12 card highlighter">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="4" onclick="toggleCycle('.$userID.', 4);">
                                     <div class="col-10">
                                         <h2>'.$translate[47].' '.$translate[38].' 5</h2>
@@ -397,7 +397,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12 card">
+                            <div class="col-lg-12 card highlighter">
                                 <div class="row cycleHeader" userID="'.$userID.'" cycleID="5" onclick="toggleCycle('.$userID.', 5);">
                                     <div class="col-10">
                                         <h2>'.$translate[47].' '.$translate[38].' 6</h2>

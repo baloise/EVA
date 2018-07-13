@@ -120,7 +120,7 @@
             <!-- SEMESTER -->
 
             <div class="row">
-                <div class="col-lg-12 card">
+                <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
                     <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
@@ -142,7 +142,7 @@
 
                                     '.$malusEntry.'
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -160,7 +160,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -174,7 +174,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -222,7 +222,7 @@
 
                         <!-- BERECHNUNGEN -->
 
-                         <div class="col-lg-12 card">
+                         <div class="col-lg-12 card highlighter">
                             <br/>
                             <table class="table calcTable">
                                 <tr>
@@ -493,7 +493,7 @@
             <!-- SEMESTER -->
 
             <div class="row">
-                <div class="col-lg-12 card" style="background-color: #F1F4FB;">
+                <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
                     <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
@@ -515,7 +515,7 @@
 
                                     '.$malusEntry.'
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -528,7 +528,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -542,7 +542,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card">
+                                    <div class="col-lg-12 card highlighter">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -590,7 +590,7 @@
 
                         <!-- BERECHNUNGEN -->
 
-                         <div class="col-lg-12 card">
+                         <div class="col-lg-12 card highlighter">
                             <br/>
                             <table class="table calcTable">
                                 <tr>
