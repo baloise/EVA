@@ -121,6 +121,7 @@
 
             <div class="row">
                 <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
+
                     <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
@@ -130,6 +131,7 @@
                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                         </div>
                     </div>
+
                     <div class="row semesterContent" userID="'.$userID.'" semesterID="'.$semesterID.'">
                         <div class="col-12">
                             <hr/>
@@ -174,7 +176,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card highlighter">
+                                    <div class="col-lg-12 card highlighter" style="margin-bottom: 20px;">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -218,33 +220,31 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        '.$translate[132].': <b>'.$aS.'.-</b> ('. round(($cT1*100), 2) .' %)<br/>
-
-                        <!-- BERECHNUNGEN -->
-
-                         <div class="col-lg-12 card highlighter">
-                            <br/>
-                            <table class="table calcTable">
-                                <tr>
-                                    <td><b>'.$translate[126].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT2*100), 2) .' %</b></td>
-                                </tr>
-                                <tr>
-                                    <td><b>'.$translate[129].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT3*100), 2) .' %</b></td>
-                                </tr>
-                                <tr>
-                                    <td><b>'.$translate[131].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
-                                </tr>
-                            </table>
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-lg-4 text-center">
+                                <span class="salaryText">'.$aS.'</span>
+                                '.$translate[132].'<br />
+                                <b>'. round(($cT1*100), 2) .' %</b>
+                            </div>
+                            <div class="col-lg-8">
+                                <table class="table calcTable">
+                                    <tr>
+                                        <td><b>'.$translate[126].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT2*100), 2) .' %</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>'.$translate[129].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT3*100), 2) .' %</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>'.$translate[131].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
 
-                        <!-- BERECHNUNGEN ENDE -->
-
                         <!-- SEMESTER -->
-                        <hr/>
-                        <h2>'.$translate[133].'</h2>
 
                         '.$sL.'
 
@@ -542,7 +542,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="col-lg-12 card highlighter">
+                                    <div class="col-lg-12 card highlighter" style="padding-bottom: 20px;">
                                         <br/>
                                         <table class="table calcTable">
                                             <tr>
@@ -586,34 +586,31 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        '.$translate[132].': <b>'.$aS.'.-</b> ('. round(($cT1*100), 2) .' %)<br/>
-
-                        <!-- BERECHNUNGEN -->
-
-                         <div class="col-lg-12 card highlighter">
-                            <br/>
-                            <table class="table calcTable">
-                                <tr>
-                                    <td><b>'.$translate[135].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT2*100), 2) .' %</b></td>
-                                </tr>
-                                <tr>
-                                    <td><b>'.$translate[129].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT3*100), 2) .' %</b></td>
-                                </tr>
-                                <tr>
-                                    <td><b>'.$translate[131].'</b></td>
-                                    <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
-                                </tr>
-                            </table>
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-lg-4 text-center">
+                                <span class="salaryText">'.$aS.'</span>
+                                '.$translate[132].'<br />
+                                <b>'. round(($cT1*100), 2) .' %</b>
+                            </div>
+                            <div class="col-lg-8">
+                                <table class="table calcTable">
+                                    <tr>
+                                        <td><b>'.$translate[135].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT2*100), 2) .' %</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>'.$translate[129].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT3*100), 2) .' %</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>'.$translate[131].'</b></td>
+                                        <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
 
-                        <!-- BERECHNUNGEN ENDE -->
-
                         <!-- SEMESTER -->
-
-                        <hr/>
-                        <h2>'.$translate[133].'</h2>
 
                         '.$sL.'
 

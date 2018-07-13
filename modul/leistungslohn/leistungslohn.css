@@ -16,6 +16,13 @@
 .calcTableResult {
 	text-align: right;
 }
+.calcTable {
+    margin-top: -10px;
+}
 .calcTable tr:first-child td {
     border-top: none !important;
+}
+.salaryText {
+    font-size: 50px;
+    display: block;
 }

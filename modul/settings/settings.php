@@ -7,7 +7,6 @@
     </head>
 
 <h1 class="mt-5"><?php echo $translate[16];?></h1>
-<a href="logout.php" style="font-size:small;">Destroy Session</a>
 
 <div class="row">
     <div class="col-lg-6">
@@ -26,7 +25,7 @@
                 while($row = $result->fetch_assoc()) {
                     $link = '
                     <div class="navListPosition" id="navListPosition" navItemID="' . $row["ID"] . '">
-                        <div id="navListItem">
+                        <div id="navListItem" class="highlighter">
                             ' . $translate[$row["title"]] . ' <span> </span>
                         </div>
                         <div id="navListIcon"><span navItemID="'. $row['ID'] .'" class="itemDelete"><i class="fa fa-minus" aria-hidden="true"></i></span></div>
@@ -42,7 +41,7 @@
         ?>
         </div>
         <div id="navListPosition" pos="">
-            <div id="navListItem">
+            <div id="navListItem" class="highlighter">
                 <select class="form-control" id="selectModule" userID="<?php echo $userID;?>">
                     <?php
 
@@ -84,9 +83,8 @@
                 </select>
             </div>
 
-            <div class="col-12">
-                <br/>
-                <button class="btn btn-block" style="display:none;" id="changeLanguageButton"><?php echo $translate[143];?></button>
+            <div class="col-12" style="margin-bottom:20px;">
+                <button class="btn btn-block highlighter" style="display:none; margin-top:10px;" id="changeLanguageButton"><?php echo $translate[143];?></button>
             </div>
 
         </div>
@@ -163,13 +161,16 @@
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="saveColor" style="display:none;" class="btn btn-block btn-success" <?php if($explora){echo "disabled";}?> > <?php echo $translate['143']; ?></button>
+                        <button type="button" id="saveColor" style="display:none;" class="highlighter btn btn-block btn-success" <?php if($explora){echo "disabled";}?> > <?php echo $translate['143']; ?></button>
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="removeColor" class="btn btn-block"><?php echo $translate['189']; ?></button>
+                        <button type="button" id="removeColor" class="btn btn-block highlighter"><?php echo $translate['189']; ?></button>
+                    </div>
+                    <div class="col-12 text-right">
+                        <a href="logout.php">Destroy Session</a>
                     </div>
                 </div>
             </div>
