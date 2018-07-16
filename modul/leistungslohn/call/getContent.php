@@ -114,9 +114,9 @@
         //Terminmanagement
         function calculateDeadline($semesterID, $userID, $mysqli){
 
-            $sql = "SELECT ID FROM tb_dontcountsem WHERE tb_semester_ID = $semesterID";
+            $sql = "SELECT ID FROM tb_dontcountsem WHERE tb_semester_ID = $semesterID AND tb_user_ID = $userID";
             $result = $mysqli->query($sql);
-            if ($result->num_rows == 0) {
+            if ($result->num_rows <= 0) {
 
                 $sql = "SELECT ID, date, tb_semester_ID FROM tb_deadline WHERE tb_semester_ID = $semesterID";
                 $result = $mysqli->query($sql);
@@ -124,6 +124,7 @@
                 $userCurrSem = 1;
                 $sqlUserSem = "SELECT tb_semester_ID FROM tb_user WHERE ID = $userID";
                 $resultUserSem = $mysqli->query($sqlUserSem);
+
                 if (isset($resultUserSem) && $resultUserSem->num_rows > 0) {
                     $rowUserSem = $resultUserSem->fetch_assoc();
                     $userCurrSem = $rowUserSem['tb_semester_ID'];
@@ -132,7 +133,6 @@
                 $passes = 0;
                 $countDeadlines = 0;
                 $countUserChecks = 0;
-                $today = date("Y-m-d");
 
                 if (isset($result) && $result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {

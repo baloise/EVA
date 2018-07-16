@@ -35,15 +35,15 @@
 
         if($deadEntries){
 
-            $stmt = $mysqli->prepare("SELECT * FROM `tb_dontcountsem` WHERE tb_semester_ID = ?");
-            $stmt->bind_param("i", $semid);
+            $stmt = $mysqli->prepare("SELECT * FROM `tb_dontcountsem` WHERE tb_semester_ID = ? AND tb_user_ID = ?");
+            $stmt->bind_param("ii", $semid, $usrid);
             $stmt->execute();
 
             $result = $stmt->get_result();
             $row = $result->fetch_array(MYSQLI_NUM);
 
             $hasSuccess = "";
-            if ($row){
+            if ($row > 0){
                 $hasSuccess = "alert-success";
             }
 
