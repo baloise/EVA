@@ -95,20 +95,10 @@
     }
 
     //Generate IT-Contents
-    function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
-
-        $malusEntry = "";
-        $deadlineEntry = "0";
-
-        if($malus > 0){
-            $malusEntry = $malusEntry . '
-            <div class="col-lg-12 text-center">
-                <h2><b>'.$translate[8].': '.$malus.' %</b></h2>
-            </div>
-            ';
-        }
+    function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate){
 
         $deadlineEntry = "0";
+
         if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
             $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) . " %";
         } else {
@@ -127,7 +117,7 @@
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
                         </div>
                         <div class="col-2 text-right">
-                            <span><b>'. bcadd(round((LITcalculateSemester($semesterID, $userID, $mysqli)*100), 2), ($malus*-1), 2) .' %</b></span>
+                            <span><b>'. round((LITcalculateSemester($semesterID, $userID, $mysqli)*100), 2) .' %</b></span>
                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -141,8 +131,6 @@
                                 <div class="col-lg-12">
 
                                     <!-- BERECHNUNGEN -->
-
-                                    '.$malusEntry.'
 
                                     <div class="col-lg-12 card highlighter">
                                         <br/>
@@ -211,7 +199,7 @@
 
     }
 
-    function generateEntryIT($aS, $cT1, $cT2, $cT3, $cT4, $sL, $translate){
+    function generateEntryIT($totalMalus, $aS, $cT1, $cT2, $cT3, $cT4, $sL, $translate){
 
         $entry = '
             <!-- PER AJAX CALLEN -->
@@ -239,6 +227,10 @@
                                     <tr>
                                         <td><b>'.$translate[131].'</b></td>
                                         <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>'.$translate[8].'</b></td>
+                                        <td class="calcTableResult"><b>'. round($totalMalus, 2) .' %</b></td>
                                     </tr>
                                 </table>
                             </div>

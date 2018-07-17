@@ -42,24 +42,19 @@
                 if (isset($result) && $result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
 
-                        $malus = 0;
 
                         $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
                         $malusResult = $mysqli->query($malusSql);
                         if (isset($malusResult) && $malusResult->num_rows > 0) {
                             while($malusRow = $malusResult->fetch_assoc()) {
-                                $malus = $malus + $malusRow["weight"];
+                                $cycleTotalMalus += $malusRow["weight"];
                             }
                         }
 
-                        if(isset($malus)){
-                            $cycleTotalMalus += $malus;
-                        }
-
-                        $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $malus);
+                        $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
 
                         if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
-                            $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli)) - ($malus/100);
+                            $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
                             $semesterCountSemester = $semesterCountSemester + 1;
                         }
 
@@ -85,7 +80,7 @@
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
                 $cycleTotalPercentAverage = ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3;
-                //$cycleTotalPercentAverage = calcNeededAverages($semesterCountSemester, $cycleTotalPercent); <- WRONG
+                $cycleTotalPercentAverage -= $cycleTotalMalus/100;
 
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
@@ -123,7 +118,7 @@
                     );
                     return $cvsValues;
                 } else {
-                    echo generateEntryIT($actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+                    echo generateEntryIT($cycleTotalMalus, $actualSalary, $cycleTotalPercentAverage, $cycleTotalItPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
                 }
 
             }
