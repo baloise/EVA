@@ -344,10 +344,7 @@
                     <div class="col-12">
                         <br />
                         <div class="row">
-                            <div class="col-3">
-                                <button type="button" class="btn" id="calcGradesBtn"><?php echo $translate[71];?></button>
-                            </div>
-                            <div class="col-9 text-right">
+                            <div class="col-12 text-center">
                                 <span style="font-size: 20px;" id="calcResult"></span>
                             </div>
                         </div>

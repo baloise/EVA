@@ -22,7 +22,9 @@ $(document).ready(function(){
             // Note -1 Mal 14.4 (Da max. Punktzahl = 72)
             var gradeInPoints = Math.round(((gradeAvg-1) * 14.4) * 100) / 100;
 
-            $('#calcResult').html("<b>" + gradeAvg + " > " + gradeInPoints + " " + translate[67] + " <b>");
+            $('#calcResult').html("<b>" + gradeAvg + " = " + gradeInPoints + " " + translate[67] + " <b>");
+            $('#fPoints').val(gradeInPoints);
+
         } else {
             $('#calcResult').html(translate[171]);
         }
