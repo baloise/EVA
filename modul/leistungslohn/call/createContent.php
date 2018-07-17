@@ -51,7 +51,7 @@
                             }
                         }
 
-                        $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                        $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                         if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                             $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
@@ -173,7 +173,7 @@
                             }
                         }
 
-                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                         if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                             $cycleTotalPercent += (LKVBcalculateSemester($row['ID'], $userID, $mysqli));
@@ -297,7 +297,7 @@
                             }
                         }
 
-                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                         if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                             $cycleTotalPercentY3 += (LKVBcalculateSemester($row['ID'], $userID, $mysqli));
@@ -355,7 +355,7 @@
                             }
                         }
 
-                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                        $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                         if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                             $cycleTotalPercent += (LKVBcalculateSemester($row['ID'], $userID, $mysqli));
@@ -449,5 +449,5 @@
     if(isset($_POST['cycleID'])){
         doCreateContent();
     }
-
+    
 ?>

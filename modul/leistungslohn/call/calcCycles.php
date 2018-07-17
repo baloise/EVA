@@ -95,7 +95,7 @@
     }
 
     //Generate IT-Contents
-    function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate){
+    function generateSemesterIT($semesterID, $semesterName, $userID, $mysqli, $translate, $cycleID){
 
         $deadlineEntry = "0";
 
@@ -112,7 +112,7 @@
             <div class="row">
                 <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
 
-                    <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
+                    <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.', '.$cycleID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
                         </div>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
 
-                    <div class="row semesterContent" userID="'.$userID.'" semesterID="'.$semesterID.'">
+                    <div class="row semesterContent" userID="'.$userID.'" semesterID="'.$semesterID.'" cycleID="'.$cycleID.'">
                         <div class="col-12">
                             <hr/>
                         </div>
@@ -294,7 +294,6 @@
         if (isset($result) && $result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
 
-
                 $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
                 $malusResult = $mysqli->query($malusSql);
                 if (isset($malusResult) && $malusResult->num_rows > 0) {
@@ -303,7 +302,7 @@
                     }
                 }
 
-                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                 if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
@@ -362,7 +361,7 @@
                     }
                 }
 
-                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate);
+                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                 if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
@@ -447,7 +446,7 @@
     }
 
     //Generate LKVB-Contents
-    function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate){
+    function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate, $cycleID){
 
         $deadlineEntry = "0";
         if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
@@ -481,7 +480,7 @@
 
             <div class="row">
                 <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
-                    <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.');">
+                    <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.', '.$cycleID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
                         </div>
@@ -490,7 +489,7 @@
                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="row semesterContent" userID="'.$userID.'" semesterID="'.$semesterID.'">
+                    <div class="row semesterContent" userID="'.$userID.'" semesterID="'.$semesterID.'" cycleID="'.$cycleID.'">
                         <div class="col-12">
                             <hr/>
                         </div>

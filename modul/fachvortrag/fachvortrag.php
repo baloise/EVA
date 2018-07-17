@@ -193,7 +193,7 @@
             <tr id="newEntry">
                 <th scope="row" style="padding-top: 20px;">#</th>
                 <td><input class="form-control" type="text" id="fTitle"/></td>
-                <td><input class="form-control" type="number" id="fPoints"/></td>
+                <td><input class="form-control" type="number" id="fPoints" min="1" max="84"/></td>
                 <td>
                     <select class="form-control" id="fSem">
                         <option></option>

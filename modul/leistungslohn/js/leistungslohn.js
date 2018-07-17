@@ -89,11 +89,11 @@ function toggleCycle(userID, cycleID){
 
 }
 
-function toggleSemester(userID, semesterID){
+function toggleSemester(userID, semesterID, cycleID){
 
     $('.semesterContent').each(function(){
 
-        if($(this).attr("userID") == userID && $(this).attr("semesterID") == semesterID){
+        if($(this).attr("userID") == userID && $(this).attr("semesterID") == semesterID && $(this).attr("cycleID") == cycleID){
             $(this).slideToggle("fast");
         }
 

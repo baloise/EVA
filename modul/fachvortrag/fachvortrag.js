@@ -150,8 +150,8 @@ $(document).ready(function(){
             error = error + "<li>" + translate[176] + "</li>";
         }
 
-        if(!fpoints){
-            error = error + "<li>" + translate[152]+"</li>";
+        if(!fpoints || fpoints > 84){
+            error = error + "<li>" + translate[152]+" (Max. 84P.)</li>";
         }
 
         if(error){
@@ -179,8 +179,8 @@ $(document).ready(function(){
                     error = error + "<li>" + translate[176] + "</li>";
                 }
 
-                if(!fpoints){
-                    error = error + "<li>" + translate[152]+"</li>";
+                if(!fpoints || fpoints > 84){
+                    error = error + "<li>" + translate[152]+" (Max. 84P.)</li>";
                 }
 
                 if(error){
