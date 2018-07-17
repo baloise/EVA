@@ -401,7 +401,6 @@
         $cycleTmpCalc = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3);
         $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
 
-
         //Leistungslohn anhand Berechnung finden
         $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
@@ -448,17 +447,7 @@
     }
 
     //Generate LKVB-Contents
-    function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate, $malus){
-
-        $malusEntry = "";
-
-        if($malus > 0){
-            $malusEntry = $malusEntry . '
-            <div class="col-lg-12 text-center">
-                <h2><b>'.$translate[8].': '.$malus.' %</b></h2>
-            </div>
-            ';
-        }
+    function generateSemesterLKVB($semesterID, $semesterName, $userID, $mysqli, $translate){
 
         $deadlineEntry = "0";
         if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
@@ -497,7 +486,7 @@
                             <h2>'.$translate[38].' '.$semesterName.'</h2>
                         </div>
                         <div class="col-2 text-right">
-                            <span><b>'. bcadd(round((LKVBcalculateSemester($semesterID, $userID, $mysqli)*100), 2), $malus*-1, 2) .' %</b></span>
+                            <span><b>'. round((LKVBcalculateSemester($semesterID, $userID, $mysqli)*100), 2) .' %</b></span>
                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -510,8 +499,6 @@
                                 <div class="col-lg-12">
 
                                     <!-- BERECHNUNGEN -->
-
-                                    '.$malusEntry.'
 
                                     <div class="col-lg-12 card highlighter">
                                         <br/>
@@ -575,7 +562,18 @@
 
     }
 
-    function generateEntryLKVB($aS, $cT1, $cT2, $cT3, $cT4, $sL, $translate){
+    function generateEntryLKVB($totalMalus, $aS, $cT1, $cT2, $cT3, $cT4, $sL, $translate){
+
+        if($totalMalus > 0){
+            $malusEntry = '
+            <tr style="color:red;">
+                <td><b>'.$translate[8].'</b></td>
+                <td class="calcTableResult"><b>'. round($totalMalus, 2) .' %</b></td>
+            </tr>
+            ';
+        } else {
+            $malusEntry = '';
+        }
 
         $entry = '
             <!-- PER AJAX CALLEN -->
@@ -604,6 +602,7 @@
                                         <td><b>'.$translate[131].'</b></td>
                                         <td class="calcTableResult"><b>'. round(($cT4*100), 2) .' %</b></td>
                                     </tr>
+                                    '.$malusEntry.'
                                 </table>
                             </div>
                         </div>
