@@ -91,6 +91,19 @@ function inFormChanges(object){
 
 $(document).ready(function(){
 
+    $('.contentTogglerReady').each(function(){
+        $(this).click(function(){
+
+            var subid = $(this).attr('fSubject');
+            $(this).removeClass('contentTogglerReady');
+
+            $('#contentToggler_'+subid+'_1').slideDown('fast');
+            $('#contentToggler_'+subid+'_2').slideDown('fast');
+
+
+        });
+    });
+
     $('.corrSubAvg').each(function(){
 
         $(this).click(function(){
@@ -268,7 +281,7 @@ $(document).ready(function(){
 
                             $('#successText').html(translate[103]);
                             $("#successAlert").slideDown("fast").delay(1300).slideUp("slow",function(){
-                                $("#pageContent").load("modul/noten/noten.php", function(){
+                                $("#pageContent").load("modul/noten/noten.php?subjectID="+subjectId, function(){
                                     $('.loadScreen').fadeTo("fast", 0, function(){
                                         $('#pageContents').fadeTo("fast", 1);
                                     });
@@ -331,12 +344,8 @@ $(document).ready(function(){
 
                             $('.gradeEntry').each(function(){
                                 if($(this).attr('gradeId') == gradeId){
-                                    $(this).slideUp("slow", function(){
-                                       $("#pageContent").load("modul/noten/noten.php", function(){
-                                            $('.loadScreen').fadeTo("fast", 0, function(){
-                                                $('#pageContents').fadeTo("fast", 1);
-                                            });
-                                        });
+                                    $(this).slideUp("fast", function(){
+                                        $(this).remove();
                                     });
                                 }
                             });

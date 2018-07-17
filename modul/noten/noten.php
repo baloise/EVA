@@ -286,6 +286,15 @@
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
 
+    <head>
+        <style>
+        .contentTogglerReady {
+            height:60px;
+            cursor: pointer;
+        }
+        </style>
+    </head>
+
     <?php
 
 
@@ -380,7 +389,7 @@
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[56].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
-                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
+                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade highlighter" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span></button></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
                                 <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
@@ -391,7 +400,7 @@
 
                     if (isset($allGrades)){
                         $unrounded = round(($allGrades / $allWeight),2);
-                        $average = '<h2>'.$translate[52].': ' . round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2 .'</h2>';
+                        $average = '<h2>'. round(($allGrades / $allWeight),2) . ' ≈ <b>' . round($unrounded * 2) / 2 .'</b></h2>';
                     }
 
                 } else {
@@ -404,7 +413,7 @@
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeTitle" type="text" placeholder="'.$translate[55].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeNote" min="1" max="6" type="number" placeholder="'.$translate[56].'"/></td>
                                 <td><input fSubject="'. $row['ID'] .'" class="form-control fgradeWeight" min="1" type="number" placeholder="'.$translate[49].' ('.$translate[109].')"/></td>
-                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer; padding: 5px;"></span></button></td>
+                                <td><button type="button" fSubject="'. $row['ID'] .'" class="btn addGrade highlighter" style="padding-bottom: 0px; padding-top: 0px; margin-top: 5px;"><span class="fa fa-plus" aria-hidden="true" style="cursor: pointer; padding: 5px;"></span></button></td>
                             </tr>
                             <tr class="badDay" fSubject="'. $row['ID'] .'" style="display:none">
                                 <td colspan="5"><textarea fSubject="'. $row['ID'] .'" placeholder="'.$translate[110].'" class="form-control fgradeReason"></textarea></td>
@@ -453,26 +462,39 @@
                     ";
                 }
 
+                if(isset($_GET['subjectID'])){
+                    if($row['ID'] == $_GET['subjectID']){
+                        $hasToHide = "";
+                        $shrimp = '';
+                    } else {
+                        $hasToHide = 'style="display:none;"';
+                        $shrimp = 'contentTogglerReady';
+                    }
+                } else {
+                    $hasToHide = 'style="display:none;"';
+                    $shrimp = 'contentTogglerReady';
+                }
+
                 $subjectEntry = '
                     '. $sorterDiv .'
-                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
+                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-6">
                                     <h2>'. $row['subjectName'] .'</h2>
                                 </div>
-                                <div class="col-lg-6" style="text-align: right;">
+                                <div class="col-6" style="text-align: right;">
                                     '. $average .'
                                 </div>
                             </div>
                             <br/>
 
-                            <div class="row">
+                            <div class="row" id="contentToggler_'. $row['ID'] .'_1" '.$hasToHide.'>
                                 <div class="col-lg-11" style="margin-left: auto; margin-right: auto;">
                                 '. $grades .'
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" id="contentToggler_'. $row['ID'] .'_2" '.$hasToHide.'>
                                 <div class="col-lg-6">
                                     <a href="#" class="deleteSubject" subjectId="'. $row['ID'] .'">
                                         <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> '.$translate[58].'
