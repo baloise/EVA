@@ -145,7 +145,7 @@
 
     <div class="row">
         <div class="col-6">
-            <button data-toggle="modal" data-target="#addUserModal" style="padding-top: 4px; padding-bottom: 5px;" class="btn btn-block btn-lg btn-default">
+            <button data-toggle="modal" data-target="#addUserModal" style="padding-top: 4px; padding-bottom: 5px;" class="btn btn-block btn-lg btn-primary">
                 <span class="fa fa-plus" aria-hidden="true"></span> <?php echo $translate[43];?>
             </button>
         </div>

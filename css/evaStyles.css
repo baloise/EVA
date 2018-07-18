@@ -206,29 +206,14 @@ h3{
 .helper {
   display: inline-block;
   height: 100%;
-	vertical-align: middle;
-}
-.btn-primary:hover {
-	background-color: var(--link);
-	border-color: var(--link);
+  vertical-align: middle;
 }
 .btn-primary {
-	background-color: var(--akzentfarbe);
-	border: solid 1px var(--link);
-	font-weight: 500;
-	border-color: var(--link);
-	color: var(--link);
+    background: var(--link);
+    border-color: var(--link);
 }
-.btn-success:hover {
-	background-color: var(--link);
-	border-color: var(--link);
-}
-.btn-success {
-	background-color: var(--akzentfarbe);
-	border: solid 1px var(--link);
-	font-weight: 500;
-	border-color: var(--link);
-	color: var(--link);
+a {
+    color: var(--link);
 }
 .btn {
 	cursor: pointer;
