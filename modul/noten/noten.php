@@ -543,7 +543,7 @@
         <!-- Neues Fach hinzufügen -->
 
             <hr/>
-            <div class="col-lg-11 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
+            <div class="col-lg-8 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
                 <div class="row">
                     <?php if($session_usergroup == 3){echo '<div class="col-lg-3" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
                         <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate[114];?>">
@@ -576,9 +576,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-12" style="margin-top: 10px;">
-                        <button type="button" class="btn col-lg-12 highlighter" id="addSubject">
-                            <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span><b> <?php echo $translate[63];?></b>
+                    <div class="col-lg-12 text-center" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-primary btn-block highlighter" id="addSubject">
+                            <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span> <?php echo $translate[63];?>
                         </button>
                         <br/><br/>
                     </div>
