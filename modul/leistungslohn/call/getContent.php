@@ -153,17 +153,8 @@
 
                 }
 
-                $passes = $countDeadlines - $countUserChecks;
-
                 if($countDeadlines > 0){
-                    switch ($passes) {
-                        case 0:
-                            return 1;
-                        case 1:
-                            return 0.5;
-                        default :
-                            return 0;
-                    }
+                    return $countUserChecks/$countDeadlines;
                 } else {
                     return -1;
                 }
