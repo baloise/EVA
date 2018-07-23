@@ -102,7 +102,7 @@
         if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
             $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) . " %";
         } else {
-            $deadlineEntry = "Keine Einträge";
+            $deadlineEntry = "-";
         }
 
         $semester = '
@@ -452,7 +452,7 @@
         if(calculateDeadline($semesterID, $userID, $mysqli) >= 0){
             $deadlineEntry = round((calculateDeadline($semesterID, $userID, $mysqli)*100), 2) . " %";
         } else {
-            $deadlineEntry = "Keine Einträge";
+            $deadlineEntry = "-";
         }
 
         $performBetrieb = "";
