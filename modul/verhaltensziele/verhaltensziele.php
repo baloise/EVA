@@ -155,7 +155,7 @@
             while($row = $result->fetch_assoc()) {
 
                 $paListEntry = '<option value="'.$row["id"].'">'.$row["firstname"].' '.$row["lastname"].'</option>';
-                $paList = $paList . utf8_encode($paListEntry);
+                $paList = $paList . $paListEntry;
 
             }
         }
