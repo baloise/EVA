@@ -26,7 +26,7 @@ function inFormChanges(object){
 
         $.ajax({
             method: "POST",
-            url: "./modul/noten/modify.php",
+            url: "./modul/noten/call/modify.php",
             data: {todo:"editGradeInForm", gradeId:gradeId, title:title, weight:weight, grade:grade},
             success: function(data){
 
@@ -91,6 +91,15 @@ function inFormChanges(object){
 
 $(document).ready(function(){
 
+    $('#exportGrades').click(function(event){
+
+        event.preventDefault();
+
+        var win = window.open('./modul/noten/call/createXML.php', '_blank');
+        win.focus();
+
+    })
+
     $('.contentTogglerReady').each(function(){
         $(this).click(function(){
 
@@ -121,7 +130,7 @@ $(document).ready(function(){
 
                     $.ajax({
                         method: "POST",
-                        url: "./modul/noten/modify.php",
+                        url: "./modul/noten/call/modify.php",
                         data: {todo:"correction", subid:subid, corrGrade:corrGrade},
                         success: function(data){
 
@@ -264,7 +273,7 @@ $(document).ready(function(){
 
                 $.ajax({
                     method: "POST",
-                    url: "./modul/noten/modify.php",
+                    url: "./modul/noten/call/modify.php",
                     data: {todo:"addGrade", grade:grade, title:title, weight:weight, subjectId:subjectId, reason:reason},
                     success: function(data){
 
@@ -331,7 +340,7 @@ $(document).ready(function(){
 
                 $.ajax({
                     method: "POST",
-                    url: "./modul/noten/modify.php",
+                    url: "./modul/noten/call/modify.php",
                     data: {todo:"deleteGrade", gradeId:gradeId},
                     success: function(data){
 
@@ -408,7 +417,7 @@ $(document).ready(function(){
 
             $.ajax({
                 method: "POST",
-                url: "./modul/noten/modify.php",
+                url: "./modul/noten/call/modify.php",
                 data: {todo:"addSubject", subName:subName, subSem:subSem, subType:subType},
                 success: function(data){
 
@@ -461,7 +470,7 @@ $(document).ready(function(){
                 } else {
                     $.ajax({
                         method: "POST",
-                        url: "./modul/noten/modify.php",
+                        url: "./modul/noten/call/modify.php",
                         data: {todo:"deleteSubject", subId:subId},
                         success: function(data){
 

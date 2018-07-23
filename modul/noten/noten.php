@@ -535,6 +535,9 @@
     ?>
 
     <h1 class="mt-5"><?php echo $translate[2];?></h1>
+    <div class="col-12 text-right">
+        <a href="#" id="exportGrades"><i class="fa fa-sign-out" aria-hidden="true"></i> Export</a>
+    </div>
     <p></p>
     <div class="row">
             <?php echo $subjects; ?>
