@@ -212,6 +212,11 @@ h3{
     background: var(--link);
     border-color: var(--link);
 }
+.btn-primary:hover {
+    background: var(--akzentfarbe);
+    border-color: var(--hintergrund);
+    color: var(--link);
+}
 a {
     color: var(--link);
 }
