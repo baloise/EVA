@@ -433,7 +433,7 @@
                 "TotalIT" => round($cycleTotalItPercentAverage*100, 2),
                 "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
                 "TotalBetrieb" => round($cycleTotalBetriebPercentAverage*100, 2),
-                "TotalMalus" => $totalMalus
+                "TotalMalus" => round($totalMalus, 2)
             );
 
             return $cvsValues;

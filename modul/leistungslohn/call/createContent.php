@@ -114,7 +114,7 @@
                         "TotalIT" => round($cycleTotalItPercentAverage*100, 2),
                         "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
                         "TotalBetrieb" => round($cycleTotalBetriebPercentAverage*100, 2),
-                        "TotalMalus" => $cycleTotalMalus
+                        "TotalMalus" => round($cycleTotalMalus, 2)
                     );
                     return $cvsValues;
                 } else {
@@ -238,7 +238,7 @@
                             "TotalPerform" => round($cycleTotalPerformPercentAverage*100, 2),
                             "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
                             "TotalBehave" => round($cycleTotalBehavePercentAverage*100, 2),
-                            "TotalMalus" => $cycleTotalMalus
+                            "TotalMalus" => round($cycleTotalMalus, 2)
                         );
                         return $cvsValues;
 
@@ -429,7 +429,7 @@
                             "TotalPerform" => round($cycleTotalPerformPercentAverage*100, 2),
                             "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
                             "TotalBehave" => round($cycleTotalBehavePercentAverage*100, 2),
-                            "TotalMalus" => $totalMalus
+                            "TotalMalus" => round($totalMalus, 2)
                         );
                         return $cvsValues;
 
@@ -449,5 +449,5 @@
     if(isset($_POST['cycleID'])){
         doCreateContent();
     }
-    
+
 ?>
