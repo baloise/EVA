@@ -95,7 +95,7 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        var win = window.open('./modul/noten/call/createXML.php', '_blank');
+        var win = window.open('./modul/noten/call/createJSON.php', '_blank');
         win.focus();
 
     })
