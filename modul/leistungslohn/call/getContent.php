@@ -154,7 +154,10 @@
                 }
 
                 if($countDeadlines > 0){
-                    return $countUserChecks/$countDeadlines;
+                    // LB - https://github.com/baloise/EVA/issues/173
+                    $notreached = ($countDeadlines - $countUserChecks) * 0.2;
+                    if ($notreached > 1) $notreached = 1;
+                    return 1 - $notreached;
                 } else {
                     return -1;
                 }
