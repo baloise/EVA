@@ -9,8 +9,8 @@
             return array_column(mysqli_fetch_all($result), $column);
         }
 
-        function averagePoints( $points, $maxPoints, $rowMapper = null) {
-            $rowMapper = $rowMapper == null ?  function($p) { return $p;} : $rowMapper;
+        function averagePoints($points, $maxPoints, $rowMapper = null) {
+            $rowMapper = $rowMapper == null ?  function($p) {return $p;} : $rowMapper;
             $points = array_map ($rowMapper, $points);
             $sum = array_sum($points);
             return  $sum == 0 ? null : ($sum / count($points)) / $maxPoints;
