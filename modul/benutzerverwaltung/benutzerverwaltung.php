@@ -178,14 +178,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-6 text-center">
-                            <button type="submit" href="#" id="addUser" class="btn btn-primary"><?php echo $translate[44];?></a>
-                            </div>
-                            <div class="col-6 text-center">
-                                <button type="button" data-dismiss="modal" class="btn btn-default"><?php echo $translate[33];?></a>
-                            </div>
-                    </div>
+                    <button type="submit" href="#" id="addUser" class="btn btn-primary"><?php echo $translate[44];?></button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default"><?php echo $translate[33];?></button>
                 </div>
             </div>
         </div>
