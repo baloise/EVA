@@ -53,6 +53,7 @@ $(document).ready(function(){
             $('#editDeadlinesContent').load('modul/terminmanagement/call/deadlineEditor.php', function(){
                 $('#editDeadlinesContent').attr('loaded', 'true');
                 $('#editDeadlinesContent').slideDown('fast');
+                $('html,body').animate({scrollTop: $("#editDeadlinesContent").offset().top}, 'slow');
             });
 
         }

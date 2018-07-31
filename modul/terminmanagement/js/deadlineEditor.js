@@ -16,9 +16,6 @@ $(document).ready(function(){
 
     });
 
-    var typingTimer;
-    var notdone = 0;
-    var did = 0;
 
     $('.deadlineHead').each(function(){
         $(this).click(function(){
@@ -56,65 +53,46 @@ $(document).ready(function(){
         });
     });
 
-    function doneTyping() {
+    $('.fSave').each(function(){
+        $(this).click(function(event){
 
-        if ($.active == 0){
+            event.preventDefault();
+            var did = $(this).attr("did");
+            var error = false;
 
-            $('#loadingTable' + did).slideUp("fast");
-            $('#successText').html(translate[101]);
-            $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
+            $('.changeInTable').each(function(){
+                if($(this).attr('did') == did){
 
-        } else {
-            notdone = 1;
-        }
-    }
+                    var content = $(this).val();
+                    var lang =  $(this).attr("lang");
+                    var fType = $(this).attr("fType");
 
-    $(document).ajaxStop(function(){
-        if(notdone == 1){
-            $('#loadingTable').slideUp("fast");
-            $('#successText').html(translate[101]);
-            $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
-        }
-    });
+                    $.ajax({
+                        async: true,
+                        method: "POST",
+                        url: "./modul/terminmanagement/modify.php",
+                        data: {todo:"editList", content:content, did:did, lang:lang, fType:fType},
+                        success: function(data){
+                            if(data){
+                                $('#errorText').html("<li>" + data + "</li>");
+                                error = true;
+                            } else {
 
-    $('.changeInTable').each(function(){
-
-        $(this).on("keyup change", function(){
-
-            clearTimeout(typingTimer);
-
-            did = $(this).attr("did");
-            var fType = $(this).attr("fType");
-            var lang = $(this).attr("lang");
-            var content = $(this).val();
-
-            $('#loadingTable' + did).slideDown("fast");
-
-
-            if(did && fType){
-                event.preventDefault();
-                $.ajax({
-                    async: true,
-                    method: "POST",
-                    url: "./modul/terminmanagement/modify.php",
-                    data: {todo:"editList", did:did, fType:fType, lang:lang, content:content},
-                    success: function(data){
-                        if(data){
-                            $('#errorText').html(data);
-                            $('#errorAlert').slideDown("fast");
-                        } else {
-
-
-                            typingTimer = setTimeout(doneTyping, 1000);
-
+                            }
                         }
-                    }
-                });
+                    });
+
+                }
+            });
+
+            if(error){
+                $('#errorAlert').slideDown("fast");
+            } else {
+                $('#successText').html(translate[101]);
+                $("#successAlert").slideDown("fast").delay(1300).slideUp("fast");
             }
 
         });
-
-
     });
 
     $('.updateSems').each(function(){
@@ -213,7 +191,7 @@ $(document).ready(function(){
 
     });
 
-    $('.removeDid').each(function(){
+    $('.fDelete').each(function(){
 
         $(this).click(function(){
 

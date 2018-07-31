@@ -71,6 +71,7 @@
 
                                 $generateDiv = $generateDiv . '
 
+                                    <br />
                                     <div class="row editGroupToggler" onclick="toggleEdit('.$row['Gid'].');" style="cursor:pointer;">
                                         <div class="col-1 text-center">
                                             <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
@@ -91,11 +92,7 @@
 
                             $generateDiv = $generateDiv . '
                             <div class="deadlineListToggler" style="cursor:pointer;" semID="'.$row['Ssemester'].'">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <hr/>
-                                    </div>
-                                </div>
+                                <br />
                                 <div class="row">
                                     <div class="col-10">
                                         <h2>'.$translate[38].' '.$row['Ssemester'].'</h2>
@@ -103,7 +100,6 @@
                                     <div class="col-2 text-right">
                                         <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
                                     </div>
-                                    <br/><br/><br/>
                                 </div>
                             </div>
                             <div class="deadlineList" style="display:none;" semID="'.$row['Ssemester'].'">';
@@ -190,12 +186,14 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 text-center">
-                                                <span style="cursor: pointer; margin-top:10px; font-size:1.5rem;" class="fa fa-trash-o removeDid" did="'. $row['did'] .'" aria-hidden="true"></span>
-
-                                                <div id="loadingTable'. $row['did'] .'" style="display:none;">
-                                                    <img class="img-responsive" src="img/loading2_big.svg" height="50px"/>
-                                                </div>
+                                            <div class="col-12">
+                                                <hr />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button class="btn btn-block btn-lg btn-success fSave" did="'. $row['did'] .'"><span class="fa fa-floppy-o" aria-hidden="true"></span> '.$translate[254].'</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button class="btn btn-block btn-lg btn-danger fDelete" did="'. $row['did'] .'"><span class="fa fa-trash-o" aria-hidden="true"></span> '.$translate[122].'</button>
                                             </div>
                                         </div>
                                     </div>

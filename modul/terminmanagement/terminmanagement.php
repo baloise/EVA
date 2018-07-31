@@ -30,11 +30,9 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="row loadContent" userId="'.$row['ID'].'" loaded="0">
-
                                     <div class="col-12 text-center">
                                         <img class="img-responsive" src="img/loading2_big.svg" height="50px"/>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
