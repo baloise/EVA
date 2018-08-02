@@ -19,7 +19,7 @@
 
                     <div class="row">
                         <div class="col-lg-10">
-                            <input class="form-control" type="text" name="username" placeholder="Key" id="bKeyInForm" required autofocus/><br/>
+                            <input class="form-control" type="text" name="username" placeholder="User" id="bKeyInForm" required autofocus/><br/>
                         </div>
                         <div class="col-lg-2">
                             <input class="form-control" type="submit"/>
@@ -28,7 +28,7 @@
                 </form>
                 <br/>
                 <hr/>
-                <h2>Currently available Keys:</h2>
+                <h2>Currently available Users:</h2>
                 <ul>
                     <?php
 
