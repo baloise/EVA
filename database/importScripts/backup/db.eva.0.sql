@@ -753,7 +753,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`ID`, `bKey`, `timetable`, `lastLogin`, `tb_group_ID`, `firstname`, `lastname`, `mail`, `deleted`, `language`, `tb_semester_ID`, `creationDate`) VALUES
-(1, 'b000001', NULL, NULL, 1, 'Bill', 'Gates', 'bill.gates@foo.com', NULL, NULL, NULL, '2018-03-19 07:04:14');
+(1, 'abcdefg', NULL, NULL, 1, 'Bill', 'Gates', 'bill.gates@foo.com', NULL, NULL, NULL, '2018-03-19 07:04:14');
 
 -- --------------------------------------------------------
 
