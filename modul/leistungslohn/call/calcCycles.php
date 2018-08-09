@@ -141,7 +141,7 @@
                                             </tr>
                                             <tr>
                                                 <td>'.$translate[127].'</td>
-                                                <td class="calcTableResult"> '. round((LITcalculateModule($semesterID, $userID, $mysqli)*100), 2) .' %</td>
+                                                <td class="calcTableResult"> '. round((calcSchool($semesterID, $userID, $mysqli, 0)*100), 2) .' %</td>
                                             </tr>
                                             <tr>
                                                 <td>'.$translate[128].'</td>
@@ -155,11 +155,11 @@
                                         <table class="table calcTable">
                                             <tr>
                                                 <td><b>'.$translate[129].'</b></td>
-                                                <td class="calcTableResult"><b>'. round((calcSchool($semesterID, $userID, $mysqli)*100), 2) .' %</b></td>
+                                                <td class="calcTableResult"><b>'. round((calcSchool($semesterID, $userID, $mysqli, 1)*100), 2) .' %</b></td>
                                             </tr>
                                             <tr>
                                                 <td>'.$translate[130].'</td>
-                                                <td class="calcTableResult">'. round((calcSchool($semesterID, $userID, $mysqli)*100), 2) .' %</td>
+                                                <td class="calcTableResult">'. round((calcSchool($semesterID, $userID, $mysqli, 1)*100), 2) .' %</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -314,8 +314,8 @@
                     $semesterCountInformatik = $semesterCountInformatik + 1;
                 }
 
-                if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                    $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli);
+                if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                    $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                     $semesterCountSchool = $semesterCountSchool + 1;
                 }
 
@@ -373,8 +373,8 @@
                     $semesterCountInformatik = $semesterCountInformatik + 1;
                 }
 
-                if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                    $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli);
+                if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                    $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                     $semesterCountSchool = $semesterCountSchool + 1;
                 }
 
@@ -517,11 +517,11 @@
                                         <table class="table calcTable">
                                             <tr>
                                                 <td><b>'.$translate[129].'</b></td>
-                                                <td class="calcTableResult"><b>'. round((calcSchool($semesterID, $userID, $mysqli)*100), 2) .' %</b></td>
+                                                <td class="calcTableResult"><b>'. round((calcSchool($semesterID, $userID, $mysqli, 1)*100), 2) .' %</b></td>
                                             </tr>
                                             <tr>
                                                 <td>'.$translate[130].'</td>
-                                                <td class="calcTableResult">'. round((calcSchool($semesterID, $userID, $mysqli)*100), 2) .' %</td>
+                                                <td class="calcTableResult">'. round((calcSchool($semesterID, $userID, $mysqli, 1)*100), 2) .' %</td>
                                             </tr>
                                         </table>
                                     </div>

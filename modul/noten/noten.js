@@ -379,7 +379,12 @@ $(document).ready(function(){
 
         var subName = $('#newSubNam').val();
         var subSem = $('#newSubSem').val();
+        var subWeight = $('#newSubWeight').val();
         var subType = 1;
+
+        if(subWeight <= 0){
+            subWeight = 100;
+        }
 
         if($("#LIT").length){
 
@@ -418,7 +423,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "./modul/noten/call/modify.php",
-                data: {todo:"addSubject", subName:subName, subSem:subSem, subType:subType},
+                data: {todo:"addSubject", subName:subName, subSem:subSem, subType:subType, subWeight:subWeight},
                 success: function(data){
 
                     if(data){

@@ -29,7 +29,7 @@
                 $gradesunderEntries = "";
                 $subEntries = "";
 
-                $sql2 = "SELECT us.subjectName, us.ID, us.correctedGrade, sem.semester FROM `tb_user_subject` AS us
+                $sql2 = "SELECT us.subjectName, us.weight, us.ID, us.correctedGrade, sem.semester FROM `tb_user_subject` AS us
                         INNER JOIN tb_semester AS sem ON us.tb_semester_ID = sem.ID
                         WHERE us.tb_user_ID = $llid ORDER BY sem.semester DESC, us.creationDate DESC";
 
@@ -38,9 +38,14 @@
                     while($row2 = $result2->fetch_assoc()) {
 
                         $llsubname = $row2['subjectName'];
+                        $llsubweight = $row2['weight'];
                         $llsubid = $row2['ID'];
                         $llsubsem = $row2['semester'];
                         $llsubcorrgrade = $row2['correctedGrade'];
+
+                        if($llsubweight <= 0 || !is_numeric($llsubweight) || is_null($llsubweight)){
+                            $llsubweight = 100;
+                        }
 
                         $sql3 = "SELECT ID, grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid";
                         $result3 = $mysqli->query($sql3);
@@ -130,6 +135,7 @@
                             $subEntry = '
                                 <tr>
                                     <th scope="row">'. $llsubname .'</th>
+                                    <td>'. $llsubweight .'%</td>
                                     <td>'. $countgrades .'</td>
                                     <td>'. $countgradesunder .'</td>
                                     <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
@@ -167,6 +173,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">'.$translate[114].'</th>
+                                            <th scope="col">'.$translate[49].'</th>
                                             <th scope="col">'.$translate[2].'</th>
                                             <th scope="col">'.$translate[115].'</th>
                                             <th scope="col">'.$translate[52].'</th>
@@ -176,6 +183,7 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">'. $llsubname .'</th>
+                                            <td>'. $llsubweight .'%</td>
                                             <td>'. $countgrades .'</td>
                                             <td>'. $countgradesunder .'</td>
                                             <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
@@ -400,7 +408,7 @@
 
                     if (isset($allGrades)){
                         $unrounded = round(($allGrades / $allWeight),2);
-                        $average = '<h2>'. round(($allGrades / $allWeight),2) . ' ≈ <b>' . round($unrounded * 2) / 2 .'</b></h2>';
+                        $average = round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2;
                     }
 
                 } else {
@@ -475,6 +483,10 @@
                     $shrimp = 'contentTogglerReady';
                 }
 
+                if($row['weight'] == NULL){
+                    $row['weight'] = 100;
+                }
+
                 $subjectEntry = '
                     '. $sorterDiv .'
                         <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
@@ -483,7 +495,7 @@
                                     <h2>'. $row['subjectName'] .'</h2>
                                 </div>
                                 <div class="col-6" style="text-align: right;">
-                                    '. $average .'
+                                    <b>'. $average .'</b> <i>('. $row['weight'] .'%)</i>
                                 </div>
                             </div>
                             <br/>
@@ -546,47 +558,60 @@
         <!-- Neues Fach hinzufügen -->
 
             <hr/>
-            <div class="col-lg-8 card" style="padding: 20px;margin: 5px; margin-left:auto; margin-right:auto;">
+            <div class="col-lg-8 card" style="padding-top: 15px; margin: 5px; margin-left:auto; margin-right:auto;">
+
                 <div class="row">
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-3" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
+                    <div class="col-12">
+                        <h2><?php echo $translate[63];?></h2>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4" style="margin-top: 10px;">
                         <input type="text" id="newSubNam" class="form-control" placeholder="<?php echo $translate[114];?>">
                     </div>
 
-                    <?php
+                    <div class="col-lg-4" style="margin-top: 10px;">
+                        <input type="text" id="newSubWeight" class="form-control" placeholder="% <?php echo $translate[49];?>">
+                    </div>
 
-                        if($session_usergroup == 3){
-                            echo '
-                            <div class="col-lg-6" id="LIT">
-                                <div class="row">
-                                    <div class="col-lg-6" style="margin-top: 8px;">
-                                        <button type="button" selected="" value="1" class="btn btnSelect btn-block highlighter">'.$translate[59].'</button>
-                                    </div>
-                                    <div class="col-lg-6" style="margin-top: 8px;">
-                                        <button type="button" selected="" value="0" class="btn btnSelect btn-block highlighter">'.$translate[117].'</button>
-                                    </div>
-                                </div>
-                            </div>';
-                        }
-
-                    ?>
-
-                    <?php if($session_usergroup == 3){echo '<div class="col-lg-3" style="margin-top: 10px;">';} else {echo '<div class="col-lg-6" style="margin-top: 10px;">';} ?>
+                    <div class="col-lg-4" style="margin-top: 10px;">
                         <select class="form-control" id="newSubSem" placeholder="<?php echo $translate[113];?>">
                             <option><?php echo $translate[38];?>:</option>
                             <?php echo $semesterList; ?>
                         </select>
                     </div>
+
                 </div>
 
+                <?php
+
+                    if($session_usergroup == 3){
+                        echo '
+                        <div class="row" id="LIT">
+                                <div class="col-lg-6" style="margin-top: 8px;">
+                                    <button type="button" selected="" value="1" class="btn btnSelect btn-block highlighter">'.$translate[59].'</button>
+                                </div>
+                                <div class="col-lg-6" style="margin-top: 8px;">
+                                    <button type="button" selected="" value="0" class="btn btnSelect btn-block highlighter">'.$translate[117].'</button>
+                                </div>
+                        </div>';
+                    }
+
+                ?>
+
                 <div class="row">
-                    <div class="col-lg-12 text-center" style="margin-top: 20px;">
+                    <div class="col-lg-12 text-center" style="margin-top: 10px;">
                         <button type="button" class="btn btn-primary btn-block highlighter" id="addSubject">
                             <span class="fa fa-plus" aria-hidden="true" style="cursor: pointer;"></span> <?php echo $translate[63];?>
                         </button>
                         <br/><br/>
                     </div>
                 </div>
+
             </div>
+
     </div>
 
     <script type="text/javascript">

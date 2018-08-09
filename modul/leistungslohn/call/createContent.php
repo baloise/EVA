@@ -63,8 +63,8 @@
                             $semesterCountInformatik = $semesterCountInformatik + 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                            $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli);
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                            $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool = $semesterCountSchool + 1;
                         }
 
@@ -185,8 +185,8 @@
                             $semesterCountPerform += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                            $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli);
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                            $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 
@@ -309,8 +309,8 @@
                             $semesterCountPerform += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                            $cycleTotalSchoolY3 += calcSchool($row['ID'], $userID, $mysqli);
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                            $cycleTotalSchoolY3 += calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 
@@ -367,8 +367,8 @@
                             $semesterCountPerform += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli) != 0){
-                            $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli);
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                            $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 

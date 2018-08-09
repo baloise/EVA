@@ -205,50 +205,10 @@
 
         }
 
-        //Notenschnitt Informatik-Module
-        function LITcalculateModule($semesterID, $userID, $mysqli){
-
-            $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 0 AND tb_semester_ID = $semesterID;";
-			$result = $mysqli->query($sql);
-
-            $countPercentage = 0;
-            $countSubjects = 0;
-
-            if (isset($result) && $result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-
-                    if($row['correctedGrade']){
-
-                        $grade = $row['correctedGrade'];
-                        $percentage = ($grade-1) / 5;
-
-                    } else {
-
-                        $grade = calculateSubject($row['ID'], $mysqli);
-                        if($grade > 0){
-                            $percentage = ($grade-1) / 5;
-                        }
-
-                    }
-
-                    if($grade > 0){
-                        $countPercentage += $percentage;
-                        $countSubjects = $countSubjects + 1;
-                    }
-
-                }
-            }
-
-            if($countPercentage != 0){
-                return ($countPercentage / $countSubjects);
-            }
-
-        }
-
         //Leistung Informatik
         function LITcalcInformatik($semesterID, $userID, $mysqli){
 
-            $LITmodule = LITcalculateModule($semesterID, $userID, $mysqli);
+            $LITmodule = calcSchool($semesterID, $userID, $mysqli, 0);
             $LITpresentation = LITcalculatePresentation($semesterID, $userID, $mysqli);
 
             if($LITpresentation != 0 & $LITmodule != 0){
@@ -277,10 +237,10 @@
 
         }
 
-        //Leistung Schule
-        function calcSchool($semesterID, $userID, $mysqli){
+        //Leistung bzw Noten Schule/Module
+        function calcSchool($semesterID, $userID, $mysqli, $subType){
 
-            $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = 1 AND tb_semester_ID = $semesterID;";
+            $sql = "SELECT ID, correctedGrade FROM `tb_user_subject` WHERE tb_user_ID = $userID AND school = $subType AND tb_semester_ID = $semesterID;";
 			$result = $mysqli->query($sql);
 
             $countPercentage = 0;
@@ -328,7 +288,7 @@
             $coSu = 0;
             $i = 0;
 
-            if(calcSchool($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(calcSchool($semesterID, $userID, $mysqli, 1) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli, 1); $i = $i + 1; }
             if(LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVBcalculateBetriebPerform($semesterID, $userID, $mysqli); $i = $i + 1; }
             if(LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LKVBcalculateBetriebBehave($semesterID, $userID, $mysqli); $i = $i + 1; }
 
@@ -352,7 +312,7 @@
                 $coSu = $coSu + LITcalcInformatik($semesterID, $userID, $mysqli);
                 $i = $i + 1;
             }
-            if(calcSchool($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli); $i = $i + 1; }
+            if(calcSchool($semesterID, $userID, $mysqli, 1) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli, 1); $i = $i + 1; }
             if(LITcalcBetieb($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcBetieb($semesterID, $userID, $mysqli); $i = $i + 1; }
 
             switch ($i) {

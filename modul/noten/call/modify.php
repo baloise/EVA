@@ -236,6 +236,7 @@
             $subName = test_input($_POST['subName']);
             $subSem = test_input($_POST['subSem']);
             $subType = test_input($_POST['subType']);
+            $subWeight = test_input($_POST['subWeight']);
 
             if(!$subName){
                 $error = $error . "Bitte Fach angeben.<br/>";
@@ -243,6 +244,10 @@
 
             if(!$subSem){
                 $error = $error . "Bitte Semester angeben.<br/>";
+            }
+
+            if($subWeight <= 0 || !is_numeric($subWeight)){
+                $subWeight = 100;
             }
 
             $stmt = $mysqli->prepare("SELECT * FROM `tb_semester` WHERE ID = ? AND tb_group_ID = ?");
@@ -257,8 +262,8 @@
             if($error){
                 echo $error;
             } else {
-                $stmt = $mysqli->prepare("INSERT INTO `tb_user_subject` (`subjectName`, `tb_user_ID`, `tb_semester_ID`, `school`) VALUES (?, ?, ?, ?);");
-                $stmt->bind_param("siii", $subName, $session_userid, $subSem, $subType);
+                $stmt = $mysqli->prepare("INSERT INTO `tb_user_subject` (`subjectName`, `tb_user_ID`, `tb_semester_ID`, `school`, `weight`) VALUES (?, ?, ?, ?, ?);");
+                $stmt->bind_param("siiid", $subName, $session_userid, $subSem, $subType, $subWeight);
                 $stmt->execute();
             }
 
