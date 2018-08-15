@@ -88,14 +88,14 @@
             $weights = fetchColumn($mysqli->query($sql), 1);
             $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $gradesList, $weights);
 
-            $chooseMaxPoints = "SELECT weight FROM `tb_user_subject` WHERE ID = $subjectID";
-            $resultchoose = $mysqli->query($chooseMaxPoints);
-            $rowchoose = $resultchoose->fetch_assoc();
-
-            $rowchoose = $rowchoose['weight'];
-            $calcGrade = array_sum($grades) / array_sum($weights);
-
             if(count($grades) > 0){
+
+                $chooseMaxPoints = "SELECT weight FROM `tb_user_subject` WHERE ID = $subjectID";
+                $resultchoose = $mysqli->query($chooseMaxPoints);
+                $rowchoose = $resultchoose->fetch_assoc();
+                $rowchoose = $rowchoose['weight'];
+                $calcGrade = array_sum($grades) / array_sum($weights);
+
                 if(!$rowchoose){
                     $out['avgSubjGrade'] = ($calcGrade * 100)/100;
                     $out['subWeight'] = 100;
@@ -103,7 +103,9 @@
                     $out['avgSubjGrade'] = ($calcGrade * $rowchoose)/100;
                     $out['subWeight'] = $rowchoose;
                 }
+                
                 return $out;
+
             } else {
                 $out['avgSubjGrade'] = 0;
                 $out['subWeight'] = 0;
