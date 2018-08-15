@@ -91,6 +91,12 @@ function inFormChanges(object){
 
 $(document).ready(function(){
 
+    $('#newSubWeight').focus(function(){
+        if(!$(this).val()){
+            $(this).val("100");
+        }
+    });
+
     $('#exportGrades').click(function(event){
 
         event.preventDefault();

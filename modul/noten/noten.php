@@ -492,10 +492,10 @@
                         <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
                             <div class="row">
                                 <div class="col-6">
-                                    <h2>'. $row['subjectName'] .'</h2>
+                                    <h2>'. $row['subjectName'] .' </h2>
                                 </div>
                                 <div class="col-6" style="text-align: right;">
-                                    <b>'. $average .'</b> <i>('. $row['weight'] .'%)</i>
+                                    <b>'. $average .'</b>
                                 </div>
                             </div>
                             <br/>
@@ -507,13 +507,13 @@
                             </div>
 
                             <div class="row" id="contentToggler_'. $row['ID'] .'_2" '.$hasToHide.'>
-                                <div class="col-lg-6">
+                                <div class="col-6">
                                     <a href="#" class="deleteSubject" subjectId="'. $row['ID'] .'">
                                         <span class="fa fa-trash-o delSubject" subjectId="'. $row['ID'] .'" aria-hidden="true" style="cursor: pointer; font-size: larger;"></span> '.$translate[58].'
                                     </a>
                                 </div>
-                                <div class="col-lg-6" style="text-align: right;">
-                                    '. $subjectSemester .' ('.$subType.')
+                                <div class="col-6" style="text-align: right;">
+                                    '. $subjectSemester .' ('.$subType.' | <b>'. $row['weight'] .'%</b>)
                                 </div>
                             </div>
                         </div>

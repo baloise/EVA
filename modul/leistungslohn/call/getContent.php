@@ -3,6 +3,7 @@
     include("../../../includes/session.php");
     include("./../../../database/connect.php");
 
+
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
         function fetchColumn($result, $column = 0) {
@@ -86,10 +87,27 @@
             $gradesList = fetchColumn($mysqli->query($sql));
             $weights = fetchColumn($mysqli->query($sql), 1);
             $grades = array_map(function($grade, $weight) {return $grade * $weight;}, $gradesList, $weights);
+
+            $chooseMaxPoints = "SELECT weight FROM `tb_user_subject` WHERE ID = $subjectID";
+            $resultchoose = $mysqli->query($chooseMaxPoints);
+            $rowchoose = $resultchoose->fetch_assoc();
+
+            $rowchoose = $rowchoose['weight'];
+            $calcGrade = array_sum($grades) / array_sum($weights);
+
             if(count($grades) > 0){
-                return array_sum($grades) / array_sum($weights);
+                if(!$rowchoose){
+                    $out['avgSubjGrade'] = ($calcGrade * 100)/100;
+                    $out['subWeight'] = 100;
+                } else {
+                    $out['avgSubjGrade'] = ($calcGrade * $rowchoose)/100;
+                    $out['subWeight'] = $rowchoose;
+                }
+                return $out;
             } else {
-                return 0;
+                $out['avgSubjGrade'] = 0;
+                $out['subWeight'] = 0;
+                return $out;
             }
         }
 
@@ -244,7 +262,7 @@
 			$result = $mysqli->query($sql);
 
             $countPercentage = 0;
-            $countSubjects = 0;
+            $countGrades = 0;
 
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -256,28 +274,28 @@
 
                     } else {
 
-                        $grade = calculateSubject($row['ID'], $mysqli);
-                        $percentage = 0;
-                        if($grade > 0){
-                            $percentage = ($grade-1) / 5;
-                        }
+                        $subData = calculateSubject($row['ID'], $mysqli);
+                        $grade = $subData['avgSubjGrade'];
+                        $percentage = $subData['subWeight']/100;
 
                     }
 
-                    if($grade > 0){
+                    if($grade > 0 && $percentage > 0){
                         $countPercentage = $countPercentage + $percentage;
-                        $countSubjects = $countSubjects + 1;
+                        $countGrades = $countGrades + $grade;
                     }
 
                 }
             }
 
             if($countPercentage > 0){
-                return ($countPercentage / $countSubjects);
-            } else if ($countSubjects == 0){
+
+                return (($countGrades / $countPercentage)-1)/5;
+
+            } else if ($countGrades <= 0){
                 return 0;
             } else {
-                return ($countPercentage / $countSubjects);
+                return (($countGrades / $countPercentage)-1)/5;
             }
 
         }
