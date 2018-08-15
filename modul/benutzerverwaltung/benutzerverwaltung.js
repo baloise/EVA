@@ -179,6 +179,33 @@ $(document).ready(function(){
         });
     });
 
+    $('.fLogin').each(function(){
+        $(this).click(function(event){
+            event.preventDefault();
+
+            var usrid = $(this).attr('userID');
+            var bkey = $(this).attr('bkey');
+
+            $.ajax({
+                method: "POST",
+                url: "./modul/benutzerverwaltung/call/relogin.php",
+                data: {bkey:bkey},
+                success: function(data){
+                    if(data){
+                        alert(data);
+                    } else {
+                        $("body").fadeOut("slow", function(){
+                            window.location.href = 'index.php?page=dashboard&adm=true';
+                        });
+                    }
+                }
+            });
+
+
+        });
+    });
+
+
     $(".fDelete").each(function(){
         $(this).click(function(event){
             event.preventDefault();

@@ -3,8 +3,6 @@
     session_start();
     session_regenerate_id();
 
-    ini_set('display_errors', 1);
-
 	if (empty($_GET['loginType'])) {
 
 		header('Location: login.php?error=noType');

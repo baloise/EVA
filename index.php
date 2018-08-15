@@ -180,6 +180,14 @@
 
                                     }
 
+                                    if(isset($_GET['adm'])){
+                                        echo '
+                                        <li class="nav-item" id="editNavLink">
+                                            <a class="btn btn-warning" href="logout.php"><b>Back to my Account</b></a>
+                                        </li>
+                                        ';
+                                    }
+
                                 ?>
 
                             </ul>
