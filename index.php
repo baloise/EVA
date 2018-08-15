@@ -120,7 +120,15 @@
 
     </head>
 
-    <body>
+    <?php
+        if(isset($_GET['adm'])){
+            echo '<body style="display: none">';
+        } else {
+            echo '<body>';
+        }
+    ?>
+
+
         <div class="loadScreen">
             <span class="helper"></span><img class="img-responsive" id="loadingImg" src="img/loading.svg" alt="loadingImg"/>
         </div>

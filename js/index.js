@@ -78,6 +78,7 @@ $(document).ready(function(){
         window.history.pushState({info: $("#pageContent").attr("page")}, "index.php");
 
         $('.loadScreen').fadeTo("fast", 0, function(){
+            $('body').fadeIn('slow');
 			$("#slideMe").slideDown("slow");
 			$("#slideMeFoot").slideDown("slow");
             $('#pageContents').fadeTo("fast", 1);
