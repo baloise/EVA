@@ -7,6 +7,14 @@
     <h1 class="mt-5"><?php echo $translate[2];?></h1>
     <h3><?php echo $translate[46];?></h3>
 
+    <div class="col-12">
+        <div class="form-group">
+            <i class="fa fa-search" style="position: absolute; padding: 10px; right: 15px;" aria-hidden="true"></i>
+            <input type="text" class="form-control" id="searchInput" placeholder="">
+        </div>
+    </div>
+
+    <div id="searchList">
     <?php
 
 
@@ -224,8 +232,8 @@
 
                 $llEntry = '
                 <div class="row">
-                    <div class="card col-lg-12 userContentBox highlighter">
-                        <div class="row userGradesHead header" containerID="'. $llid .'" style="cursor:pointer;">
+                    <div class="card col-lg-12 userContentBox searchRow highlighter">
+                        <div class="row userGradesHead searchFor header" containerID="'. $llid .'" style="cursor:pointer;">
                             <div class="col-5"><b>'. $llfirst . ' ' . $lllast .' ('. $llbkey .')</b></div>
                             <div class="col-6 text-right">'.$translate[52].': '. $calcavg .'</div>
                             <div class="col-1 text-right"><i class="fa fa-chevron-down toggleDetails" style="margin-top: 5px;" aria-hidden="true"></i></div>
@@ -279,7 +287,7 @@
         echo $llEntries;
 
     ?>
-
+    </div>
 
     <script type="text/javascript">
         var translate = {};
