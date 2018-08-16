@@ -55,7 +55,7 @@
                             $llsubweight = 100;
                         }
 
-                        $sql3 = "SELECT ID, grade, weighting FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid";
+                        $sql3 = "SELECT ID, grade, weighting, creationDate FROM `tb_subject_grade` WHERE tb_user_subject_ID = $llsubid";
                         $result3 = $mysqli->query($sql3);
                         if ($result3->num_rows > 0) {
 
@@ -63,6 +63,7 @@
                             $countgrades = 0;
                             $grades = 0;
                             $weights = 0;
+                            $lastSubEdit = new DateTime("01.01.2001");
 
                             while($row3 = $result3->fetch_assoc()) {
 
@@ -73,6 +74,11 @@
                                 $grades = $grades + ($grade*$gradeweight);
                                 $weights = $weights + $gradeweight;
                                 $countgrades = $countgrades + 1;
+
+                                $thisEditsDate = new DateTime($row3['creationDate']);
+                                if ($thisEditsDate > $lastSubEdit) {
+                                    $lastSubEdit = $thisEditsDate;
+                                }
 
                             }
 
@@ -144,9 +150,9 @@
                                 <tr>
                                     <th scope="row">'. $llsubname .'</th>
                                     <td>'. $llsubweight .'%</td>
-                                    <td>'. $countgrades .'</td>
-                                    <td>'. $countgradesunder .'</td>
+                                    <td>'. $countgrades .' <i>('. $countgradesunder .' <= 4)</i></td>
                                     <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
+                                    <td>'.$lastSubEdit->format('d.m.Y').'</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-lg-10 ie11fix">
@@ -183,8 +189,8 @@
                                             <th scope="col">'.$translate[114].'</th>
                                             <th scope="col">'.$translate[49].'</th>
                                             <th scope="col">'.$translate[2].'</th>
-                                            <th scope="col">'.$translate[115].'</th>
                                             <th scope="col">'.$translate[52].'</th>
+                                            <th scope="col">'.$translate[275].'</th>
                                             <th scope="col">'.$translate[116].'</th>
                                         </tr>
                                     </thead>
@@ -192,9 +198,9 @@
                                         <tr>
                                             <th scope="row">'. $llsubname .'</th>
                                             <td>'. $llsubweight .'%</td>
-                                            <td>'. $countgrades .'</td>
-                                            <td>'. $countgradesunder .'</td>
+                                            <td>'. $countgrades .' <i>('. $countgradesunder .' <= 4)</i></td>
                                             <td class="subAvg" subjid="'. $llsubid .'">'. $subgradeavg .'</td>
+                                            <td>'.$lastSubEdit->format('d.m.Y').'</td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col-lg-10 ie11fix">
