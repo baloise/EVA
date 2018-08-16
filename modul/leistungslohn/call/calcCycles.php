@@ -327,7 +327,9 @@
             }
         }
 
-        $cycleTotalMalusY3 = $cycleTotalMalusY3/$semesterCountSemester;
+        if($cycleTotalMalusY3>0){
+            $cycleTotalMalusY3 = $cycleTotalMalusY3/$semesterCountSemester;
+        }
 
         $cycleTotalItY3 = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
         $cycleTotalSchoolY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
@@ -398,7 +400,10 @@
         $cycleTotalBetriebPercentAverage = calcTotalPercentAvg($cycleTotalBetriebY3, $semesterCountBetrieb, $cycleTotalBetriebPercent);
 
         //Gesamtdurchschnitt berechnen
-        $cycleTotalMalus = $cycleTotalMalus/$semesterCountSemester;
+        if($cycleTotalMalus>0){
+            $cycleTotalMalus = $cycleTotalMalus/$semesterCountSemester;
+        }
+
         $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
         $cycleTmpCalc = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3);
         $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;

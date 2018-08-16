@@ -76,7 +76,9 @@
                     }
                 }
 
-                $cycleTotalMalus = $cycleTotalMalus/$semesterCountSemester;
+                if($cycleTotalMalus>0){
+                    $cycleTotalMalus = $cycleTotalMalus/$semesterCountSemester;
+                }
 
                 $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
@@ -200,7 +202,9 @@
                     }
                 }
 
-                $cycleTotalMalus = $cycleTotalMalus/$semesterCountTotal;
+                if($cycleTotalMalus>0){
+                    $cycleTotalMalus = $cycleTotalMalus/$semesterCountTotal;
+                }
 
                 $cycleTotalPerformPercentAverage = calcNeededAverages($semesterCountPerform, $cycleTotalPerformPercent);
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
@@ -326,7 +330,9 @@
                     }
                 }
 
-                $cycleTotalMalusY3 = $cycleTotalMalusY3/$semesterCountTotal;
+                if($cycleTotalMalusY3>0){
+                    $cycleTotalMalusY3 = $cycleTotalMalusY3/$semesterCountTotal;
+                }
 
                 $cycleTotalPerformPercentY3 = calcNeededAverages($semesterCountPerform, $cycleTotalPerformY3);
                 $cycleTotalSchoolPercentY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolY3);
