@@ -396,7 +396,9 @@
                 $cycleTotalBehavePercentAverage = calcTotalPercentAvg($cycleTotalBehavePercentY3, $semesterCountBehave, $cycleTotalBehavePercent);
 
                 //Gesamtdurchschnitt berechnen
-                $cycleTotalMalus = $cycleTotalMalus/$semesterCountTotal;
+                if($cycleTotalMalus>0){
+                    $cycleTotalMalus = $cycleTotalMalus/$semesterCountTotal;
+                }
 
                 $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
                 $cycleTmpCalc = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage)/3);
