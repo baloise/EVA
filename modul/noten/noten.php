@@ -422,7 +422,12 @@
 
                     if (isset($allGrades)){
                         $unrounded = round(($allGrades / $allWeight),2);
-                        $average = round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2;
+                        if($session_userid == 3){
+                            $average = round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2;
+                        } else {
+                            $average = round(($allGrades / $allWeight),2);
+                        }
+
                     }
 
                 } else {
