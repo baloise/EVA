@@ -163,7 +163,7 @@
             }
 
             $stmt = $mysqli->prepare("INSERT INTO `tb_uek` (`tb_user_ID`, `title`, `grade`, `tb_semester_ID`) VALUES (?, ?, ?,?);");
-            $stmt->bind_param("isii", $userid, $title, $points, $semester);
+            $stmt->bind_param("isdi", $userid, $title, $points, $semester);
             $stmt->execute();
 
             //GET SENDMAIL PARAMETERS
