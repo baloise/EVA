@@ -83,7 +83,14 @@
                 $cycleTotalItPercentAverage = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
-                $cycleTotalPercentAverage = ($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3;
+
+                $caller = 3;
+                $cycleTotalPercentAverage = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage));
+                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
+                $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
+
                 $cycleTotalPercentAverage -= $cycleTotalMalus/100;
 
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
@@ -209,7 +216,14 @@
                 $cycleTotalPerformPercentAverage = calcNeededAverages($semesterCountPerform, $cycleTotalPerformPercent);
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBehavePercentAverage = calcNeededAverages($semesterCountBehave, $cycleTotalBehavePercent);
-                $cycleTotalPercentAverage = ($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage)/3;
+
+                $caller = 3;
+                $cycleTotalPercentAverage = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
+                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
+                $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
+
                 $cycleTotalPercentAverage -= $cycleTotalMalus/100;
 
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
@@ -407,7 +421,14 @@
                 }
 
                 $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
-                $cycleTmpCalc = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage)/3);
+
+                $caller = 3;
+                $cycleTmpCalc = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
+                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
+                $cycleTmpCalc = $cycleTmpCalc/$caller;
+
                 $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
 
                 //Leistungslohn anhand Berechnung finden

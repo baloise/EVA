@@ -405,7 +405,14 @@
         }
 
         $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
-        $cycleTmpCalc = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage)/3);
+
+        $caller = 3;
+        $cycleTmpCalc = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage));
+        if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+        if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
+        if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
+        $cycleTmpCalc = $cycleTmpCalc/$caller;
+
         $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
 
         //Leistungslohn anhand Berechnung finden
