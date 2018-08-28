@@ -14,7 +14,7 @@
     $sql1 = "SELECT us.*, ss.ID AS subSemId, ss.semester AS subSemName FROM `tb_user_subject` AS us
         INNER JOIN tb_semester AS ss ON ss.ID = us.tb_semester_ID
         WHERE us.tb_user_ID = $session_userid
-        ORDER BY ss.semester ASC, us.`creationDate` DESC";
+        ORDER BY ss.semester DESC, us.`creationDate` DESC";
     $result = $mysqli->query($sql1);
 
     $currentSems = "";
