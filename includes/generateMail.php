@@ -104,7 +104,7 @@
         $header .= "X-Mailer: PHP ". phpversion() . "\r\n";
 
         if(isset($receiverInfo[2])){
-            //mail($receiverInfo[2], '=?UTF-8?B?'.base64_encode($subject). '?=', $msg, $header);
+            mail($receiverInfo[2], '=?UTF-8?B?'.base64_encode($subject). '?=', $msg, $header);
         }
 
     }
