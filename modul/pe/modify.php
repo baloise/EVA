@@ -162,6 +162,8 @@
                 $session_semesterid = $semester;
             }
 
+            str_replace(",",".",$points);
+
             $stmt = $mysqli->prepare("INSERT INTO `tb_pe` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`) VALUES (?, ?, ?,?);");
             $stmt->bind_param("isii", $userid, $title, $points, $semester);
             $stmt->execute();

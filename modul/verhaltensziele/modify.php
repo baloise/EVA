@@ -178,6 +178,8 @@
 
                 if($row['tb_group_ID'] == 2){
 
+                    str_replace(",",".",$points);
+
                     $stmt = $mysqli->prepare("INSERT INTO `tb_behaviorgrade` (`tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?, ?);");
                     $stmt->bind_param("iisii", $userid, $pa, $stage, $points, $semester);
                     $stmt->execute();

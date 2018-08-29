@@ -67,6 +67,10 @@
             if($error){
                 echo $error;
             } else {
+
+                str_replace(",",".",$grade);
+                str_replace(",",".",$weight);
+
                 $stmt = $mysqli->prepare("INSERT INTO `tb_subject_grade` (`title`, `grade`, `weighting`, `notes`, `tb_user_subject_ID`, reasoning) VALUES (?, ?, ?, NULL, ?, ?)");
                 $stmt->bind_param("sddis", $title, $grade, $weight, $subject, $reason);
                 $stmt->execute();
