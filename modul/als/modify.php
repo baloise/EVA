@@ -172,10 +172,10 @@
 
             if($perf == 1){
                 $stmt = $mysqli->prepare("INSERT INTO `tb_als` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`, performance) VALUES (?, ?, ?, ?, ?);");
-                $stmt->bind_param("isiii", $userid, $title, $points, $semester, $perf);
+                $stmt->bind_param("isdii", $userid, $title, $points, $semester, $perf);
             } else {
                 $stmt = $mysqli->prepare("INSERT INTO `tb_als` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?);");
-                $stmt->bind_param("isii", $userid, $title, $points, $semester);
+                $stmt->bind_param("isdi", $userid, $title, $points, $semester);
             }
 
             $stmt->execute();
