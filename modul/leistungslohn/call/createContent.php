@@ -219,10 +219,15 @@
 
                 $caller = 3;
                 $cycleTotalPercentAverage = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
-                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalPercentAverage <= 0){$caller -= 1;}
                 if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
-                $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
+                if($cycleTotalBehavePercentAverage <= 0){$caller -= 1;}
+
+                if($caller > 0){
+                    $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
+                } else {
+                    $cycleTotalPercentAverage = 0;
+                }
 
                 $cycleTotalPercentAverage -= $cycleTotalMalus/100;
 
@@ -424,10 +429,15 @@
 
                 $caller = 3;
                 $cycleTmpCalc = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
-                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
+                if($cycleTotalPerformPercentAverage <= 0){$caller -= 1;}
                 if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
-                $cycleTmpCalc = $cycleTmpCalc/$caller;
+                if($cycleTotalBehavePercentAverage <= 0){$caller -= 1;}
+
+                if($caller > 0){
+                    $cycleTmpCalc = $cycleTmpCalc/$caller;
+                } else {
+                    $cycleTmpCalc = 0;
+                }
 
                 $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
 
