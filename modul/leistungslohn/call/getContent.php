@@ -3,7 +3,6 @@
     include("../../../includes/session.php");
     include("./../../../database/connect.php");
 
-
     if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
 
         function fetchColumn($result, $column = 0) {
@@ -103,7 +102,7 @@
                     $out['avgSubjGrade'] = ($calcGrade * $rowchoose)/100;
                     $out['subWeight'] = $rowchoose;
                 }
-                
+
                 return $out;
 
             } else {

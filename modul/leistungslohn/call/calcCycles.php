@@ -318,26 +318,26 @@
                     }
                 }
 
-                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
+                $semesterList .= generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                 if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
-                    $semesterCountSemester = $semesterCountSemester + 1;
+                    $semesterCountSemester += 1;
                 }
 
                 if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalItPercent = $cycleTotalItPercent + LITcalcInformatik($row['ID'], $userID, $mysqli);
-                    $semesterCountInformatik = $semesterCountInformatik + 1;
+                    $semesterCountInformatik += 1;
                 }
 
                 if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
                     $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
-                    $semesterCountSchool = $semesterCountSchool + 1;
+                    $semesterCountSchool += 1;
                 }
 
                 if(LITcalcBetieb($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
-                    $semesterCountBetrieb = $semesterCountBetrieb + 1;
+                    $semesterCountBetrieb += 1;
                 }
 
             }
@@ -372,7 +372,6 @@
         if (isset($result) && $result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
 
-
                 $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
                 $malusResult = $mysqli->query($malusSql);
                 if (isset($malusResult) && $malusResult->num_rows > 0) {
@@ -381,26 +380,26 @@
                     }
                 }
 
-                $semesterList = $semesterList . generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
+                $semesterList .= generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
                 if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
-                    $semesterCountSemester = $semesterCountSemester + 1;
+                    $semesterCountSemester += 1;
                 }
 
                 if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalItPercent = $cycleTotalItPercent + LITcalcInformatik($row['ID'], $userID, $mysqli);
-                    $semesterCountInformatik = $semesterCountInformatik + 1;
+                    $semesterCountInformatik += 1;
                 }
 
                 if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
                     $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
-                    $semesterCountSchool = $semesterCountSchool + 1;
+                    $semesterCountSchool += 1;
                 }
 
                 if(LITcalcBetieb($row['ID'], $userID, $mysqli) != 0){
                     $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
-                    $semesterCountBetrieb = $semesterCountBetrieb + 1;
+                    $semesterCountBetrieb += 1;
                 }
 
             }
@@ -422,8 +421,6 @@
 
         $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
         $cycleTotalPercentAverage = calculateEndSum($cycleTotalItPercentAverage,$cycleTotalSchoolPercentAverage,$cycleTotalBetriebPercentAverage,$totalMalus);
-
-        //Leistungslohn anhand Berechnung finden
         $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
         if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
