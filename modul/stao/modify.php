@@ -162,7 +162,7 @@
                 $session_semesterid = $semester;
             }
 
-            str_replace(",",".",$points);
+            $points = str_replace(",",".",$points);
 
             $stmt = $mysqli->prepare("INSERT INTO `tb_stao` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`) VALUES (?, ?, ?,?);");
             $stmt->bind_param("isdi", $userid, $title, $points, $semester);

@@ -170,7 +170,7 @@
                 $session_semesterid = $semester;
             }
 
-            str_replace(",",".",$points);
+            $points = str_replace(",",".",$points);
 
             if($perf == 1){
                 $stmt = $mysqli->prepare("INSERT INTO `tb_als` (`tb_user_ID`, `title`, `points`, `tb_semester_ID`, performance) VALUES (?, ?, ?, ?, ?);");
