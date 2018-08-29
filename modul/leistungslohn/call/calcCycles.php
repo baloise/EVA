@@ -72,6 +72,22 @@
 
     }
 
+    function calculateEndSum($c1, $c2, $c3, $malus){
+
+        $caller = 3;
+        $cycleTmpCalc = (($c1+$c2+$c3));
+        if($c1 <= 0){$caller -= 1;}
+        if($c2 <= 0){$caller -= 1;}
+        if($c3 <= 0){$caller -= 1;}
+
+        if($caller > 0){
+            return ($cycleTmpCalc/$caller) -$malus/100;
+        } else {
+            return 0;
+        }
+
+    }
+
     function calcTotalPercentAvg($cTY3, $semC, $cTP){
         if($cTY3 != 0){
             if($semC != 0){
@@ -334,7 +350,7 @@
         $cycleTotalItY3 = calcNeededAverages($semesterCountInformatik, $cycleTotalItPercent);
         $cycleTotalSchoolY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
         $cycleTotalBetriebY3 = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
-        $cycleTotalPercentY3 = ($cycleTotalItY3+$cycleTotalSchoolY3+$cycleTotalBetriebY3)/3;
+        $cycleTotalPercentY3 = calculateEndSum($cycleTotalItY3,$cycleTotalSchoolY3,$cycleTotalBetriebY3,0);
 
         //-------------------------------------------- Zwei drittel berechnen --------------------------------------------
 
@@ -405,15 +421,7 @@
         }
 
         $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
-
-        $caller = 3;
-        $cycleTmpCalc = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage));
-        if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
-        if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-        if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
-        $cycleTmpCalc = $cycleTmpCalc/$caller;
-
-        $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
+        $cycleTotalPercentAverage = calculateEndSum($cycleTotalItPercentAverage,$cycleTotalSchoolPercentAverage,$cycleTotalBetriebPercentAverage,$totalMalus);
 
         //Leistungslohn anhand Berechnung finden
         $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);

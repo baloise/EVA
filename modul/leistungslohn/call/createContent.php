@@ -84,15 +84,7 @@
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
 
-                $caller = 3;
-                $cycleTotalPercentAverage = (($cycleTotalItPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBetriebPercentAverage));
-                if($cycleTotalItPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalBetriebPercentAverage <= 0){$caller -= 1;}
-                $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
-
-                $cycleTotalPercentAverage -= $cycleTotalMalus/100;
-
+                $cycleTotalPercentAverage = calculateEndSum($cycleTotalItPercentAverage,$cycleTotalSchoolPercentAverage,$cycleTotalBetriebPercentAverage,$cycleTotalMalus);
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
                 if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
@@ -217,20 +209,7 @@
                 $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
                 $cycleTotalBehavePercentAverage = calcNeededAverages($semesterCountBehave, $cycleTotalBehavePercent);
 
-                $caller = 3;
-                $cycleTotalPercentAverage = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
-                if($cycleTotalPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalBehavePercentAverage <= 0){$caller -= 1;}
-
-                if($caller > 0){
-                    $cycleTotalPercentAverage = $cycleTotalPercentAverage/$caller;
-                } else {
-                    $cycleTotalPercentAverage = 0;
-                }
-
-                $cycleTotalPercentAverage -= $cycleTotalMalus/100;
-
+                $cycleTotalPercentAverage = calculateEndSum($cycleTotalPerformPercentAverage,$cycleTotalSchoolPercentAverage,$cycleTotalBehavePercentAverage,$cycleTotalMalus);
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
 
                 if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
@@ -356,7 +335,7 @@
                 $cycleTotalPerformPercentY3 = calcNeededAverages($semesterCountPerform, $cycleTotalPerformY3);
                 $cycleTotalSchoolPercentY3 = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolY3);
                 $cycleTotalBehavePercentY3 = calcNeededAverages($semesterCountBehave, $cycleTotalBehaveY3);
-                $cycleTotalPercentY3 = ($cycleTotalPerformPercentY3+$cycleTotalSchoolPercentY3+$cycleTotalBehavePercentY3)/3;
+                $cycleTotalPercentY3 = calculateEndSum($cycleTotalPerformPercentY3,$cycleTotalSchoolPercentY3,$cycleTotalBehavePercentY3,0);
 
                 //-------------------------------------------- Zwei drittel berechnen --------------------------------------------
 
@@ -426,20 +405,7 @@
                 }
 
                 $totalMalus = ($cycleTotalMalusY3+2*($cycleTotalMalus))/3;
-
-                $caller = 3;
-                $cycleTmpCalc = (($cycleTotalPerformPercentAverage+$cycleTotalSchoolPercentAverage+$cycleTotalBehavePercentAverage));
-                if($cycleTotalPerformPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalSchoolPercentAverage <= 0){$caller -= 1;}
-                if($cycleTotalBehavePercentAverage <= 0){$caller -= 1;}
-
-                if($caller > 0){
-                    $cycleTmpCalc = $cycleTmpCalc/$caller;
-                } else {
-                    $cycleTmpCalc = 0;
-                }
-
-                $cycleTotalPercentAverage = $cycleTmpCalc -$totalMalus/100;
+                $cycleTotalPercentAverage = calculateEndSum($cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $totalMalus);
 
                 //Leistungslohn anhand Berechnung finden
                 $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
