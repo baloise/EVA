@@ -181,7 +181,7 @@
                     $points = str_replace(",",".",$points);
 
                     $stmt = $mysqli->prepare("INSERT INTO `tb_behaviorgrade` (`tb_userLL_ID`, `tb_userPA_ID`, `stageName`, `points`, `tb_semester_ID`) VALUES (?, ?, ?, ?, ?);");
-                    $stmt->bind_param("iisii", $userid, $pa, $stage, $points, $semester);
+                    $stmt->bind_param("iisdi", $userid, $pa, $stage, $points, $semester);
                     $stmt->execute();
 
                     if($semester > $session_semesterid){
