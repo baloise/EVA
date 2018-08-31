@@ -87,7 +87,7 @@ $(document).ready(function(){
         $("#warningButton").click(function(event){
 
             var reason = $("#fcheckEntryReason").val();
-            var entryID = $(this).attr("entryID");
+            var entryID = $("#fsendAndDelete").attr("entryID");
 
             if(!reason){
                 $('#errorText').html(translate[146]);
