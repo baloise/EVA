@@ -16,15 +16,29 @@
 
 	if(!function_exists('execPrepStmt')){
 		function execPrepStmt($mysqli, $query, $formatString, ...$params){
-	        $stmt = $mysqli->prepare($query);
-	        $stmt->bind_param($formatString, ...$params);
-	        $stmt->execute();
+
+			$stmt = $mysqli->prepare($query);
+			if ( false===$stmt ) {
+			  	return('ERROR#001'); //Prepare Failed
+			}
+
+			$rc = $stmt->bind_param($formatString, ...$params);
+			if ( false===$rc ) {
+			  	return('ERROR#002'); //Bind Failed
+			}
+
+			$rc = $stmt->execute();
+			if ( false===$rc ) {
+			  	return('ERROR#003'); //Execute Failed
+			}
+
 	        return $stmt->get_result();
+
 	    }
 	}
 
     if (!$mysqli) {
-        echo "Could not connect to $_db_username@$_db_host/$_db_database\n<br/>";
+        echo "ERROR#004"; //Connect Failed
 
 		if(mysqli_connect_errno() == 1049){
 
