@@ -124,7 +124,6 @@ $(document).ready(function(){
             $(this).prop("disabled",true);
 
             var reason = $("#fcheckEntryReason").val();
-            var entryID = $(this).attr("entryID");
 
             if(!reason){
                 $(this).prop("disabled",false);
