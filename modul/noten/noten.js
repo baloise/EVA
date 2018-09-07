@@ -396,7 +396,7 @@ $(document).ready(function(){
 
     $('#addSubject').click(function(){
 
-        $('#errorForm').html(error).slideUp("fast");
+        $('#errorForm').slideUp("fast");
         $('#addSubject').prop("disabled",true);
 
         var error = "";
@@ -417,9 +417,10 @@ $(document).ready(function(){
                 i = i + 1;
             });
 
-            if(i == 1){
+            if(i === 1){
                 subType = $('.selectedType').attr("value");
             } else {
+                /** global: translate */
                 error = error + "<li>" + translate[195]+"</li>";
             }
 
