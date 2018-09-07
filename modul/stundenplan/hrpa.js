@@ -1,3 +1,4 @@
+/** global: translate */
 $(document).ready(function(){
 
     $('.clickandload').each(function(){

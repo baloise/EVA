@@ -1,3 +1,4 @@
+/** global: translate */
 function inFormChanges(object){
 
     var gradeId = $(object).attr('gradeId');

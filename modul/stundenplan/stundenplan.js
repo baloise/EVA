@@ -1,3 +1,4 @@
+/** global: translate */
 	//Lädt die Berufe beim Laden der Seite
 	SetKlassen();
 

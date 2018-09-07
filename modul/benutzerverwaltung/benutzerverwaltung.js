@@ -130,8 +130,6 @@ $(document).ready(function(){
 
             }
 
-
-
         });
     });
 
@@ -166,14 +164,15 @@ $(document).ready(function(){
         $(this).click(function(event){
             event.preventDefault();
             var bkey = $(this).attr('bkey');
-
+            $("#errorAlert").slideUp("fast");
             $.ajax({
                 method: "POST",
                 url: "./modul/benutzerverwaltung/call/relogin.php",
                 data: {bkey:bkey},
                 success: function(data){
                     if(data){
-                        alert(data);
+                        $("#errorText").html(data);
+                        $("#errorAlert").slideDown("fast");
                     } else {
                         $("body").fadeOut("slow", function(){
                             window.location.href = 'index.php?page=dashboard&adm=true';
@@ -191,7 +190,6 @@ $(document).ready(function(){
             event.preventDefault();
 
             var usrid = $(this).attr('userID');
-            var bkey = $(this).attr('bkey');
 
             $("#warningText").html("<strong>" + translate[97] + "</strong> " + translate[98] + ": " + bkey);
             $("#warningAlert").slideDown("fast");
@@ -208,7 +206,8 @@ $(document).ready(function(){
                         data: {action:"delete", userid:usrid},
                         success: function(data){
                             if(data){
-                                alert(data);
+                                $("#errorText").html(data);
+                                $("#errorAlert").slideDown("fast");
                             } else {
                                 $("#warningAlert").slideUp("fast");
 								$("#warningButton").prop("disabled",false);

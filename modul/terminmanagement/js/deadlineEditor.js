@@ -1,3 +1,4 @@
+/** global: translate */
 function toggleEdit(groupID){
     $('.toggleEditGroup').each(function(){
 
