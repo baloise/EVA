@@ -117,14 +117,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -210,14 +203,7 @@
         </tbody>
     </table>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
 
 <?php else : //No Usergroup ?>

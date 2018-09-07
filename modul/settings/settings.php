@@ -179,15 +179,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    var translate = {};
-    <?php
-        foreach ($translate as $key => $value) {
-            echo ("translate['".$key."'] = '".$value."';");
-        };
-    ?>;
-</script>
-
+<?php include('includes/useTranslations.php'); ?>
 <script src="modul/settings/settings.min.js"></script>
 <script src="modul/settings/color-picker.min.js"></script>
 <script id="colorChanges">

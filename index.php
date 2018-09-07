@@ -243,14 +243,7 @@
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         <script type="text/javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 
-        <script type="text/javascript">
-            var translate = {};
-            <?php
-                foreach ($translate as $key => $value) {
-                    echo ("translate['".$key."'] = '".$value."';");
-                };
-            ?>;
-        </script>
+        <?php include('includes/useTranslations.php'); ?>
         <script type="text/javascript" src="js/index.min.js"></script>
 
     </body>

@@ -150,14 +150,7 @@
 
 <?php endif; ?>
 
-	<script type="text/javascript">
-		var translate = {};
-		<?php
-			foreach ($translate as $key => $value) {
-				echo ("translate['".$key."'] = '".$value."';");
-			};
-		?>;
-	</script>
+	<?php include('includes/useTranslations.php'); ?>
 	<script type="text/javascript" src="modul/dashboard/dashboard.min.js"></script>
 
 <?php elseif($session_usergroup == 100) : //Not yet implemented -> GIT ISSUE 94?>

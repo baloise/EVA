@@ -295,14 +295,7 @@
     ?>
     </div>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 
@@ -634,14 +627,7 @@
 
     </div>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 

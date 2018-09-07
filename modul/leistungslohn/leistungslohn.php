@@ -262,14 +262,7 @@
 
     </div>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
@@ -504,14 +497,7 @@
 
     ?>
 
-    <script type="text/javascript">
-        var translate = {};
-        <?php
-            foreach ($translate as $key => $value) {
-                echo ("translate['".$key."'] = '".$value."';");
-            };
-        ?>;
-    </script>
+    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php else : ?>
