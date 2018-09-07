@@ -161,7 +161,7 @@
                 <br/>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" id="saveColor" style="display:none;" class="highlighter btn btn-block btn-primary" <?php if($explora){echo "disabled";}?> > <?php echo $translate['143']; ?></button>
+                        <button type="button" id="saveColor" class="highlighter btn btn-block btn-primary" <?php if($explora){echo "disabled";}?> > <?php echo $translate['143']; ?></button>
                     </div>
                 </div>
                 <br/>
@@ -179,7 +179,7 @@
     </div>
 </div>
 
-<?php include('includes/useTranslations.php'); ?>
+
 <script src="modul/settings/settings.min.js"></script>
 <script src="modul/settings/color-picker.min.js"></script>
 <script id="colorChanges">

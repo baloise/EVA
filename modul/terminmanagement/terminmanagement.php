@@ -69,7 +69,7 @@
 
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/terminmanagement/js/modifyhr.min.js"></script>
 
 

@@ -149,7 +149,7 @@
         </tbody>
     </table>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/malus/malus.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 

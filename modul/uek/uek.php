@@ -117,7 +117,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/uek/uek.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -210,7 +210,7 @@
         </tbody>
     </table>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/uek/uek.min.js"></script>
 
 <?php else : //No Usergroup ?>

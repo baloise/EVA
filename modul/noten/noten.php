@@ -295,7 +295,7 @@
     ?>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 
@@ -627,7 +627,7 @@
 
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 

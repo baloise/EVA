@@ -6,7 +6,6 @@
 
 
     <head>
-        <link rel="stylesheet" href="modul/benutzerverwaltung/benutzerverwaltung.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	</head>
 
@@ -131,7 +130,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+
     <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -247,7 +246,7 @@
         </tbody>
     </table>
 
-    <?php include('includes/useTranslations.php'); ?>
+
     <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.min.js"></script>
 
 <?php else : //No Usergroup ?>

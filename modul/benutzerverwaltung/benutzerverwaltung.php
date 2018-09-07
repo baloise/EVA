@@ -249,7 +249,7 @@
 
     ?>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/benutzerverwaltung/benutzerverwaltung.min.js"></script>
 

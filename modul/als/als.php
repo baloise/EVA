@@ -124,7 +124,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+
     <script type="text/javascript" src="modul/als/als.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -258,7 +258,7 @@
 
     <hr/>
 
-    <?php include('includes/useTranslations.php'); ?>
+
     <script type="text/javascript" src="modul/als/als.min.js"></script>
 
 <?php else : ?>

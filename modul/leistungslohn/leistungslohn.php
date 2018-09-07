@@ -262,7 +262,7 @@
 
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
@@ -497,7 +497,7 @@
 
     ?>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
 <?php else : ?>

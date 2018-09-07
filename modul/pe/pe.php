@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/pe/pe.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -205,7 +205,7 @@
         </tbody>
     </table>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/pe/pe.min.js"></script>
 
 <?php else : ?>

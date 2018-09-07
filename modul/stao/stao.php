@@ -142,7 +142,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/stao/stao.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
@@ -253,7 +253,7 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
+    
     <script type="text/javascript" src="modul/stao/stao.min.js"></script>
 
 <?php else : ?>

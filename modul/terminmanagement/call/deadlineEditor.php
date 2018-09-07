@@ -290,7 +290,6 @@
         </div>
     </div>
 
-    <?php include('includes/useTranslations.php'); ?>
     <script type="text/javascript" src="modul/terminmanagement/js/deadlineEditor.min.js"></script>
 
 <?php else : ?>

@@ -150,7 +150,7 @@
 
 <?php endif; ?>
 
-	<?php include('includes/useTranslations.php'); ?>
+	
 	<script type="text/javascript" src="modul/dashboard/dashboard.min.js"></script>
 
 <?php elseif($session_usergroup == 100) : //Not yet implemented -> GIT ISSUE 94?>
