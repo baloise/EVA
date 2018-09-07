@@ -84,7 +84,6 @@ $(document).ready(function(){
         $(this).click(function(){
 
             $(this).prop("disabled",true);
-
             var reason = $("#fcheckEntryReason").val();
             var entryID = $(this).attr("entryID");
 
@@ -106,7 +105,6 @@ $(document).ready(function(){
                         if(data){
                             $('#errorText').html(data);
                             $('#errorAlert').slideDown("fast");
-                            $('#warningButton').prop("disabled", false);
                         } else {
 
                             $("#checkEntryForm").slideUp("slow",function(){
@@ -146,9 +144,8 @@ $(document).ready(function(){
     $("#addNewEntryButton").click(function(event){
 
         event.preventDefault();
-        $("#errorAlert").slideUp("fast");
-
         $(this).prop("disabled", true);
+        $("#errorAlert").slideUp("fast");
 
         var error = "";
         var fTitle = $("#fTitle").val();
@@ -170,7 +167,6 @@ $(document).ready(function(){
         if(error){
             $('#errorText').html(error);
             $('#errorAlert').slideDown("fast");
-            $("#error").html(error).slideDown("fast");
             $(this).prop("disabled", false);
         } else {
 

@@ -188,10 +188,9 @@ $(document).ready(function(){
     $(".fDelete").each(function(){
         $(this).click(function(event){
             event.preventDefault();
-
             var usrid = $(this).attr('userID');
 
-            $("#warningText").html("<strong>" + translate[97] + "</strong> " + translate[98] + ": " + bkey);
+            $("#warningText").html("<strong>" + translate[97] + "</strong> " + translate[98] + ": " + $(this).attr('bkey'));
             $("#warningAlert").slideDown("fast");
             $("#warningButton").slideDown("fast");
             $("#warningButton").click(function(event){

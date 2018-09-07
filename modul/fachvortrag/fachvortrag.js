@@ -33,12 +33,13 @@ $(document).ready(function(){
         var entryID = $(this).attr("entryID");
 
         if(!reason){
-            $("#error").html(translate[146]).slideDown("fast");
+            $('#errorText').html(translate[146]);
+            $('#errorAlert').slideDown("fast");
         } else {
 
 			$("#fsendAndDelete").prop("disabled",true);
 			$(this).prop("disabled",true);
-            $("#error").slideUp("fast");
+            $("#errorAlert").slideUp("fast");
 
             $.ajax({
                 method: "POST",
@@ -47,7 +48,8 @@ $(document).ready(function(){
                 success: function(data){
 
                     if(data){
-                        $("#error").html(data).slideDown("fast");
+                        $('#errorText').html(data);
+                        $('#errorAlert').slideDown("fast");
                     } else {
 
                         $("#checkEntryForm").slideUp("slow",function(){
@@ -57,7 +59,9 @@ $(document).ready(function(){
                             $("#fcheckEntryPoints").val("");
                             $("#fsend").prop("disabled",false);
 							$("#fsendAndDelete").prop("disabled",false);
-                            $("#checkedNotif").html(translate[147]).slideDown("fast").delay(2000).slideUp("slow");
+
+                            $('#successText').html(translate[147]);
+                            $("#successAlert").slideDown("fast").delay(1300).slideUp("slow");
 
                         });
 
@@ -74,16 +78,19 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        $("#error").slideUp("fast");
+        $("#errorAlert").slideUp("fast");
         $(this).html(translate[148]).removeClass("btn-danger").addClass("btn-warning");
 
         $(this).click(function(){
 
+            $(this).prop("disabled",true);
             var reason = $("#fcheckEntryReason").val();
             var entryID = $(this).attr("entryID");
 
             if(!reason){
-                $("#error").html(translate[146]).slideDown("fast");
+                $(this).prop("disabled",false);
+                $('#errorText').html(translate[146]);
+                $('#errorAlert').slideDown("fast");
             } else {
 
                 $("#fsend").prop("disabled",true);
@@ -96,7 +103,8 @@ $(document).ready(function(){
                     success: function(data){
 
                         if(data){
-                            $("#error").html(data).slideDown("fast");
+                            $('#errorText').html(data);
+                            $('#errorAlert').slideDown("fast");
                         } else {
 
                             $("#checkEntryForm").slideUp("slow",function(){
@@ -105,7 +113,8 @@ $(document).ready(function(){
                                 $("#fcheckEntryReason").val("");
                                 $("#fcheckEntryPoints").val("");
 
-                                $("#checkedNotif").html(translate[149]).slideDown("fast").delay(1300).slideUp("fast",function(){
+                                $('#successText').html(translate[149]);
+                                $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
                                     $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){
                                         $('.loadScreen').fadeTo("fast", 0, function(){
                                             $('#pageContents').fadeTo("fast", 1);
@@ -134,8 +143,8 @@ $(document).ready(function(){
 
     $("#addNewEntryButton").click(function(event){
 
-        $("#addNewEntryButton").prop("disabled", true);
         event.preventDefault();
+        $(this).prop("disabled", true);
         $("#errorAlert").slideUp("fast");
 
         var error = "";
@@ -151,14 +160,14 @@ $(document).ready(function(){
             error = error + "<li>" + translate[176] + "</li>";
         }
 
-        if(!fpoints || fpoints > 84){
-            error = error + "<li>" + translate[152]+" (Max. 84P.)</li>";
+        if(!fpoints){
+            error = error + "<li>" + translate[152]+"</li>";
         }
 
         if(error){
             $('#errorText').html(error);
             $('#errorAlert').slideDown("fast");
-            $("#addNewEntryButton").prop("disabled", false);
+            $(this).prop("disabled", false);
         } else {
 
             $('#warningText').html(translate[93]);
@@ -166,6 +175,7 @@ $(document).ready(function(){
             $("#warningButton").slideDown("fast");
             $("#warningButton").click(function(event){
                 event.preventDefault();
+                $(this).prop("disabled", true);
 
                 var error = "";
                 var fTitle = $("#fTitle").val();
@@ -180,14 +190,14 @@ $(document).ready(function(){
                     error = error + "<li>" + translate[176] + "</li>";
                 }
 
-                if(!fpoints || fpoints > 84){
-                    error = error + "<li>" + translate[152]+" (Max. 84P.)</li>";
+                if(!fpoints){
+                    error = error + "<li>" + translate[152]+"</li>";
                 }
 
                 if(error){
                     $('#errorText').html(error);
                     $('#errorAlert').slideDown("fast");
-                    $("#addNewEntryButton").prop("disabled", true);
+                    $('#warningButton').prop("disabled", false);
                 } else {
                     $("#warningAlert").slideUp("fast");
                     $.ajax({
@@ -197,13 +207,14 @@ $(document).ready(function(){
                         success: function(data){
 
                             if(data){
-                                $('#errorText').html(error);
+                                $('#errorText').html(data);
                                 $('#errorAlert').slideDown("fast");
+                                $('#warningButton').prop("disabled", false);
                             } else {
 
                                 $("#fTitle").val("");
                                 $("#fPoints").val("");
-
+                                $('#warningButton').prop("disabled", false);
                                 $('#successText').html(translate[103]);
                                 $("#successAlert").slideDown("fast").delay(1300).slideUp("fast",function(){
                                     $("#pageContent").load("modul/fachvortrag/fachvortrag.php", function(){

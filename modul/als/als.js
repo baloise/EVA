@@ -3,41 +3,41 @@ $(document).ready(function(){
 
     function calcGradeAVG(){
 
-        var gradeCount = 0;
-        var allGrades = 0;
+       var gradeCount = 0;
+       var allGrades = 0;
 
-        $('.calcGradesForm').each(function(){
+       $('.calcGradesForm').each(function(){
 
-            if($(this).val() >= 1 && $(this).val() <= 6){
+           if($(this).val() >= 1 && $(this).val() <= 6){
 
-                allGrades += parseFloat($(this).val());
-                gradeCount++;
+               allGrades += parseFloat($(this).val());
+               gradeCount++;
 
-            }
+           }
 
-        });
+       });
 
-        if(gradeCount > 0){
+       if(gradeCount > 0){
 
-            var gradeAvg = Math.round((allGrades / gradeCount) * 100) / 100;
-            // Note -1 Mal 10.8 (Da max. Punktzahl = 54)
-            var gradeInPoints = Math.round(((gradeAvg-1) * 10.8) * 100) / 100;
+           var gradeAvg = Math.round((allGrades / gradeCount) * 100) / 100;
+           // Note -1 Mal 10.8 (Da max. Punktzahl = 54)
+           var gradeInPoints = Math.round(((gradeAvg-1) * 10.8) * 100) / 100;
 
-            $('#calcResult').html("<b>" + gradeAvg + " = " + gradeInPoints + " " + translate[67] + " <b>");
-        } else {
-            $('#calcResult').html(translate[171]);
-        }
+           $('#calcResult').html("<b>" + gradeAvg + " = " + gradeInPoints + " " + translate[67] + " <b>");
+       } else {
+           $('#calcResult').html(translate[171]);
+       }
     }
 
     $('#calcGradesBtn').click(function(event){
-        event.preventDefault();
-        calcGradeAVG();
+       event.preventDefault();
+       calcGradeAVG();
     });
 
     $('.calcGradesForm').each(function(){
-        $(this).on('keyup', function(){
-            calcGradeAVG();
-        });
+       $(this).on('keyup', function(){
+           calcGradeAVG();
+       });
     });
 
     $(".checkEntry").each(function(){
@@ -123,8 +123,8 @@ $(document).ready(function(){
         $(this).click(function(){
 
             $(this).prop("disabled",true);
-
             var reason = $("#fcheckEntryReason").val();
+            var entryID = $(this).attr("entryID");
 
             if(!reason){
                 $(this).prop("disabled",false);
@@ -134,9 +134,6 @@ $(document).ready(function(){
 
                 $("#fsend").prop("disabled",true);
                 $(this).prop("disabled",true);
-
-                var reason = $("#fcheckEntryReason").val();
-                var entryID = $(this).attr("entryID");
 
                 $.ajax({
                     method: "POST",
@@ -185,9 +182,8 @@ $(document).ready(function(){
 
     $("#addNewEntryButton").click(function(event){
 
-        $(this).prop("disabled", true);
-
         event.preventDefault();
+        $(this).prop("disabled", true);
         $("#errorAlert").slideUp("fast");
 
         var error = "";
