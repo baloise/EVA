@@ -1,4 +1,6 @@
 /** global: translate */
+/** global: url */
+/** global: load */
 $(document).ready(function(){
 
     $(".checkEntry").each(function(){
