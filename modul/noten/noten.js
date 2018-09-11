@@ -465,7 +465,7 @@ $(document).ready(function(){
 
         $(this).click(function(event){
 
-            object = $(this);
+            var object = $(this);
             event.preventDefault();
 
             $('#warningText').html(translate[162]);

@@ -117,8 +117,9 @@
         </div>
     </div>
 
-    
+
     <script type="text/javascript" src="modul/uek/uek.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 5) : //KV Bank-Lehrling ?>
@@ -210,8 +211,9 @@
         </tbody>
     </table>
 
-    
+
     <script type="text/javascript" src="modul/uek/uek.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
 
 <?php else : //No Usergroup ?>
 
