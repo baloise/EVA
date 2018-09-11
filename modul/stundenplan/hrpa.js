@@ -36,7 +36,7 @@ $(document).ready(function(){
 
                 if (klasseId >= 0 && klasseId !== "") {
 
-                    $.getJSON('http://home.gibm.ch/interfaces/133/tafel.php?klasse_id=' + klasseId + '&woche=' + thisWeekAndYear, function(result){
+                    $.getJSON('http://sandbox.gibm.ch/tafel.php?klasse_id=' + klasseId + '&woche=' + thisWeekAndYear, function(result){
 
                         if (result != "") {
 

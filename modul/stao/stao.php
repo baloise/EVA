@@ -142,8 +142,9 @@
         </div>
     </div>
 
-    
+
     <script type="text/javascript" src="modul/stao/stao.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 4) : ?>
@@ -253,8 +254,9 @@
         </div>
     </div>
 
-    
+
     <script type="text/javascript" src="modul/stao/stao.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
 
 <?php else : ?>
 

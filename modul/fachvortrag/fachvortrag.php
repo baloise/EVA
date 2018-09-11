@@ -117,8 +117,9 @@
         </div>
     </div>
 
-    
+
     <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
 <?php elseif($session_usergroup == 3) : //IT-Lehrling ?>
@@ -197,14 +198,15 @@
             </tr>
             <tr>
                 <td colspan="6" align="center">
-                    <button id="addNewEntryButton" type="button" class="btn btn-primary"><?php echo $translate[39];?></button>
+                    <button type="button" id="addNewEntryButton" class="btn btn-primary"><?php echo $translate[39];?></button>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    
+
     <script type="text/javascript" src="modul/fachvortrag/fachvortrag.min.js"></script>
+    <script type="text/javascript" src="js/defaultTableActions.min.js"></script>
 
 <?php else : //No Usergroup ?>
 
