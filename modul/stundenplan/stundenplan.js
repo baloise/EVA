@@ -14,7 +14,7 @@
 	function SetKlassen() {
 		$("#k_auswahl").empty();
 
-			$.getJSON('http://sandbox.gibm.ch/klassen.php','beruf_id=10',function(antwort){
+			$.getJSON('https://sandbox.gibm.ch/klassen.php','beruf_id=10',function(antwort){
 
 				$('#k_auswahl').append($('<option>',
 				{
@@ -52,7 +52,7 @@
 
 		if (klasseId >= 0 && klasseId !== "") {
 
-			$.getJSON('http://sandbox.gibm.ch/tafel.php?klasse_id=' + klasseId + '&woche=' + thisWeekAndYear, function(result){
+			$.getJSON('https://sandbox.gibm.ch/tafel.php?klasse_id=' + klasseId + '&woche=' + thisWeekAndYear, function(result){
 
 				if (result != "") {
 
