@@ -2,14 +2,14 @@
     font-family: 'RobotoThin';
     src: url('font/roboto-thin.eot');
     src: url('font/roboto-thin.eot?#iefix') format('eot'),
-         url('font/roboto-thin.ttf') format('truetype'),
+         /*url('font/roboto-thin.ttf') format('truetype'),*/
          url('font/roboto-thin.svg') format('svg');
 }
 @font-face {
     font-family: 'RobotoRegular';
     src: url('font/roboto-regular.eot');
     src: url('font/roboto-regular.eot?#iefix') format('eot'),
-         url('font/roboto-regular.ttf') format('truetype'),
+         /*url('font/roboto-regular.ttf') format('truetype'),*/
          url('font/roboto-regular.svg') format('svg');
 }
 @font-face {

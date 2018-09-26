@@ -283,7 +283,7 @@ hr {
 }
 .alert-danger {
     background-color: #f2dede !important;
-}ä
+}
 @media (max-width: 767px) {
     .dashModul {
     	color: var(--link);
