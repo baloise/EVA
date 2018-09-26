@@ -1,20 +1,36 @@
 @font-face {
-    font-family: 'RobotoThin';
-    src: url('font/roboto-thin.eot');
-    src: url('font/roboto-thin.eot?#iefix') format('eot'),
-         url('font/roboto-thin.ttf') format('truetype'),
-         url('font/roboto-thin.svg') format('svg');
+    font-family: 'MetaPro-Normal';
+    src: url('css/font/MetaPro-Normal.eot');
+    src: url('css/font/MetaPro-Normal.eot?#iefix') format('embedded-opentype'),
+        url('../css/font/MetaPro-Normal.woff2') format('woff2'),
+        url('../css/font/MetaPro-Normal.woff') format('woff'),
+        url('../css/font/MetaPro-Normal.ttf') format('truetype'),
+        url('../css/font/MetaPro-Normal.svg#MetaPro-Normal') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
-    font-family: 'RobotoRegular';
-    src: url('font/roboto-regular.eot');
-    src: url('font/roboto-regular.eot?#iefix') format('eot'),
-         url('font/roboto-regular.ttf') format('truetype'),
-         url('font/roboto-regular.svg') format('svg');
+    font-family: 'MetaPro';
+    src: url('css/font/MetaPro-Medium.eot');
+    src: url('css/font/MetaPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../css/font/MetaPro-Medium.woff2') format('woff2'),
+        url('../css/font/MetaPro-Medium.woff') format('woff'),
+        url('../css/font/MetaPro-Medium.ttf') format('truetype'),
+        url('../css/font/MetaPro-Medium.svg#MetaPro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
 }
 @font-face {
     font-family: 'Geometria';
-    src: url('font/Geometria-Light.otf');
+    src: url('css/font/Geometria-Light.eot');
+    src: url('css/font/Geometria-Light.eot?#iefix') format('embedded-opentype'),
+        url('../css/font/Geometria-Light.woff2') format('woff2'),
+        url('../css/font/Geometria-Light.woff') format('woff'),
+        url('../css/font/Geometria-Light.ttf') format('truetype'),
+        url('../css/font/Geometria-Light.svg#Geometria-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
 }
 #warningAlert #errorAlert #successAlert {
     display: none;
@@ -80,8 +96,10 @@ body {
 	padding-top: 54px;
 	background-color: var(--hintergrund);
 	color: var(--schrift);
+    font-family: 'MetaPro-Normal', sans-serif;
 	margin-bottom: 60px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
+
 }
 .svg path {
 	fill: var(--link);
@@ -97,7 +115,6 @@ body {
 .nav-link {
 	color: var(--link) !important;
 	font-weight: 500;
-	transition: font-weight .4s ease-in-out;
 }
 .navbar-light .navbar-toggler {
     color: var(--link) !important;
@@ -132,7 +149,7 @@ html {
 	color: inherit;
 }
 .text-muted {
-	font-family: 'RobotoThin', sans-serif;
+	font-family: 'MetaPro-Normal', sans-serif;
 }
 .mt-5 {
 	background-color: var(--hintergrund);
@@ -150,7 +167,7 @@ html {
     cursor: pointer;
 }
 .dashModul h3 {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 h3{
     font-size: 1.4rem;
@@ -231,10 +248,10 @@ select.form-control:not([size]):not([multiple]){
 	height: auto;
 }
 .form-control {
-	font-size: 0.7rem;
+	font-size: 0.9rem;
 }
 .btn {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }
 .navbar {
 	border-bottom: solid 1.5px var(--link);
@@ -309,7 +326,7 @@ hr {
     	max-width: 50%;
     }
     .dashModul h3 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .dashModuleTitle {
     	margin-left: auto;

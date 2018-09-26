@@ -58,7 +58,7 @@
                 echo '
                     <style>
                         .navbar-brand {
-                            font-family: monospace;
+                            font-family: "Geometria", "MetaPro", sans-serif;
                         }
                         .dashModuleIcon {
                             margin-bottom: -3vh;
@@ -82,10 +82,10 @@
                             --link: '.$row["link"].';
                         }
                         body {
-                            font-family: "RobotoRegular", sans-serif;
+                            font-family: "MetaPro-Normal", sans-serif;
                         }
                         .navbar-brand, .mt-5 {
-                            font-family: "Geometria", "RobotoRegular", sans-serif;
+                            font-family: "Geometria", "MetaPro", sans-serif;
                         }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">
@@ -103,10 +103,10 @@
                             --link: '.$appinfo["link"].';
                         }
                         body {
-                            font-family: "RobotoRegular", sans-serif;
+                            font-family: "MetaPro-Normal", sans-serif;
                         }
                         .navbar-brand, .mt-5 {
-                            font-family: "Geometria", "RobotoRegular", sans-serif;
+                            font-family: "Geometria", "MetaPro", sans-serif;
                         }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">
