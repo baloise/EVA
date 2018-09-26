@@ -282,15 +282,10 @@
 
         //Gemeinsame Variabeln
         $semesterList = "";
-        $actualSalary = 0;
 
         //-------------------------------------------- Einen drittel berechnen --------------------------------------------
 
         //Prozent-Zwischenspeicher-Variabeln initialisieren
-        $cycleTotalPercentY3 = 0;
-        $cycleTotalItY3 = 0;
-        $cycleTotalSchoolY3 = 0;
-        $cycleTotalBetriebY3 = 0;
         $cycleTotalMalusY3 = 0;
 
         //Prozentzähler initialisieren
@@ -320,22 +315,22 @@
 
                 $semesterList .= generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
-                if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalculateSemester($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
                     $semesterCountSemester += 1;
                 }
 
-                if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalcInformatik($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalItPercent = $cycleTotalItPercent + LITcalcInformatik($row['ID'], $userID, $mysqli);
                     $semesterCountInformatik += 1;
                 }
 
-                if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                if(calcSchool($row['ID'], $userID, $mysqli, 1) !== 0){
                     $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                     $semesterCountSchool += 1;
                 }
 
-                if(LITcalcBetieb($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalcBetieb($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
                     $semesterCountBetrieb += 1;
                 }
@@ -382,22 +377,22 @@
 
                 $semesterList .= generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
-                if(LITcalculateSemester($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalculateSemester($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
                     $semesterCountSemester += 1;
                 }
 
-                if(LITcalcInformatik($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalcInformatik($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalItPercent = $cycleTotalItPercent + LITcalcInformatik($row['ID'], $userID, $mysqli);
                     $semesterCountInformatik += 1;
                 }
 
-                if(calcSchool($row['ID'], $userID, $mysqli, 1) != 0){
+                if(calcSchool($row['ID'], $userID, $mysqli, 1) !== 0){
                     $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                     $semesterCountSchool += 1;
                 }
 
-                if(LITcalcBetieb($row['ID'], $userID, $mysqli) != 0){
+                if(LITcalcBetieb($row['ID'], $userID, $mysqli) !== 0){
                     $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
                     $semesterCountBetrieb += 1;
                 }

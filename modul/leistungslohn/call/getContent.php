@@ -148,8 +148,7 @@
                     $rowUserSem = $resultUserSem->fetch_assoc();
                     $userCurrSem = $rowUserSem['tb_semester_ID'];
                 }
-
-                $passes = 0;
+                
                 $countDeadlines = 0;
                 $countUserChecks = 0;
 
