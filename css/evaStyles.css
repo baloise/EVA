@@ -179,13 +179,14 @@ h3{
 }
 .dashIco {
 	max-width: 50%;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	-webkit-transition: max-width 0.2s;
 	-moz-transition: max-width 0.2s;
-	transition: max-width 0.2s;
+	transition: max-width 0.2s, margin-bottom 0.2s;
 }
 .dashIco:hover {
 	max-width: 60%;
+    margin-bottom: 15px;
 }
 #navListItem {
 	background-color: var(--akzentfarbe);

@@ -61,7 +61,7 @@
                             font-family: "Geometria", "MetaPro", sans-serif;
                         }
                         .dashModuleIcon {
-                            margin-bottom: -3vh;
+                            margin-bottom: -40px;
                         }
                         '.$fixCss.'
                     </style>
@@ -160,9 +160,7 @@
                                 <?php
 
                                     $userID = ($mysqli->query("SELECT ID FROM tb_user WHERE bKey = '$session_username'")->fetch_assoc());
-
                                     $sql1 = "SELECT mg.ID, mm.file_path, mm.title FROM tb_ind_nav AS mg INNER JOIN tb_modul AS mm ON mm.ID = mg.tb_modul_ID WHERE mg.tb_user_ID = " . $userID['ID'] . " ORDER BY mg.position";
-
                                     $result = $mysqli->query($sql1);
 
                                     if (isset($result) && $result->num_rows > 0) {
@@ -171,9 +169,9 @@
                                             $link = '
                                             <li class="nav-item">
                                                 <a class="nav-link" navLinkId="'. $row["ID"].'" href="'. $row["file_path"].'">'. $translate[$row["title"]].'</a>
-                                                </li>
-                                                ';
-                                                echo $link;
+                                            </li>
+                                            ';
+                                            echo $link;
                                         }
 
                                     } else {

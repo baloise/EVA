@@ -95,10 +95,10 @@
 							<div class="col-lg-12 card alert-success highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
-										<b>'.$deadlineTitle.'</b>
+										'.$deadlineTitle.'
 									</div>
 									<div class="col-6 text-right">
-										'.$translate[80].': <b>'.$deadlineDate.'</b>
+										'.$translate[80].': '.$deadlineDate.'
 									</div>
 								</div>
 							</div>
@@ -110,10 +110,10 @@
 							<div class="col-lg-12 card highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
-										<b>'.$deadlineTitle.'</b>
+										'.$deadlineTitle.'
 									</div>
 									<div class="col-6 text-right">
-										'.$translate[80].': <b>'.$deadlineDate.'</b>
+										'.$translate[80].': '.$deadlineDate.'
 									</div>
 								</div>
 							</div>
@@ -150,7 +150,7 @@
 
 <?php endif; ?>
 
-	
+
 	<script type="text/javascript" src="modul/dashboard/dashboard.min.js"></script>
 
 <?php elseif($session_usergroup == 100) : //Not yet implemented -> GIT ISSUE 94?>
