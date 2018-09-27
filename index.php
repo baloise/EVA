@@ -57,11 +57,11 @@
 
                 echo '
                     <style>
-                        .navbar-brand {
-                            font-family: "Geometria", "MetaPro", sans-serif;
-                        }
                         .dashModuleIcon {
                             margin-bottom: -40px;
+                        }
+                        .dashModul {
+                            padding-top: 0px !important;
                         }
                         '.$fixCss.'
                     </style>
@@ -84,9 +84,6 @@
                         body {
                             font-family: "MetaPro-Normal", sans-serif;
                         }
-                        .navbar-brand, .mt-5 {
-                            font-family: "Geometria", "MetaPro", sans-serif;
-                        }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">
                     ';
@@ -104,9 +101,6 @@
                         }
                         body {
                             font-family: "MetaPro-Normal", sans-serif;
-                        }
-                        .navbar-brand, .mt-5 {
-                            font-family: "Geometria", "MetaPro", sans-serif;
                         }
                     </style>
                     <link href="css/evaStyles.min.css" rel="stylesheet">
