@@ -14,7 +14,9 @@
 
     } else {
 
-        session_regenerate_id();
+        if (!headers_sent()) {
+            session_regenerate_id();
+        }
 
         $_SESSION['LAST_ACTIVITY'] = time();
 

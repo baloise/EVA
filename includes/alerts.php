@@ -14,9 +14,7 @@
     </div>
 </div>
 <script type="text/javascript">
-
     $(document).ready(function(){
-
         $('.close').each(function(){
             $(this).click(function(event){
                 event.preventDefault();
@@ -24,5 +22,4 @@
             });
         })
     });
-
 </script>
