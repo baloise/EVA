@@ -148,7 +148,7 @@
                     $rowUserSem = $resultUserSem->fetch_assoc();
                     $userCurrSem = $rowUserSem['tb_semester_ID'];
                 }
-                
+
                 $countDeadlines = 0;
                 $countUserChecks = 0;
 
@@ -331,7 +331,11 @@
                 $i = $i + 1;
             }
             if(calcSchool($semesterID, $userID, $mysqli, 1) > 0){ $coSu = $coSu + calcSchool($semesterID, $userID, $mysqli, 1); $i = $i + 1; }
-            if(LITcalcBetieb($semesterID, $userID, $mysqli) > 0){ $coSu = $coSu + LITcalcBetieb($semesterID, $userID, $mysqli); $i = $i + 1; }
+
+            if(LITcalcBetieb($semesterID, $userID, $mysqli) > 0){
+                $coSu = $coSu + LITcalcBetieb($semesterID, $userID, $mysqli);
+                $i = $i + 1;
+            }
 
             switch ($i) {
                 case 0:

@@ -53,22 +53,22 @@
 
                         $semesterList .= generateSemesterIT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
-                        if(LITcalculateSemester($row['ID'], $userID, $mysqli) !== 0){
+                        if(LITcalculateSemester($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
                             $semesterCountSemester += 1;
                         }
 
-                        if(LITcalcInformatik($row['ID'], $userID, $mysqli) !== 0){
+                        if(LITcalcInformatik($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalItPercent = $cycleTotalItPercent + LITcalcInformatik($row['ID'], $userID, $mysqli);
                             $semesterCountInformatik += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli, 1) !== 0){
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) > 0){
                             $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 
-                        if(LITcalcBetieb($row['ID'], $userID, $mysqli) !== 0){
+                        if(LITcalcBetieb($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
                             $semesterCountBetrieb += 1;
                         }
@@ -178,22 +178,22 @@
 
                         $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
-                        if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalPercent += (LKVBcalculateSemester($row['ID'], $userID, $mysqli));
                             $semesterCountTotal += 1;
                         }
 
-                        if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalPerformPercent += LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli);
                             $semesterCountPerform += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli, 1) !== 0){
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) > 0){
                             $cycleTotalSchoolPercent += calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 
-                        if(LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalBehavePercent += LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli);
                             $semesterCountBehave += 1;
                         }
@@ -299,22 +299,22 @@
 
                         $semesterList .= generateSemesterLKVB($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
 
-                        if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateSemester($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalPercentY3 += (LKVBcalculateSemester($row['ID'], $userID, $mysqli));
                             $semesterCountTotal += 1;
                         }
 
-                        if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalPerformY3 += LKVBcalculateBetriebPerform($row['ID'], $userID, $mysqli);
                             $semesterCountPerform += 1;
                         }
 
-                        if(calcSchool($row['ID'], $userID, $mysqli, 1) !== 0){
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) > 0){
                             $cycleTotalSchoolY3 += calcSchool($row['ID'], $userID, $mysqli, 1);
                             $semesterCountSchool += 1;
                         }
 
-                        if(LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli) !== 0){
+                        if(LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli) > 0){
                             $cycleTotalBehaveY3 += LKVBcalculateBetriebBehave($row['ID'], $userID, $mysqli);
                             $semesterCountBehave += 1;
                         }
