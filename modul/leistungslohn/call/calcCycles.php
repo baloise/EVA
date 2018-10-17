@@ -76,9 +76,9 @@
 
         $caller = 3;
         $cycleTmpCalc = (($c1+$c2+$c3));
-        if($c1 <= 0){$caller -= 1;}
-        if($c2 <= 0){$caller -= 1;}
-        if($c3 <= 0){$caller -= 1;}
+        if($c1 < 0){$caller -= 1;}
+        if($c2 < 0){$caller -= 1;}
+        if($c3 < 0){$caller -= 1;}
 
         if($caller > 0){
             return ($cycleTmpCalc/$caller) -$malus/100;
