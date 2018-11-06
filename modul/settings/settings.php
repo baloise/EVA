@@ -169,10 +169,10 @@
                     <div class="col-12">
                         <button type="button" id="removeColor" class="btn btn-block highlighter"><?php echo $translate['189']; ?></button>
                     </div>
-                    <div class="col-12 text-right">
-                        <a href="#" onclick="destroySession();">Destroy Session</a>
-                    </div>
                 </div>
+            </div>
+            <div class="col-12 text-right">
+                <a href="#" onclick="destroySession();">Destroy Session</a>
             </div>
 
         </div>
