@@ -170,7 +170,7 @@
                         <button type="button" id="removeColor" class="btn btn-block highlighter"><?php echo $translate['189']; ?></button>
                     </div>
                     <div class="col-12 text-right">
-                        <a href="logout.php">Destroy Session</a>
+                        <a href="#" onclick="destroySession();">Destroy Session</a>
                     </div>
                 </div>
             </div>
@@ -183,6 +183,16 @@
 <script src="modul/settings/settings.min.js"></script>
 <script src="modul/settings/color-picker.min.js"></script>
 <script id="colorChanges">
+
+    function destroySession(){
+        $.ajax({
+            type: "POST",
+            url: "./logout.php",
+            success: function(){
+                window.location.reload(true);
+            }
+        });
+    }
 
     function resetColors(){
         $(':root').css("--hintergrund", "<?php echo $session_appinfo["hintergrund"];?>");
