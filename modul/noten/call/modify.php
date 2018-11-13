@@ -80,12 +80,37 @@
                     $sql = "SELECT firstname, lastname, bKey FROM `tb_user` WHERE ID = $session_userid";
                     $result = $mysqli->query($sql);
 
+                    $sql2 = "SELECT subjectName FROM `tb_user_subject` WHERE ID = $subject";
+                    $result2 = $mysqli->query($sql2);
+
                     if (isset($result) && $result->num_rows == 1) {
                         $userData = $result->fetch_assoc();
 
                         //SENDMAIL
                         include("../../../includes/generateMail.php");
-                        $msgcontent = array('{firstname}' => $userData['firstname'], '{lastname}' => $userData['lastname'], '{bkey}' => $userData['bKey'], '{gradeTitle}' => $title, '{grade}' => $grade, '{gradeWeight}' => $weight, '{gradeReason}' => $reason);
+                        if (isset($result2) && $result2->num_rows == 1) {
+                            $subjectName = ($result2->fetch_assoc())['subjectName'];
+                            $msgcontent = array(
+                                '{firstname}' => $userData['firstname'],
+                                '{lastname}' => $userData['lastname'],
+                                '{bkey}' => $userData['bKey'],
+                                '{gradeTitle}' => $title.' ('.$subjectName.')',
+                                '{grade}' => $grade,
+                                '{gradeWeight}' => $weight,
+                                '{gradeReason}' => $reason
+                            );
+                        } else {
+                            $msgcontent = array(
+                                '{firstname}' => $userData['firstname'],
+                                '{lastname}' => $userData['lastname'],
+                                '{bkey}' => $userData['bKey'],
+                                '{gradeTitle}' => $title,
+                                '{grade}' => $grade,
+                                '{gradeWeight}' => $weight,
+                                '{gradeReason}' => $reason
+                            );
+                        }
+
                         $subject = strtr($translate[202], $msgcontent);
                         $message = strtr($translate[203], $msgcontent);
                         sendMail($subject, $message, $session_userid, "hr", $session_appinfo, $mysqli, $translate);
@@ -266,9 +291,12 @@
             if($error){
                 echo $error;
             } else {
+
                 $stmt = $mysqli->prepare("INSERT INTO `tb_user_subject` (`subjectName`, `tb_user_ID`, `tb_semester_ID`, `school`, `weight`) VALUES (?, ?, ?, ?, ?);");
-                $stmt->bind_param("siiid", $subName, $session_userid, $subSem, $subType, $subWeight);
-                $stmt->execute();
+                $rc = $stmt->bind_param("siiid", $subName, $session_userid, $subSem, $subType, $subWeight);
+                $rc = $stmt->execute();
+                $stmt->close();
+
             }
 
         } else if($_POST['todo'] == "deleteSubject"){
