@@ -22,8 +22,7 @@
     }
 
     $data = json_decode(file_get_contents("php://input"));
-
-    foreach ($data as $user) {
+    foreach ($data->userArray as $user) {
 
         $salaryInfo = "";
         $userInfo = "";
