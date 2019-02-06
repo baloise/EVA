@@ -156,7 +156,7 @@
     </div>
 
 
-    <script type="text/javascript" src="modul/leistungslohn/js/exporter.min.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/js/exporter.js"></script>
 
 <?php else : ?>
 
