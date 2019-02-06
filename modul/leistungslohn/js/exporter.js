@@ -54,7 +54,7 @@ $(document).ready(function(){
             method: "POST",
             url: "./modul/leistungslohn/call/createCSV.php",
             contentType: "application/json",
-            data: JSON.stringify({userArray: users}),
+            data: JSON.stringify(users),
             success: function(data){
 
                 clearInterval(loadingText);
