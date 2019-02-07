@@ -21,7 +21,8 @@
         die();
     }
 
-    foreach ($_POST['userArray'] as $user) {
+    $data = json_decode(file_get_contents("php://input"));
+    foreach ($data as $user) {
 
         $salaryInfo = "";
         $userInfo = "";
