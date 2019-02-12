@@ -32,16 +32,7 @@
         $_POST['forCSV'] = true;
 
         $salaryInfo = doCreateContent();
-        //$userInfo = loadPerson($user[0]);
-        $userInfo = array(
-            "bkey" => "b0xxxxx",
-            "firstname" => "Max",
-            "lastname" => "Muster",
-            "street" => "Teststrasse 99",
-            "city" => "Alabama",
-            "email" => "max.must@er.com",
-            "gender" => "2"
-        );
+        $userInfo = loadPerson($user[0]);
 
         $sql = "SELECT language FROM `tb_user` WHERE ID = " . $_POST['userID'];
         $result = $mysqli->query($sql);
