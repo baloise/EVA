@@ -93,13 +93,15 @@
                 $resultchoose = $mysqli->query($chooseMaxPoints);
                 $rowchoose = $resultchoose->fetch_assoc();
                 $rowchoose = $rowchoose['weight'];
-                $calcGrade = array_sum($grades) / array_sum($weights);
+
+                //$calcGrade = array_sum($grades) / array_sum($weights);
+                $calcGradeRounded = round((array_sum($grades) / array_sum($weights))*2)/2;
 
                 if(!$rowchoose){
-                    $out['avgSubjGrade'] = ($calcGrade * 100)/100;
+                    $out['avgSubjGrade'] = ($calcGradeRounded * 100)/100;
                     $out['subWeight'] = 100;
                 } else {
-                    $out['avgSubjGrade'] = ($calcGrade * $rowchoose)/100;
+                    $out['avgSubjGrade'] = ($calcGradeRounded * $rowchoose)/100;
                     $out['subWeight'] = $rowchoose;
                 }
 

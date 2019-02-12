@@ -295,7 +295,7 @@
     ?>
     </div>
 
-    
+
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 
@@ -416,12 +416,7 @@
 
                     if (isset($allGrades)){
                         $unrounded = round(($allGrades / $allWeight),2);
-                        if($session_userid == 3){
-                            $average = round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2;
-                        } else {
-                            $average = round(($allGrades / $allWeight),2);
-                        }
-
+                        $average = round(($allGrades / $allWeight),2) . ' ≈ ' . round($unrounded * 2) / 2;
                     }
 
                 } else {
@@ -627,7 +622,7 @@
 
     </div>
 
-    
+
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
     <script type="text/javascript" src="modul/noten/noten.min.js"></script>
 

@@ -34,7 +34,7 @@
         $salaryInfo = doCreateContent();
         //$userInfo = loadPerson($user[0]);
         $userInfo = array(
-            "bkey" => $bkey,
+            "bkey" => "b0xxxxx",
             "firstname" => "Max",
             "lastname" => "Muster",
             "street" => "Teststrasse 99",
