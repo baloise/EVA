@@ -300,7 +300,7 @@
                                         <h2>'.$translate[47].' '.$translate[47].' 3</h2>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
@@ -322,7 +322,7 @@
                                         <h2>'.$translate[47].' '.$translate[38].' 7</h2>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
@@ -344,7 +344,7 @@
                                         <h2>'.$translate[47].' '.$translate[38].' 8</h2>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
@@ -374,7 +374,7 @@
                                         <h2>'.$translate[47].' '.$translate[38].' 5</h2>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="4">
@@ -396,7 +396,7 @@
                                         <h2>'.$translate[47].' '.$translate[38].' 6</h2>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="row cycleContent" userID="'.$userID.'" cycleID="5">

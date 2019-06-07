@@ -214,7 +214,7 @@
             <!-- Page Content -->
             <div class="container">
     		    <div class="row">
-    			    <div class="col-lg-10 offset-md-1">
+    			    <div class="col-lg-12">
         				<div page="<?php echo $pageLink; ?>" id="pageContent">
         				</div>
     			    </div>

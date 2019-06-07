@@ -11,7 +11,7 @@
 
     if ($result->num_rows == 1) {
 		$row = $result->fetch_assoc();
-		$welcome = "<h2 style='opacity: 0;' class='mt-5'>".$translate[1]." ".$row['firstname']." ".$row['lastname']."!</h2>";
+		$welcome = "<h2 class='mt-5'>".$translate[1]." ".$row['firstname']."!</h2>";
 	}
 
 ?>
@@ -25,7 +25,7 @@
 	    $result = $mysqli->query($sql);
 
 	    if ($result->num_rows > 0) {
-	        echo"<div class='row' style='margin-bottom:50px;'>";
+	        echo"<div class='row' style='margin-bottom:20px;'>";
 	        while($row = $result->fetch_assoc()) {
 	            $generateDiv = '
 				<div class="col-lg-3 col-md-3 col-6">
@@ -95,7 +95,7 @@
 							<div class="col-lg-12 card alert-success highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
-										'.$deadlineTitle.'
+										<b>'.$deadlineTitle.'</b>
 									</div>
 									<div class="col-6 text-right">
 										'.$translate[80].': '.$deadlineDate.'
@@ -110,7 +110,7 @@
 							<div class="col-lg-12 card highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
 								<div class="row">
 									<div class="col-6">
-										'.$deadlineTitle.'
+										</b>'.$deadlineTitle.'</b>
 									</div>
 									<div class="col-6 text-right">
 										'.$translate[80].': '.$deadlineDate.'
@@ -134,7 +134,7 @@
 				<div class="divtogglercontent">
 					<div class="row">
 						<div class="col-12">
-							<h2>'.$translate[78].':</h2>
+							<h3 style="padding-bottom:5px;">'.$translate[78].'</h3>
 						</div>
 						<div class="col-12">
 							'.$entries.'

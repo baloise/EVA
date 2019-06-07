@@ -17,9 +17,7 @@ function goBack(href){
         var newUrl = href.replace('modul/','').replace('.php','');
 
         var loader = setTimeout(function(){
-
-            $('.loadScreen').fadeTo("slow", 1);
-
+            $('.loadScreen').fadeTo(50, 1);
         },1000);
 
 
@@ -39,14 +37,10 @@ function goBack(href){
                     $('#pageContent').fadeTo(10, 1);
                 });
                 $.ajax({
-
                     method: "GET",
                     url: "includes/setCurrentPath.php",
                     data: {path:href},
-                    success: function(){
-
-                    }
-
+                    success: function(){}
                 });
 
             }
@@ -61,7 +55,6 @@ $(document).ready(function(){
     $(window).on('popstate',function(event) {
 
         var href = window.history.state["info"];
-
         $("#pageContent").fadeOut(10, function(){
             goBack(href);
         });

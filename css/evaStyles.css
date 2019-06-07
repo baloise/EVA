@@ -6,32 +6,18 @@
         url('../css/font/MetaPro-Normal.woff') format('woff'),
         url('../css/font/MetaPro-Normal.ttf') format('truetype'),
         url('../css/font/MetaPro-Normal.svg#MetaPro-Normal') format('svg');
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {
-    font-family: 'MetaPro';
+    font-family: 'MetaPro-Medium';
     src: url('css/font/MetaPro-Medium.eot');
     src: url('css/font/MetaPro-Medium.eot?#iefix') format('embedded-opentype'),
         url('../css/font/MetaPro-Medium.woff2') format('woff2'),
         url('../css/font/MetaPro-Medium.woff') format('woff'),
         url('../css/font/MetaPro-Medium.ttf') format('truetype'),
         url('../css/font/MetaPro-Medium.svg#MetaPro-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
 }
-@font-face {
-    font-family: 'Geometria';
-    src: url('css/font/Geometria-Light.eot');
-    src: url('css/font/Geometria-Light.eot?#iefix') format('embedded-opentype'),
-        url('../css/font/Geometria-Light.woff2') format('woff2'),
-        url('../css/font/Geometria-Light.woff') format('woff'),
-        url('../css/font/Geometria-Light.ttf') format('truetype'),
-        url('../css/font/Geometria-Light.svg#Geometria-Light') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
+
 #warningAlert #errorAlert #successAlert {
     display: none;
 }
@@ -115,8 +101,10 @@ body {
 	color: var(--link) !important;
 }
 .navbar-brand, .mt-5 {
-    font-family: "Geometria", "MetaPro", sans-serif;
-    font-weight: 600;
+	font-family: "MetaPro-Medium", sans-serif;
+	font-size: 22px;
+	letter-spacing: 0.44px;
+	font-weight: 500;
 }
 .nav-link {
     opacity: 0.7;
@@ -158,20 +146,20 @@ html {
 .mt-5 {
 	background-color: var(--hintergrund);
 	color: var(--schrift);
-	padding: 20px;
-	font-size: 1.5rem;
-    font-weight: 500;
+	font-size: 30px;
+	margin-bottom: 20px;
 }
 .dashModul {
 	color: var(--link);
 	min-height: 100px;
 	max-height: 100px;
-	margin-bottom: 60px;
+	margin-bottom: 100px;
     padding: 30px;
     cursor: pointer;
 }
 .dashModul h3 {
-    font-size: 0.9rem;
+    margin-top: 30px;
+    font-size: 1rem;
 }
 h3{
     font-size: 1.4rem;
@@ -235,9 +223,8 @@ h3{
     border-color: var(--link);
 }
 .btn-primary:hover {
-    background: var(--akzentfarbe);
+    background: var(--link);
     border-color: var(--link);
-    color: var(--link);
 }
 a {
     color: var(--link);
@@ -247,7 +234,6 @@ a {
 }
 h2, h1 {
 	font-size: 1rem;
-	font-weight: 100;
 }
 select.form-control:not([size]):not([multiple]){
 	height: auto;
@@ -257,13 +243,6 @@ select.form-control:not([size]):not([multiple]){
 }
 .btn {
 	font-size: 0.9rem;
-}
-.navbar {
-	border-bottom: solid 1.5px var(--link);
-}
-.mt-5, .my-5 {
-	margin-top: 2rem !important;
-    text-align: center;
 }
 .userContentBox {
 	padding-top: 5px;

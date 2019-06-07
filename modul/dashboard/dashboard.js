@@ -15,12 +15,9 @@ function move(elemID, speed, fully) {
 
 $(document).ready(function(){
 
-	$('.mt-5').delay(500).fadeTo("slow", 1);
 
     $(".dashModul").each(function(){
-
         makeDynamic(this);
-
     });
 
     jQuery('img.svg').each(function(){
