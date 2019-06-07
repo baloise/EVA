@@ -27,7 +27,7 @@ function goBack(href){
 
             if ( status == "error" ) {
 
-                $('.loadScreen').fadeTo("fast", 0);
+                $('.loadScreen').fadeTo(10, 0);
                 var msg = "makeDynamic Error";
                 console.log( msg + xhr.status + " " + xhr.statusText );
                 window.location.replace("logout.php");
@@ -35,8 +35,8 @@ function goBack(href){
             } else {
 
                 clearTimeout(loader);
-                $('.loadScreen').fadeTo(50, 0, function(){
-                    $('#pageContent').fadeTo(50, 1);
+                $('.loadScreen').fadeTo(10, 0, function(){
+                    $('#pageContent').fadeTo(10, 1);
                 });
                 $.ajax({
 
@@ -62,7 +62,7 @@ $(document).ready(function(){
 
         var href = window.history.state["info"];
 
-        $("#pageContent").fadeOut("fast", function(){
+        $("#pageContent").fadeOut(10, function(){
             goBack(href);
         });
 
@@ -77,11 +77,11 @@ $(document).ready(function(){
 
         window.history.pushState({info: $("#pageContent").attr("page")}, "index.php");
 
-        $('.loadScreen').fadeTo("fast", 0, function(){
-            $('body').fadeIn('slow');
-			$("#slideMe").slideDown("slow");
-			$("#slideMeFoot").slideDown("slow");
-            $('#pageContents').fadeTo("fast", 1);
+        $('.loadScreen').fadeTo(10, 0, function(){
+            $('body').fadeIn(10);
+			$("#slideMe").slideDown(10);
+			$("#slideMeFoot").slideDown(10);
+            $('#pageContents').fadeTo(10, 1);
         });
 
     });

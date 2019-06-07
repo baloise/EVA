@@ -93,6 +93,7 @@
 }
 
 body {
+    overflow-y: scroll;
 	padding-top: 54px;
 	background-color: var(--hintergrund);
 	color: var(--schrift);

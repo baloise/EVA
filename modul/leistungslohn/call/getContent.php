@@ -98,9 +98,11 @@ if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4
             $subTitle = $rowchoose['subjectName'];
             $rowchoose = $rowchoose['weight'];
 
+            /*
             if(strpos($title[0], '[DONTROUND]') !== false || strpos($subTitle, '[DONTROUND]') !== false){
-                print_r($subTitle.'&'.$title[0].'<br />');
+                print_r($subTitle.' & '.$title[0].'<br />');
             }
+            */
 
             //$calcGrade = array_sum($grades) / array_sum($weights);
             if(strpos($title[0], '[DONTROUND]') !== false){

@@ -318,12 +318,13 @@
         $sql = "SELECT us.*, ss.ID AS subSemId  FROM `tb_user_subject` AS us
             INNER JOIN tb_semester AS ss ON ss.ID = us.tb_semester_ID
             WHERE us.tb_user_ID = $session_userid
-            ORDER BY ss.semester DESC, us.`creationDate` DESC";
+            ORDER BY ss.semester DESC, us.school ASC, us.`creationDate` DESC";
 
         $result = $mysqli->query($sql);
         $subjects = "";
         $currentSem = "";
         $subSemId = "";
+        $type = false;
 
         if (isset($result) && $result->num_rows > 0) {
 
@@ -495,7 +496,16 @@
                     $row['weight'] = 100;
                 }
 
-                $subjectEntry = '
+                $subjectEntry = "";
+
+                if($type === false){
+                    $type = $row['school'];
+                } else if($type != $row['school']){
+                    $subjectEntry .= "<hr />";
+                    $type = $row['school'];
+                }
+
+                $subjectEntry .= '
                     '. $sorterDiv .'
                         <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
                             <div class="row">
@@ -533,6 +543,7 @@
                 $subjects = $subjects . $subjectEntry;
 
             }
+
         } else {
             $subjects = "<p>".$translate[112].".</p>";
 
