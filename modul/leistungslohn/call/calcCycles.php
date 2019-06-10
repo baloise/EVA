@@ -126,7 +126,7 @@
             <!-- SEMESTER -->
 
             <div class="row">
-                <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
+                <div class="col-lg-12 card highlighter" style="background-color: #e0e0e0;">
 
                     <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.', '.$cycleID.');">
                         <div class="col-10">
@@ -494,7 +494,7 @@
             <!-- SEMESTER -->
 
             <div class="row">
-                <div class="col-lg-12 card highlighter" style="background-color: #F1F4FB;">
+                <div class="col-lg-12 card highlighter" style="background-color: #e0e0e0;">
                     <div class="row semesterHeader" userID="'.$userID.'" semesterID="'.$semesterID.'" onclick="toggleSemester('.$userID.', '.$semesterID.', '.$cycleID.');">
                         <div class="col-10">
                             <h2>'.$translate[38].' '.$semesterName.'</h2>

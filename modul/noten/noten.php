@@ -507,7 +507,7 @@
 
                 $subjectEntry .= '
                     '. $sorterDiv .'
-                        <div fSubject="'. $row['ID'] .'" class="card col-lg-10 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
+                        <div fSubject="'. $row['ID'] .'" class="card col-11 delSubTag highlighter '.$shrimp.'" style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;">
                             <div class="row">
                                 <div class="col-6">
                                     <h2>'. $row['subjectName'] .' </h2>
@@ -565,13 +565,19 @@
 
     ?>
 
-    <h1 class="mt-5"><?php echo $translate[2];?></h1>
-    <div class="col-12 text-right">
-        <a href="#" id="exportGrades"><i class="fa fa-sign-out" aria-hidden="true"></i> Export</a>
-    </div>
     <p></p>
     <div class="row">
-            <?php echo $subjects; ?>
+        <div class="col-12">
+            <h1 class="mt-5"><?php echo $translate[2];?></h1>
+        </div>
+        <div class="col-12">
+            <a href="#" id="exportGrades">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> Export
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <?php echo $subjects; ?>
     </div>
 
         <!-- Neues Fach hinzufügen -->

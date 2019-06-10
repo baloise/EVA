@@ -8,7 +8,11 @@
 
         $listEntries = "";
 
-        $sql = "SELECT ID, bKey, firstname, lastname FROM `tb_user` WHERE tb_group_ID IN (3, 4, 5) AND deleted IS NULL;";
+        $sql = "
+        SELECT ID, bKey, firstname, lastname FROM `tb_user` 
+        WHERE tb_group_ID IN (3, 4, 5) AND deleted IS NULL;
+        ";
+
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -79,7 +83,11 @@
 
     <?php
 
-        $sql = "SELECT * FROM `tb_semester` AS sem WHERE sem.tb_group_ID = $session_usergroup";
+        $sql = "
+        SELECT * FROM `tb_semester` AS sem 
+        WHERE sem.tb_group_ID = $session_usergroup
+        ORDER BY semester DESC
+        ";
         $result = $mysqli->query($sql);
 
         if ($result->num_rows > 0) {
@@ -132,7 +140,7 @@
 
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card alert-danger highlighter" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
+                                        <div class="col-lg-12 card alert-danger highlighter" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
                                             <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>
@@ -146,7 +154,7 @@
 
                                 $entry = '
                                     <div class="row">
-                                        <div class="col-lg-12 card highlighter" style="padding-top: 10px; margin-bottom: 10px; background-color: #F1F4FB;">
+                                        <div class="col-lg-12 card highlighter" style="padding-top: 10px; margin-bottom: 10px;">
                                             <h3>'.$deadlineTitle.'</h3>
                                             <p>'.$deadlineDescription.'</p>
                                             <p>'.$translate[80].': <b>'.$deadlineDate.'</b></p>

@@ -34,7 +34,7 @@
 							<img src="'. $row["icon"] .'" class="dashIco svg img-fluid mx-auto d-block" alt="modul"/>
 						</div>
 						<div class="dashModuleTitle">
-						   <h3>'. $translate[$row["title"]] .'</h3>
+						   <h2>'. $translate[$row["title"]] .'</h2>
 						</div>
 					</div>
 				</div>
@@ -107,7 +107,7 @@
 				} else {
 					$entry = '
 						<div class="row">
-							<div class="col-lg-12 card highlighter" style="margin-bottom: 10px; background-color: #F1F4FB;">
+							<div class="col-lg-12 card highlighter" style="margin-bottom: 10px;">
 								<div class="row">
 									<div class="col-6">
 										</b>'.$deadlineTitle.'</b>
@@ -134,7 +134,7 @@
 				<div class="divtogglercontent">
 					<div class="row">
 						<div class="col-12">
-							<h3 style="padding-bottom:5px;">'.$translate[78].'</h3>
+							<h2 style="padding-bottom:5px;">'.$translate[78].'</h2>
 						</div>
 						<div class="col-12">
 							'.$entries.'

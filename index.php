@@ -103,7 +103,7 @@
                             font-family: "MetaPro-Normal", sans-serif;
                         }
                     </style>
-                    <link href="css/evaStyles.min.css" rel="stylesheet">
+                    <link href="css/evaStyles.css" rel="stylesheet">
                     ';
 
                 }
@@ -134,16 +134,8 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="slideMe" style="display: none;">
                     <div class="container">
                         <a class="navbar-brand" href="modul/dashboard/dashboard.php">
-                            <img src="
-                            <?php
-                                if(isset($appinfo["logo_path_".$session_language])){
-                                    echo $appinfo["logo_path_".$session_language];
-                                } else {
-                                    echo $appinfo["logo_path_de"];
-                                }
-                            ?>
-                            " width="<?php echo $appinfo["logo_width"];?>" alt="Logo">
-                            <span style="margin-left:20px;"><?php echo $appinfo["title"];?></span>
+                            <img src="img/logo/basler/icon.png" width="40px" alt="Logo">
+                            <span style="margin-left:10px;"><?php echo $appinfo["title"];?></span>
                         </a>
                         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -224,16 +216,13 @@
 
             <footer class="footer" id="slideMeFoot" style="display: none;">
                 <div class="container">
-                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate[16] ?></a> <b class="text-muted">|</b>
+                    <a class="foot-link" href="modul/settings/settings.php"><?php echo $translate[16] ?></a> 
+                    <b>|</b>
                     <a class="foot-link" href="modul/kontakt/kontakt.php"><?php echo $translate[263] ?></a>
-                    <i class="text-muted"> |
-                        <?php echo $_SESSION["user"]['username']; ?>
-                    </i>
-                    <span class="text-muted">©
-                        <a href="https://www.baloise.com/de/home.html"> Baloise Group</a> | 2018 |
-                        <?php echo $appinfo["title"];?>
-                        <a href="https://github.com/baloise/eva">v.1.1</a> by
-                        <a href="https://eliareutlinger.ch">Elia Reutlinger</a>
+                    <i> | <?php echo $_SESSION["user"]['username']; ?> </i>
+                    <span>©
+                        <a href="https://www.baloise.com/de/home.html"> Baloise </a> | 2018 |
+                        <a href="https://github.com/baloise/eva"> <?php echo $appinfo["title"];?> v.1.2</a> 
                     </span>
                 </div>
             </footer>
