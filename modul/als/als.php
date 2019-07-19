@@ -21,7 +21,7 @@
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
 
-            $i = 1;
+            $i = 0;
 
             while($row = $result->fetch_assoc()) {
 
