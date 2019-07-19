@@ -12,9 +12,9 @@
 
     <?php
 
-		$sql = "SELECT pr.`title`, pr.`points`, pr.`creationDate`, pr.ID, pr.performance FROM `tb_als` AS pr
+		$sql = "SELECT * FROM `tb_als` AS pr
                 LEFT JOIN tb_user AS us ON us.ID = pr.tb_user_ID
-                WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC LIMIT 400;";
+                WHERE us.deleted IS NULL ORDER BY pr.`creationDate` DESC;";
 
         $entryList = "";
 
@@ -45,7 +45,7 @@
                     <td>'. $row['title'] .'</td>
                     <td>'. $row['points'] .'</td>
                     <td>'. $row2['firstname'] .' '. $row2['lastname'] .'</td>
-                    <td>'.$performance.'</td>
+                    <td>'.$performance.'</td> 
                     <td>'. $dateSet .' </td>
                 </tr>';
 
