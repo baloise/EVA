@@ -1,6 +1,11 @@
 /** global: translate */
-$(document).ready(function(){
-
+$(document).ready(function () {
+    
+    $('#fweigth').change(function () { 
+        var reason = $('#fweigth option:selected').text();
+        $('#freasoning').val(reason)
+    })
+    
     $('#fselUser').change(function(){
 
         var selUser = $(this).val();

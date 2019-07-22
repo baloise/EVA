@@ -97,7 +97,12 @@
             </div>
             <div class="col-lg-4">
                 <label for="fweigth"><?php echo $translate[49];?>:</label>
-                <input id="fweigth" class="form-control" type="text" placeholder="%"/>
+                <select id="fweigth" class="form-control">
+                    <option value="10"><?php echo $translate[276];?></option>
+                    <option value="20"><?php echo $translate[277];?></option>
+                    <option value="20"><?php echo $translate[278];?></option>
+                    <option value="20"><?php echo $translate[279];?></option>
+                </select>
             </div>
         </div>
         <br/>
