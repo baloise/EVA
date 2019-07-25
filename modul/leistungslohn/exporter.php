@@ -30,7 +30,13 @@
                             $entry .= '<td class="text-center alert-warning"><i>???</i></td>';
                         }
 
-                        if($row['semester'] <= 4 && $row['semester'] > 0){
+                        if($row['semester'] <= 3){
+                            $entry .= '
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="1" type="checkbox" value="1"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="2" type="checkbox" value="2"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="3" type="checkbox" value="3"></td>
+                            ';
+                        } else if ($row['semester'] <= 4 && $row['semester'] > 0){
                             $entry .= '
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="1" type="checkbox" value="1" checked></td>
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="2" type="checkbox" value="2"></td>
@@ -70,7 +76,13 @@
                             $entry .= '<td class="text-center alert-warning"><i>???</i></td>';
                         }
 
-                        if($row['semester'] < 5 && $row['semester'] > 0){
+                        if($row['semester'] <= 3){
+                            $entry .= '
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="1" type="checkbox" value="1"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="2" type="checkbox" value="2"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="3" type="checkbox" value="3"></td>
+                            ';
+                        } else if ($row['semester'] < 5 && $row['semester'] > 0){
                             $entry .= '
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'"><input class="form-check-input" cycleID="4" type="checkbox" value="4" checked></td>
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'"><input class="form-check-input" cycleID="5" type="checkbox" value="5"></td>
@@ -101,7 +113,13 @@
                             $entry .= '<td class="text-center alert-warning"><i>???</i></td>';
                         }
 
-                        if($row['semester'] < 5 && $row['semester'] > 0){
+                        if($row['semester'] <= 3){
+                            $entry .= '
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="1" type="checkbox" value="1"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="2" type="checkbox" value="2"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="3" type="checkbox" value="3"></td>
+                            ';
+                        } else if($row['semester'] < 5 && $row['semester'] > 0){
                             $entry .= '
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'"><input class="form-check-input" cycleID="4" type="checkbox" value="4" checked></td>
                                 <td class="text-center cycleChecker" userID="'.$row['ID'].'"><input class="form-check-input" cycleID="5" type="checkbox" value="5"></td>
