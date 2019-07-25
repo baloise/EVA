@@ -125,30 +125,8 @@ $(document).ready(function(){
     $('#exportGrades').click(function(event){
 
         event.preventDefault();
-
-        $.ajax({
-            method: "POST",
-            url: "./modul/noten/call/createJSON.php",
-            success: function(data){
-                if (data) {
-                    
-                    //var win = window.open('./grades/', '_blank');
-                    var tosend = JSON.stringify(data);
-
-                    console.log(tosend);
-
-                    var form = $(`<form method="post" action="./grades/?deliver=true" target="_blank">
-                        <input type="hidden" name="deliverFile" value='`+ tosend +`'>
-                    </form>`);
-
-                    $(document.body).append(form);
-
-                    form.submit();
-                    //win.focus();
-
-                }
-            }
-        });
+        var win = window.open('./grades/?deliver=true', '_blank');
+        win.focus();
 
     })
 

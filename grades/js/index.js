@@ -10,6 +10,20 @@ function toggleConts(contsID){
 
 }
 
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
+}
+
 function makeSubject(array){
 
     var catchContent = "";
@@ -46,9 +60,17 @@ function makeSubject(array){
 
 function processXML(content){
 
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("deliver");
+
+    if (c) {
+        var array = content;
+    } else {
+        var array = JSON.parse("[" + content + "]");
+        var array = array[0];
+    }
     var htmlContent = "";
-    var array = JSON.parse("[" + content + "]");
-    var array = array[0];
     htmlContent = '<h2>' + array["Title"] + '</h2> <p> Created:' + array["Date"] + '</p>';
 
     for (var i in array) {
@@ -103,9 +125,16 @@ $(document).ready(function () {
 		$("#slideMeFoot").slideDown("slow");
         $('#pageContents').fadeTo("fast", 1, function () {
             if (c) {
-                console.log(document.getElementById("delivery").value)
-                processXML(document.getElementById('delivery').value)
-                window.print();  
+                $.ajax({
+                    method: "POST",
+                    url: "../modul/noten/call/createJSON.php",
+                    success: function(data){
+                        if (data) {
+                            processXML(data);
+                            window.print();
+                        }
+                    }
+                }); 
             }
         });
     });
