@@ -57,7 +57,7 @@ function processXML(content){
                 if(z == "Semester"){
 
                     htmlContent = htmlContent + ('\
-                        <div class="highlighter card"  style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto;"> \
+                        <div class="highlighter card"  style="padding: 20px;margin-top: 5px; margin-left:auto; margin-right:auto; margin-bottom: 80px;"> \
                             <div class="row" style="cursor: pointer;" onclick="toggleConts(' + array[i][y][z] + ')";>\
                                 <div class="col-12 text-center">\
                                     <h2>Semester ' + array[i][y][z] + '</h2>\
@@ -65,7 +65,7 @@ function processXML(content){
                             </div>\
                             <br/>\
 \
-                            <div class="row toToggleConts" contsID="' + array[i][y][z] + '" style="display:none;">\
+                            <div class="row toToggleConts" contsID="' + array[i][y][z] + '" style="display:1;">\
                                 <div class="col-lg-11" style=" margin-left: auto; margin-right: auto;">\
                     ');
 
@@ -92,12 +92,22 @@ function processXML(content){
 
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
+    
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("deliver");
 
     $('.loadScreen').fadeTo("fast", 0, function(){
 		$("#slideMe").slideDown("slow");
 		$("#slideMeFoot").slideDown("slow");
-        $('#pageContents').fadeTo("fast", 1);
+        $('#pageContents').fadeTo("fast", 1, function () {
+            if (c) {
+                console.log(document.getElementById("delivery").value)
+                processXML(document.getElementById('delivery').value)
+                window.print();  
+            }
+        });
     });
 
     document.getElementById('uploadedFile').addEventListener('change',function () {
@@ -107,6 +117,5 @@ $(document).ready(function(){
         };
         fr.readAsText(this.files[0]);
     });
-
 
 });

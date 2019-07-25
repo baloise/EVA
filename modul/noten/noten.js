@@ -126,8 +126,29 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        var win = window.open('./modul/noten/call/createJSON.php', '_blank');
-        win.focus();
+        $.ajax({
+            method: "POST",
+            url: "./modul/noten/call/createJSON.php",
+            success: function(data){
+                if (data) {
+                    
+                    //var win = window.open('./grades/', '_blank');
+                    var tosend = JSON.stringify(data);
+
+                    console.log(tosend);
+
+                    var form = $(`<form method="post" action="./grades/?deliver=true" target="_blank">
+                        <input type="hidden" name="deliverFile" value='`+ tosend +`'>
+                    </form>`);
+
+                    $(document.body).append(form);
+
+                    form.submit();
+                    //win.focus();
+
+                }
+            }
+        });
 
     })
 

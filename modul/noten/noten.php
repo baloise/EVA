@@ -576,9 +576,9 @@
             <h1 class="mt-5"><?php echo $translate[2];?></h1>
         </div>
         <div class="col-12">
-            <a href="#" id="exportGrades">
+            <button type="button" id="exportGrades">
                 <i class="fa fa-sign-out" aria-hidden="true"></i> Export
-            </a>
+            </button>
         </div>
     </div>
     <div class="row">
@@ -646,7 +646,7 @@
 
 
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
-    <script type="text/javascript" src="modul/noten/noten.min.js"></script>
+    <script type="text/javascript" src="modul/noten/noten.js"></script>
 
 <?php else : ?>
 

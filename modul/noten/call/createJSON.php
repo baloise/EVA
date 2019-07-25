@@ -1,14 +1,14 @@
 <?php
 
     header('Content-Type: text/json; utf-8');
-    header("Content-Disposition: attachment; filename=evaGrades.json");
-    header("Pragma: no-cache");
-    header("Expires: 0");
+    //header("Content-Disposition: attachment; filename=evaGrades.json");
+    //header("Pragma: no-cache");
+    //header("Expires: 0");
 
     include("./../../../database/connect.php");
     include("./../../../includes/session.php");
 
-    $handle = fopen("php://output", "w");
+    //$handle = fopen("php://output", "w");
 
 
     $sql1 = "SELECT us.*, ss.ID AS subSemId, ss.semester AS subSemName FROM `tb_user_subject` AS us
@@ -18,10 +18,11 @@
     $result = $mysqli->query($sql1);
 
     $currentSems = "";
+    $retEcho = "";
 
     if (isset($result) && $result->num_rows > 0) {
 
-        echo '{
+        $retEcho.= '{
     "Title": "Eva Grades List Export",
     "Date": "'.date('d.m.Y H:i:s').'",
     "Entries": [';
@@ -30,17 +31,17 @@
 
             if($row['subSemName'] != $currentSems){
                 if($currentSems != ""){
-        echo '
+                    $retEcho.= '
         ]
     },';
-                    echo '
+    $retEcho.= '
     {
         "Semester": "'.$row['subSemName'].'",
         "Semester ID": "'.$row['subSemId'].'",
         "Subjects": [';
                     $currentSems = $row['subSemName'];
                 } else {
-                    echo '
+                    $retEcho.= '
     {
         "Semester": "'.$row['subSemName'].'",
         "Semester ID": "'.$row['subSemId'].'",
@@ -49,10 +50,10 @@
                 }
 
             } else {
-                echo ',';
+                $retEcho.= ',';
             }
 
-            echo '
+            $retEcho.= '
         {
             "Subject Name": "'.$row['subjectName'].'",
             "Subject ID": "'.$row['ID'].'",
@@ -67,7 +68,7 @@
 
                 while($row2 = $result2->fetch_assoc()) {
 
-                    echo '
+                    $retEcho.= '
             {
                 "GradeID": "'.$row2['ID'].'",
                 "Title": "'.$row2['title'].'",
@@ -78,27 +79,29 @@
                     $i++;
 
                     if($i < $result2->num_rows){
-                        echo ',';
+                        $retEcho.= ',';
                     }
 
                 }
             }
 
 
-        echo "
+            $retEcho.= "
             ]
         }";
 
         }
 
-    echo "
+        $retEcho.= "
         ]
     }";
 
-    echo "
+    $retEcho.= "
     ]
 }";
 
     }
+
+    echo $retEcho;
 
 ?>
