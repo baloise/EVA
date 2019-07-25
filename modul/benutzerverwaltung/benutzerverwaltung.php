@@ -123,13 +123,16 @@
                             </div>';
                             if($row['groupID'] != 1){
                                 $generateDiv .= '
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <button class="btn btn-block btn-lg btn-success fSave" userID="'. $row['ID'] .'"><span class="fa fa-floppy-o" aria-hidden="true"></span> '.$translate[254].'</button>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <button class="btn btn-block btn-lg btn-danger fDelete" bkey="'.$row['bKey'].'" userID="'. $row['ID'] .'"><span class="fa fa-trash-o" aria-hidden="true"></span> '.$translate[97].'</button>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
+                                    <button class="btn btn-block btn-lg btn-info fResetSem" bkey="'.$row['bKey'].'" userID="'. $row['ID'] .'"><span class="fa fa-undo" aria-hidden="true"></span> Reset Semester</button>
+                                </div>
+                                <div class="col-lg-3">
                                     <button class="btn btn-block btn-lg btn-warning fLogin" bkey="'.$row['bKey'].'" userID="'. $row['ID'] .'"><i class="fa fa-exchange" aria-hidden="true"></i> Re-Login</button>
                                 </div>';
                             } else {
@@ -251,7 +254,7 @@
 
     
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
-    <script type="text/javascript" src="modul/benutzerverwaltung/benutzerverwaltung.min.js"></script>
+    <script type="text/javascript" src="modul/benutzerverwaltung/benutzerverwaltung.js"></script>
 
 <?php else : ?>
 

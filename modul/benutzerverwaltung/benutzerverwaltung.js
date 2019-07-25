@@ -80,6 +80,47 @@ $(document).ready(function(){
 
     });
 
+    $(".fResetSem").each(function(){
+        $(this).click(function (event) {
+            var button = $(this);
+            event.preventDefault();
+
+            var userID = $(this).attr('userID');
+            var fSemester = $("#"+userID+"_fSemester").val();
+
+            $("#warningText").html("<strong> Reset Semester </strong> You will be deleting all Data of this user in the selected semester: " + $(this).attr('bkey'));
+            $("#warningAlert").slideDown("fast");
+            $("#warningButton").slideDown("fast");
+            $("#warningButton").click(function(event){
+                if(userID){
+
+					button.prop("disabled",true);
+                    event.preventDefault();
+
+                    $.ajax({
+                        method: "POST",
+                        url: "./modul/benutzerverwaltung/call/modifyUser.php",
+                        data: {action:"resetSemester", userid:userID, semester: fSemester},
+                        success: function(data){
+                            if(data){
+                                $("#errorText").html(data);
+                                $("#errorAlert").slideDown("fast");
+                            } else {
+                                $("#warningAlert").slideUp("fast");
+                                $("#warningButton").prop("disabled", false);
+                                $("#successText").html("Semester reset successful");
+                                $("#successAlert").slideDown("fast").delay(1000).slideUp("fast");
+                                button.prop("disabled",false);
+                            }
+                        }
+                    });
+
+                }
+            });
+
+        });
+    });
+
     $(".fSave").each(function(){
         $(this).click(function(event){
             var button = $(this);

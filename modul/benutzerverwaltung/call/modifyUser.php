@@ -11,7 +11,41 @@
 
     if(isset($_POST['action'])){
 
-        if($_POST['action'] == "add"){
+        if($_POST['action'] == "resetSemester"){
+
+            $userid = test_input($_POST['userid']);
+            $semester = test_input($_POST['semester']);
+
+            $stmt['1'] = $mysqli->prepare("DELETE FROM `tb_als` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['2'] = $mysqli->prepare("DELETE FROM `tb_behaviorgrade` WHERE `tb_userLL_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['3'] = $mysqli->prepare("DELETE FROM `tb_malus` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['4'] = $mysqli->prepare("DELETE FROM `tb_pe` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['5'] = $mysqli->prepare("DELETE FROM `tb_presentation` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['6'] = $mysqli->prepare("DELETE FROM `tb_stao` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+            $stmt['7'] = $mysqli->prepare("DELETE FROM `tb_uek` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+
+            $stmt['8'] = $mysqli->prepare("
+                DELETE grades FROM tb_subject_grade AS grades
+                INNER JOIN tb_user_subject AS subjects
+                ON grades.tb_user_subject_ID = subjects.ID
+                WHERE subjects.tb_user_ID = ? AND subjects.tb_semester_ID = ?
+            ");
+
+            $stmt['9'] = $mysqli->prepare("DELETE FROM `tb_user_subject` WHERE `tb_user_ID` = ? AND `tb_semester_ID` = ?");
+
+            $stmt['10'] = $mysqli->prepare("
+                DELETE checks FROM tb_deadline_check AS checks
+                INNER JOIN tb_deadline AS deadlines
+                ON checks.tb_deadline_ID = deadlines.ID
+                WHERE checks.tb_user_ID = ? AND deadlines.tb_semester_ID = ?
+            ");
+
+            for ($i = 1; $i < 11; $i++) {
+                $stmt[$i]->bind_param("ss", $userid, $semester);
+                $stmt[$i]->execute();
+            }
+
+        } else if($_POST['action'] == "add"){
 
             $error = "";
 
