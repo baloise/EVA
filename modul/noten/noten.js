@@ -98,6 +98,30 @@ $(document).ready(function(){
         }
     });
 
+    $('.fLogin').each(function(){
+        $(this).click(function(event){
+            event.preventDefault();
+            var bkey = $(this).attr('bkey');
+            $("#errorAlert").slideUp("fast");
+            $.ajax({
+                method: "POST",
+                url: "./modul/benutzerverwaltung/call/relogin.php",
+                data: {bkey:bkey},
+                success: function(data){
+                    if(data){
+                        $("#errorText").html(data);
+                        $("#errorAlert").slideDown("fast");
+                    } else {
+                        $("body").fadeOut("slow", function(){
+                            window.location.href = 'index.php?page=noten&adm=true';
+                        });
+                    }
+                }
+            });
+
+        });
+    });
+
     $('#exportGrades').click(function(event){
 
         event.preventDefault();

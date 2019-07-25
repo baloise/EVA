@@ -251,6 +251,11 @@
                                         <hr/>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-block btn-lg btn-warning fLogin" bkey="'.$llbkey.'" userID="'. $llid .'"><i class="fa fa-exchange" aria-hidden="true"></i> Re-Login</button>
+                                    </div>
+                                </div>
                                 <div class="xxx">
                                     <table>
                                         <tbody>
@@ -297,7 +302,7 @@
 
 
     <script type="text/javascript" src="js/searchFunction.min.js"></script>
-    <script type="text/javascript" src="modul/noten/noten.min.js"></script>
+    <script type="text/javascript" src="modul/noten/noten.js"></script>
 
 
 <?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
