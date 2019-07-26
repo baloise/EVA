@@ -8,12 +8,13 @@
 
             $sql = "SELECT us.ID, us.bKey, us.tb_group_ID, us.tb_semester_ID, sem.semester, us.firstname, us.lastname FROM `tb_user` AS us
                     LEFT JOIN tb_semester AS sem ON sem.ID = us.tb_semester_ID
-                    WHERE us.tb_group_ID IN (3, 4, 5) AND us.deleted IS NULL;";
+                    WHERE us.tb_group_ID IN (3, 4, 5, 6) AND us.deleted IS NULL;";
             $result = $mysqli->query($sql);
 
             $listLLIT = "";
             $listLLKVV = "";
             $listLLKVB = "";
+            $listLLMT = "";
 
             if (isset($result) && $result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -138,6 +139,52 @@
 
                         $listLLKVB .= $entry . '</tr>';
 
+                    } else if($row['tb_group_ID'] == 6){
+
+                        $entry = '
+                        <tr class="userEntry LMT" userID="'.$row['ID'].'" bKey="'.$row['bKey'].'">
+                            <td>'.$row['firstname'].' '.$row['lastname'].' ('.$row['bKey'].')</td>
+                        ';
+                        if($row['semester'] > 0){
+                            $entry .= '<td class="text-center">'.$row['semester'].'</td>';
+                        } else {
+                            $entry .= '<td class="text-center alert-warning"><i>???</i></td>';
+                        }
+
+                        if($row['semester'] <= 3){
+                            $entry .= '
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="6" type="checkbox" value="6"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="7" type="checkbox" value="7"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="8" type="checkbox" value="8"></td>
+                            ';
+                        } else if ($row['semester'] <= 4 && $row['semester'] > 0){
+                            $entry .= '
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="6" type="checkbox" value="6" checked></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="7" type="checkbox" value="7"></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="8" type="checkbox" value="8"></td>
+                            ';
+                        } else if ($row['semester'] <= 6 && $row['semester'] > 0){
+                            $entry .= '
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="6" type="checkbox" value="6"></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="7" type="checkbox" value="7" checked></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="8" type="checkbox" value="8"></td>
+                            ';
+                        } else if ($row['semester'] == 7 && $row['semester'] > 0){
+                            $entry .= '
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="6" type="checkbox" value="6"></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="7" type="checkbox" value="7"></td>
+                                <td class="text-center cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="8" type="checkbox" value="8" checked></td>
+                            ';
+                        } else {
+                            $entry .= '
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="6" type="checkbox" value="6"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="7" type="checkbox" value="7"></td>
+                                <td class="text-center alert-warning cycleChecker" userID="'.$row['ID'].'" ><input class="form-check-input" cycleID="8" type="checkbox" value="8"></td>
+                            ';
+                        }
+
+                        $listLLMT .= $entry . '</tr>';
+
                     }
 
                 }
@@ -167,6 +214,39 @@
         <div class="row">
             <div class="col-lg-3">
                 <button id="LIT" class="getCSV btn-block btn btn-lg btn-default highlighter"><i class="fa fa-cogs" aria-hidden="true"></i> Export CSV</button>
+            </div>
+            <div class="col-lg-3">
+                <button onclick="window.location.href='modul/leistungslohn/Serienbrief.docx'" class="btn-block btn btn-lg btn-default highlighter"><i class="fa fa-download" aria-hidden="true"></i> Download Template</button>
+            </div>
+            <div class="col-lg-6">
+                <p class="getCSVnotif" style="padding-top: 10px; display:none; font-size: larger; color: grey;">
+                    <b><i>Please wait, your file is getting prepared...</i></b>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th style="border-top:none;" scope="col" rowspan="2"><?php echo $translate[190]; ?></th>
+                        <th style="border-top:none;" scope="col" class="text-center" rowspan="2"><?php echo $translate[38]; ?></th>
+                        <th style="border-top:none;" class="text-center" scope="col" colspan="3"><?php echo $translate[47]; ?></th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="col"><?php echo $translate[48]." 3"; ?></th>
+                        <th class="text-center" scope="col"><?php echo $translate[38]." 7"; ?></th>
+                        <th class="text-center" scope="col"><?php echo $translate[38]." 8"; ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo $listLLMT; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <button id="LMT" class="getCSV btn-block btn btn-lg btn-default highlighter"><i class="fa fa-cogs" aria-hidden="true"></i> Export CSV</button>
             </div>
             <div class="col-lg-3">
                 <button onclick="window.location.href='modul/leistungslohn/Serienbrief.docx'" class="btn-block btn btn-lg btn-default highlighter"><i class="fa fa-download" aria-hidden="true"></i> Download Template</button>
