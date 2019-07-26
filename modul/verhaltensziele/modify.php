@@ -4,7 +4,7 @@
     include("./../../database/connect.php");
     include('../../includes/testInput.php');
 
-    if($session_usergroup != 3 && $session_usergroup != 1 && $session_usergroup != 2){
+    if($session_usergroup != 3 && $session_usergroup != 1 && $session_usergroup != 2 && $session_usergroup != 6){
         die("Sie haben keine Berechtigungen zu diesem Modul");
     }
 

@@ -3,7 +3,7 @@
 include("../../../includes/session.php");
 include("./../../../database/connect.php");
 
-if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
+if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 6){
 
     function fetchColumn($result, $column = 0) {
         return array_column(mysqli_fetch_all($result), $column);
@@ -359,6 +359,17 @@ if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4
             break;
             default:
             return $coSu/$i;
+        }
+
+    }
+
+    //Leistung Medien
+    function LMTcalcmedien($semesterID, $userID, $mysqli){
+
+        $LITmodule = calcSchool($semesterID, $userID, $mysqli, 0);
+
+        if ($LITmodule != 0) {
+            return ($LITmodule);
         }
 
     }

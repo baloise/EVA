@@ -305,7 +305,7 @@
     <script type="text/javascript" src="modul/noten/noten.js"></script>
 
 
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //LLKV&IT ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 6) : //LLKV&IT ?>
 
     <head>
         <style>
@@ -617,7 +617,7 @@
 
                 <?php
 
-                    if($session_usergroup == 3){
+                    if($session_usergroup == 3 || $session_usergroup == 6){
                         echo '
                         <div class="row" id="LIT">
                                 <div class="col-lg-6" style="margin-top: 8px;">

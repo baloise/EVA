@@ -169,6 +169,80 @@
                                 <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG ENDE -->
                             ';
 
+                        } else if ($groupID == 6){
+
+                            $cycleList = '
+                            <!-- BERECHNUNGSZYKLEN MEDIENTECHNOLOGE -->
+
+                            <div class="row">
+                                <div class="col-lg-12 card highlighter">
+                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="1" onclick="toggleCycle('.$userID.', 1);">
+                                        <div class="col-10">
+                                            <h2>'.$translate[47].' ' . $translate[48] .' 3</h2>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="1">
+
+                                        <div class="col-12 text-center loading">
+                                            <img class="img-responsive" src="img/loading2_big.svg"/>
+                                        </div>
+
+                                        <!-- AJAX CALL -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 card highlighter">
+                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="2" onclick="toggleCycle('.$userID.', 2);">
+                                        <div class="col-10">
+                                            <h2>'.$translate[47].' '.$translate[38].' 7</h2>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="2">
+
+                                        <div class="col-12 text-center loading">
+                                            <img class="img-responsive" src="img/loading2_big.svg"/>
+                                        </div>
+
+                                        <!-- AJAX CALL -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 card highlighter">
+                                    <div class="row cycleHeader" userID="'.$userID.'" cycleID="3" onclick="toggleCycle('.$userID.', 3);">
+                                        <div class="col-10">
+                                            <h2>'.$translate[47].' '.$translate[38].' 8</h2>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <i class="fa fa-chevron-down" style="margin-top: 5px;" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row cycleContent" userID="'.$userID.'" cycleID="3">
+
+                                        <div class="col-12 text-center loading">
+                                            <img class="img-responsive" src="img/loading2_big.svg"/>
+                                        </div>
+
+                                        <!-- AJAX CALL -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BERECHNUNGSZYKLEN INFORMATIKER ENDE -->
+                        ';
+
                         }
 
                         $usersEntry = '
@@ -265,7 +339,7 @@
     
     <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
 
-<?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5) : ?>
+<?php elseif($session_usergroup == 4 || $session_usergroup == 3 || $session_usergroup == 5 || $session_usergroup == 6) : ?>
 
     <head>
         <link rel="stylesheet" href="modul/leistungslohn/leistungslohn.css"/>
@@ -414,6 +488,80 @@
                         <!-- BERECHNUNGSZYKLEN KV VERSICHERUNG ENDE -->
                     ';
 
+                } else if($session_usergroup == 6){
+
+                    $cycleList = '
+                        <!-- BERECHNUNGSZYKLEN MEDIENTECHNOLOGE -->
+
+                        <div class="row">
+                            <div class="col-lg-12 card highlighter">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="6" onclick="toggleCycle('.$userID.', 6);">
+                                    <div class="col-10">
+                                        <h2>'.$translate[47].' '.$translate[47].' 3</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="6">
+
+                                    <div class="col-12 text-center loading">
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
+                                    </div>
+
+                                    <!-- AJAX CALL -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 card highlighter">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="7" onclick="toggleCycle('.$userID.', 7);">
+                                    <div class="col-10">
+                                        <h2>'.$translate[47].' '.$translate[38].' 7</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="7">
+
+                                    <div class="col-12 text-center loading">
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
+                                    </div>
+
+                                    <!-- AJAX CALL -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 card highlighter">
+                                <div class="row cycleHeader" userID="'.$userID.'" cycleID="8" onclick="toggleCycle('.$userID.', 8);">
+                                    <div class="col-10">
+                                        <h2>'.$translate[47].' '.$translate[38].' 8</h2>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row cycleContent" userID="'.$userID.'" cycleID="8">
+
+                                    <div class="col-12 text-center loading">
+                                        <img class="img-responsive" src="img/loading2_big.svg"/>
+                                    </div>
+
+                                    <!-- AJAX CALL -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BERECHNUNGSZYKLEN INFORMATIKER ENDE -->
+                    ';
+
                 }
 
                 $sql2 = "SELECT mal.*, sem.semester FROM `tb_malus` AS mal
@@ -498,7 +646,7 @@
     ?>
 
     
-    <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.min.js"></script>
+    <script type="text/javascript" src="modul/leistungslohn/js/leistungslohn.js"></script>
 
 <?php else : ?>
 

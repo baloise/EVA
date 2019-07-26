@@ -154,7 +154,7 @@
 
     <script type="text/javascript" src="modul/reglement/reglement.min.js"></script>
 
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 2) : ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 2 || $session_usergroup == 6) : ?>
 
     <h1 class="mt-5"><?php echo $translate[253];?></h1>
 

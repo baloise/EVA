@@ -22,7 +22,7 @@
                 ORDER BY Gid ASC, Ssemester ASC;
 
                 ";
-                $sql2 ="SELECT ID, name FROM tb_group WHERE ID IN (3,4,5)";
+                $sql2 ="SELECT ID, name FROM tb_group WHERE ID IN (3,4,5,6)";
 
                 $groups = "";
 

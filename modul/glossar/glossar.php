@@ -122,7 +122,7 @@
     <script type="text/javascript" src="modul/glossar/glossar.min.js"></script>
 
 
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : //Lehrling ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 6) : //Lehrling ?>
 
     <h1 class="mt-5"><?php echo $translate[256];?></h1>
 

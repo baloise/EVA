@@ -10,7 +10,7 @@
 
         $sql = "
         SELECT ID, bKey, firstname, lastname FROM `tb_user` 
-        WHERE tb_group_ID IN (3, 4, 5) AND deleted IS NULL;
+        WHERE tb_group_ID IN (3, 4, 5, 6) AND deleted IS NULL;
         ";
 
         $result = $mysqli->query($sql);
@@ -77,7 +77,7 @@
     <script type="text/javascript" src="modul/terminmanagement/js/modifyhr.min.js"></script>
 
 
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5) : ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 6) : ?>
 
     <h1 class="mt-5"><?php echo $translate[12];?></h1>
 

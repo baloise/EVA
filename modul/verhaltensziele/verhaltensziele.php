@@ -134,7 +134,7 @@
     <script type="text/javascript" src="modul/verhaltensziele/verhaltensziele.min.js"></script>
     <script type="text/javascript" src="js/datatablesInit.js"></script>
 
-<?php elseif($session_usergroup == 3 || $session_usergroup == 4) : //IT-Lehrling & KV-Lehrling ?>
+<?php elseif($session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 6) : //IT-Lehrling & KV-Lehrling ?>
 
     <?php
 

@@ -2,7 +2,7 @@
 
     include("../../../includes/session.php");
 
-    if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5){
+    if($session_usergroup == 1 || $session_usergroup == 3 || $session_usergroup == 4 || $session_usergroup == 5 || $session_usergroup == 6){
 
         include("getContent.php");
         include("calcCycles.php");
@@ -259,7 +259,6 @@
             }
 
             // --------------------------------- CYCLE KV 5 ------------------------------------------
-
             if($_POST['cycleID'] == 5){
 
                 $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
@@ -447,6 +446,131 @@
                 } else {
                     echo generateEntryLKVB($totalMalus, $actualSalary, $cycleTotalPercentAverage, $cycleTotalPerformPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBehavePercentAverage, $semesterList, $translate);
                 }
+
+            }
+
+             // --------------------------------- CYCLE MT 1 ------------------------------------------
+             if($_POST['cycleID'] == 6){
+
+                $sql = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
+                $result = $mysqli->query($sql);
+
+                $semesterList = "";
+
+                $semesterCountSemester = 0;
+                $semesterCountSchool = 0;
+                $semesterCountBetrieb = 0;
+                $semesterCountMedien = 0;
+
+                $cycleTotalPercent = 0;
+                $cycleTotalMedienPercent = 0;
+                $cycleTotalSchoolPercent = 0;
+                $cycleTotalBetriebPercent = 0;
+                $cycleTotalMalus = 0;
+                $actualSalary = 0;
+
+                if (isset($result) && $result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+
+
+                        $malusSql = "SELECT weight FROM `tb_malus` WHERE tb_semester_ID = ".$row["ID"]." AND tb_user_ID = $userID;";
+                        $malusResult = $mysqli->query($malusSql);
+                        if (isset($malusResult) && $malusResult->num_rows > 0) {
+                            while($malusRow = $malusResult->fetch_assoc()) {
+                                $cycleTotalMalus += $malusRow["weight"];
+                            }
+                        }
+
+                        $semesterList .= generateSemesterMT($row['ID'], $row['semester'], $userID, $mysqli, $translate, $_POST['cycleID']);
+
+                        if(LITcalculateSemester($row['ID'], $userID, $mysqli) > 0){
+                            $cycleTotalPercent = ($cycleTotalPercent + LITcalculateSemester($row['ID'], $userID, $mysqli));
+                            $semesterCountSemester += 1;
+                        }
+
+                        if(LMTcalcMedien($row['ID'], $userID, $mysqli) > 0){
+                            $cycleTotalMedienPercent = $cycleTotalMedienPercent + LMTcalcMedien($row['ID'], $userID, $mysqli);
+                            $semesterCountMedien += 1;
+                        }
+
+                        if(calcSchool($row['ID'], $userID, $mysqli, 1) > 0){
+                            $cycleTotalSchoolPercent = $cycleTotalSchoolPercent + calcSchool($row['ID'], $userID, $mysqli, 1);
+                            $semesterCountSchool += 1;
+                        }
+
+                        if(LITcalcBetieb($row['ID'], $userID, $mysqli) > 0){
+                            $cycleTotalBetriebPercent = $cycleTotalBetriebPercent + LITcalcBetieb($row['ID'], $userID, $mysqli);
+                            $semesterCountBetrieb += 1;
+                        }
+
+                    }
+                }
+
+                if($cycleTotalMalus>0){
+                    $cycleTotalMalus = $cycleTotalMalus/$semesterCountSemester;
+                }
+
+                $cycleTotalMedienPercentAverage = calcNeededAverages($semesterCountMedien, $cycleTotalMedienPercent);
+                $cycleTotalSchoolPercentAverage = calcNeededAverages($semesterCountSchool, $cycleTotalSchoolPercent);
+                $cycleTotalBetriebPercentAverage = calcNeededAverages($semesterCountBetrieb, $cycleTotalBetriebPercent);
+
+                $cycleTotalPercentAverage = calculateEndSum($cycleTotalMedienPercentAverage,$cycleTotalSchoolPercentAverage,$cycleTotalBetriebPercentAverage,$cycleTotalMalus);
+                $actualSalary = calcActualSalary($cycleTotalPercentAverage, $_POST['cycleID']);
+
+                if(isset($_POST['forCSV']) && $_POST['forCSV'] == true){
+
+                    $translateCycle = "kommenden Semester";
+
+                    switch ($_POST['cycleID']) {
+                        case 1:
+                            $translateCycle = "5 & 6";
+                            break;
+                        case 2:
+                            $translateCycle = "7";
+                            break;
+                        case 3:
+                            $translateCycle = "8";
+                            break;
+                        case 4:
+                            $translateCycle = "5";
+                            break;
+                        case 5:
+                            $translateCycle = "6";
+                            break;
+                    }
+
+                    $cvsValues = array(
+                        "UserID" => $userID,
+                        "Cycle" => $translateCycle,
+                        "Salary" => $actualSalary,
+                        "TotalPercent" => round($cycleTotalPercentAverage*100, 2),
+                        "TotalMedien" => round($cycleTotalItPercentAverage*100, 2),
+                        "TotalSchool" => round($cycleTotalSchoolPercentAverage*100, 2),
+                        "TotalBetrieb" => round($cycleTotalBetriebPercentAverage*100, 2),
+                        "TotalMalus" => round($cycleTotalMalus, 2)
+                    );
+                    return $cvsValues;
+                } else {
+                    echo generateEntryMT($cycleTotalMalus, $actualSalary, $cycleTotalPercentAverage, $cycleTotalMedienPercentAverage, $cycleTotalSchoolPercentAverage, $cycleTotalBetriebPercentAverage, $semesterList, $translate);
+                }
+
+            }
+
+            // --------------------------------- CYCLE MT 2&3 ------------------------------------------
+
+            if($_POST['cycleID'] == 7){
+
+                $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4";
+                $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
+                return cycleContentMT($mysqli, $sql1, $sql2, $userID, $translate);
+
+            }
+
+            if($_POST['cycleID'] == 8){
+
+                $sql1 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 4, 2";
+                $sql2 = "SELECT sem.* FROM `tb_semester` as sem INNER JOIN tb_user as us ON us.tb_group_ID = sem.tb_group_ID WHERE us.ID = $userID LIMIT 6, 1";
+                return cycleContentMT($mysqli, $sql1, $sql2, $userID, $translate);
 
             }
 
