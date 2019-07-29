@@ -4,9 +4,7 @@
     include("./../../database/connect.php");
     include('../../includes/testInput.php');
 
-    if($session_usergroup != 5 && $session_usergroup != 1){
-        die("Sie haben keine Berechtigungen zu diesem Modul");
-    }
+    if($session_usergroup != 5 && $session_usergroup != 1) die("Sie haben keine Berechtigungen zu diesem Modul");
 
     if($_POST['todo'] == "checkAndDelete"){
 
