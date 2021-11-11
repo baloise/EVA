@@ -16,11 +16,10 @@
             $decoded = explode(";", file_get_contents('compress.zlib://data:who/cares;base64,'. $_COOKIE["MedusaToken"] ));
             $username = (explode("=", $decoded[0])[1]);
 
+        } else if($_GET['loginType'] == "plain") {
+            $username = $_GET['username'];
         } else {
-
             $username = $_POST['username'];
-            $pass = "TODO";
-
         }
 
         include("database/connect.php");
