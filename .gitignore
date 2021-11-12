@@ -2,7 +2,6 @@
 /.project
 callParsys.php
 
-/vendor/
 database/connect.php
 database/connect.php
 includes/showMySession.php
