@@ -5,7 +5,7 @@
 
 	if (empty($_GET['loginType'])) {
 
-		header('Location: login.php?error=noType');
+		header('Location: lehre/login.php?error=noType');
 
 	} else {
 
@@ -32,7 +32,7 @@
             $row = $result->fetch_assoc();
 
             if($row['deleted'] == 1){
-                 header("Location: login.php?error=userDeleted");
+                 header("Location: lehre/login.php?error=userDeleted");
             } else {
 
                 $_SESSION['user']['usergroup'] = $row['tb_group_id'];
@@ -101,7 +101,7 @@
 
         } else {
 
-            header("Location: login.php?error=userNotFound");
+            header("Location: lehre/login.php?error=userNotFound");
 
         }
     }
